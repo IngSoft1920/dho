@@ -21,6 +21,6 @@ public class DhoApplication {
 	@ResponseBody
 	@GetMapping("/helloWorld")
 	public String helloWorldController() {
-		return "Hello world - DH!";
+		return "Hello world - DHO!";
 	}
 }
