@@ -1,31 +1,32 @@
-package ingsoft1920.controller;
+package ingsoft1920.dho.controller;
 
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import ingsoft1920.bean.Reserva;
+import ingsoft1920.dho.bean.Reserva;
 
 @Controller
 public class ControladorDHO {
 	
 	@GetMapping("/homePageDHO")
 	public String homePageDHO() {
-		return "homePageDHO.jsp";
+		return "homePageDHO";
 		
 	}
 	
 	@GetMapping("/homePageDHO/hacerReserva")
-	public String hsacerReserva() {
-		return "homePageDHO/hscerReserva.jsp";
+	public String hacerReserva() {
+		return "hacerReserva";
 		
 	}
 	
 	@PostMapping("/homePageDHO/hacerReserva")
-	public String hsacerReservaSolicitud(Reserva reserva) {
+	public String hacerReservaSolicitud(Reserva reserva) {
 		System.out.println("reserva recibida:\n"+reserva);
-		return "homePageDHO/hacerReserva.jsp";
+		return "hacerReserva";
 	}
 	
 	
