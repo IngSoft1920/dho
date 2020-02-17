@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller
+
 @SpringBootApplication
 public class DhoApplication {
 	final static Logger logger = LogManager.getLogger(DhoApplication.class.getName());
