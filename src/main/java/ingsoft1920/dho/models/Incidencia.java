@@ -1,15 +1,16 @@
 package ingsoft1920.dho.models;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Incidencia {
 	private int incidencia_id;
 	private String descripcion;
 	private String lugar_incidencia;
-	private LocalDate fecha_incidencia;
+	private Date fecha_incidencia;
 	private String tipo_incidencia;
 	
-	public Incidencia(int incidencia_id, String descripcion, String lugar_incidencia, LocalDate fecha_incidencia,
+	public Incidencia(int incidencia_id, String descripcion, String lugar_incidencia, Date fecha_incidencia,
 			String tipo_incidencia) {
 		super();
 		this.incidencia_id = incidencia_id;
@@ -37,10 +38,10 @@ public class Incidencia {
 	public void setLugar_incidencia(String lugar_incidencia) {
 		this.lugar_incidencia = lugar_incidencia;
 	}
-	public LocalDate getFecha_incidencia() {
+	public Date getFecha_incidencia() {
 		return fecha_incidencia;
 	}
-	public void setFecha_incidencia(LocalDate fecha_incidencia) {
+	public void setFecha_incidencia(Date fecha_incidencia) {
 		this.fecha_incidencia = fecha_incidencia;
 	}
 	public String getTipo_incidencia() {

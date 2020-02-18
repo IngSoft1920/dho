@@ -13,6 +13,7 @@ import ingsoft1920.dho.DAO.TareaDAO;
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.ServicioBean;
 import ingsoft1920.dho.bean.TareaBean;
+import ingsoft1920.dho.models.Habitaciones;
 
 @Controller
 
@@ -20,7 +21,7 @@ public class DhoAPI {
 
 	@ResponseBody
 	@GetMapping("/getHabitacion/{id_cliente}")
-	public HabitacionBean getHabitacionPorId(@PathVariable int id_cliente) {
+	public Habitaciones getHabitacionPorId(@PathVariable int id_cliente) {
 		return  HabitacionDAO.getHabitacionPorId(id_cliente) ;
 		
 	}
