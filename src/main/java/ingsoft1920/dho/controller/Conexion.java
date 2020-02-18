@@ -18,10 +18,10 @@ public class Conexion {
 	private static Connection conn = null;
 	private static String servidor, usuario, contrasena, baseDeDatos,puerto;
 
-	protected Connection getConexion() {
+	public Connection getConexion() {
 		return this.conn;
 	}
-	protected static void conectar (){
+	public static void conectar (){
 		if (conn==null){
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
