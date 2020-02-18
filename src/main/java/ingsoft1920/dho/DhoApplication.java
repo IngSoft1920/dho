@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ingsoft1920.dho.bean.EmpleadoBean;
+import ingsoft1920.dho.controller.PasarTurnos;
 import ingsoft1920.dho.controller.PedirEmpleados;
 
 
@@ -19,7 +20,8 @@ public class DhoApplication {
 	public static void main(String[] args) {
 		logger.warn("Aplicacion iniciada");
 		SpringApplication.run(DhoApplication.class, args);
-		EmpleadoBean res=PedirEmpleados.peticionPedirEmpleado().get(0);
+		//con esta linea se realiza una peticion en modo cliente a nuestro servidor
+		PasarTurnos.peticionPasarTurnos();
 		
 	}
 

@@ -47,7 +47,7 @@ public class DhoAPI {
 
 	
 	
-	//metodo  de prueba para probar la solicitud http lanzada como cliente
+	//metodo  de prueba para probar la solicitud http de tipo GET lanzada como cliente
 	@ResponseBody
 	@GetMapping("/getHabitacio/7")
 	public String prueba() {
@@ -61,6 +61,14 @@ public class DhoAPI {
 		obj.add("rol", listaNotas2);
 		return obj.toString().toString();
 		
+	}
+	
+	//metodo  de prueba para probar la solicitud http de tipo POST lanzada como cliente
+	
+	@ResponseBody
+	@PostMapping("/asignarTurnos/7")
+	public String prueba2() {
+		return "ha ido correctamente";
 	}
 	
 }
