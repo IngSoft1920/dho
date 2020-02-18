@@ -2,6 +2,7 @@ package ingsoft1920.dho.DAO;
 
 import ingsoft1920.dho.bean.IncidenciaBean;
 import ingsoft1920.dho.bean.TareaBean;
+import ingsoft1920.dho.models.Incidencia;
 
 public class TareaDAO {
 	
@@ -24,13 +25,13 @@ public class TareaDAO {
 		nuevaTarea.setEstado(false);
 		
 		//antes de añadir la tarea hay que añadir la incidencia
-		IncidenciaBean incidencia= new IncidenciaBean();
+		Incidencia incidencia= new Incidencia();
 		
 		incidencia.setDescripcion("tarea de restaurante");
-		incidencia.setFecha("vacio");//revisar esto
-		incidencia.setId_incidencia(IncidenciaBean.ContInc);
+		incidencia.setFecha_incidencia(null);//revisar esto
+		incidencia.setIncidencia_id(IncidenciaBean.ContInc);
 		incidencia.setTipo_incidencia(nuevaTarea.getTipo_tarea());
-		incidencia.setLugar(nuevaTarea.getLugar());
+		incidencia.setLugar_incidencia(nuevaTarea.getLugar());
 		
 		//una vez relleando los campos de la nueva incidencia, llamamos a añadirIncidencia..
 		//para añadirla a la tabla

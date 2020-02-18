@@ -10,6 +10,10 @@ public class Incidencia {
 	private Date fecha_incidencia;
 	private String tipo_incidencia;
 	
+	public Incidencia() {
+		super();
+	}
+	
 	public Incidencia(int incidencia_id, String descripcion, String lugar_incidencia, Date fecha_incidencia,
 			String tipo_incidencia) {
 		super();
