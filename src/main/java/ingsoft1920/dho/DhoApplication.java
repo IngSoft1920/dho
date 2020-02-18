@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ingsoft1920.dho.bean.EmpleadoBean;
+import ingsoft1920.dho.controller.PedirEmpleados;
+
 
 @SpringBootApplication
 public class DhoApplication {
@@ -16,6 +19,8 @@ public class DhoApplication {
 	public static void main(String[] args) {
 		logger.warn("Aplicacion iniciada");
 		SpringApplication.run(DhoApplication.class, args);
+		EmpleadoBean res=PedirEmpleados.peticionPedirEmpleado().get(0);
+		
 	}
 
 	@ResponseBody
