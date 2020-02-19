@@ -25,8 +25,6 @@ public class PeticionServicios {
 			HttpClient client= new HttpClient("http://localhost:7001/recibirServicios/7","GET");
 			
 			
-			//creo que como es una peticion de tipo GET y no pasamos parametros, no hace
-			//falta establecer cuerpo de la peticion
 			
 			int respCode = client.getResponseCode();
 			
@@ -36,10 +34,10 @@ public class PeticionServicios {
 				JsonObject obj = (JsonObject) JsonParser.parseString(resp);
 				
 				
-				JsonArray servicios_idLista=obj.get("servicios_id").getAsJsonArray();
-				int[] servicios_idListaInt= new int[servicios_idLista.size()];
-				JsonArray estancia_idLista=obj.get("estancia_id").getAsJsonArray();
-				int[] estancia_idListaInt= new int[estancia_idLista.size()];
+				//JsonArray servicios_idLista=obj.get("servicios_id").getAsJsonArray();
+				//int[] servicios_idListaInt= new int[servicios_idLista.size()];
+				//JsonArray estancia_idLista=obj.get("estancia_id").getAsJsonArray();
+				//int[] estancia_idListaInt= new int[estancia_idLista.size()];
 				JsonArray cliente_idLista=obj.get("cliente_id").getAsJsonArray();
 				int[] cliente_idListaInt= new int[cliente_idLista.size()];
 				JsonArray lugarLista=obj.get("lugar").getAsJsonArray();
@@ -52,15 +50,21 @@ public class PeticionServicios {
 				String[] tipo_servicioListaInt= new String[tipo_servicioLista.size()];
 				List<ServicioBean> lista=new ArrayList<ServicioBean>();
 
-				for(int i=0;i<servicios_idLista.size();i++) {
-					servicios_idListaInt[i]=servicios_idLista.get(i).getAsInt();
-					estancia_idListaInt[i]=estancia_idLista.get(i).getAsInt();
+				for(int i=0;i<cliente_idLista.size();i++) {
+					//servicios_idListaInt[i]=servicios_idLista.get(i).getAsInt();
+					//estancia_idListaInt[i]=estancia_idLista.get(i).getAsInt();
 					cliente_idListaInt[i]=cliente_idLista.get(i).getAsInt();
 					lugarListaInt[i]=lugarLista.get(i).getAsString();
 					fecha_servicioListaInt[i]=fecha_servicioLista.get(i).getAsString();
 					horaListaInt[i]=horaLista.get(i).getAsString();
 					tipo_servicioListaInt[i]=tipo_servicioLista.get(i).getAsString();
-					lista.add(new ServicioBean(servicios_idListaInt[i], estancia_idListaInt[i],cliente_idListaInt[i],lugarListaInt[i],fecha_servicioListaInt[i],horaListaInt[i],tipo_servicioListaInt[i]));
+					ServicioBean aux=new ServicioBean();
+					aux.setCliente_id(cliente_idListaInt[i]);
+					aux.setLugar(lugarListaInt[i]);
+					aux.setFecha_servicio(fecha_servicioListaInt[i]);
+					aux.setHora(horaListaInt[i]);
+					aux.setTipo_servicio(tipo_servicioListaInt[i]);;
+					lista.add(aux);
 				}
 				
 				return lista;

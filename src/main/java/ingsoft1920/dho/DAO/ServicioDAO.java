@@ -1,16 +1,21 @@
+
 package ingsoft1920.dho.DAO;
 
+import ingsoft1920.dho.bean.IncidenciaBean;
 import ingsoft1920.dho.bean.ServicioBean;
+import ingsoft1920.dho.bean.TareaBean;
 
 public class ServicioDAO {
+	
+	public static int añadirServicio(ServicioBean servicio) {
+		return servicio.getServicios_id();
+	}
 
-	
-	public static void recogerServicio(ServicioBean servicio) {
-		//añadir campos que faltan al servicio para poder añadirlo a la base de datos
-		añadirReserva(servicio);
+	public static int recogerServicio(ServicioBean servicio) {
+		
+		//servicio.setServicios_id(1);
+		//servicio.setEstancia_id(pedirEstancia());
+		return añadirServicio(servicio);
 	}
-	
-	public static void añadirReserva(ServicioBean servicio) {
-		//consulta de añadir un servicio a la tabla servicios
-	}
+
 }

@@ -15,6 +15,9 @@ public class ServicioBean {
 	private String fecha_servicio; 
 	private String hora; 
 	private String tipo_servicio;
+	public ServicioBean() {
+		
+	}
 	public ServicioBean(int servicios_id, int estancia_id, int cliente_id, String lugar, String fecha_servicio,
 			String hora, String tipo_servicio) {
 		super();
