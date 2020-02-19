@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class Reserva {
+public class ReservaBean {
 	
 	int id;
 	String nombre;
