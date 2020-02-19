@@ -3,9 +3,11 @@ package baseDatos;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import baseDatos.entidades.Habitaciones;
+
+//Pruebas
 
 public class Pruebas {
+	/*
 	public static void main(String[]args) throws IOException {
 		Consultas consultas=new Consultas();
 		consultas.getConexion().init();
@@ -17,8 +19,9 @@ public class Pruebas {
 			System.out.println(elemento);
 		}
 		System.out.println(consultas.getHabitacionByCliente(1));
-		*/
+		
 		System.out.println(consultas.asignarTarea(1));
 		
 	}
+*/
 }

@@ -1,5 +1,5 @@
 package baseDatos;
-
+/*
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,8 +8,13 @@ import java.util.ArrayList;
 import ingsoft1920.dho.Model.Cobros;
 import ingsoft1920.dho.Model.Habitaciones;
 import ingsoft1920.dho.controller.Conexion;
+*/
 
+
+
+//Consultas previamente hechas que hay que adaptarlas al nuevo programa
 public class Consultas {
+	/*
 	private static Conexion conexion=new Conexion();
 	public Conexion getConexion() {
 		return this.conexion;
@@ -290,4 +295,5 @@ public class Consultas {
 				}
 				return res;
 			}
+			*/
 }

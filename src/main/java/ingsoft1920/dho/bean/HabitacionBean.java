@@ -14,14 +14,14 @@ public class HabitacionBean {
 	 
 	private int id_habitacion; 
 	private int id_hotel; 
-	private int tipo_habitacion; 
+	private String tipo_habitacion; 
 	 
 	 
 	 
 	public HabitacionBean() {  
 	} 
 	
-	public HabitacionBean(int id_habitacion, int id_hotel,int tipo_habitacion) { 
+	public HabitacionBean(int id_habitacion, int id_hotel,String tipo_habitacion) { 
 		this.id_habitacion = id_habitacion; 
 		this.id_hotel=id_hotel; 
 		this.tipo_habitacion = tipo_habitacion; 
@@ -36,11 +36,11 @@ public class HabitacionBean {
 		this.id_habitacion = id_habitacion; 
 	} 
 	 
-	public int getTipo_habitacion() { 
+	public String getTipo_habitacion() { 
 		return tipo_habitacion; 
 	} 
 	 
-	public void setTipo_habitacion(int tipo_habitacion) { 
+	public void setTipo_habitacion(String tipo_habitacion) { 
 		this.tipo_habitacion = tipo_habitacion; 
 	} 
  

@@ -3,8 +3,6 @@ package ingsoft1920.dho.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import ingsoft1920.dho.Model.Incidencia;
 import ingsoft1920.dho.bean.IncidenciaBean;
 import ingsoft1920.dho.controller.Conexion; 
  
@@ -40,10 +38,10 @@ public class IncidenciaDAO {
 				incidencia_id=rs1.getInt("COUNT(incidencia_id)")+1;//id de la nueva tarea 
 				stm=conexion.getConexion().prepareStatement("INSERT INTO incidencia values (?,?,?,?,?)"); 
 				stm.setInt(1,incidencia_id); 
-				stm.setString(2, incidencia.getDescripcion()); 
-				stm.setString(3, incidencia.getLugar()); 
-				stm.setDate(4, incidencia.getFecha()); 
-				stm.setString(5, incidencia.getTipo_incidencia()); 
+				stm.setString(2, incidencia.getTipo_incidencia()); 
+				stm.setString(3, incidencia.getDescripcion()); 
+				stm.setString(4, incidencia.getLugar()); 
+				stm.setDate(5,incidencia.getFecha()); 
 				stm.executeUpdate(); 
 			} 
  

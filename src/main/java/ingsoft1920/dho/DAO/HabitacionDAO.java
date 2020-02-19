@@ -2,24 +2,21 @@ package ingsoft1920.dho.DAO;
  
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.controller.Conexion;
-
 import java.sql.ResultSet; 
 import java.sql.SQLException;
-
-import ingsoft1920.dho.Model.Habitaciones; 
  
 public class HabitacionDAO { 
 	
 	private static Conexion conexion; 
  
-	public static Habitaciones getHabitacionPorId(int id_cliente) { 
+	public static HabitacionBean getHabitacionPorId(int id_cliente) { 
 		 
 		//aqui se deberia hacer la consulta en la base de datos y conseguir la respuesta 
 		//la respuesta es unicamente de prueba para ver si funciona 
 		if (conexion.getConexion()== null) 
 			conexion.conectar(); 
 		 
-		Habitaciones res = null; 
+		HabitacionBean res = null; 
 		 
 		java.sql.Statement stmt = null;  
 		ResultSet rs = null;  
@@ -29,9 +26,7 @@ public class HabitacionDAO {
 					"FROM estancia\r\n" +  
 					"WHERE cliente_id = "+id_cliente); 
 			if (rs.next()){ 
-				res = new Habitaciones (rs.getInt("habitacion_id"),  
-						rs.getString("tipo_habitacion"),  
-						rs.getInt("hotel_id"));  
+				res = new HabitacionBean (rs.getInt("habitacion_id"),rs.getInt("hotel_id"),rs.getString("tipo_habitacion"));  
  
 			} 
  
