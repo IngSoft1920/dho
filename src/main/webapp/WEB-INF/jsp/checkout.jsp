@@ -8,7 +8,7 @@
 		</style>
 	</body>
 	
-	<h1>CHECK-IN</h1>
+	<h1>CHECK-OUT</h1>
 	
 	
 	<form method="POST">
