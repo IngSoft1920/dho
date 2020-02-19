@@ -13,6 +13,21 @@ public class IncidenciaDAO {
 	 
  
 		 
+	
+	
+	/*El ojetivo de esta consulta es que devuelva el id_incidencia en caso de existir
+	 * una con las siguientes caracteristica:
+	 * tipo_Incidencia=='COCINA'
+	 * y el lugar que pasa como parametro
+	 * Si no existe, se devuelve -1;
+	 * 
+	 */
+	public static int BuscarIncidenciaPor(String lugar) {
+		//	COMPLETAR
+		return -1;
+		
+		
+	}
 		 
 		 
 	 
