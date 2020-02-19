@@ -5,6 +5,10 @@ import org.springframework.stereotype.Component;
 @Component 
 public class HotelBean {
 	private int hotel_id; 
+	
+	public HotelBean() {
+		
+	}
 	public HotelBean(int hotel_id) { 
 		this.hotel_id=hotel_id; 
 	} 

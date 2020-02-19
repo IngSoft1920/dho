@@ -12,6 +12,10 @@ public class EstanciaBean {
 	private int hotel_id; 
 	private LocalDate fecha_inicio; 
 	private LocalDate fecha_fin; 
+	
+	public EstanciaBean() {
+	
+	}
 	 
 	public EstanciaBean(int estancia_id, int habitacion_id, int cliente_id, int hotel_id, LocalDate fecha_inicio, 
 			LocalDate fecha_fin) { 

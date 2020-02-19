@@ -14,7 +14,10 @@ public class CobrosBean {
 	private int precio; 
 	private boolean pagado; 
 	private String tipo_cobro; 
-	 
+	
+	public CobrosBean() {
+		
+	}
 	public CobrosBean(int cobros_id, int estancia_id, int cliente_id, int habitacion_id, LocalDate fecha_cobro, int precio, 
 			boolean pagado, String tipo_cobro) { 
 		this.cobros_id = cobros_id; 

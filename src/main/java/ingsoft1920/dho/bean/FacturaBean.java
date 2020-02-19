@@ -14,6 +14,10 @@ public class FacturaBean {
 	private int precio; 
 	private boolean pagado; 
 	private String tipo_factura; 
+	
+	public FacturaBean() {
+		
+	}
 	 
 	public FacturaBean(int factura_id, int estancia_id, int cliente_id, int habitacion_id, LocalDate fecha_factura, 
 			int precio, boolean pagado, String tipo_factura) { 
