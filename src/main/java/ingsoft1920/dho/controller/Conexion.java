@@ -55,4 +55,14 @@ public class Conexion {
 			conn = null;
 		}
 	}
+	public static void desconectar() {
+		if (conn!=null){
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			conn = null;
+		}
+	}
 }
