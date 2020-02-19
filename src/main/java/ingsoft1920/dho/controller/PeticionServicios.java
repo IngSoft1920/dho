@@ -17,7 +17,7 @@ public class PeticionServicios {
 	 * EM nos deberia devolver una lista de Empleados
 	 */
 	
-	public static List<ServicioBean> peticionPedirEmpleado() {
+	public static List<ServicioBean> peticionServicios() {
 		
 		
 		try {
