@@ -6,11 +6,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import ingsoft1920.dho.DAO.HabitacionDAO;
 import ingsoft1920.dho.DAO.ServicioDAO;
 import ingsoft1920.dho.DAO.TareaDAO;
-import ingsoft1920.dho.Model.Habitaciones;
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.ServicioBean;
 import ingsoft1920.dho.bean.TareaBean;
@@ -24,7 +22,7 @@ public class DhoAPI {
 
 	@ResponseBody
 	@GetMapping("/getHabitacion/{id_cliente}")
-	public Habitaciones getHabitacionPorId(@PathVariable int id_cliente) {
+	public HabitacionBean getHabitacionPorId(@PathVariable int id_cliente) {
 		return  HabitacionDAO.getHabitacionPorId(id_cliente) ;
 		
 	}

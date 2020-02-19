@@ -32,15 +32,12 @@ public class TareaDAO {
 		//guardado no se creara una nueva incidencia, sino que se trabajara con la que ya hay creada
 		
 		incidencia.setDescripcion("tarea de restaurante");
-		incidencia.setFecha("vacio");//revisar esto
-		incidencia.setId_incidencia(IncidenciaBean.ContInc);
+		incidencia.setFecha(nuevaTarea.getFecha());
 		incidencia.setTipo_incidencia(nuevaTarea.getTipo_tarea());
 		incidencia.setLugar(nuevaTarea.getLugar());
 		
 		//una vez relleando los campos de la nueva incidencia, llamamos a añadirIncidencia..
 		//para añadirla a la tabla
-		nuevaTarea.setId_incidencia(IncidenciaBean.ContInc);
-		
 		IncidenciaDAO.añadirIncidencia(incidencia);
 		
 		return añadirTarea(nuevaTarea);

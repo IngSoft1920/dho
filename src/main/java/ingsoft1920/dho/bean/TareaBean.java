@@ -108,6 +108,26 @@ public class TareaBean {
 	 
 	public void setEstado(boolean estado) { 
 		this.estado = estado; 
+	}
+
+
+	public int getId_tarea() {
+		return id_tarea;
+	}
+
+
+	public void setId_tarea(int id_tarea) {
+		this.id_tarea = id_tarea;
+	}
+
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	} 
 	 
 	 
