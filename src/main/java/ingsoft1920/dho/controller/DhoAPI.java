@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ingsoft1920.dho.DAO.HabitacionDAO;
 import ingsoft1920.dho.DAO.ServicioDAO;
 import ingsoft1920.dho.DAO.TareaDAO;
+import ingsoft1920.dho.Model.Habitaciones;
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.ServicioBean;
 import ingsoft1920.dho.bean.TareaBean;
+import com.google.gson.JsonArray; 
+import com.google.gson.JsonObject; 
+
 
 @Controller
 
@@ -20,7 +24,7 @@ public class DhoAPI {
 
 	@ResponseBody
 	@GetMapping("/getHabitacion/{id_cliente}")
-	public HabitacionBean getHabitacionPorId(@PathVariable int id_cliente) {
+	public Habitaciones getHabitacionPorId(@PathVariable int id_cliente) {
 		return  HabitacionDAO.getHabitacionPorId(id_cliente) ;
 		
 	}
@@ -40,5 +44,30 @@ public class DhoAPI {
 		ServicioDAO.recogerServicio(nuevoServicio);
 		
 	}
+	
+	 
+		//metodo  de prueba para probar la solicitud http lanzada como cliente 
+		@ResponseBody 
+		@GetMapping("/getHabitacio/7") 
+		public String prueba() { 
+			 
+			JsonObject obj = new JsonObject(); 
+			JsonArray listaNotas = new JsonArray(); 
+			listaNotas.add(1); 
+			JsonArray listaNotas2 = new JsonArray(); 
+			listaNotas2.add(1); 
+			obj.add("id_empleado", listaNotas); 
+			obj.add("rol", listaNotas2); 
+			return obj.toString().toString(); 
+			 
+		} 
+		
+		//metodo  de prueba para probar la solicitud http de tipo POST lanzada como cliente 
+		 
+		@ResponseBody 
+		@PostMapping("/asignarTurnos/7") 
+		public String prueba2() { 
+			return "ha ido correctamente"; 
+		} 
 	
 }

@@ -5,8 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import baseDatos.entidades.Cobros;
-import baseDatos.entidades.Habitaciones;
+import ingsoft1920.dho.Model.Cobros;
+import ingsoft1920.dho.Model.Habitaciones;
+import ingsoft1920.dho.controller.Conexion;
 
 public class Consultas {
 	private static Conexion conexion=new Conexion();
