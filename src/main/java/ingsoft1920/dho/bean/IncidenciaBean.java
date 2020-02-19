@@ -9,10 +9,7 @@ import org.springframework.stereotype.Component;
 public class IncidenciaBean {
 
 	
-	/*representa el numero de incidencia dentro de la tabla incidencia
-	 * lo utilizo ahora pero cuando este la base de datos se sustituye
-	 * por una consulta que te diga el id de la ultima incidencia asignada
-	 */
+	
 	//El numero de incidencias lo calculamos con una consulta
 	private int id_incidencia;
 

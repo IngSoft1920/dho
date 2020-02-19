@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 @Component 
 public class EstanciaBean {
+	
+	
 	private int estancia_id; 
 	private int habitacion_id; 
 	private int cliente_id; 
@@ -14,9 +16,9 @@ public class EstanciaBean {
 	private LocalDate fecha_fin; 
 	
 	public EstanciaBean() {
-	
+		
 	}
-	 
+	
 	public EstanciaBean(int estancia_id, int habitacion_id, int cliente_id, int hotel_id, LocalDate fecha_inicio, 
 			LocalDate fecha_fin) { 
 		this.estancia_id = estancia_id; 

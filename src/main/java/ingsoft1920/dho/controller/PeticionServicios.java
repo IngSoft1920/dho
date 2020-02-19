@@ -1,3 +1,5 @@
+
+/*
 package ingsoft1920.dho.controller;
 
 import java.util.ArrayList;
@@ -17,6 +19,9 @@ public class PeticionServicios {
 	 * EM nos deberia devolver una lista de Empleados
 	 */
 	
+
+
+/*
 	public static List<ServicioBean> peticionServicios() {
 		
 		
@@ -81,3 +86,6 @@ public class PeticionServicios {
 	
 	
 }
+
+
+*/
