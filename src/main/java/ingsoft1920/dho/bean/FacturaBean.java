@@ -1,8 +1,11 @@
-package ingsoft1920.dho.Model;
+package ingsoft1920.dho.bean;
 
-import java.time.LocalDate; 
+import java.time.LocalDate;
 
-public class Factura { 
+import org.springframework.stereotype.Component;
+
+@Component 
+public class FacturaBean {
 	private int factura_id; 
 	private int estancia_id; 
 	private int cliente_id; 
@@ -12,9 +15,8 @@ public class Factura {
 	private boolean pagado; 
 	private String tipo_factura; 
 	 
-	public Factura(int factura_id, int estancia_id, int cliente_id, int habitacion_id, LocalDate fecha_factura, 
+	public FacturaBean(int factura_id, int estancia_id, int cliente_id, int habitacion_id, LocalDate fecha_factura, 
 			int precio, boolean pagado, String tipo_factura) { 
-		super(); 
 		this.factura_id = factura_id; 
 		this.estancia_id = estancia_id; 
 		this.cliente_id = cliente_id; 
@@ -79,5 +81,4 @@ public class Factura {
 				+ ", habitacion_id=" + habitacion_id + ", fecha_factura=" + fecha_factura + ", precio=" + precio 
 				+ ", pagado=" + pagado + ", tipo_factura=" + tipo_factura + "]"; 
 	} 
- 
-} 
+}

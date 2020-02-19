@@ -18,23 +18,15 @@ public class HabitacionBean {
 	 
 	 
 	 
-	public HabitacionBean() { 
-		 
-		 
-		 
+	public HabitacionBean() {  
 	} 
-	 
-	 
-	 
+	
 	public HabitacionBean(int id_habitacion, int id_hotel,int tipo_habitacion) { 
 		this.id_habitacion = id_habitacion; 
 		this.id_hotel=id_hotel; 
 		this.tipo_habitacion = tipo_habitacion; 
 	} 
-	 
-	 
-	 
-	 
+	
 	public int getId_habitacion() { 
 		return id_habitacion; 
 	} 
@@ -52,16 +44,18 @@ public class HabitacionBean {
 		this.tipo_habitacion = tipo_habitacion; 
 	} 
  
- 
- 
 	public int getId_hotel() { 
 		return id_hotel; 
 	} 
  
- 
- 
 	public void setId_hotel(int id_hotel) { 
 		this.id_hotel = id_hotel; 
+	}
+
+	@Override
+	public String toString() {
+		return "HabitacionBean [id_habitacion=" + id_habitacion + ", id_hotel=" + id_hotel + ", tipo_habitacion="
+				+ tipo_habitacion + "]";
 	} 
 	 
 	 

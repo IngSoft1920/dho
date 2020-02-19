@@ -1,8 +1,11 @@
-package ingsoft1920.dho.Model;
+package ingsoft1920.dho.bean;
 
-import java.time.LocalDate; 
+import java.time.LocalDate;
 
-public class Estancia { 
+import org.springframework.stereotype.Component;
+
+@Component 
+public class EstanciaBean {
 	private int estancia_id; 
 	private int habitacion_id; 
 	private int cliente_id; 
@@ -10,9 +13,8 @@ public class Estancia {
 	private LocalDate fecha_inicio; 
 	private LocalDate fecha_fin; 
 	 
-	public Estancia(int estancia_id, int habitacion_id, int cliente_id, int hotel_id, LocalDate fecha_inicio, 
+	public EstanciaBean(int estancia_id, int habitacion_id, int cliente_id, int hotel_id, LocalDate fecha_inicio, 
 			LocalDate fecha_fin) { 
-		super(); 
 		this.estancia_id = estancia_id; 
 		this.habitacion_id = habitacion_id; 
 		this.cliente_id = cliente_id; 
@@ -62,6 +64,4 @@ public class Estancia {
 				+ cliente_id + ", hotel_id=" + hotel_id + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin 
 				+ "]"; 
 	} 
- 
- 
-} 
+}

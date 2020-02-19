@@ -17,9 +17,19 @@ public class ControladorDHO {
 		
 	}
 	
-	@GetMapping("/homePageDHO/hacerReserva")
-	public String hacerReserva() {
-		return "hacerReserva";
+	@GetMapping("/homePageDHO/menu")
+	public String menu() {
+		return "menu";
+		
+	}
+	@GetMapping("/homePageDHO/menu/checkin")
+	public String checkin() {
+		return "checkin";
+		
+	}
+	@GetMapping("/homePageDHO/menu/checkout")
+	public String checkout() {
+		return "checkout";
 		
 	}
 	

@@ -1,11 +1,11 @@
-package ingsoft1920.dho.Model;
+package ingsoft1920.dho.bean;
 
+import org.springframework.stereotype.Component;
 
-
-public class Hotel { 
+@Component 
+public class HotelBean {
 	private int hotel_id; 
-	public Hotel(int hotel_id) { 
-		super(); 
+	public HotelBean(int hotel_id) { 
 		this.hotel_id=hotel_id; 
 	} 
 	public int getHotel_id() { 
@@ -18,5 +18,5 @@ public class Hotel {
 	public String toString() { 
 		return "Hotel [hotel_id=" + hotel_id + "]"; 
 	} 
- 
-} 
+
+}

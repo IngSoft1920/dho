@@ -1,6 +1,7 @@
 package ingsoft1920.dho.bean;
-import org.springframework.stereotype.Component; 
+import org.springframework.stereotype.Component;
 
+import java.sql.Date;
 import java.sql.Time;
 
 import org.springframework.stereotype.Component;
@@ -11,11 +12,12 @@ public class ServicioBean {
 	private int estancia_id; 
 	private int cliente_id; 
 	private String lugar; 
-	private String fecha_servicio; 
-	private String hora; 
+	private Date fecha_servicio; 
+	private Time hora; 
 	private String tipo_servicio;
-	public ServicioBean(int servicios_id, int estancia_id, int cliente_id, String lugar, String fecha_servicio,
-			String hora, String tipo_servicio) {
+	
+	public ServicioBean(int servicios_id, int estancia_id, int cliente_id, String lugar, Date fecha_servicio,
+			Time hora, String tipo_servicio) {
 		super();
 		this.servicios_id = servicios_id;
 		this.estancia_id = estancia_id;
@@ -49,16 +51,16 @@ public class ServicioBean {
 	public void setLugar(String lugar) {
 		this.lugar = lugar;
 	}
-	public String getFecha_servicio() {
+	public Date getFecha_servicio() {
 		return fecha_servicio;
 	}
-	public void setFecha_servicio(String fecha_servicio) {
+	public void setFecha_servicio(Date fecha_servicio) {
 		this.fecha_servicio = fecha_servicio;
 	}
-	public String getHora() {
+	public Time getHora() {
 		return hora;
 	}
-	public void setHora(String hora) {
+	public void setHora(Time hora) {
 		this.hora = hora;
 	}
 	public String getTipo_servicio() {
