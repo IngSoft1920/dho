@@ -13,6 +13,7 @@ import ingsoft1920.dho.controller.PasarTurnos;
 import ingsoft1920.dho.controller.PedirEmpleados;
 
 
+@Controller
 @SpringBootApplication
 public class DhoApplication {
 	final static Logger logger = LogManager.getLogger(DhoApplication.class.getName());
