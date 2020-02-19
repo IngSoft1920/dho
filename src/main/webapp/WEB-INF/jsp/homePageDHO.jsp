@@ -18,3 +18,5 @@
 	</form>
 	
 	<button onclick="window.location.href='/homePageDHO/menu'">Acceder</button>
+	
+</html>
