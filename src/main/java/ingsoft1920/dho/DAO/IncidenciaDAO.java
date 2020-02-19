@@ -20,11 +20,9 @@ public class IncidenciaDAO {
 	 
 	 
 	 
-	public static void añadirIncidencia(Incidencia incidencia) { 
+	public static void añadirIncidencia(IncidenciaBean incidencia) { 
 		//insert sql que añade a la tabla incidencia la incidencia pasada por parametro 
-		//y aumentamos el contador de las incidencias guardadas 
-		IncidenciaBean.ContInc++; 
-		
+		//y aumentamos el contador de las incidencias guardadas 		
 		if (conexion.getConexion()== null) 
 			conexion.conectar(); 
 		 
@@ -43,8 +41,8 @@ public class IncidenciaDAO {
 				stm=conexion.getConexion().prepareStatement("INSERT INTO incidencia values (?,?,?,?,?)"); 
 				stm.setInt(1,incidencia_id); 
 				stm.setString(2, incidencia.getDescripcion()); 
-				stm.setString(3, incidencia.getLugar_incidencia()); 
-				stm.setDate(4, incidencia.getFecha_incidencia()); 
+				stm.setString(3, incidencia.getLugar()); 
+				stm.setDate(4, incidencia.getFecha()); 
 				stm.setString(5, incidencia.getTipo_incidencia()); 
 				stm.executeUpdate(); 
 			} 
@@ -57,7 +55,6 @@ public class IncidenciaDAO {
 			if (stmt1 != null) { try {  stmt1.close(); } catch (SQLException sqlEx) { }  stmt1 = null; } 
 			if (stm != null) { try {  stm.close(); } catch (SQLException sqlEx) { }  stm = null; }  
 		} 
-		IncidenciaBean.ContInc++; 
  
 	} 
 		

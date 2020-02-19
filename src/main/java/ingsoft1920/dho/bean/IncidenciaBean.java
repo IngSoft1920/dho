@@ -1,6 +1,8 @@
 package ingsoft1920.dho.bean;
 
 
+import java.sql.Date;
+
 import org.springframework.stereotype.Component; 
 
 @Component 
@@ -11,17 +13,16 @@ public class IncidenciaBean {
 	 * lo utilizo ahora pero cuando este la base de datos se sustituye
 	 * por una consulta que te diga el id de la ultima incidencia asignada
 	 */
-	public static int ContInc=0;
-	
+	//El numero de incidencias lo calculamos con una consulta
 	private int id_incidencia;
-	
-	private int tipo_incidencia;
+
+	private String tipo_incidencia;
 	
 	private String descripcion;
 	
 	private String lugar;
 	
-	private String fecha;
+	private Date fecha;
 	
 	
 	
@@ -32,7 +33,7 @@ public class IncidenciaBean {
 		
 	}
 
-	public IncidenciaBean(int id_incidencia, int tipo_incidencia, String descripcion, String lugar, String fecha) {
+	public IncidenciaBean(int id_incidencia, String tipo_incidencia, String descripcion, String lugar, Date fecha) {
 		this.id_incidencia = id_incidencia;
 		this.tipo_incidencia = tipo_incidencia;
 		this.descripcion = descripcion;
@@ -49,11 +50,11 @@ public class IncidenciaBean {
 		this.id_incidencia = id_incidencia;
 	}
 
-	public int getTipo_incidencia() {
+	public String getTipo_incidencia() {
 		return tipo_incidencia;
 	}
 
-	public void setTipo_incidencia(int incidencia) {
+	public void setTipo_incidencia(String incidencia) {
 		this.tipo_incidencia = incidencia;
 	}
 
@@ -73,12 +74,18 @@ public class IncidenciaBean {
 		this.lugar = lugar;
 	}
 
-	public String getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(String fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+	@Override
+	public String toString() {
+		return "IncidenciaBean [id_incidencia=" + id_incidencia + ", tipo_incidencia=" + tipo_incidencia
+				+ ", descripcion=" + descripcion + ", lugar=" + lugar + ", fecha=" + fecha + "]";
 	}
 	
 	

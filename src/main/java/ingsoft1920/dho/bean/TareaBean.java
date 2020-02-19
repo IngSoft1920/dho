@@ -1,17 +1,20 @@
 package ingsoft1920.dho.bean; 
  
+import java.sql.Date;
+
 import org.springframework.stereotype.Component; 
  
 @Component 
 public class TareaBean { 
  
-	 
+	private int id_tarea;
 	private int id_incidencia; 
 	private int id_empleado; 
 	private String descripcion; 
-	private int tipo_tarea;//se puede poner o un string o asignar un numero a los tipos que hay 
+	private String tipo_tarea;//se puede poner o un string o asignar un numero a los tipos que hay 
 	private String lugar;//formato: HABITACION id_habitacion 
 	private boolean estado; 
+	private Date fecha;
 	 
 	 
 	 
@@ -20,8 +23,8 @@ public class TareaBean {
 	} 
 	 
 	 
-	public TareaBean( int id_incidencia, int id_empleado, String descripcion, int tipo_tarea, String lugar, 
-			boolean estado) { 
+	public TareaBean( int id_incidencia, int id_empleado, String descripcion, String tipo_tarea, String lugar, 
+			boolean estado,Date fecha) { 
 		 
 		this.id_incidencia = id_incidencia; 
 		this.id_empleado = id_empleado; 
@@ -29,10 +32,11 @@ public class TareaBean {
 		this.tipo_tarea = tipo_tarea; 
 		this.lugar = lugar; 
 		this.estado = estado; 
+		this.fecha=fecha;
 	} 
 	 
 	 
-	public TareaBean (int id_empleado, int tipo_tarea, String lugar) { 
+	public TareaBean (int id_empleado, String tipo_tarea, String lugar) { 
 		this.id_empleado = id_empleado; 
 		this.tipo_tarea = tipo_tarea; 
 		this.lugar = lugar; 
@@ -77,12 +81,12 @@ public class TareaBean {
 	} 
 	 
 	 
-	public int getTipo_tarea() { 
+	public String getTipo_tarea() { 
 		return tipo_tarea; 
 	} 
 	 
 	 
-	public void setTipo_tarea(int tipo_tarea) { 
+	public void setTipo_tarea(String tipo_tarea) { 
 		this.tipo_tarea = tipo_tarea; 
 	} 
 	 

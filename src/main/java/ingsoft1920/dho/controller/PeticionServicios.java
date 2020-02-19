@@ -1,5 +1,7 @@
 package ingsoft1920.dho.controller;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,9 +47,9 @@ public class PeticionServicios {
 				JsonArray lugarLista=obj.get("lugar").getAsJsonArray();
 				String[] lugarListaInt= new String[lugarLista.size()];
 				JsonArray fecha_servicioLista=obj.get("fecha_servicio").getAsJsonArray();
-				String[] fecha_servicioListaInt= new String[fecha_servicioLista.size()];
+				Date[] fecha_servicioListaInt= new Date[fecha_servicioLista.size()];
 				JsonArray horaLista=obj.get("hora").getAsJsonArray();
-				String[] horaListaInt= new String[horaLista.size()];
+				Time[] horaListaInt= new Time[horaLista.size()];
 				JsonArray tipo_servicioLista=obj.get("tipo_servicio").getAsJsonArray();
 				String[] tipo_servicioListaInt= new String[tipo_servicioLista.size()];
 				List<ServicioBean> lista=new ArrayList<ServicioBean>();

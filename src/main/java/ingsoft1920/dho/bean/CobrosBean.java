@@ -1,8 +1,11 @@
-package ingsoft1920.dho.Model; 
- 
-import java.time.LocalDate; 
- 
-public class Cobros { 
+package ingsoft1920.dho.bean;
+
+import java.time.LocalDate;
+
+import org.springframework.stereotype.Component;
+
+@Component 
+public class CobrosBean {
 	private int cobros_id; 
 	private int estancia_id; 
 	private int cliente_id; 
@@ -12,9 +15,8 @@ public class Cobros {
 	private boolean pagado; 
 	private String tipo_cobro; 
 	 
-	public Cobros(int cobros_id, int estancia_id, int cliente_id, int habitacion_id, LocalDate fecha_cobro, int precio, 
+	public CobrosBean(int cobros_id, int estancia_id, int cliente_id, int habitacion_id, LocalDate fecha_cobro, int precio, 
 			boolean pagado, String tipo_cobro) { 
-		super(); 
 		this.cobros_id = cobros_id; 
 		this.estancia_id = estancia_id; 
 		this.cliente_id = cliente_id; 
@@ -79,5 +81,5 @@ public class Cobros {
 				+ ", habitacion_id=" + habitacion_id + ", fecha_cobro=" + fecha_cobro + ", precio=" + precio 
 				+ ", pagado=" + pagado + ", tipo_cobro=" + tipo_cobro + "]"; 
 	} 
- 
-} 
+
+}
