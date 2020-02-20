@@ -1,5 +1,6 @@
 package ingsoft1920.dho.DAO;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import ingsoft1920.dho.controller.Conexion;
@@ -23,7 +24,43 @@ public class TareaDAO {
 		 * consigue incrementando el numero de tareas que se tienen, y fecha se le pasa
 		 * como null
 		 */
-		return tarea.getId_incidencia();
+		
+		if (conexion.getConexion()== null) 
+			conexion.conectar(); 
+		 
+		int tarea_id=-1; 
+		 
+		java.sql.Statement stmt1 = null;  
+		ResultSet rs1 = null; 
+		PreparedStatement stm=null; 
+		try {  
+			//Consulta para saber el id de la nueva incidencia a crear 
+			stmt1 = conexion.getConexion().createStatement() ; 
+			rs1 =  stmt1.executeQuery("SELECT COUNT(tarea_id)\\r\\n\" + \r\n" +  
+					"						\"FROM Tarea;"); 
+			if (rs1.next()){ 
+				tarea_id=rs1.getInt("COUNT(tarea_id)")+1;//id del nuevo servicio 
+				stm=conexion.getConexion().prepareStatement("INSERT INTO Tarea values (?,?,?,?,?,?,?,?)"); 
+				stm.setInt(1,tarea_id); 
+				stm.setInt(2, tarea.getId_incidencia()); 
+				stm.setInt(3, tarea.getId_empleado()); 
+				stm.setString(4, tarea.getDescripcion()); 
+				stm.setString(5,tarea.getLugar()); 
+				stm.setBoolean(6,tarea.isEstado()); 
+				stm.setDate(7,tarea.getFecha()); 
+				stm.setString(8,tarea.getTipo_tarea()); 
+				stm.executeUpdate(); 
+			} 
+ 
+		}  
+		catch (SQLException ex){  
+			System.out.println("SQLException: " + ex.getMessage()); 
+		} finally { // it is a good idea to release resources in a finally block  
+			if (rs1 != null) { try { rs1.close(); } catch (SQLException sqlEx) { } rs1 = null; } 
+			if (stmt1 != null) { try {  stmt1.close(); } catch (SQLException sqlEx) { }  stmt1 = null; } 
+			if (stm != null) { try {  stm.close(); } catch (SQLException sqlEx) { }  stm = null; }  
+		} 
+		return tarea_id;
 	}
 
 	/*
