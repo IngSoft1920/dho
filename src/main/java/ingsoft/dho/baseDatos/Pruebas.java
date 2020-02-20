@@ -1,4 +1,4 @@
-package baseDatos;
+package ingsoft.dho.baseDatos;
 
 import java.io.IOException;
 import java.util.ArrayList;

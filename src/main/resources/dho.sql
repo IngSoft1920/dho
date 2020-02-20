@@ -100,3 +100,18 @@ CONSTRAINT FK_incidencia_id
 FOREIGN KEY(incidencia_id)
 REFERENCES Incidencia(incidencia_id)
 );
+
+CREATE TABLE IF NOT EXISTS ServiciosHotel(
+servicioHotel_id INT,
+horaInicioServicio TIME,
+horaFinServicio TIME,
+disponibilidadTotal int,
+PRIMARY KEY(servicioHotel_id)
+);
+
+ALTER TABLE Servicios
+ADD COLUMN servicioHotel_id INT,
+ADD CONSTRAINT FK_servicio_id
+FOREIGN KEY(servicioHotel_id)
+REFERENCES ServiciosHotel(servicioHotel_id)
+;

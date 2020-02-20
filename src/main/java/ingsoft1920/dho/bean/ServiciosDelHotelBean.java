@@ -1,5 +1,7 @@
 package ingsoft1920.dho.bean;
 
+import java.sql.Time;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,10 +14,10 @@ public class ServiciosDelHotelBean {
 	//HAY QUE AÑADIRLA
 	private int id_ServicioHotel;
 	
-	private String HoraInicioServicio;
+	private Time HoraInicioServicio;
 	
 	
-	private String HoraFinServicio;
+	private Time HoraFinServicio;
 	
 	
 	//en el caso del restaurante va ser un numero muy alto y para el resto de servicios 
@@ -33,7 +35,7 @@ public class ServiciosDelHotelBean {
 	}
 
 
-	public ServiciosDelHotelBean(int id_ServicioHotel, String horaInicioServicio, String horaFinServicio,
+	public ServiciosDelHotelBean(int id_ServicioHotel, Time horaInicioServicio, Time horaFinServicio,
 			int disponibilidadTotal) {
 		
 		this.id_ServicioHotel = id_ServicioHotel;
@@ -53,22 +55,22 @@ public class ServiciosDelHotelBean {
 	}
 
 
-	public String getHoraInicioServicio() {
+	public Time getHoraInicioServicio() {
 		return HoraInicioServicio;
 	}
 
 
-	public void setHoraInicioServicio(String horaInicioServicio) {
+	public void setHoraInicioServicio(Time horaInicioServicio) {
 		HoraInicioServicio = horaInicioServicio;
 	}
 
 
-	public String getHoraFinServicio() {
+	public Time getHoraFinServicio() {
 		return HoraFinServicio;
 	}
 
 
-	public void setHoraFinServicio(String horaFinServicio) {
+	public void setHoraFinServicio(Time horaFinServicio) {
 		HoraFinServicio = horaFinServicio;
 	}
 
@@ -80,6 +82,14 @@ public class ServiciosDelHotelBean {
 
 	public void setDisponibilidadTotal(int disponibilidadTotal) {
 		disponibilidadTotal = DisponibilidaTotal;
+	}
+
+
+	@Override
+	public String toString() {
+		return "ServiciosDelHotelBean [id_ServicioHotel=" + id_ServicioHotel + ", HoraInicioServicio="
+				+ HoraInicioServicio + ", HoraFinServicio=" + HoraFinServicio + ", DisponibilidaTotal="
+				+ DisponibilidaTotal + "]";
 	}
 	
 	
