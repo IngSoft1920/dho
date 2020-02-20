@@ -14,6 +14,10 @@ public class TareaDAO {
 
 	private static Conexion conexion;
 
+	public TareaDAO(Conexion conexion) {
+		this.conexion=conexion;
+	}
+
 	public static int añadirTarea(TareaBean tarea) {
 
 		/*
@@ -36,8 +40,8 @@ public class TareaDAO {
 		try {  
 			//Consulta para saber el id de la nueva incidencia a crear 
 			stmt1 = conexion.getConexion().createStatement() ; 
-			rs1 =  stmt1.executeQuery("SELECT COUNT(tarea_id)\\r\\n\" + \r\n" +  
-					"						\"FROM Tarea;"); 
+			rs1 =  stmt1.executeQuery("SELECT COUNT(tarea_id)\r\n" + 
+					"FROM Tarea;"); 
 			if (rs1.next()){ 
 				tarea_id=rs1.getInt("COUNT(tarea_id)")+1;//id del nuevo servicio 
 				stm=conexion.getConexion().prepareStatement("INSERT INTO Tarea values (?,?,?,?,?,?,?,?)"); 

@@ -13,7 +13,9 @@ public class IncidenciaDAO {
 	
 	private static Conexion conexion; 
 	 
- 
+ public IncidenciaDAO(Conexion conexion) {
+	 this.conexion=conexion;
+ }
 		 
 	
 	
@@ -35,8 +37,8 @@ public class IncidenciaDAO {
 		try {  
 			stmt = conexion.getConexion().createStatement() ; 
 			rs =  stmt.executeQuery("SELECT incidencia_id\r\n" + 
-					"FROM incidencia\r\n" + 
-					"WHERE tipo_incidencia = \"COCINA\" AND lugar_incidencia="+lugar); 
+					"FROM Incidencia\r\n" + 
+					"WHERE tipo_incidencia = \"COCINA\" AND lugar_incidencia=\""+lugar+"\""); 
 			if (rs.next()){ 
 				res = rs.getInt("incidencia_id");  
 			} 
@@ -69,16 +71,16 @@ public class IncidenciaDAO {
 		try {  
 			//Consulta para saber el id de la nueva incidencia a crear 
 			stmt1 = conexion.getConexion().createStatement() ; 
-			rs1 =  stmt1.executeQuery("SELECT COUNT(incidencia_id)\\r\\n\" + \r\n" +  
-					"						\"FROM incidencia;"); 
+			rs1 =  stmt1.executeQuery("SELECT COUNT(incidencia_id)\r\n" + 
+					"FROM Incidencia;"); 
 			if (rs1.next()){ 
 				incidencia_id=rs1.getInt("COUNT(incidencia_id)")+1;//id de la nueva tarea 
-				stm=conexion.getConexion().prepareStatement("INSERT INTO incidencia values (?,?,?,?,?)"); 
+				stm=conexion.getConexion().prepareStatement("INSERT INTO Incidencia values (?,?,?,?,?)"); 
 				stm.setInt(1,incidencia_id); 
-				stm.setString(2, incidencia.getTipo_incidencia()); 
-				stm.setString(3, incidencia.getDescripcion()); 
-				stm.setString(4, incidencia.getLugar()); 
-				stm.setDate(5,incidencia.getFecha()); 
+				stm.setString(2, incidencia.getDescripcion()); 
+				stm.setString(3, incidencia.getLugar()); 
+				stm.setDate(4, incidencia.getFecha()); 
+				stm.setString(5,incidencia.getTipo_incidencia()); 
 				stm.executeUpdate(); 
 			} 
  

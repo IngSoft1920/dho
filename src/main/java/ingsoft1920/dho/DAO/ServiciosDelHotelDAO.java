@@ -11,6 +11,10 @@ import ingsoft1920.dho.controller.Conexion;
 public class ServiciosDelHotelDAO {
 	private static Conexion conexion; 
 	
+	public ServiciosDelHotelDAO(Conexion conexion) {
+		this.conexion=conexion;
+	}
+
 	//aqui iria la consulta que devuelve todas las filas de la tabla
 	//como una lista con el contenido
 	public static ArrayList<ServiciosDelHotelBean> darServiciosHotel() {

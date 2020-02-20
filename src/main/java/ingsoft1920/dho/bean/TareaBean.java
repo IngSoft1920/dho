@@ -23,6 +23,7 @@ public class TareaBean {
 	
 	public TareaBean(int id_tarea, int id_incidencia, int id_empleado, String descripcion, String tipo_tarea,
 			String lugar, boolean estado, Date fecha) {
+		this.id_tarea=id_tarea;
 
 		this.id_incidencia = id_incidencia;
 		this.id_empleado = id_empleado;

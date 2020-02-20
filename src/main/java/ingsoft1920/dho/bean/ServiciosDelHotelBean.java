@@ -83,6 +83,14 @@ public class ServiciosDelHotelBean {
 	public void setDisponibilidadTotal(int disponibilidadTotal) {
 		disponibilidadTotal = DisponibilidaTotal;
 	}
+
+
+	@Override
+	public String toString() {
+		return "ServiciosDelHotelBean [id_ServicioHotel=" + id_ServicioHotel + ", HoraInicioServicio="
+				+ HoraInicioServicio + ", HoraFinServicio=" + HoraFinServicio + ", DisponibilidaTotal="
+				+ DisponibilidaTotal + "]";
+	}
 	
 	
 	
