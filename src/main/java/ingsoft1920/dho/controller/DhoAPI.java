@@ -83,9 +83,9 @@ public class DhoAPI {
 			
 			id_ServiciosHotel.add(elem.getId_ServicioHotel());
 			
-			HoraInicioServicio.add(elem.getHoraInicioServicio());
+			//HoraInicioServicio.add(elem.getHoraInicioServicio());
 			
-			HoraFinServicio.add(elem.getHoraFinServicio());
+			//HoraFinServicio.add(elem.getHoraFinServicio());
 			
 			DisponibilidaTotal.add(elem.getDisponibilidadTotal());
 			
