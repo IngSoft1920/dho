@@ -31,6 +31,15 @@ public class DhoAPI {
 		
 	}
 	
+	@ResponseBody
+	@GetMapping("/getTarea/{id_empleado}")
+	public TareaBean getTareaPorId(@PathVariable int id_empleado) {
+		return  TareaDAO.getTareaPorIdEmpleado(id_empleado) ;
+		
+	}
+	
+	
+	
 	
 	@ResponseBody
 	@PostMapping("/recibirTarea")
