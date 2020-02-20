@@ -16,6 +16,11 @@ public class TareaBean {
 	private boolean estado;
 	private Date fecha;
 
+	public TareaBean() {
+		
+	}
+	
+	
 	public TareaBean(int id_tarea, int id_incidencia, int id_empleado, String descripcion, String tipo_tarea,
 			String lugar, boolean estado, Date fecha) {
 
