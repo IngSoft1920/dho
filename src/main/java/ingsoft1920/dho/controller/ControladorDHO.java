@@ -16,6 +16,7 @@ public class ControladorDHO {
 		return "homePageDHO";
 		
 	}
+	
 	@GetMapping("/homePageDHO/menu")
 	public String menu() {
 		return "menu";
