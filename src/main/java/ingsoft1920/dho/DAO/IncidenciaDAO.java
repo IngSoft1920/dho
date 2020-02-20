@@ -3,6 +3,8 @@ package ingsoft1920.dho.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.IncidenciaBean;
 import ingsoft1920.dho.controller.Conexion; 
  
@@ -23,11 +25,31 @@ public class IncidenciaDAO {
 	 * 
 	 */
 	public static int BuscarIncidenciaPor(String lugar) {
-		//	COMPLETAR
-		return -1;
-		
-		
-	}
+		if (conexion.getConexion()== null) 
+			conexion.conectar(); 
+		 
+		int res = -1; 
+		 
+		java.sql.Statement stmt = null;  
+		ResultSet rs = null;  
+		try {  
+			stmt = conexion.getConexion().createStatement() ; 
+			rs =  stmt.executeQuery("SELECT incidencia_id\r\n" + 
+					"FROM incidencia\r\n" + 
+					"WHERE tipo_incidencia = \"COCINA\" AND lugar_incidencia="+lugar); 
+			if (rs.next()){ 
+				res = rs.getInt("incidencia_id");  
+			} 
+		}  
+		catch (SQLException ex){  
+			System.out.println("SQLException: " + ex.getMessage()); 
+		} finally { // it is a good idea to release resources in a finally block  
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; }  
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; }  
+		} 
+		return res; 
+		 
+	} 
 		 
 		 
 	 
