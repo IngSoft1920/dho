@@ -5,12 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import ingsoft1920.dho.bean.ReservaBean;
 
 @Controller
 public class ControladorDHO {
+	
+	
 	@GetMapping("/homePageDHO")
 	public String homePageDHO() {
 		return "homePageDHO";
