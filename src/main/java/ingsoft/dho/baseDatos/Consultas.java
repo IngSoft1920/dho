@@ -1,4 +1,4 @@
-package baseDatos;
+package ingsoft.dho.baseDatos;
 /*
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -22,7 +22,7 @@ public class DhoApplication {
 		logger.warn("Aplicacion iniciada");
 		SpringApplication.run(DhoApplication.class, args);
 		//con esta linea se realiza una peticion en modo cliente a nuestro servidor
-		PasarTurnos.peticionPasarTurnos();
+		//PasarTurnos.peticionPasarTurnos();
 		
 	}
 
