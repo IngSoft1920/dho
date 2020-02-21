@@ -18,19 +18,20 @@
 <section class="form-login">
 	<h5>Login</h5>
 	
-	<form:form method="POST" modelAttribute="loginBean";>
+	<form method="POST" modelAttribute="LoginBean";>
 		
 		<label>Usuario</label>
 			<form:input type="text" name="usuario" path="usuario" />
 			<input class="controls" type="text" name="Usuario" required="true" >
-			
+	</form>
+	<form>	
 		<br>
 		<label>Contrasena</label>
 			<form:input type="password" name="password" path="password" />
 			<input class="controls" type="password" name="Password" required="true" >
 		</br>
 		<input class="buttons" type="acceder" name="" value="Ingresar" />
-	</form:form>
+	</form>
 
 			
 </section>

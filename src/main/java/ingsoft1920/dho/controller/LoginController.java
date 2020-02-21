@@ -15,17 +15,16 @@ import ingsoft1920.dho.bean.LoginBean;
 public class LoginController {
  final static Logger logger = LogManager.getLogger(LoginController.class.getName());
  
- // @Autowired
- // LoginBean loginbean;
+//@Autowired
+//LoginBean loginBean;
  
 	 @GetMapping("/")
 	 public String login(Model model) {
-	 LoginBean loginBean = new LoginBean();
-	 model.addAttribute("loginBean", loginBean);
-	 model.addAttribute("mensajeError", "");
-	 return "login";
+		 model.addAttribute("loginBean", new LoginBean());
+		 model.addAttribute("mensajeError", "");
+		 return "login";
 	 }
-	 
+	
 	 @PostMapping("/")
 	 public String loginValida(@Valid @ModelAttribute("loginBean") LoginBean loginBean, Model model) {
 		 String usuario = loginBean.getUsuario();
@@ -34,7 +33,7 @@ public class LoginController {
 		 if (usuario.equals("usuario") && pass.equals("1234"))
 			 return "redirect:menu"; 
 		 else {
-			 model.addAttribute("signupBean", loginBean);
+			 model.addAttribute("signupBean", new LoginBean());
 			 model.addAttribute("mensajeError", "usuario o contraseña no validos");
 			 return "login";
 		 }
