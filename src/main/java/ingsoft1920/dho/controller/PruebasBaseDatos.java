@@ -1,10 +1,14 @@
 package ingsoft1920.dho.controller;
 
+import java.util.ArrayList;
+
+import ingsoft1920.dho.DAO.FacturasDAO;
 import ingsoft1920.dho.DAO.HabitacionDAO;
 import ingsoft1920.dho.DAO.IncidenciaDAO;
 import ingsoft1920.dho.DAO.ServicioDAO;
 import ingsoft1920.dho.DAO.ServiciosDelHotelDAO;
 import ingsoft1920.dho.DAO.TareaDAO;
+import ingsoft1920.dho.bean.CobrosBean;
 import ingsoft1920.dho.bean.IncidenciaBean;
 import ingsoft1920.dho.bean.ServicioBean;
 import ingsoft1920.dho.bean.ServiciosDelHotelBean;
@@ -33,6 +37,12 @@ public class PruebasBaseDatos {
 	 		añadirServicio
 	 		darServiciosHotel
 	 		añadirTarea
+	 		diasReserva
+	 		idUltimoServicio
+	 		getHabitacion
+	 		estaCobroPagado
+	 		cobrosCLiente pero falta añadir la fecha
+	 		generarFactura falta añadir la fecha
 	 	No Funcionan:
 	 	
 	 	Faltan por probar:
@@ -68,6 +78,35 @@ public class PruebasBaseDatos {
 	TareaDAO prueba6 = new TareaDAO(conexion);
 	TareaBean c = new TareaBean(-1,1,1,"prueba","limpiar","cocina",false,null);
 	prueba6.añadirTarea(c);
+	
 	*/
+/*
+	 HabitacionDAO prueba7 = new HabitacionDAO(conexion);
+	 System.out.println(prueba7.diasReserva(2));
+	 
+	 ServicioDAO prueba8= new ServicioDAO(conexion); 
+	 System.out.println(prueba8.idUltimoServicio());		 
+			 
+	 HabitacionDAO prueba9=new HabitacionDAO(conexion);
+	 System.out.println(prueba9.getHabitacion(16).toString());
+	 
+	 FacturasDAO prueba10=new FacturasDAO(conexion);
+	 System.out.println(prueba10.estaCobroPagado(5));
+	 
+	 FacturasDAO prueba11= new FacturasDAO(conexion);
+	 	 ArrayList<CobrosBean> res=	 prueba11.cobrosCliente(9);
+	 	 System.out.println(res.size());
+	 for(int i=0; i<res.size();i++) {
+		 
+		 System.out.println(res.get(i).toString());
+	 }
+	 
+	 FacturasDAO prueba12= new FacturasDAO(conexion);
+	 //System.out.println(prueba12.generarFactura(9, 10));
+	 
+	 FacturasDAO prueba13 = new FacturasDAO(conexion);
+	 //System.out.println(prueba13.generarFactura(1, 10));
+	  
+	  */
 	}
 }

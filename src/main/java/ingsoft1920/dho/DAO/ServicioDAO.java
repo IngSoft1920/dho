@@ -58,4 +58,27 @@ public class ServicioDAO {
 		} 
  
 	} 
+	//devuelve el id del ultimo servicio
+	public static int idUltimoServicio() {
+		
+		if (conexion==null) 
+			conexion.conectar();
+			
+		int res=0;
+		java.sql.Statement stmt= null; 
+		ResultSet rs=null;
+		try {
+			stmt=conexion.getConexion().createStatement(); 
+			rs=stmt.executeQuery("SELECT MAX(servicios_id) AS n FROM Servicios");
+			if(rs.next()) {
+				res=rs.getInt("n");
+			}
+		}catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		return res;
+	}
 } 
