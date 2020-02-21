@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import ingsoft1920.dho.bean.LoginBean;
 
-
+@Controller
 public class LoginController {
  final static Logger logger = LogManager.getLogger(LoginController.class.getName());
  
