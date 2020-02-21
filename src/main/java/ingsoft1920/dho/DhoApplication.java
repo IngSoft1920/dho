@@ -11,12 +11,12 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @SpringBootApplication
-public class EjemploApplication {
-	final static Logger logger = LogManager.getLogger(EjemploApplication.class.getName());
+public class DhoApplication {
+	final static Logger logger = LogManager.getLogger(DhoApplication.class.getName());
 
 	public static void main(String[] args) {
 		logger.warn("Aplicacion iniciada");
-		SpringApplication.run(EjemploApplication.class, args);
+		SpringApplication.run(DhoApplication.class, args);
 	}
 	
 	
