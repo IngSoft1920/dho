@@ -161,10 +161,15 @@ public class PruebasBaseDatos {
 	EstanciaDAO prueba18 = new EstanciaDAO(conexion);
 	prueba18.checkOut(2);
 	*/
+	/*
 	EstanciaDAO prueba19 = new EstanciaDAO(conexion);
 	for (EstanciaBean elem: prueba19.geEstanciaBeans()) {
 		System.out.println(elem);
 	}
+	*/
+	EstanciaDAO prueba20= new EstanciaDAO(conexion);
+	System.out.println(prueba20.getEstaciaId(1));
+	
 	}
 }
 

@@ -19,9 +19,33 @@ public class EstanciaDAO {
 	
 	
 	
-	//dado el cliente_id queremos que nos devuelva el cliente_id 
+	//dado el cliente_id queremos que nos devuelva la estancia_id
 	public static int getEstaciaId(int cliente_id) {
-		return 0;
+		if (conexion.getConexion()== null)
+			conexion.conectar();
+		
+		int res =-1;
+		
+		java.sql.Statement stmt = null; 
+		ResultSet rs = null; 
+		try { 
+			stmt = conexion.getConexion().createStatement() ;
+			rs =  stmt.executeQuery("SELECT estancia_id\r\n" + 
+					"FROM Estancia\r\n" + 
+					"WHERE cliente_id ="+cliente_id);
+			if(rs.next()) {
+				res=rs.getInt("estancia_id");
+			}
+		} 
+		catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		conexion.desconectar();
+
+		return res;
 	}
 	
 	
