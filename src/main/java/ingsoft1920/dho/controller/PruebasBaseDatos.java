@@ -49,6 +49,7 @@ public class PruebasBaseDatos {
 	 		enviarTareas
 	 		facturaPagada
 	 		estaFacturaPagada
+	 		cobroPagado
 
 
 	 	No Funcionan:
@@ -123,7 +124,7 @@ public class PruebasBaseDatos {
 	for (HabitacionBean elem: prueba14.getHabitacionByHotel(1)) {
 		System.out.println(elem);
 	}
-	*/
+	
 	TareaDAO prueba15 = new TareaDAO(conexion);
 	prueba15.asignarTarea(1);
 
@@ -133,20 +134,21 @@ public class PruebasBaseDatos {
 	prueba18.facturaPagada(0);
 	
 	
-	FacturasDAO prueba16=new FacturasDAO(conexion);
-	System.out.println(prueba16.estaFacturaPagada(1));
+	FacturasDAO prueba19=new FacturasDAO(conexion);
+	System.out.println(prueba19.estaFacturaPagada(1));
 	
 	FacturasDAO prueba17= new FacturasDAO(conexion);
 	prueba17.cobroPagado(1);
 	
-	*/
+	
 		}
 
-	*/
+	
 	TareaDAO prueba16 = new TareaDAO(conexion);
 	for (TareaBean elem: prueba16.enviarTareas()) {
 		System.out.println(elem);
 	}
+	*/
 	}
 }
 
