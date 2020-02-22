@@ -14,19 +14,21 @@ public class EstanciaBean {
 	private int hotel_id; 
 	private LocalDate fecha_inicio; 
 	private LocalDate fecha_fin; 
+	private String estado; 
 	
 	public EstanciaBean() {
 		
 	}
 	
 	public EstanciaBean(int estancia_id, int habitacion_id, int cliente_id, int hotel_id, LocalDate fecha_inicio, 
-			LocalDate fecha_fin) { 
+			LocalDate fecha_fin,String estado) { 
 		this.estancia_id = estancia_id; 
 		this.habitacion_id = habitacion_id; 
 		this.cliente_id = cliente_id; 
 		this.hotel_id = hotel_id; 
 		this.fecha_inicio = fecha_inicio; 
 		this.fecha_fin = fecha_fin; 
+		this.estado=estado;
 	} 
 	public int getEstancia_id() { 
 		return estancia_id; 
@@ -64,10 +66,20 @@ public class EstanciaBean {
 	public void setFecha_fin(LocalDate fecha_fin) { 
 		this.fecha_fin = fecha_fin; 
 	} 
+	
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
 	@Override 
 	public String toString() { 
 		return "Estancia [estancia_id=" + estancia_id + ", habitacion_id=" + habitacion_id + ", cliente_id=" 
 				+ cliente_id + ", hotel_id=" + hotel_id + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin 
 				+ "]"; 
-	} 
+	}
 }
