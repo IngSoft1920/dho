@@ -169,15 +169,14 @@ label:hover ~ input[type=password] {
 		<label>User</label>
 			<form:input type="text" name="usuario" path="usuario" />
 			<input class="controls" type="text" name="Usuario" required="true" >
-	</form></p>
-  <p><form>
+			
+	</p>
 		<label>Password</label>
 			<form:input type="password" name="password" path="password" />
 			<input class="controls" type="password" name="Password" required="true" >
-		</form></p> 
+			<input class="buttons" type="submit" name="" value="Ingresar" />
 		</div>
   <p class="p-container">
-  <input class="buttons" type="submit" name="" value="Ingresar" />
   </p>
 </form:form>
 
