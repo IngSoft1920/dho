@@ -115,6 +115,11 @@ ADD CONSTRAINT FK_servicio_id
 FOREIGN KEY(servicioHotel_id)
 REFERENCES ServiciosHotel(servicioHotel_id)
 ;
-ALTER TABLE Servicios
+ALTER TABLE Estancia
 ADD COLUMN estado VARCHAR(30)
+;
+
+ALTER TABLE Servicios
+ADD COLUMN platos VARCHAR(150),
+ADD COLUMN items VARCHAR(150)
 ;

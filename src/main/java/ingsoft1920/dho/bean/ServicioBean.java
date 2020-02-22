@@ -152,6 +152,26 @@ public class ServicioBean {
 	public void setPlatos(String platos) {
 		this.platos = platos;
 	}
+
+
+
+
+
+
+
+	public String getItems() {
+		return items;
+	}
+
+
+
+
+
+
+
+	public void setItems(String items) {
+		this.items = items;
+	}
 	
 	
 	

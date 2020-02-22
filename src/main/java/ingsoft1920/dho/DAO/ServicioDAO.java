@@ -41,7 +41,7 @@ public class ServicioDAO {
 					"FROM Servicios;"); 
 			if (rs1.next()){ 
 				servicio_id=rs1.getInt("COUNT(servicios_id)")+1;//id del nuevo servicio 
-				stm=conexion.getConexion().prepareStatement("INSERT INTO Servicios values (?,?,?,?,?,?,?,?)"); 
+				stm=conexion.getConexion().prepareStatement("INSERT INTO Servicios values (?,?,?,?,?,?,?,?,?,?)"); 
 				stm.setInt(1,servicio_id); 
 				stm.setInt(2, servicio.getEstancia_id()); 
 				stm.setInt(3, servicio.getCliente_id()); 
@@ -50,6 +50,8 @@ public class ServicioDAO {
 				stm.setTime(6,servicio.getHora()); 
 				stm.setString(7,servicio.getTipo_servicio()); 
 				stm.setInt(8,servicio.getId_ServicoHotel()); 
+				stm.setString(9,servicio.getPlatos());
+				stm.setString(10,servicio.getItems());
 				stm.executeUpdate(); 
 			} 
  
