@@ -18,24 +18,26 @@ public class LoginController {
 //@Autowired
 //LoginBean loginBean;
  
-	 @GetMapping("/")
+	 @GetMapping("/homePageDHO")
 	 public String login(Model model) {
 		 model.addAttribute("loginBean", new LoginBean());
 		 model.addAttribute("mensajeError", "");
-		 return "login";
+		 return "homePageDHO";
 	 }
 	
-	 @PostMapping("/")
+	 @PostMapping("/homePageDHO")
 	 public String loginValida(@Valid @ModelAttribute("loginBean") LoginBean loginBean, Model model) {
 		 String usuario = loginBean.getUsuario();
 		 String pass = loginBean.getPassword();
 		 
-		 if (usuario.equals("usuario") && pass.equals("1234"))
-			 return "redirect:menu"; 
+		 if (usuario.equals("usuario") && pass.equals("1234")) {
+			 System.out.println("Acceso Correcto");
+			 return "menu"; 
+		 }
 		 else {
 			 model.addAttribute("signupBean", new LoginBean());
 			 model.addAttribute("mensajeError", "usuario o contraseña no validos");
-			 return "login";
+			 return "homePageDHO";
 		 }
 	 
 	 
