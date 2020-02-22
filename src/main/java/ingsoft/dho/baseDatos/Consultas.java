@@ -57,35 +57,7 @@ public class Consultas {
 		return res;
 	}
 
-	//Devolver las habitaciones de un hotel
-	public static ArrayList<Habitaciones> getHabitacionByHotel (int hotel_id){
-		if (conexion.getConexion()== null)
-			conexion.conectar();
-		
-		ArrayList<Habitaciones> res = new ArrayList<Habitaciones>();
-		
-		java.sql.Statement stmt = null; 
-		ResultSet rs = null; 
-		try { 
-			stmt = conexion.getConexion().createStatement() ;
-			rs =  stmt.executeQuery("SELECT * FROM habitaciones WHERE hotel_id = "+hotel_id);
-			while(rs.next()){
-				res.add(new Habitaciones (rs.getInt("habitacion_id"), 
-						rs.getString("tipo_habitacion"), 
-						rs.getInt("hotel_id"))); 
 
-			}
-
-		} 
-		catch (SQLException ex){ 
-			System.out.println("SQLException: " + ex.getMessage());
-		} finally { // it is a good idea to release resources in a finally block 
-			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
-			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
-		}
-
-		return res;
-	}
 	
 	//Numero de habitacion dado el id del cliente
 	public static int getHabitacionByCliente (int cliente_id){

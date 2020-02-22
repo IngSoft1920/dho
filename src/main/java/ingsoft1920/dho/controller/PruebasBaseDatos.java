@@ -9,6 +9,7 @@ import ingsoft1920.dho.DAO.ServicioDAO;
 import ingsoft1920.dho.DAO.ServiciosDelHotelDAO;
 import ingsoft1920.dho.DAO.TareaDAO;
 import ingsoft1920.dho.bean.CobrosBean;
+import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.IncidenciaBean;
 import ingsoft1920.dho.bean.ServicioBean;
 import ingsoft1920.dho.bean.ServiciosDelHotelBean;
@@ -43,6 +44,7 @@ public class PruebasBaseDatos {
 	 		estaCobroPagado
 	 		cobrosCLiente pero falta añadir la fecha
 	 		generarFactura falta añadir la fecha
+	 		getHabitacionByHotel
 	 	No Funcionan:
 	 	
 	 	Faltan por probar:
@@ -108,5 +110,9 @@ public class PruebasBaseDatos {
 	 //System.out.println(prueba13.generarFactura(1, 10));
 	  
 	  */
+	HabitacionDAO prueba14=new HabitacionDAO(conexion);
+	for (HabitacionBean elem: prueba14.getHabitacionByHotel(1)) {
+		System.out.println(elem);
+	}
 	}
 }
