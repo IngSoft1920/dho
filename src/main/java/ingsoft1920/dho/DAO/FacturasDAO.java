@@ -83,7 +83,7 @@ private static Conexion conexion;
 			java.sql.Statement stmt= null;
 			ResultSet rs= null;
 			LocalDate fecha = null;
-			int i=0;
+			
 			
 			
 			try {
@@ -107,7 +107,7 @@ private static Conexion conexion;
 		}
 				
 				
-    //y crear la factura 
+    //Genera la factura de todos los cobros (no pagados) de un cliente 
 	//tambien incluye el precio de la estancia pero falta que los de cm nos manden el precio de las habitaciones
 	//Devuelve el FacturaBean de la factura generada
 	
@@ -126,8 +126,6 @@ private static Conexion conexion;
 		if (conexion==null) 
 			conexion.conectar();
 		
-		java.sql.Statement stmt= null;
-		ResultSet rs= null;
 		java.sql.Statement stmt2= null;
 		ResultSet rs2= null;
 		PreparedStatement stmt3= null;
@@ -172,14 +170,53 @@ private static Conexion conexion;
 		}catch (SQLException ex){ 
 			System.out.println("SQLException: " + ex.getMessage());
 		} finally { // it is a good idea to release resources in a finally block 
-			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
-			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+			if (rs2 != null) { try { rs2.close(); } catch (SQLException sqlEx) { } rs2 = null; } 
+			if (stmt2 != null) { try {  stmt2.close(); } catch (SQLException sqlEx) { }  stmt2 = null; } 
+			if (rs4 != null) { try { rs4.close(); } catch (SQLException sqlEx) { } rs4 = null; } 
+			if (stmt4 != null) { try {  stmt4.close(); } catch (SQLException sqlEx) { }  stmt4 = null; }
+			if (stmt3 != null) { try {  stmt3.close(); } catch (SQLException sqlEx) { }  stmt3 = null; }
 		}
 		FacturaBean res= new FacturaBean(factura_id,cliente_id,estancia_id,habitacion_id,LocalDate.now(),precio,false," ");
 		
 		
 		return res;
 	}
-	
+	//Dado el id de una factura poder cambiar de no pagada a pagada
+	public static void facturaPagada(int factura_id) {
+		if (conexion==null) 
+			conexion.conectar();
+		
+		PreparedStatement stmt= null;
+		
+		
+		try {
+			stmt=conexion.getConexion().prepareStatement("UPDATE Factura SET pagado=true WHERE factura_id= " +factura_id);
+			stmt.executeUpdate();
+			
+		}catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		
+	}
+	//Dado el id de una factura poder cambiar de no pagada a pagada
+		public static void cobroPagado(int cobro_id) {
+			if (conexion==null) 
+				conexion.conectar();
+			PreparedStatement stmt= null;
+			
+			try {
+				stmt=conexion.getConexion().prepareStatement("UPDATE Cobros SET pagado=true WHERE cobros_id= " +cobro_id);
+				stmt.executeUpdate();
+			}catch (SQLException ex){ 
+				System.out.println("SQLException: " + ex.getMessage());
+			} finally { // it is a good idea to release resources in a finally block 
+				
+				if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+			}
+			
+		}
 	
 }
