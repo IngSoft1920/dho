@@ -7,16 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ingsoft1920.dho.bean.ReservaBean;
+import ingsoft1920.dho.bean.LoginBean;
 
 @Controller
 public class ControladorDHO {
 	
 	
-	@GetMapping("/homePageDHO")
-	public String homePageDHO() {
-		return "homePageDHO";
-		
-	}
+	
 	
 	@GetMapping("/homePageDHO/menu")
 	public String menu() {
