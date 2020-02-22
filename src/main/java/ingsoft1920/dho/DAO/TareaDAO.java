@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import ingsoft1920.dho.controller.Conexion;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import ingsoft1920.dho.bean.HabitacionBean;
@@ -243,4 +245,34 @@ public class TareaDAO {
 			conexion.desconectar();
 			return tarea_id;
 		}
+		
+//Enviar tareas a em
+			public static ArrayList<TareaBean> enviarTareas() {
+				if (conexion.getConexion()== null) 
+					conexion.conectar(); 
+				 
+				ArrayList<TareaBean> res = new ArrayList<TareaBean>(); 
+				 
+				java.sql.Statement stmt = null;  
+				ResultSet rs = null;  
+				try {  
+					stmt = conexion.getConexion().createStatement() ; 
+					rs =  stmt.executeQuery("SELECT * FROM Tarea"); 
+					while(rs.next()){ 
+						res.add(new TareaBean(rs.getInt("tarea_id"),rs.getInt("incidencia_id"),
+								rs.getInt("empleado_id"),rs.getString("descripcion"),
+								rs.getString("tipo_tarea"),rs.getString("lugar_tarea"),
+								rs.getBoolean("estado"),rs.getDate("fecha_tarea")));  
+					} 
+				}  
+				catch (SQLException ex){  
+					System.out.println("SQLException: " + ex.getMessage()); 
+				} finally { // it is a good idea to release resources in a finally block  
+					if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; }  
+					if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; }  
+				} 
+				conexion.desconectar();
+				return res; 
+				 
+			} 
 }

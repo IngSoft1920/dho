@@ -46,6 +46,7 @@ public class PruebasBaseDatos {
 	 		generarFactura falta añadir la fecha
 	 		getHabitacionByHotel
 	 		asignarTarea
+	 		enviarTareas
 	 		facturaPagada
 	 		estaFacturaPagada
 
@@ -122,8 +123,7 @@ public class PruebasBaseDatos {
 	for (HabitacionBean elem: prueba14.getHabitacionByHotel(1)) {
 		System.out.println(elem);
 	}
-
-	
+	*/
 	TareaDAO prueba15 = new TareaDAO(conexion);
 	prueba15.asignarTarea(1);
 
@@ -142,5 +142,11 @@ public class PruebasBaseDatos {
 	*/
 		}
 
+	*/
+	TareaDAO prueba16 = new TareaDAO(conexion);
+	for (TareaBean elem: prueba16.enviarTareas()) {
+		System.out.println(elem);
 	}
+	}
+}
 

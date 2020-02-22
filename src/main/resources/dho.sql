@@ -115,3 +115,6 @@ ADD CONSTRAINT FK_servicio_id
 FOREIGN KEY(servicioHotel_id)
 REFERENCES ServiciosHotel(servicioHotel_id)
 ;
+ALTER TABLE Servicios
+ADD COLUMN estado VARCHAR(30)
+;
