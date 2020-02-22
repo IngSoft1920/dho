@@ -33,8 +33,8 @@ public class DhoAPI {
 	
 	@ResponseBody
 	@GetMapping("/getTarea/{id_empleado}")
-	public TareaBean getTareaPorId(@PathVariable int id_empleado) {
-		return  TareaDAO.getTareaPorIdEmpleado(id_empleado) ;
+	public void getTareaPorId(@PathVariable int id_empleado) {
+		 TareaDAO.getTareaPorIdEmpleado(id_empleado) ;
 		
 	}
 	
@@ -109,29 +109,6 @@ public class DhoAPI {
 	
 	
 	
-	 
-		//metodo  de prueba para probar la solicitud http lanzada como cliente 
-		@ResponseBody 
-		@GetMapping("/getHabitacio/7") 
-		public String prueba() { 
-			 
-			JsonObject obj = new JsonObject(); 
-			JsonArray listaNotas = new JsonArray(); 
-			listaNotas.add(1); 
-			JsonArray listaNotas2 = new JsonArray(); 
-			listaNotas2.add(1); 
-			obj.add("id_empleado", listaNotas); 
-			obj.add("rol", listaNotas2); 
-			return obj.toString().toString(); 
-			 
-		} 
-		
-		//metodo  de prueba para probar la solicitud http de tipo POST lanzada como cliente 
-		 
-		@ResponseBody 
-		@PostMapping("/asignarTurnos/7") 
-		public String prueba2() { 
-			return "ha ido correctamente"; 
-		} 
 	
+	 
 }
