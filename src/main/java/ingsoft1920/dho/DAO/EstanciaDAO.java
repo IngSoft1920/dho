@@ -17,8 +17,20 @@ public class EstanciaDAO {
 		this.conexion=conexion;
 	}
 	
+	
+	
+	//dado el cliente_id queremos que nos devuelva el cliente_id 
+	public static int getEstaciaId(int cliente_id) {
+		return 0;
+	}
+	
+	
+	
+	
+	
+	
 	//El cliente hace check in
-	public void checkIn(int cliente_id) {
+	public static void checkIn(int cliente_id) {
 		if (conexion.getConexion()== null)
 			conexion.conectar();
 		PreparedStatement stm=null;
@@ -38,7 +50,7 @@ public class EstanciaDAO {
 	}
 	
 	//El cliente hace check out
-	public void checkOut(int cliente_id) {
+	public static void checkOut(int cliente_id) {
 		if (conexion.getConexion()== null)
 			conexion.conectar();
 		PreparedStatement stm=null;
@@ -87,8 +99,4 @@ public class EstanciaDAO {
 		return res;
 	}
 
-	public static void cambiarEstadoEstancia(int estancia_id) {
-		// TODO Auto-generated method stub
-		
-	}
 }

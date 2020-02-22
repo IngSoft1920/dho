@@ -68,12 +68,7 @@ public class EstanciaBean {
 	public void setFecha_fin(Date fecha_fin) { 
 		this.fecha_fin = fecha_fin; 
 	} 
-	@Override 
-	public String toString() { 
-		return "Estancia [estancia_id=" + estancia_id + ", habitacion_id=" + habitacion_id + ", cliente_id=" 
-				+ cliente_id + ", hotel_id=" + hotel_id + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin 
-				+ "]"; 
-	}
+	
 
 	public String getEstado() {
 		return estado;

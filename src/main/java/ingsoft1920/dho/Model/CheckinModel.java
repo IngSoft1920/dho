@@ -29,7 +29,7 @@ public List<EstanciaBean> getEstancias(){
 	
 
 public void cambiarEstadoEstancia(CheckinModel checkin) {
-	EstanciaDAO.cambiarEstadoEstancia(checkin.estancia_id);
+	EstanciaDAO.checkIn(checkin.estancia_id);
 	
 	
 }
