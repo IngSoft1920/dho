@@ -46,6 +46,7 @@ public class PruebasBaseDatos {
 	 		generarFactura falta añadir la fecha
 	 		getHabitacionByHotel
 	 		asignarTarea
+	 		enviarTareas
 	 	No Funcionan:
 	 	
 	 	Faltan por probar:
@@ -117,7 +118,13 @@ public class PruebasBaseDatos {
 		System.out.println(elem);
 	}
 	*/
+	/*
 	TareaDAO prueba15 = new TareaDAO(conexion);
 	prueba15.asignarTarea(1);
+	*/
+	TareaDAO prueba16 = new TareaDAO(conexion);
+	for (TareaBean elem: prueba16.enviarTareas()) {
+		System.out.println(elem);
+	}
 	}
 }

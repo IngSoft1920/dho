@@ -108,4 +108,12 @@ public class TareaBean {
 		this.fecha = fecha;
 	}
 
+
+	@Override
+	public String toString() {
+		return "TareaBean [id_tarea=" + id_tarea + ", id_incidencia=" + id_incidencia + ", id_empleado=" + id_empleado
+				+ ", descripcion=" + descripcion + ", tipo_tarea=" + tipo_tarea + ", lugar=" + lugar + ", estado="
+				+ estado + ", fecha=" + fecha + "]";
+	}
+
 }

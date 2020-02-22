@@ -27,35 +27,7 @@ public class Consultas {
 		return this.conexion;
 	}
 	/*
-	//Devolver una habitacion por su id
-	public static Habitaciones getHabitacionById (int habitacion_id){
-		if (conexion.getConexion()== null)
-			conexion.conectar();
-		
-		Habitaciones res = null;
-		
-		java.sql.Statement stmt = null; 
-		ResultSet rs = null; 
-		try { 
-			stmt = conexion.getConexion().createStatement() ;
-			rs =  stmt.executeQuery("SELECT * FROM habitaciones WHERE habitacion_id = "+habitacion_id);
-			if (rs.next()){
-				res = new Habitaciones (rs.getInt("habitacion_id"), 
-						rs.getString("tipo_habitacion"), 
-						rs.getInt("hotel_id")); 
 
-			}
-
-		} 
-		catch (SQLException ex){ 
-			System.out.println("SQLException: " + ex.getMessage());
-		} finally { // it is a good idea to release resources in a finally block 
-			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
-			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
-		}
-
-		return res;
-	}
 	
 
 	*///Dado habitacion_id devuelve el HabitacionBean
