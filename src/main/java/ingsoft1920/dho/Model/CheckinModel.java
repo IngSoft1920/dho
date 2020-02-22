@@ -2,7 +2,7 @@ package ingsoft1920.dho.Model;
 
 import java.util.List;
 
-import ingsoft1920.dho.DAO.EstanciaDao;
+import ingsoft1920.dho.DAO.EstanciaDAO;
 import ingsoft1920.dho.bean.EstanciaBean;
 
 public class CheckinModel {
@@ -22,14 +22,14 @@ public CheckinModel(EstanciaBean estanciaBean) {
 
 public List<EstanciaBean> getEstancias(){
 	
-	List<EstanciaBean> lista=EstanciaDao.geEstanciaBeans();
+	List<EstanciaBean> lista=EstanciaDAO.geEstanciaBeans();
 	
 	return lista;
 }
 	
 
 public void cambiarEstadoEstancia(CheckinModel checkin) {
-	EstanciaDao.cambiarEstadoEstancia(checkin.estancia_id);
+	EstanciaDAO.cambiarEstadoEstancia(checkin.estancia_id);
 	
 	
 }
