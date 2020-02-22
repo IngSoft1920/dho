@@ -20,7 +20,13 @@ public class ServicioBean {
 	private String lugar; 
 	private Date fecha_servicio; 
 	private Time hora; 
+	//creo que ya no nos hace falta este campo asique hay que eliminarlo
 	private String tipo_servicio;
+	
+	//nuevos campos que no se van a rellenar siempre
+	private String platos;//los platos que quieren separados por comas
+	
+	private String items;//bebidas y otras cosas
 	
 	public ServicioBean() {
 		
@@ -33,8 +39,7 @@ public class ServicioBean {
 
 
 	public ServicioBean(int servicios_id, int estancia_id, int id_ServicoHotel, int cliente_id, String lugar,
-			Date fecha_servicio, Time hora, String tipo_servicio) {
-		super();
+			Date fecha_servicio, Time hora, String tipo_servicio,String platos, String items) {
 		this.servicios_id = servicios_id;
 		this.estancia_id = estancia_id;
 		this.id_ServicoHotel = id_ServicoHotel;
@@ -43,6 +48,8 @@ public class ServicioBean {
 		this.fecha_servicio = fecha_servicio;
 		this.hora = hora;
 		this.tipo_servicio = tipo_servicio;
+		this.platos=platos;
+		this.items=items;
 	}
 
 
@@ -124,6 +131,26 @@ public class ServicioBean {
 	}
 	public void setTipo_servicio(String tipo_servicio) {
 		this.tipo_servicio = tipo_servicio;
+	}
+
+
+
+
+
+
+
+	public String getPlatos() {
+		return platos;
+	}
+
+
+
+
+
+
+
+	public void setPlatos(String platos) {
+		this.platos = platos;
 	}
 	
 	

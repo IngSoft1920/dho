@@ -33,8 +33,38 @@ public class DhoAPI {
 	
 	@ResponseBody
 	@GetMapping("/getTarea/{id_empleado}")
-	public void getTareaPorId(@PathVariable int id_empleado) {
-		 TareaDAO.getTareaPorIdEmpleado(id_empleado) ;
+	public String getTareaPorId(@PathVariable int id_empleado) {
+		 
+		List<TareaBean> lista=TareaDAO.getTareaPorIdEmpleado(id_empleado) ;
+		
+		//parece que lo que quiere que le mandemos es una lista con los id_tarea y 
+		//otra con las descripiciones, y el id_empleado
+		JsonObject obj=new JsonObject();
+		
+		JsonArray tarea_id=new JsonArray();
+		
+		JsonArray descripcion=new JsonArray();
+		
+		obj.addProperty("empleado_id", id_empleado);
+		
+		
+	for (TareaBean elem: lista) {
+			
+			tarea_id.add(elem.getId_tarea());
+			
+			
+			descripcion.add(elem.getDescripcion());
+			
+			
+		}
+		
+		
+	obj.add("id_TareaLista", tarea_id);
+	
+	obj.add("descripcionLista", descripcion);
+		
+	
+	return  obj.toString().toString();
 		
 	}
 	

@@ -66,6 +66,7 @@ public class TareaDAO {
 			if (stmt1 != null) { try {  stmt1.close(); } catch (SQLException sqlEx) { }  stmt1 = null; } 
 			if (stm != null) { try {  stm.close(); } catch (SQLException sqlEx) { }  stm = null; }  
 		} 
+		conexion.desconectar();
 		return tarea_id;
 	}
 
@@ -151,11 +152,12 @@ public class TareaDAO {
 
 	}
 
-	public static TareaBean getTareaPorIdEmpleado(int id_empleado) {
+	public static ArrayList<TareaBean> getTareaPorIdEmpleado(int id_empleado) {
 		if (conexion.getConexion() == null)
 			conexion.conectar();
 
-		TareaBean res = null;
+		ArrayList<TareaBean> res = new ArrayList<TareaBean>();
+		
 
 		java.sql.Statement stmt = null;
 		ResultSet rs = null;
@@ -163,9 +165,9 @@ public class TareaDAO {
 			stmt = conexion.getConexion().createStatement();
 			rs = stmt.executeQuery("SELECT Tarea.* FROM Tarea  WHERE empleado_id = " + id_empleado);
 			if (rs.next()) {
-				res = new TareaBean(rs.getInt("tarea_id"), rs.getInt("incidencia_id"), rs.getInt("empleado_id"),
+				res.add(new TareaBean(rs.getInt("tarea_id"), rs.getInt("incidencia_id"), rs.getInt("empleado_id"),
 						rs.getString("descripcion"), rs.getString("tipo_tarea"), rs.getString("lugar_tarea"),
-						rs.getBoolean("estado"), rs.getDate("fecha_tarea"));
+						rs.getBoolean("estado"), rs.getDate("fecha_tarea")));
 
 			}
 
@@ -187,6 +189,7 @@ public class TareaDAO {
 				stmt = null;
 			}
 		}
+		conexion.desconectar();
 		return res;
 
 	}
