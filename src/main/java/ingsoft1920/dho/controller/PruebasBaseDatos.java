@@ -2,6 +2,7 @@ package ingsoft1920.dho.controller;
 
 import java.util.ArrayList;
 
+import ingsoft1920.dho.DAO.EstanciaDAO;
 import ingsoft1920.dho.DAO.FacturasDAO;
 import ingsoft1920.dho.DAO.HabitacionDAO;
 import ingsoft1920.dho.DAO.IncidenciaDAO;
@@ -50,6 +51,8 @@ public class PruebasBaseDatos {
 	 		facturaPagada
 	 		estaFacturaPagada
 	 		cobroPagado
+	 		checkIn
+	 		checkOut
 
 
 	 	No Funcionan:
@@ -148,6 +151,14 @@ public class PruebasBaseDatos {
 	for (TareaBean elem: prueba16.enviarTareas()) {
 		System.out.println(elem);
 	}
+	*/
+	/*
+	EstanciaDAO prueba17 = new EstanciaDAO(conexion);
+	prueba17.checkIn(2);
+	*/
+	/*
+	EstanciaDAO prueba18 = new EstanciaDAO(conexion);
+	prueba17.checkOut(2);
 	*/
 	}
 }
