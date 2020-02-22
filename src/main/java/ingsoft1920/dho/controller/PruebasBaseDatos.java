@@ -10,6 +10,7 @@ import ingsoft1920.dho.DAO.ServicioDAO;
 import ingsoft1920.dho.DAO.ServiciosDelHotelDAO;
 import ingsoft1920.dho.DAO.TareaDAO;
 import ingsoft1920.dho.bean.CobrosBean;
+import ingsoft1920.dho.bean.EstanciaBean;
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.IncidenciaBean;
 import ingsoft1920.dho.bean.ServicioBean;
@@ -158,8 +159,12 @@ public class PruebasBaseDatos {
 	*/
 	/*
 	EstanciaDAO prueba18 = new EstanciaDAO(conexion);
-	prueba17.checkOut(2);
+	prueba18.checkOut(2);
 	*/
+	EstanciaDAO prueba19 = new EstanciaDAO(conexion);
+	for (EstanciaBean elem: prueba19.geEstanciaBeans()) {
+		System.out.println(elem);
+	}
 	}
 }
 
