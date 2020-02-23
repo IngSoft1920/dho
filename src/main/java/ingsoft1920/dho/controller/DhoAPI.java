@@ -73,8 +73,12 @@ public class DhoAPI {
 	
 	@ResponseBody
 	@PostMapping("/recibirTarea")
-	public int recibirTarea(@RequestBody TareaBean nuevaTarea) {
-				return TareaDAO.recibirTarea(nuevaTarea);
+	public String recibirTarea(@RequestBody TareaBean nuevaTarea) {
+				JsonObject obj=new JsonObject();
+				obj.addProperty("incidencia_id", TareaDAO.recibirTarea(nuevaTarea));
+				return  obj.toString().toString();
+				
+				
 				
 		
 	}

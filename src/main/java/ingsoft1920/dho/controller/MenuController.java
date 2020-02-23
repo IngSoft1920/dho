@@ -21,4 +21,6 @@ public class MenuController {
 	 public String menu(Model model) {
 		 return "menu";
 	 }
+	 
+
 }

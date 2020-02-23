@@ -11,7 +11,7 @@ import ingsoft1920.dho.controller.Conexion;
 public class IncidenciaDAO { 
  
 	
-	private static Conexion conexion; 
+	private static Conexion conexion=new Conexion();
 	 
  public IncidenciaDAO(Conexion conexion) {
 	 this.conexion=conexion;

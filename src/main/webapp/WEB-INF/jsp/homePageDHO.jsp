@@ -37,6 +37,20 @@ after { clear: both; }
   width: 320px;
 }
 
+
+
+.padre {
+  height: 150px;
+  /*IMPORTANTE*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
 #login form {
   margin: auto;
   padding: 22px 22px 22px 22px;
@@ -105,7 +119,8 @@ after { clear: both; }
 
 
 <body>
-  <h1>Employer Log in</h1>
+  <h1 align="center">Employer Log in</h1>
+  <div class="padre">
   <form method="POST" modelAttribute="loginBean";>	
 		<label>User</label>
 			<form:input type="text" name="usuario" path="usuario" />
@@ -113,13 +128,15 @@ after { clear: both; }
 			<span class="fontawesome-user"></span>
 			
 		<span class="fontawesome-lock"></span>
+		<br><br>
 		
-		<label>Password</label>
+		<label>Pass</label>
 			<form:input type="password" name="password" path="password" />
 			<input class="controls" type="password" name="Password" required="true" >
-			
-			  <input type="submit" value="Login">
-			
+    		<br><br>
+			  <input class="buttons" type="submit" name="" value="Acceder">
+			 
+		</div>			
 </form:form>
 
 </body>
