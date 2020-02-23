@@ -83,7 +83,7 @@ public class TareaDAO {
 		// antes de añadir la tarea hay que añadir la incidencia
 		IncidenciaBean incidencia = new IncidenciaBean();
 
-		// COSA SIN HACER: ha cambiado la cosa y no tenemos que crear una nueva
+		//  ha cambiado la cosa y no tenemos que crear una nueva
 		// incidencia siempre
 		// que nos llegue una tarea desde F&B, es un caso especial que se maneja desde
 		// codigo
@@ -164,7 +164,7 @@ public class TareaDAO {
 		try {
 			stmt = conexion.getConexion().createStatement();
 			rs = stmt.executeQuery("SELECT Tarea.* FROM Tarea  WHERE empleado_id = " + id_empleado);
-			if (rs.next()) {
+			while(rs.next()) {
 				res.add(new TareaBean(rs.getInt("tarea_id"), rs.getInt("incidencia_id"), rs.getInt("empleado_id"),
 						rs.getString("descripcion"), rs.getString("tipo_tarea"), rs.getString("lugar_tarea"),
 						rs.getBoolean("estado"), rs.getDate("fecha_tarea")));
