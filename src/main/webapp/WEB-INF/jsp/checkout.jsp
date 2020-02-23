@@ -4,6 +4,10 @@
 
 <html>
 
+	<head>
+	Check-OUT
+	</head>
+
 	<body style="background-color:lightblue;">
 		<style>
 			a { text-decoration: none; }
