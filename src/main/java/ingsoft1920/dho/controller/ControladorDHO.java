@@ -20,16 +20,7 @@ public class ControladorDHO {
 		return "menu";
 		
 	}
-	@GetMapping("/homePageDHO/menu/checkin")
-	public String checkin() {
-		return "checkin";
-		
-	}
-	@GetMapping("/homePageDHO/menu/checkout")
-	public String checkout() {
-		return "checkout";
-		
-	}
+
 	@PostMapping("/homePageDHO/hacerReserva")
 	public String hacerReservaSolicitud(ReservaBean reserva) {
 		System.out.println("reserva recibida:\n"+reserva);
