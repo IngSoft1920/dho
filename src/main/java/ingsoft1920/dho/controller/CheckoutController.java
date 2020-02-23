@@ -24,7 +24,7 @@ import ingsoft1920.dho.bean.EstanciaBean;
 		final static Logger logger = LogManager.getLogger(LoginController.class.getName());
 		
 		
-		@GetMapping("/checkout1")
+		@GetMapping("/homePageDHO/menu/checkout1")
 		public String checkoutGet(Model model) {
 			
 			//vamos a llmar al checkinModel parar trabajar con el
@@ -43,7 +43,7 @@ import ingsoft1920.dho.bean.EstanciaBean;
 			return "checkout";
 		}
 
-		@PostMapping("/checkout1")
+		@PostMapping("/homePageDHO/menu/checkout1")
 		public String checkinPost(@Valid @ModelAttribute("EstanciaBean") EstanciaBean estanciaBean,
 				Model model) {
 		
