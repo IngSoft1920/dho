@@ -1,4 +1,4 @@
-package ingsoft1920.dho.bean;
+package ingsoft1920.dho.controller;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;

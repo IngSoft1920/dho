@@ -128,12 +128,13 @@ after { clear: both; }
 			<span class="fontawesome-user"></span>
 			
 		<span class="fontawesome-lock"></span>
+		<br><br>
 		
-		<label>Password</label>
+		<label>Pass</label>
 			<form:input type="password" name="password" path="password" />
 			<input class="controls" type="password" name="Password" required="true" >
-    
-			  <input class="buttons" type="submit" name="" value="Login">
+    		<br><br>
+			  <input class="buttons" type="submit" name="" value="Acceder">
 			 
 		</div>			
 </form:form>
