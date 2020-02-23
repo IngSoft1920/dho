@@ -1,5 +1,6 @@
 package ingsoft1920.dho.bean;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 import org.springframework.stereotype.Component;
@@ -10,14 +11,14 @@ public class CobrosBean {
 	private int estancia_id; 
 	private int cliente_id; 
 	private int habitacion_id; 
-	private LocalDate fecha_cobro; 
+	private Date fecha_cobro; 
 	private int precio; 
 	private boolean pagado; 
 	private String tipo_cobro; 
 		
 	public CobrosBean() {
 	}
-	public CobrosBean(int cobros_id, int estancia_id, int cliente_id, int habitacion_id, LocalDate fecha_cobro, int precio, 
+	public CobrosBean(int cobros_id, int estancia_id, int cliente_id, int habitacion_id, Date fecha_cobro, int precio, 
 			boolean pagado, String tipo_cobro) { 
 		this.cobros_id = cobros_id; 
 		this.estancia_id = estancia_id; 
@@ -53,10 +54,10 @@ public class CobrosBean {
 	public void setHabitacion_id(int habitacion_id) { 
 		this.habitacion_id = habitacion_id; 
 	} 
-	public LocalDate getFecha_cobro() { 
+	public Date getFecha_cobro() { 
 		return fecha_cobro; 
 	} 
-	public void setFecha_cobro(LocalDate fecha_cobro) { 
+	public void setFecha_cobro(Date fecha_cobro) { 
 		this.fecha_cobro = fecha_cobro; 
 	} 
 	public int getPrecio() { 

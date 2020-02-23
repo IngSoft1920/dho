@@ -82,7 +82,7 @@ private static Conexion conexion;
 				conexion.conectar();
 			java.sql.Statement stmt= null;
 			ResultSet rs= null;
-			LocalDate fecha = null;
+			Date fecha = null;
 			
 			
 			
@@ -176,7 +176,8 @@ private static Conexion conexion;
 			if (stmt4 != null) { try {  stmt4.close(); } catch (SQLException sqlEx) { }  stmt4 = null; }
 			if (stmt3 != null) { try {  stmt3.close(); } catch (SQLException sqlEx) { }  stmt3 = null; }
 		}
-		FacturaBean res= new FacturaBean(factura_id,cliente_id,estancia_id,habitacion_id,LocalDate.now(),precio,false," ");
+		Date aux = new Date(LocalDate.now().getDayOfYear(),LocalDate.now().getMonthValue(),LocalDate.now().getDayOfMonth());
+		FacturaBean res= new FacturaBean(factura_id,cliente_id,estancia_id,habitacion_id,aux,precio,false," ");
 		
 		
 		return res;
@@ -221,7 +222,7 @@ private static Conexion conexion;
 	//Dado el id de un cliente devolver las facturas  a su nombre
 		public static ArrayList<FacturaBean> facturasCliente (int cliente_id){
 			ArrayList<FacturaBean> res = new ArrayList<FacturaBean>();
-			LocalDate fecha= null;
+			Date fecha= null;
 			if (conexion==null) 
 				conexion.conectar();
 			
@@ -245,7 +246,7 @@ private static Conexion conexion;
 		//Dado el id de una factura devolver la facturaBean
 		public static ArrayList<FacturaBean> getFacturaporID (int factura_id){
 			ArrayList<FacturaBean> res = new ArrayList<FacturaBean>();
-			LocalDate fecha= null;
+			Date fecha= null;
 			if (conexion==null) 
 				conexion.conectar();
 			
@@ -327,8 +328,55 @@ private static Conexion conexion;
 			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
 			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
 		}
-		FacturaBean res= new FacturaBean(factura_id, estancia_id,cliente_id,habitacion_id,LocalDate.now(),precioFac,false," ");
+			Date aux = new Date(LocalDate.now().getDayOfYear(),LocalDate.now().getMonthValue(),LocalDate.now().getDayOfMonth());
+		FacturaBean res= new FacturaBean(factura_id, estancia_id,cliente_id,habitacion_id,aux,precioFac,false," ");
 		return res;
 		}
+		//Volcar toda la informacion de los cobros para pasarsela al chain master
+		public static ArrayList<CobrosBean> cobrosBean(){
+			ArrayList<CobrosBean> cobros= new ArrayList<CobrosBean>();
+			
+			if (conexion==null) 
+				conexion.conectar();
+			java.sql.Statement stmt= null;
+			ResultSet rs= null;			
+			try {
+				stmt=conexion.getConexion().createStatement();
+				rs=stmt.executeQuery("SELECT * FROM Cobros");
+				while(rs.next()) {
+					cobros.add(new CobrosBean(rs.getInt("cobros_id"), rs.getInt("estancia_id"), rs.getInt("cliente_id"), rs.getInt("habitacion_id"),rs.getDate("fecha_factura"), rs.getInt("precio"), rs.getBoolean("pagado"), rs.getString("tipo_factura")));
+					
+				}
+			}catch (SQLException ex){ 
+				System.out.println("SQLException: " + ex.getMessage());
+			} finally { // it is a good idea to release resources in a finally block 
+				if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+				if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+			}
+			
+			return cobros;
+		}
 		
+		//Volcar toda la informacion de las facturas para pasarsela al chain master
+		public static ArrayList<FacturaBean> facturasBean (){
+			ArrayList<FacturaBean> res = new ArrayList<FacturaBean>();
+			if (conexion==null) 
+				conexion.conectar();
+			
+			java.sql.Statement stmt= null;
+			ResultSet rs= null;
+			try {
+				stmt=conexion.getConexion().createStatement();
+				rs= stmt.executeQuery("SELECT * FROM Factura");
+				while(rs.next()) {
+					res.add(new FacturaBean(rs.getInt("factura_id"),rs.getInt("estancia_id"), rs.getInt("cliente_id"), rs.getInt("habitacion_id"), rs.getDate("fecha_factura"), rs.getInt("precio"), rs.getBoolean("pagado"), rs.getString("tipo_factura")));
+				}
+			}catch (SQLException ex){ 
+				System.out.println("SQLException: " + ex.getMessage());
+			} finally { // it is a good idea to release resources in a finally block 
+				if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+				if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+			}
+			return res;
+		}
 }
