@@ -1,7 +1,9 @@
 package ingsoft1920.dho.DAO;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +49,28 @@ public class ServiciosDelHotelDAO {
 		return res;
 	}
 
-	
+	//Dado el id de un servicio del hotel, y una hora de inicio y una de fin, se asigna el horario de los servicios del hotel
+	public static void asignacionHorarioServicios(int servicioHotel_id,Time hora_inicio,Time hora_fin) {
+		if (conexion==null) 
+			conexion.conectar();
+		PreparedStatement stmt= null;
+		
+		try {
+			stmt=conexion.getConexion().prepareStatement("UPDATE ServiciosHotel\r\n" + 
+					"SET horaInicioServicio = ?, horaFinServicio=?\r\n" + 
+					"WHERE servicioHotel_id=?");
+			stmt.setTime(1, hora_inicio);
+			stmt.setTime(2, hora_fin);
+			stmt.setInt(3, servicioHotel_id);
+			stmt.executeUpdate();
+		}catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		
+	}
 	
 	
 }

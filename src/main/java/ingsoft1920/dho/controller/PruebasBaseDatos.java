@@ -54,12 +54,16 @@ public class PruebasBaseDatos {
 	 		cobroPagado
 	 		checkIn
 	 		checkOut
+	 		geEstanciaBeans
+	 		getEstaciaId
+	 		getServiciosReservados
 
 
 	 	No Funcionan:
 	 	
 	 	Faltan por probar:
 	 		recibirTarea
+	 		asignacionHorarioServicios
 	*/
 	
 	/*
