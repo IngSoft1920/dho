@@ -172,6 +172,20 @@ public class ServicioBean {
 	public void setItems(String items) {
 		this.items = items;
 	}
+
+
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "ServicioBean [servicios_id=" + servicios_id + ", estancia_id=" + estancia_id + ", id_ServicoHotel="
+				+ id_ServicoHotel + ", cliente_id=" + cliente_id + ", lugar=" + lugar + ", fecha_servicio="
+				+ fecha_servicio + ", hora=" + hora + ", tipo_servicio=" + tipo_servicio + ", platos=" + platos
+				+ ", items=" + items + "]";
+	}
 	
 	
 	

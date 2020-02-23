@@ -54,12 +54,16 @@ public class PruebasBaseDatos {
 	 		cobroPagado
 	 		checkIn
 	 		checkOut
+	 		geEstanciaBeans
+	 		getEstaciaId
+	 		getServiciosReservados
 
 
 	 	No Funcionan:
 	 	
 	 	Faltan por probar:
 	 		recibirTarea
+	 		asignacionHorarioServicios
 	*/
 	
 	/*
@@ -167,9 +171,14 @@ public class PruebasBaseDatos {
 		System.out.println(elem);
 	}
 	*/
+	/*
 	EstanciaDAO prueba20= new EstanciaDAO(conexion);
 	System.out.println(prueba20.getEstaciaId(1));
-	
+	*/
+	ServicioDAO prueba21 = new ServicioDAO(conexion);
+	for (ServicioBean elem: prueba21.getServiciosReservados()) {
+		System.out.println(elem);
+	}
 	}
 }
 

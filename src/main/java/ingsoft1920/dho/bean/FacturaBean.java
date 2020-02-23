@@ -1,5 +1,6 @@
 package ingsoft1920.dho.bean;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 import org.springframework.stereotype.Component;
@@ -10,7 +11,7 @@ public class FacturaBean {
 	private int estancia_id; 
 	private int cliente_id; 
 	private int habitacion_id; 
-	private LocalDate fecha_factura; 
+	private Date fecha_factura; 
 	private int precio; 
 	private boolean pagado; 
 	private String tipo_factura; 
@@ -19,7 +20,7 @@ public class FacturaBean {
 		
 	}
 	 
-	public FacturaBean(int factura_id, int estancia_id, int cliente_id, int habitacion_id, LocalDate fecha_factura, 
+	public FacturaBean(int factura_id, int estancia_id, int cliente_id, int habitacion_id, Date fecha_factura, 
 			int precio, boolean pagado, String tipo_factura) { 
 		this.factura_id = factura_id; 
 		this.estancia_id = estancia_id; 
@@ -55,10 +56,10 @@ public class FacturaBean {
 	public void setHabitacion_id(int habitacion_id) { 
 		this.habitacion_id = habitacion_id; 
 	} 
-	public LocalDate getFecha_factura() { 
+	public Date getFecha_factura() { 
 		return fecha_factura; 
 	} 
-	public void setFecha_factura(LocalDate fecha_factura) { 
+	public void setFecha_factura(Date fecha_factura) { 
 		this.fecha_factura = fecha_factura; 
 	} 
 	public int getPrecio() { 
