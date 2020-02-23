@@ -7,11 +7,21 @@
     <title>Menu</title>
 </head>
 
-	<body style="background-color:DarkSlateGrey;>
+	<body style="background-color:#606468;>
 	
 	<h1>Menu</h1>
-	<h2><a href="checkin.jsp">Check-in</a></h2>
-	<h2><a href="checkout.jsp">Check-out</a></h2>
+	
+
+	<h1 align="center">Menú</h1>
+	<br><br>
+	
+	<form method="POST" modelAttribute="EstanciaBean";>	
+	<h2><a href="/homePageDHO/menu/checkin1">Check-in</a></h2>
+	</form:form>	
+	
+	<h2><a href="/homePageDHO/menu/checkout1">Check-out</a></h2>
+	
+
 	</body>
 	
 
