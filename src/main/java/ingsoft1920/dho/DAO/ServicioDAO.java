@@ -3,7 +3,9 @@ package ingsoft1920.dho.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.ServicioBean;
 import ingsoft1920.dho.controller.Conexion; 
  
@@ -88,4 +90,35 @@ public class ServicioDAO {
 		}
 		return res;
 	}
-} 
+	
+	//Devolver servicios reservados
+	public static ArrayList<ServicioBean> getServiciosReservados (){
+		if (conexion.getConexion()== null)
+			conexion.conectar();
+		
+		ArrayList<ServicioBean> res = new ArrayList<ServicioBean>();
+		
+		java.sql.Statement stmt = null; 
+		ResultSet rs = null; 
+		try { 
+			stmt = conexion.getConexion().createStatement() ;
+			rs =  stmt.executeQuery("SELECT * FROM Servicios ");
+			while(rs.next()){
+				res.add(new ServicioBean (rs.getInt("servicios_id"), 
+						rs.getInt("estancia_id"),rs.getInt("servicioHotel_id"),
+						rs.getInt("cliente_id"),rs.getString("lugar"),rs.getDate("fecha_factura"),
+						rs.getTime("hora"),rs.getString("tipo_servicio"),rs.getString("platos"),
+						rs.getString("items"))); 
+		} 
+		}
+		catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		conexion.desconectar();
+
+		return res;
+	}
+	}
