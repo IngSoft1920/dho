@@ -8,7 +8,7 @@
 	Check-IN
 	</head>
 
-	<body>
+	<body style="background-color:lightblue;">
 	
 	<ul>
 		<c:forEach items="${lista}" var="item">
