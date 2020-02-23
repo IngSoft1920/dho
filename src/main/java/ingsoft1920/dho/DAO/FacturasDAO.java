@@ -12,7 +12,7 @@ import ingsoft1920.dho.bean.FacturaBean;
 import ingsoft1920.dho.controller.Conexion;
 
 public class FacturasDAO {
-private static Conexion conexion; 
+private static Conexion conexion= new Conexion(); 
 	
 	public FacturasDAO(Conexion conexion) {
 		this.conexion=conexion;

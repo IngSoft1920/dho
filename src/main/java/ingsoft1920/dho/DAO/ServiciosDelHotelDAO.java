@@ -11,7 +11,7 @@ import ingsoft1920.dho.bean.ServiciosDelHotelBean;
 import ingsoft1920.dho.controller.Conexion;
 
 public class ServiciosDelHotelDAO {
-	private static Conexion conexion; 
+	private static Conexion conexion=new Conexion(); 
 	
 	public ServiciosDelHotelDAO(Conexion conexion) {
 		this.conexion=conexion;

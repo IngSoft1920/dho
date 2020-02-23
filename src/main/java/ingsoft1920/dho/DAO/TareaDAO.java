@@ -14,7 +14,7 @@ import ingsoft1920.dho.bean.TareaBean;
 
 public class TareaDAO {
 
-	private static Conexion conexion;
+	private static Conexion conexion=new Conexion();
 
 	public TareaDAO(Conexion conexion) {
 		this.conexion=conexion;

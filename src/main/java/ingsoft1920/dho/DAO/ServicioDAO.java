@@ -10,7 +10,7 @@ import ingsoft1920.dho.bean.ServicioBean;
 import ingsoft1920.dho.controller.Conexion; 
  
 public class ServicioDAO { 
-	private static Conexion conexion; 
+	private static Conexion conexion=new Conexion(); 
 	 
 	public ServicioDAO(Conexion conexion) {
 		this.conexion=conexion;

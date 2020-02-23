@@ -8,7 +8,7 @@ import java.util.ArrayList;
  
 public class HabitacionDAO { 
 	
-	private static Conexion conexion; 
+	private static Conexion conexion=new Conexion(); 
 	
 	public HabitacionDAO(Conexion conexion) {
 		this.conexion=conexion;
