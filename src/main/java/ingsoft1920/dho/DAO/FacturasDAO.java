@@ -218,5 +218,117 @@ private static Conexion conexion;
 			}
 			
 		}
-	
+	//Dado el id de un cliente devolver las facturas  a su nombre
+		public static ArrayList<FacturaBean> facturasCliente (int cliente_id){
+			ArrayList<FacturaBean> res = new ArrayList<FacturaBean>();
+			LocalDate fecha= null;
+			if (conexion==null) 
+				conexion.conectar();
+			
+			java.sql.Statement stmt= null;
+			ResultSet rs= null;
+			try {
+				stmt=conexion.getConexion().createStatement();
+				rs= stmt.executeQuery("SELECT * FROM Factura WHERE cliente_id= "+cliente_id);
+				while(rs.next()) {
+					res.add(res.size(),new FacturaBean(rs.getInt("factura_id"),rs.getInt("estancia_id"), rs.getInt("cliente_id"), rs.getInt("habitacion_id"), fecha, rs.getInt("precio"), rs.getBoolean("pagado"), rs.getString("tipo_factura")));
+				}
+			}catch (SQLException ex){ 
+				System.out.println("SQLException: " + ex.getMessage());
+			} finally { // it is a good idea to release resources in a finally block 
+				if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+				if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+			}
+			return res;
+		}
+		
+		//Dado el id de una factura devolver la facturaBean
+		public static ArrayList<FacturaBean> getFacturaporID (int factura_id){
+			ArrayList<FacturaBean> res = new ArrayList<FacturaBean>();
+			LocalDate fecha= null;
+			if (conexion==null) 
+				conexion.conectar();
+			
+			java.sql.Statement stmt= null;
+			ResultSet rs= null;
+			
+			try {
+				stmt=conexion.getConexion().createStatement();
+				rs= stmt.executeQuery("SELECT * FROM Factura WHERE factura_id= "+factura_id);
+				while(rs.next()) {
+					res.add(res.size(),new FacturaBean(rs.getInt("factura_id"),rs.getInt("estancia_id"), rs.getInt("cliente_id"), rs.getInt("habitacion_id"), fecha, rs.getInt("precio"), rs.getBoolean("pagado"), rs.getString("tipo_factura")));
+				}
+			}catch (SQLException ex){ 
+				System.out.println("SQLException: " + ex.getMessage());
+			} finally { // it is a good idea to release resources in a finally block 
+				if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+				if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+			}
+			return res;
+		}
+		//Dado un ArrayList de cobros generar una factura. Especificar a nombre de que cliente se quiere generar la factura
+		//La inserta en la base de datos y devuelve el FacturaBean
+		public static FacturaBean genFacturaCobros(ArrayList<CobrosBean> cobros, int cliente_id) {
+			int precioFac=0;
+			int precioCo = 0;
+			int factura_id=-1;
+			int estancia_id=-1;
+			boolean pagado=false;
+			int habitacion_id=-1;
+			
+			PreparedStatement stmt2= null;
+			java.sql.Statement stmt3= null;
+			ResultSet rs3= null;
+			
+			if (conexion==null) 
+				conexion.conectar();
+						
+			java.sql.Statement stmt= null;
+			ResultSet rs= null;
+			for(int i=0; i<cobros.size(); i++) {
+				int cobro_id=cobros.get(i).getCobros_id();
+				if(!estaCobroPagado(cobro_id)){
+					precioFac+=cobros.get(i).getPrecio();
+				}
+			}
+				
+			try {
+				stmt=conexion.getConexion().createStatement();
+				rs=stmt.executeQuery("SELECT * FROM Estancia WHERE cliente_id= "+cliente_id);
+				while(rs.next()) {
+					estancia_id=rs.getInt("estancia_id");
+					habitacion_id=rs.getInt("habitacion_id");
+				}						
+				
+				
+			stmt3=conexion.getConexion().createStatement();
+			rs3=stmt3.executeQuery("SELECT COUNT(factura_id) as n FROM Factura");
+			if(rs3.next()) {
+				factura_id=rs3.getInt("n");
+			
+			
+			stmt2=conexion.getConexion().prepareStatement("INSERT INTO Factura values (?,?,?,?,?,?,?,?)");
+			stmt2.setInt(1,factura_id);
+			stmt2.setInt(2,estancia_id);
+			stmt2.setInt(3, cliente_id);
+			stmt2.setInt(4, habitacion_id);
+			stmt2.setDate(5, null);
+			stmt2.setInt(6, precioFac);
+			stmt2.setBoolean(7, false);
+			stmt2.setString(8, " ");
+			stmt2.executeUpdate();
+			
+			}
+		}catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs3 != null) { try { rs3.close(); } catch (SQLException sqlEx) { } rs3 = null; } 
+			if (stmt3 != null) { try {  stmt3.close(); } catch (SQLException sqlEx) { }  stmt3 = null; } 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		FacturaBean res= new FacturaBean(factura_id, estancia_id,cliente_id,habitacion_id,LocalDate.now(),precioFac,false," ");
+		return res;
+		}
+		
 }
