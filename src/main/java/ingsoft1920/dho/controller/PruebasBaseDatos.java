@@ -1,5 +1,6 @@
 package ingsoft1920.dho.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import ingsoft1920.dho.DAO.EstanciaDAO;
@@ -174,11 +175,26 @@ public class PruebasBaseDatos {
 	/*
 	EstanciaDAO prueba20= new EstanciaDAO(conexion);
 	System.out.println(prueba20.getEstaciaId(1));
-	*/
+	
 	ServicioDAO prueba21 = new ServicioDAO(conexion);
 	for (ServicioBean elem: prueba21.getServiciosReservados()) {
 		System.out.println(elem);
 	}
+
+	FacturasDAO prueba22= new FacturasDAO(conexion);
+	Date fecha=new Date(20,02,2020);
+	for(int i=0; i<prueba22.getCobrosFecha(fecha).size(); i++) {
+	System.out.println(prueba22.getCobrosFecha(fecha).get(i).toString());
+	}
+	
+	
+	FacturasDAO prueba24=new FacturasDAO(conexion);
+	
+	FacturasDAO prueba23=new FacturasDAO(conexion);
+	System.out.println(prueba23.genFacturaCobros(prueba24.cobrosCliente(1), 1).toString());
+	
+	*/
 	}
 }
+	
 
