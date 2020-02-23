@@ -45,8 +45,10 @@ public class CheckinController {
 	@PostMapping("/homePageDHO/menu/checkin1")
 	public String checkinPost(@Valid @ModelAttribute("EstanciaBean") EstanciaBean estanciaBean,
 			Model model) {
-	
+		
 		CheckinModel checkinModel=new CheckinModel(estanciaBean);
+	
+		System.out.println("ckeckin:\n"+estanciaBean);
 	
 	checkinModel.cambiarEstadoEstancia(checkinModel);
 	

@@ -48,10 +48,12 @@ import ingsoft1920.dho.bean.EstanciaBean;
 				Model model) {
 		
 		
-			
+	
 		CheckoutModel checkoutModel=new CheckoutModel(estanciaBean);
 		
 		checkoutModel.cambiarEstadoEstancia(checkoutModel);
+
+		System.out.println("ckeckout:\n"+estanciaBean);
 		
 		return this.checkoutGet(model);
 		
