@@ -29,7 +29,7 @@
 		<label>hotel_id</label>
 		<input type="text" name="hotel_id" autocomlete="off" />
 		<br><br>
-		<label>fecha_iniciod</label>
+		<label>fecha_inicio</label>
 		<input type="text" name="fecha_inicio" autocomlete="off" />
 		<br><br>
 		<label>fecha_fin</label>
