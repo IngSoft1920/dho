@@ -32,7 +32,7 @@ public class LoginController {
 		 
 		 if (usuario.equals("usuario") && pass.equals("1234")) {
 			 System.out.println("Acceso Correcto");
-			 return "menu"; 
+			 return "redirect:menu"; 
 		 }
 		 else {
 			 model.addAttribute("signupBean", new LoginBean());

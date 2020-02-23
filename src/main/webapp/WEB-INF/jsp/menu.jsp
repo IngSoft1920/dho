@@ -7,11 +7,11 @@
     <title>Menu</title>
 </head>
 
-	<body>
+	<body style="background-color:DarkSlateGrey;>
 	
 	<h1>Menu</h1>
-	<h1><a href="checkin">Check-in</a></h1>
-		 
+	<h2><a href="checkin.jsp">Check-in</a></h2>
+	<h2><a href="checkout.jsp">Check-out</a></h2>
 	</body>
 	
 

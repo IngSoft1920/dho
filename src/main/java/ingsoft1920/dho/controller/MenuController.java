@@ -22,8 +22,5 @@ public class MenuController {
 		 return "menu";
 	 }
 	 
-	 @GetMapping("/checkin")
-	 public String checkin(Model model) {
-		 return "checkin";
-	 }
+
 }
