@@ -82,7 +82,7 @@ private static Conexion conexion;
 				conexion.conectar();
 			java.sql.Statement stmt= null;
 			ResultSet rs= null;
-			LocalDate fecha = null;
+			Date fecha = null;
 			
 			
 			
@@ -176,7 +176,7 @@ private static Conexion conexion;
 			if (stmt4 != null) { try {  stmt4.close(); } catch (SQLException sqlEx) { }  stmt4 = null; }
 			if (stmt3 != null) { try {  stmt3.close(); } catch (SQLException sqlEx) { }  stmt3 = null; }
 		}
-		FacturaBean res= new FacturaBean(factura_id,cliente_id,estancia_id,habitacion_id,LocalDate.now(),precio,false," ");
+		FacturaBean res= new FacturaBean(factura_id,cliente_id,estancia_id,habitacion_id,fecha,precio,false," ");
 		
 		
 		return res;
@@ -221,7 +221,7 @@ private static Conexion conexion;
 	//Dado el id de un cliente devolver las facturas  a su nombre
 		public static ArrayList<FacturaBean> facturasCliente (int cliente_id){
 			ArrayList<FacturaBean> res = new ArrayList<FacturaBean>();
-			LocalDate fecha= null;
+			Date fecha= null;
 			if (conexion==null) 
 				conexion.conectar();
 			
@@ -245,7 +245,7 @@ private static Conexion conexion;
 		//Dado el id de una factura devolver la facturaBean
 		public static ArrayList<FacturaBean> getFacturaporID (int factura_id){
 			ArrayList<FacturaBean> res = new ArrayList<FacturaBean>();
-			LocalDate fecha= null;
+			Date fecha= null;
 			if (conexion==null) 
 				conexion.conectar();
 			
@@ -275,6 +275,7 @@ private static Conexion conexion;
 			int estancia_id=-1;
 			boolean pagado=false;
 			int habitacion_id=-1;
+			Date fecha=null;
 			
 			PreparedStatement stmt2= null;
 			java.sql.Statement stmt3= null;
@@ -327,7 +328,7 @@ private static Conexion conexion;
 			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
 			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
 		}
-		FacturaBean res= new FacturaBean(factura_id, estancia_id,cliente_id,habitacion_id,LocalDate.now(),precioFac,false," ");
+		FacturaBean res= new FacturaBean(factura_id, estancia_id,cliente_id,habitacion_id,fecha,precioFac,false," ");
 		return res;
 		}
 		
