@@ -11,7 +11,7 @@ import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.controller.Conexion;
 
 public class EstanciaDAO {
-	private static Conexion conexion; 
+	private static Conexion conexion=new Conexion(); 
 	
 	public EstanciaDAO(Conexion conexion) {
 		this.conexion=conexion;
@@ -55,6 +55,7 @@ public class EstanciaDAO {
 	
 	//El cliente hace check in
 	public static void checkIn(int cliente_id) {
+		
 		if (conexion.getConexion()== null)
 			conexion.conectar();
 		PreparedStatement stm=null;
