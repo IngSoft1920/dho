@@ -23,7 +23,7 @@ public class CheckinController {
 	final static Logger logger = LogManager.getLogger(LoginController.class.getName());
 	
 	
-	@GetMapping("/checkin1")
+	@GetMapping("/homePageDHO/menu/checkin1")
 	public String checkinGet(Model model) {
 		
 		//vamos a llmar al checkinModel parar trabajar con el
@@ -42,17 +42,16 @@ public class CheckinController {
 		return "checkin";
 	}
 
-	@PostMapping("/checkin1")
+	@PostMapping("/homePageDHO/menu/checkin1")
 	public String checkinPost(@Valid @ModelAttribute("EstanciaBean") EstanciaBean estanciaBean,
 			Model model) {
 	
-	
-		
-	CheckinModel checkinModel=new CheckinModel(estanciaBean);
+		CheckinModel checkinModel=new CheckinModel(estanciaBean);
 	
 	checkinModel.cambiarEstadoEstancia(checkinModel);
 	
 	return this.checkinGet(model);
+
 	
 	}
 	
