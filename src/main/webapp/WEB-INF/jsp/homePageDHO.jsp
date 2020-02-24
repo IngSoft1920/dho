@@ -74,6 +74,7 @@ after { clear: both; }
   height: 50px;
 }
 
+
 #login form input[type="text"] {
   background-color: #3b4148;
   border-radius: 0px 3px 3px 0px;
@@ -126,14 +127,14 @@ after { clear: both; }
 			<form:input type="text" name="usuario" path="usuario" />
 			<input class="controls" type="text" name="Usuario" required="true" >
 			<span class="fontawesome-user"></span>
-			
-		<span class="fontawesome-lock"></span>
 		<br><br>
 		
 		<label>Pass</label>
 			<form:input type="password" name="password" path="password" />
 			<input class="controls" type="password" name="Password" required="true" >
+			<span class="fontawesome-lock"></span>
     		<br><br>
+			
 			  <input class="buttons" type="submit" name="" value="Acceder">
 			 
 		</div>			
