@@ -47,12 +47,12 @@ public class PedirEmpleados {
 				JsonArray id_empleadoLista=obj.get("id_empleado").getAsJsonArray();
 				int[] id_empleadoListaInt= new int[id_empleadoLista.size()];
 				JsonArray rolLista=obj.get("rol").getAsJsonArray();
-				int[] rolListaInt= new int[rolLista.size()];
+				String[] rolListaInt= new String[rolLista.size()];
 				List<EmpleadoBean> lista=new ArrayList<EmpleadoBean>();
 
 				for(int i=0;i<rolLista.size();i++) {
 					id_empleadoListaInt[i]=id_empleadoLista.get(i).getAsInt();
-					rolListaInt[i]=rolLista.get(i).getAsInt();
+					rolListaInt[i]=rolLista.get(i).getAsString();
 					lista.add(new EmpleadoBean(id_empleadoListaInt[i], rolListaInt[i]));
 				}
 				

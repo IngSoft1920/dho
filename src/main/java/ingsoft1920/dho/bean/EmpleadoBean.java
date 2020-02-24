@@ -11,7 +11,7 @@ public class EmpleadoBean {
 	
 	
 	private int id_empleado;
-	private int tipo_trabajo;
+	private String tipo_trabajo;
 	
 	
 	
@@ -21,7 +21,7 @@ public class EmpleadoBean {
 	}
 	
 	
-	public EmpleadoBean(int id_empleado, int tipo_trabajo) {
+	public EmpleadoBean(int id_empleado, String tipo_trabajo) {
 		this.id_empleado = id_empleado;
 		this.tipo_trabajo = tipo_trabajo;
 	}
@@ -35,11 +35,11 @@ public class EmpleadoBean {
 		this.id_empleado = id_empleado;
 	}
 	
-	public int getTipo_trabajo() {
+	public String getTipo_trabajo() {
 		return tipo_trabajo;
 	}
 	
-	public void setTipo_trabajo(int tipo_trabajo) {
+	public void setTipo_trabajo(String tipo_trabajo) {
 		this.tipo_trabajo = tipo_trabajo;
 	}
 	

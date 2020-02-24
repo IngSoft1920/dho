@@ -3,6 +3,7 @@ package ingsoft1920.dho.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.IncidenciaBean;
@@ -13,10 +14,37 @@ public class IncidenciaDAO {
 	
 	private static Conexion conexion=new Conexion();
 	 
- public IncidenciaDAO(Conexion conexion) {
+ 
+	public IncidenciaDAO(Conexion conexion) {
 	 this.conexion=conexion;
- }
+ 
+	}
 		 
+	//metodo que nos devuelve el Bean de la incidencia dado su id_incidencia
+	public static IncidenciaBean getIncidenciaDadoId(int id_incidencia) {
+		return null;
+		
+	}
+	
+ 
+	/*metodo que nos consigue las incidencias que no han sido asigandas a ningun empleado* 
+	 */
+ 
+	public static List<IncidenciaBean > getIncidenciasSinAsignar(){
+		//hay que meter la consulta
+		return null;
+	}
+ 
+	/*metodo que nos consigue las incidencias que han sido asigandas a algun empleado* 
+	 */
+	public static List<IncidenciaBean> getIncidenciasAsignadas(){
+		//hay que meter la consulta
+		return null;
+	}
+ 
+ 
+ 
+ 
 	
 	
 	/*El ojetivo de esta consulta es que devuelva el id_incidencia en caso de existir
