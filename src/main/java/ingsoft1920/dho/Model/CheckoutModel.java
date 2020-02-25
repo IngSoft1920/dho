@@ -21,13 +21,20 @@ public CheckoutModel(EstanciaBean estanciaBean) {
 }
 
 
-public List<EstanciaBean> getEstancias(){
+public List<EstanciaBean> getEstanciasconCheckIn(){
 	
-	List<EstanciaBean> lista=EstanciaDAO.geEstanciaBeans();
+	List<EstanciaBean> lista=EstanciaDAO.getCheckIn();
 	
 	return lista;
 }
 	
+
+public List<EstanciaBean> getEstanciasconCheckOut(){
+	
+	List<EstanciaBean> lista=EstanciaDAO.getCheckOut();
+	
+	return lista;
+}
 
 public void cambiarEstadoEstancia(CheckoutModel checkout) {
 	EstanciaDAO.checkOut(checkout.estancia_id);

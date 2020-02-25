@@ -20,9 +20,16 @@ public CheckinModel(EstanciaBean estanciaBean) {
 }
 
 
-public List<EstanciaBean> getEstancias(){
+public List<EstanciaBean> getEstanciasSinHacerCheckIn(){
 	
-	List<EstanciaBean> lista=EstanciaDAO.geEstanciaBeans();
+	List<EstanciaBean> lista=EstanciaDAO.getReservas();
+	
+	return lista;
+}
+
+public List<EstanciaBean> getEstanciasConCheckIn(){
+	
+	List<EstanciaBean> lista=EstanciaDAO.getCheckIn();
 	
 	return lista;
 }

@@ -31,11 +31,16 @@ public class CheckinController {
 		
 		//conseguimos la lista de estancias que hay guardadas
 		
-		List<EstanciaBean>lista=checkin.getEstancias();
+		List<EstanciaBean>listaSinHacerCheckIn=checkin.getEstanciasSinHacerCheckIn();
+		
+		List<EstanciaBean>listaConCheckIn=checkin.getEstanciasConCheckIn();
+		
 		
 		//se lo añadimos al model
 		
-		model.addAttribute("lista", lista);
+		model.addAttribute("listaSinHacerCheckIn", listaSinHacerCheckIn);
+		
+		model.addAttribute("listaConCheckIn", listaConCheckIn);
 		
 		//devolvemos la pagina que queremos que se muestre
 		

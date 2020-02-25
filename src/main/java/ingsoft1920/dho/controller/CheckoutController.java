@@ -32,11 +32,15 @@ import ingsoft1920.dho.bean.EstanciaBean;
 			
 			//conseguimos la lista de estancias que hay guardadas
 			
-			List<EstanciaBean>lista=checkout.getEstancias();
+			List<EstanciaBean>listaConCheckIn=checkout.getEstanciasconCheckIn();
+			
+			List<EstanciaBean>listaConCheckOut=checkout.getEstanciasconCheckOut();
 			
 			//se lo añadimos al model
 			
-			model.addAttribute("lista", lista);
+			model.addAttribute("listaConCheckIn", listaConCheckIn);
+			
+			model.addAttribute("listaConCheckOut", listaConCheckOut);
 			
 			//devolvemos la pagina que queremos que se muestre
 			

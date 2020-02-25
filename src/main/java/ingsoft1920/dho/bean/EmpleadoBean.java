@@ -43,7 +43,10 @@ public class EmpleadoBean {
 		this.tipo_trabajo = tipo_trabajo;
 	}
 	
-	
+	@Override 
+	public String toString() { 
+		return "Empleado [id_empleado=" +id_empleado + ", tipo_trabajo=" + tipo_trabajo +  "]"; 
+	}
 	
 	
 }

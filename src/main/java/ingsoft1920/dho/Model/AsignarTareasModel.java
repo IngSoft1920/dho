@@ -54,8 +54,8 @@ import ingsoft1920.dho.controller.PedirEmpleados;
 		//List<EmpleadoBean> lista=PedirEmpleados.peticionPedirEmpleado();
 	
 		List<EmpleadoBean> lista=new ArrayList<EmpleadoBean>();
-		lista.add(new EmpleadoBean(1,"CAMARERO"));
-		lista.add(new EmpleadoBean(2, "MANTENIMIENTO"));
+		lista.add(new EmpleadoBean(1,"COCINA"));
+		lista.add(new EmpleadoBean(2, "LIMPIEZA"));
 	
 		return lista;
 	}

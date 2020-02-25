@@ -15,10 +15,18 @@
 	</body>
 	
 	<ul>
-		<c:forEach items="${lista}" var="item">
+		<c:forEach items="${listaConCheckIn}" var="item">
 			<li>${item}</li>
 		</c:forEach>
 	</ul>
+	
+	<ul>
+		<c:forEach items="${listaConCheckOut}" var="item">
+			<li>${item}</li>
+		</c:forEach>
+	</ul>
+	
+	
 	
 	<form method="POST">
 		<label>estancia_id</label>
