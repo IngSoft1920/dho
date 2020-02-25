@@ -59,6 +59,7 @@ public class PruebasBaseDatos {
 	 		getEstaciaId
 	 		getServiciosReservados
 	 		getIncidenciasSinAsignar
+	 		getIncidenciasAsignadas
 
 
 	 	No Funcionan:
@@ -195,8 +196,14 @@ public class PruebasBaseDatos {
 	System.out.println(prueba23.genFacturaCobros(prueba24.cobrosCliente(1), 1).toString());
 	
 	*/
+	/*
 	IncidenciaDAO prueba24 = new IncidenciaDAO(conexion);
 	for (IncidenciaBean elem: IncidenciaDAO.getIncidenciasSinAsignar()) {
+		System.out.println(elem);
+	}
+	*/
+	IncidenciaDAO prueba25 = new IncidenciaDAO(conexion);
+	for (IncidenciaBean elem: prueba25.getIncidenciasAsignadas()) {
 		System.out.println(elem);
 	}
 	}
