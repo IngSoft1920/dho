@@ -60,6 +60,9 @@ public class PruebasBaseDatos {
 	 		getServiciosReservados
 	 		getIncidenciasSinAsignar
 	 		getIncidenciasAsignadas
+	 		getReservas
+	 		getCheckIn
+	 		getCheckOut
 
 
 	 	No Funcionan:
@@ -213,8 +216,20 @@ public class PruebasBaseDatos {
 	System.out.println(prueba26.getIncidenciaDadoId(1));
 	}
 	*/
+	/*
 	EstanciaDAO prueba27 = new EstanciaDAO(conexion);
 	for (EstanciaBean elem: prueba27.getReservas()) {
+		System.out.println(elem);
+	}
+	*/
+	/*
+	EstanciaDAO prueba28 = new EstanciaDAO(conexion);
+	for (EstanciaBean elem: prueba28.getCheckIn()) {
+		System.out.println(elem);
+	}
+	*/
+	EstanciaDAO prueba29 = new EstanciaDAO(conexion);
+	for (EstanciaBean elem: prueba29.getCheckOut()) {
 		System.out.println(elem);
 	}
 	}

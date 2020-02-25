@@ -153,5 +153,65 @@ public class EstanciaDAO {
 
 		return res;
 	}
+	
+	public static ArrayList<EstanciaBean> getCheckIn() {
+		if (conexion.getConexion()== null)
+			conexion.conectar();
+		
+		ArrayList<EstanciaBean> res = new ArrayList<EstanciaBean>();
+		
+		java.sql.Statement stmt = null; 
+		ResultSet rs = null; 
+		try { 
+			stmt = conexion.getConexion().createStatement() ;
+			rs =  stmt.executeQuery("SELECT * FROM Estancia WHERE estado = \"check in\"");
+			while(rs.next()){
+				res.add(new EstanciaBean (rs.getInt("estancia_id"),rs.getInt("habitacion_id"),
+						rs.getInt("cliente_id"),rs.getInt("hotel_id"),
+						rs.getDate("fecha_inicio"),rs.getDate("fecha_fin"),
+						rs.getString("estado")));
+			}
+
+		} 
+		catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		conexion.desconectar();
+
+		return res;
+	}
+	
+	public static ArrayList<EstanciaBean> getCheckOut() {
+		if (conexion.getConexion()== null)
+			conexion.conectar();
+		
+		ArrayList<EstanciaBean> res = new ArrayList<EstanciaBean>();
+		
+		java.sql.Statement stmt = null; 
+		ResultSet rs = null; 
+		try { 
+			stmt = conexion.getConexion().createStatement() ;
+			rs =  stmt.executeQuery("SELECT * FROM Estancia WHERE estado = \"check out\"");
+			while(rs.next()){
+				res.add(new EstanciaBean (rs.getInt("estancia_id"),rs.getInt("habitacion_id"),
+						rs.getInt("cliente_id"),rs.getInt("hotel_id"),
+						rs.getDate("fecha_inicio"),rs.getDate("fecha_fin"),
+						rs.getString("estado")));
+			}
+
+		} 
+		catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		conexion.desconectar();
+
+		return res;
+	}
 
 }
