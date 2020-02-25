@@ -202,10 +202,14 @@ public class PruebasBaseDatos {
 		System.out.println(elem);
 	}
 	*/
+	/*
 	IncidenciaDAO prueba25 = new IncidenciaDAO(conexion);
 	for (IncidenciaBean elem: prueba25.getIncidenciasAsignadas()) {
 		System.out.println(elem);
 	}
+	*/
+	IncidenciaDAO prueba26 = new IncidenciaDAO(conexion);
+	System.out.println(prueba26.getIncidenciaDadoId(1));
 	}
 }
 	

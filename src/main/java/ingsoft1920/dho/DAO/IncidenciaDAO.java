@@ -23,7 +23,33 @@ public class IncidenciaDAO {
 		 
 	//metodo que nos devuelve el Bean de la incidencia dado su id_incidencia
 	public static IncidenciaBean getIncidenciaDadoId(int id_incidencia) {
-		return null;
+		if (conexion.getConexion()== null)
+			conexion.conectar();
+		
+		IncidenciaBean res=null;
+		
+		java.sql.Statement stmt1 = null; 
+		ResultSet rs1 = null;
+		try { 
+			stmt1 = conexion.getConexion().createStatement() ;
+			rs1 =  stmt1.executeQuery("SELECT *\r\n" + 
+					"FROM Incidencia \r\n" + 
+					"WHERE incidencia_id = "+id_incidencia);
+			if(rs1.next()){
+				res=new IncidenciaBean(rs1.getInt("incidencia_id"),rs1.getString("tipo_incidencia"),
+						rs1.getString("descripcion"),rs1.getString("lugar_incidencia"),
+						rs1.getDate("fecha_incidencia"));
+				}
+		} 
+		catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs1 != null) { try { rs1.close(); } catch (SQLException sqlEx) { } rs1 = null; }
+			if (stmt1 != null) { try {  stmt1.close(); } catch (SQLException sqlEx) { }  stmt1 = null; }
+		}
+		conexion.desconectar();
+		return res;
+
 		
 	}
 	
