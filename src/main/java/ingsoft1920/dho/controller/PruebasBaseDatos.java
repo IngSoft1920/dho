@@ -208,8 +208,15 @@ public class PruebasBaseDatos {
 		System.out.println(elem);
 	}
 	*/
+	/*
 	IncidenciaDAO prueba26 = new IncidenciaDAO(conexion);
 	System.out.println(prueba26.getIncidenciaDadoId(1));
+	}
+	*/
+	EstanciaDAO prueba27 = new EstanciaDAO(conexion);
+	for (EstanciaBean elem: prueba27.getReservas()) {
+		System.out.println(elem);
+	}
 	}
 }
 	
