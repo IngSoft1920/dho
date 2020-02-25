@@ -21,6 +21,10 @@
 	
 	<h2><a href="/homePageDHO/menu/checkout1">Check-out</a></h2>
 	
+	<h2><a href="/homePageDHO/menu/asignarTareas">asignar-Tareas</a></h2>
+	
+	<h2><a href="/homePageDHO/menu/reservas1">reservas</a></h2>
+	
 
 	</body>
 	
