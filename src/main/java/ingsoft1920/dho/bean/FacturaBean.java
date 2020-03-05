@@ -13,6 +13,8 @@ public class FacturaBean {
 	private int habitacion_id; 
 	private Date fecha_factura; 
 	private int precio; 
+	//pagado=false --> porPagar
+	//pagado=true --> pagado
 	private boolean pagado; 
 	private String tipo_factura; 
 	

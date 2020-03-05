@@ -20,7 +20,11 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
-import java.io.*; 
+
+import ingsoft1920.dho.controller.Conexion;
+
+import java.io.*;
+import java.util.ArrayList; 
 
 /**
  * Example of using the iText library to work with PDF documents on Java, 
@@ -74,102 +78,28 @@ public class generatePDFFileIText {
             document.addAuthor("Código Xules");
             document.addCreator("Código Xules");
             
-            // First page
-            // Primera página 
-            Chunk chunk = new Chunk("This is the title", chapterFont);
+            //Añadimos titulo
+            Chunk chunk = new Chunk("FACTURA", chapterFont);
             chunk.setBackground(BaseColor.GRAY);
-            // Let's create de first Chapter (Creemos el primer capítulo)
+            
+            //Creamos el primer capitulo 
             Chapter chapter = new Chapter(new Paragraph(chunk), 1);
             chapter.setNumberDepth(0);
-            chapter.add(new Paragraph("This is the paragraph", paragraphFont));
-            // We add an image (Añadimos una imagen)
-            Image image;
-            try {
-                image = Image.getInstance(iTextExampleImage);  
-                image.setAbsolutePosition(2, 150);
-                chapter.add(image);
-            } catch (BadElementException ex) {
-                System.out.println("Image BadElementException" +  ex);
-            } catch (IOException ex) {
-                System.out.println("Image IOException " +  ex);
-            }
+            //Subtitulo (Todas las Facturas)
+            chapter.add(new Paragraph("Todas Las Facturas:", subcategoryFont));
+            //Obtenemos todas las facturas
+        	for (FacturaBean elem: FacturaDAO.todasFacturasCliente(1)) {
+        		chapter.add(new Paragraph(elem.toString(), paragraphFont));
+        	}
+            //Subtitulo (Facturas por pagar)
+            chapter.add(new Paragraph("Facturas Por Pagar:", subcategoryFont));
+        	int pago_total=0;
+        	for (FacturaBean elem: FacturaDAO.porPagarFacturasCliente(1)) {
+        		pago_total+=elem.getPrecio();
+        		chapter.add(new Paragraph(elem.toString(), paragraphFont));
+        	}
+        	chapter.add(new Paragraph("Me pagais esto ahora mismo o no os vais de aqui con vida: "+pago_total, paragraphFont));
             document.add(chapter);
-            
-            // Second page - some elements
-            // Segunda página - Algunos elementos
-            Chapter chapSecond = new Chapter(new Paragraph(new Anchor("Some elements (Añadimos varios elementos)")), 1);
-            Paragraph paragraphS = new Paragraph("Do it by Xules (Realizado por Xules)", subcategoryFont);
-            
-            // Underline a paragraph by iText (subrayando un párrafo por iText)
-            Paragraph paragraphE = new Paragraph("This line will be underlined with a dotted line (Está línea será subrayada con una línea de puntos).");
-            DottedLineSeparator dottedline = new DottedLineSeparator();
-            dottedline.setOffset(-2);
-            dottedline.setGap(2f);
-            paragraphE.add(dottedline);
-            chapSecond.addSection(paragraphE);
-            
-            Section paragraphMoreS = chapSecond.addSection(paragraphS);
-            // List by iText (listas por iText)
-            String text = "test 1 2 3 ";
-            for (int i = 0; i < 5; i++) {
-                text = text + text;
-            }
-            List list = new List(List.UNORDERED);
-            ListItem item = new ListItem(text);
-            item.setAlignment(Element.ALIGN_JUSTIFIED);
-            list.add(item);
-            text = "a b c align ";
-            for (int i = 0; i < 5; i++) {
-                text = text + text;
-            }
-            item = new ListItem(text);
-            item.setAlignment(Element.ALIGN_JUSTIFIED);
-            list.add(item);
-            text = "supercalifragilisticexpialidocious "+hola;
-            for (int i = 0; i < 3; i++) {
-                text = text + text;
-            }
-            item = new ListItem(text);
-            item.setAlignment(Element.ALIGN_JUSTIFIED);
-            list.add(item);
-            paragraphMoreS.add(list);
-            document.add(chapSecond);
-            
-            // How to use PdfPTable
-            // Utilización de PdfPTable
-            
-            // We use various elements to add title and subtitle
-            // Usamos varios elementos para añadir título y subtítulo
-            Anchor anchor = new Anchor("Table export to PDF (Exportamos la tabla a PDF)", categoryFont);
-            anchor.setName("Table export to PDF (Exportamos la tabla a PDF)");            
-            Chapter chapTitle = new Chapter(new Paragraph(anchor), 1);
-            Paragraph paragraph = new Paragraph("Do it by Xules (Realizado por Xules)", subcategoryFont);
-            Section paragraphMore = chapTitle.addSection(paragraph);
-            paragraphMore.add(new Paragraph("This is a simple example (Este es un ejemplo sencillo)"));
-            Integer numColumns = 6;
-            Integer numRows = 120;
-            // We create the table (Creamos la tabla).
-            PdfPTable table = new PdfPTable(numColumns); 
-            // Now we fill the PDF table 
-            // Ahora llenamos la tabla del PDF
-            PdfPCell columnHeader;
-            // Fill table rows (rellenamos las filas de la tabla).                
-            for (int column = 0; column < numColumns; column++) {
-                columnHeader = new PdfPCell(new Phrase("COL " + column));
-                columnHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
-                table.addCell(columnHeader);
-            }
-            table.setHeaderRows(1);
-            // Fill table rows (rellenamos las filas de la tabla).                
-            for (int row = 0; row < numRows; row++) {
-                for (int column = 0; column < numColumns; column++) {
-                    table.addCell("Row " + row + " - Col" + column);
-                }
-            }
-            // We add the table (Añadimos la tabla)
-            paragraphMore.add(table);
-            // We add the paragraph with the table (Añadimos el elemento con la tabla).
-            document.add(chapTitle);
             document.close();
             System.out.println("Your PDF file has been generated!(¡Se ha generado tu hoja PDF!");
         } catch (DocumentException documentException) {
@@ -181,7 +111,7 @@ public class generatePDFFileIText {
      */
     public static void main(String args[]) {
         generatePDFFileIText generatePDFFileIText = new generatePDFFileIText();
-        generatePDFFileIText.createPDF(new File("C:\\Users\\sergi\\OneDrive\\Desktop\\c.pdf"));
+        generatePDFFileIText.createPDF(new File("C:\\Users\\sergi\\OneDrive\\Desktop\\e.pdf"));
     }
 }
 
