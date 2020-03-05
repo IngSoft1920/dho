@@ -35,7 +35,7 @@ public class ServiciosDelHotelDAO {
 			while(rs.next()){
 				res.add(new ServiciosDelHotelBean (rs.getInt("servicioHotel_id"), 
 						rs.getTime("horaInicioServicio"), 
-						rs.getTime("horaFinServicio"),rs.getInt("disponibilidadTotal"))); 
+						rs.getTime("horaFinServicio"),rs.getInt("disponibilidadTotal"), rs.getInt("hotel_id"))); 
 			}
 
 		} 

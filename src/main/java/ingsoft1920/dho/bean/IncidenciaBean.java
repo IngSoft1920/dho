@@ -21,6 +21,8 @@ public class IncidenciaBean {
 	
 	private Date fecha;
 	
+	private int hotel_id;
+	
 	
 	
 	
@@ -30,12 +32,13 @@ public class IncidenciaBean {
 		
 	}
 
-	public IncidenciaBean(int id_incidencia, String tipo_incidencia, String descripcion, String lugar, Date fecha) {
+	public IncidenciaBean(int id_incidencia, String tipo_incidencia, String descripcion, String lugar, Date fecha, int hotel_id) {
 		this.id_incidencia = id_incidencia;
 		this.tipo_incidencia = tipo_incidencia;
 		this.descripcion = descripcion;
 		this.lugar = lugar;
 		this.fecha = fecha;
+		this.setHotel_id(hotel_id);
 	}
 	
 	
@@ -83,6 +86,14 @@ public class IncidenciaBean {
 	public String toString() {
 		return "IncidenciaBean [id_incidencia=" + id_incidencia + ", tipo_incidencia=" + tipo_incidencia
 				+ ", descripcion=" + descripcion + ", lugar=" + lugar + ", fecha=" + fecha + "]";
+	}
+
+	public int getHotel_id() {
+		return hotel_id;
+	}
+
+	public void setHotel_id(int hotel_id) {
+		this.hotel_id = hotel_id;
 	}
 	
 	

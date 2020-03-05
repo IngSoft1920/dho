@@ -38,7 +38,7 @@ public class IncidenciaDAO {
 			if(rs1.next()){
 				res=new IncidenciaBean(rs1.getInt("incidencia_id"),rs1.getString("tipo_incidencia"),
 						rs1.getString("descripcion"),rs1.getString("lugar_incidencia"),
-						rs1.getDate("fecha_incidencia"));
+						rs1.getDate("fecha_incidencia"), rs1.getInt("hotel_id"));
 				}
 		} 
 		catch (SQLException ex){ 
@@ -73,7 +73,7 @@ public class IncidenciaDAO {
 			while(rs1.next()){
 				res.add(new IncidenciaBean(rs1.getInt("incidencia_id"),rs1.getString("tipo_incidencia"),
 						rs1.getString("descripcion"),rs1.getString("lugar_incidencia"),
-						rs1.getDate("fecha_incidencia")));
+						rs1.getDate("fecha_incidencia"), rs1.getInt("hotel_id")));
 				}
 		} 
 		catch (SQLException ex){ 
@@ -104,7 +104,7 @@ public class IncidenciaDAO {
 			while(rs1.next()){
 				res.add(new IncidenciaBean(rs1.getInt("incidencia_id"),rs1.getString("tipo_incidencia"),
 						rs1.getString("descripcion"),rs1.getString("lugar_incidencia"),
-						rs1.getDate("fecha_incidencia")));
+						rs1.getDate("fecha_incidencia"), rs1.getInt("hotel_id")));
 				}
 		} 
 		catch (SQLException ex){ 
