@@ -12,6 +12,7 @@ public class EmpleadoBean {
 	
 	private int id_empleado;
 	private String tipo_trabajo;
+	private int id_hotel;
 	
 	
 	
@@ -21,9 +22,10 @@ public class EmpleadoBean {
 	}
 	
 	
-	public EmpleadoBean(int id_empleado, String tipo_trabajo) {
+	public EmpleadoBean(int id_empleado, String tipo_trabajo, int id_hotel) {
 		this.id_empleado = id_empleado;
 		this.tipo_trabajo = tipo_trabajo;
+		this.setId_hotel(id_hotel);
 	}
 	
 	public int getId_empleado() {
@@ -46,6 +48,16 @@ public class EmpleadoBean {
 	@Override 
 	public String toString() { 
 		return "Empleado [id_empleado=" +id_empleado + ", tipo_trabajo=" + tipo_trabajo +  "]"; 
+	}
+
+
+	public int getId_hotel() {
+		return id_hotel;
+	}
+
+
+	public void setId_hotel(int id_hotel) {
+		this.id_hotel = id_hotel;
 	}
 	
 	
