@@ -28,7 +28,7 @@ public class ServiciosDelHotelBean {
 
 	private int hotel_id;
 	
-	
+	private String nombre;
 	
 	public ServiciosDelHotelBean() {
 		
@@ -36,13 +36,14 @@ public class ServiciosDelHotelBean {
 
 
 	public ServiciosDelHotelBean(int id_ServicioHotel, Time horaInicioServicio, Time horaFinServicio,
-			int disponibilidadTotal, int hotel_id) {
+			int disponibilidadTotal, int hotel_id, String nombre) {
 		
 		this.id_ServicioHotel = id_ServicioHotel;
 		HoraInicioServicio = horaInicioServicio;
 		HoraFinServicio = horaFinServicio;
 		this.DisponibilidadTotal = disponibilidadTotal;
 		this.hotel_id=hotel_id;
+		this.setNombre(nombre);
 	}
 
 
@@ -101,6 +102,16 @@ public class ServiciosDelHotelBean {
 
 	public void setHotel_id(int hotel_id) {
 		this.hotel_id = hotel_id;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 	
