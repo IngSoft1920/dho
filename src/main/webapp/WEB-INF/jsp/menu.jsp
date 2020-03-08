@@ -25,6 +25,8 @@
 	
 	<h2><a href="/homePageDHO/menu/reservas1">reservas</a></h2>
 	
+	<h2><a href="/homePageDHO/menu/calendario">Vista de calendario</a></h2>
+	
 
 	</body>
 	
