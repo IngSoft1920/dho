@@ -124,7 +124,7 @@ public class ServicioDAO {
 		return res;
 	}
 	//Devolver los servicios reservados en una fecha y hora determinada
-	public static ArrayList<ServicioBean> getServiciosPorFecha(Date fecha, int hora){
+	public static ArrayList<ServicioBean> getServiciosPorFecha(String dia, String mes, String anio, int hora){
 		ArrayList<ServicioBean> res = new ArrayList<ServicioBean>();
 		if (conexion.getConexion()== null)
 			conexion.conectar();
@@ -132,7 +132,7 @@ public class ServicioDAO {
 		ResultSet rs = null; 
 		try {
 			stmt=conexion.getConexion().createStatement();
-			rs=stmt.executeQuery("SELECT * FROM Servicios WHERE fecha_factura= '"+fecha 
+			rs=stmt.executeQuery("SELECT * FROM Servicios WHERE fecha_factura= '"+anio+"-"+mes+"-"+dia+"" 
 					+"' AND "+hora +" >=  HOUR(hora) AND "+hora+" < HOUR(hora_salida)"	
 					
 					

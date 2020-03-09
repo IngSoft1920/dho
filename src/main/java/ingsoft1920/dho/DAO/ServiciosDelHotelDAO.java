@@ -74,14 +74,14 @@ public class ServiciosDelHotelDAO {
 		
 	}
 	//Dado el id de un servicio del hotel, una fecha y una hora devuelve cuantas plazas libres hay de ese servicio
-	public static int plazasLibresServicioHotel(int servicioHotel_id, Date fecha, int hora) {
+	public static int plazasLibresServicioHotel(int servicioHotel_id, String dia, String mes, String anio, int hora) {
 		int res=0;
 		int cap=0;
 		ArrayList<ServiciosDelHotelBean> serviciosHotel = new ArrayList<ServiciosDelHotelBean>();
 		ArrayList<ServicioBean> serv = new ArrayList<ServicioBean>();
 		ArrayList<ServicioBean> aux = new ArrayList<ServicioBean>();
 		
-		aux= ServicioDAO.getServiciosPorFecha(fecha, hora);
+		aux= ServicioDAO.getServiciosPorFecha(dia,mes,anio, hora);
 		System.out.println(aux.size());
 		for(int i=0; i<aux.size(); i++) {
 			if(aux.get(i).getId_ServicoHotel()== servicioHotel_id) {
