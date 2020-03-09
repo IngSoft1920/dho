@@ -245,6 +245,8 @@ public class PruebasBaseDatos {
 	System.out.println(prueba31.getServiciosPorFecha("06","03","2020", hora).toString());
 	
 	*/
+	ServicioDAO prueba32 = new ServicioDAO(conexion);
+	System.out.println(prueba32.getServiciosRestaurante().toString()+"\n "+prueba32.getServiciosRestaurante().size());
 	}
 }
 	

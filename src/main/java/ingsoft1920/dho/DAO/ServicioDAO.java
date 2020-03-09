@@ -157,6 +157,33 @@ public class ServicioDAO {
 		
 		return res;
 	}
-	
-	
+	//Devolver todos los servicios que sean en el restaurante
+	public static ArrayList<ServicioBean> getServiciosRestaurante(){
+		ArrayList<ServicioBean> res= new ArrayList<ServicioBean>();
+		
+		if (conexion.getConexion()== null)
+			conexion.conectar();
+		java.sql.Statement stmt = null; 
+		ResultSet rs = null; 
+		try {
+			stmt=conexion.getConexion().createStatement();
+			rs=stmt.executeQuery("SELECT * FROM Servicios WHERE lugar = \"restaurante\"");
+			
+		while(rs.next()) {
+			res.add(new ServicioBean(rs.getInt("servicios_id"), rs.getInt("estancia_id"),
+					rs.getInt("servicioHotel_id"), rs.getInt("cliente_id"), rs.getString("lugar"), 
+					rs.getDate("fecha_factura"), rs.getTime("hora"), rs.getString("tipo_servicio"), 
+					rs.getString("platos"), rs.getString("items"), rs.getTime("hora_salida"), rs.getInt("precio")));
+		}
+		}catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		conexion.desconectar();
+		
+		return res;
+		
+	}
 	}
