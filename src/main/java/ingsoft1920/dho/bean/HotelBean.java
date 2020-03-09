@@ -25,12 +25,12 @@ public class HotelBean {
 			String ciudad) {
 		super();
 		this.hotel_id = hotel_id;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.estrellas = estrellas;
-		this.continente = continente;
-		this.pais = pais;
-		this.ciudad = ciudad;
+		this.setNombre(nombre);
+		this.setDescripcion(descripcion);
+		this.setEstrellas(estrellas);
+		this.setContinente(continente);
+		this.setPais(pais);
+		this.setCiudad(ciudad);
 	}
 
 	public int getHotel_id() { 
@@ -42,6 +42,54 @@ public class HotelBean {
 	@Override 
 	public String toString() { 
 		return "Hotel [hotel_id=" + hotel_id + "]"; 
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public int getEstrellas() {
+		return estrellas;
+	}
+
+	public void setEstrellas(int estrellas) {
+		this.estrellas = estrellas;
+	}
+
+	public String getContinente() {
+		return continente;
+	}
+
+	public void setContinente(String continente) {
+		this.continente = continente;
+	}
+
+	public String getPais() {
+		return pais;
+	}
+
+	public void setPais(String pais) {
+		this.pais = pais;
+	}
+
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
 	} 
 
 }
