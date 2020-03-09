@@ -17,7 +17,7 @@ public class PedirEmpleados {
 	 * EM nos deberia devolver una lista de Empleados
 	 */
 	
-	public static List<EmpleadoBean> peticionPedirEmpleado() {
+	public static List<EmpleadoBean> peticionPedirEmpleado(int id_hotel) {
 		
 		
 		try {
@@ -25,8 +25,14 @@ public class PedirEmpleados {
 			HttpClient client= new HttpClient("http://localhost:7001/getHabitacio/7","GET");
 			
 			
-			//creo que como es una peticion de tipo GET y no pasamos parametros, no hace
-			//falta establecer cuerpo de la peticion
+			//metemos en el cuerpo de la peticion el id_hotel
+			
+			JsonObject param= new JsonObject();
+			
+			param.addProperty("id_hotel", id_hotel);
+			
+			client.setRequestBody(param.toString().toString());
+			
 			
 			int respCode = client.getResponseCode();
 			

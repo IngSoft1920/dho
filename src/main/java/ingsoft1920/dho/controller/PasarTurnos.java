@@ -7,6 +7,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import ingsoft1920.dho.DAO.HotelDAO;
 import ingsoft1920.dho.bean.EmpleadoBean;
 
 public class PasarTurnos {
@@ -29,7 +30,11 @@ public class PasarTurnos {
 			
 			//pedimos la lista con los empleados
 			
-			List<EmpleadoBean> lista=PedirEmpleados.peticionPedirEmpleado();
+			List<EmpleadoBean> lista=new ArrayList<EmpleadoBean>();
+			
+			for(int i=1; i<=HotelDAO.devolverElNumeroDeHoteles();i++) {
+				lista.addAll(PedirEmpleados.peticionPedirEmpleado(i));
+			}
 			
 			//construimos la peticion (cambiamos url y tipo de solicitud)
 			

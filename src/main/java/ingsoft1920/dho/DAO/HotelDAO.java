@@ -50,4 +50,11 @@ private static Conexion conexion=new Conexion();
 	 
 		
 	}
+	
+	//consulta que nos devuleve el numero de hoteles guardados
+	public static int devolverElNumeroDeHoteles() {
+		//demomento esta hecho a mano
+		return 2;
+	}
+	
 }
