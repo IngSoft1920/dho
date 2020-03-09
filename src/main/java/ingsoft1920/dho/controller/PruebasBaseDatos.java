@@ -232,16 +232,19 @@ public class PruebasBaseDatos {
 	EstanciaDAO prueba29 = new EstanciaDAO(conexion);
 	for (EstanciaBean elem: prueba29.getCheckOut()) {
 		System.out.println(elem);
-	}*/
-	Date fecha=new Date(2020,03,06);
-		
+	}
+	
+	
+	
 	int hora= 9;
 	
 	ServiciosDelHotelDAO prueba30= new ServiciosDelHotelDAO(conexion);
-	//System.out.println(prueba30.plazasLibresServicioHotel(1, fecha, hora));
+	System.out.println(prueba30.plazasLibresServicioHotel(1, "06","03","2020", hora));
 	
 	ServicioDAO prueba31 = new ServicioDAO(conexion);
-	//System.out.println(prueba31.getServiciosPorFecha(fecha, hora).toString());
+	System.out.println(prueba31.getServiciosPorFecha("06","03","2020", hora).toString());
+	
+	*/
 	}
 }
 	

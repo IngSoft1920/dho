@@ -38,12 +38,14 @@ public class DhoAPI {
 		List<TareaBean> lista=TareaDAO.getTareaPorIdEmpleado(id_empleado) ;
 		
 		//parece que lo que quiere que le mandemos es una lista con los id_tarea y 
-		//otra con las descripiciones, y el id_empleado
+		//otra con las descripiciones,el id_empleado, y la hora de inicio 
 		JsonObject obj=new JsonObject();
 		
 		JsonArray tarea_id=new JsonArray();
 		
 		JsonArray descripcion=new JsonArray();
+		
+		JsonArray horaInico=new JsonArray();
 		
 		obj.addProperty("empleado_id", id_empleado);
 		
@@ -55,7 +57,7 @@ public class DhoAPI {
 			
 			descripcion.add(elem.getDescripcion());
 			
-			
+			horaInico.add(elem.getHora().toString());
 		}
 		
 		
@@ -63,6 +65,8 @@ public class DhoAPI {
 	
 	obj.add("descripcionLista", descripcion);
 		
+	obj.add("horaInicio", horaInico);
+	
 	
 	return  obj.toString().toString();
 		

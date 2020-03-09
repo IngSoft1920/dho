@@ -45,7 +45,7 @@ public class ServicioDAO {
 					"FROM Servicios;"); 
 			if (rs1.next()){ 
 				servicio_id=rs1.getInt("COUNT(servicios_id)")+1;//id del nuevo servicio 
-				stm=conexion.getConexion().prepareStatement("INSERT INTO Servicios values (?,?,?,?,?,?,?,?,?,?)"); 
+				stm=conexion.getConexion().prepareStatement("INSERT INTO Servicios values (?,?,?,?,?,?,?,?,?,?,?)"); 
 				stm.setInt(1,servicio_id); 
 				stm.setInt(2, servicio.getEstancia_id()); 
 				stm.setInt(3, servicio.getCliente_id()); 
@@ -56,6 +56,8 @@ public class ServicioDAO {
 				stm.setInt(8,servicio.getId_ServicoHotel()); 
 				stm.setString(9,servicio.getPlatos());
 				stm.setString(10,servicio.getItems());
+				stm.setTime(11, servicio.getHora_salida());
+				stm.setInt(12, servicio.getPrecio());
 				stm.executeUpdate(); 
 			} 
  
@@ -110,7 +112,7 @@ public class ServicioDAO {
 						rs.getInt("estancia_id"),rs.getInt("servicioHotel_id"),
 						rs.getInt("cliente_id"),rs.getString("lugar"),rs.getDate("fecha_factura"),
 						rs.getTime("hora"),rs.getString("tipo_servicio"),rs.getString("platos"),
-						rs.getString("items"), rs.getTime("hora_salida"))); 
+						rs.getString("items"), rs.getTime("hora_salida"), rs.getInt("precio"))); 
 		} 
 		}
 		catch (SQLException ex){ 
@@ -124,7 +126,7 @@ public class ServicioDAO {
 		return res;
 	}
 	//Devolver los servicios reservados en una fecha y hora determinada
-	public static ArrayList<ServicioBean> getServiciosPorFecha(Date fecha, int hora){
+	public static ArrayList<ServicioBean> getServiciosPorFecha(String dia, String mes, String anio, int hora){
 		ArrayList<ServicioBean> res = new ArrayList<ServicioBean>();
 		if (conexion.getConexion()== null)
 			conexion.conectar();
@@ -132,7 +134,7 @@ public class ServicioDAO {
 		ResultSet rs = null; 
 		try {
 			stmt=conexion.getConexion().createStatement();
-			rs=stmt.executeQuery("SELECT * FROM Servicios WHERE fecha_factura= '"+fecha 
+			rs=stmt.executeQuery("SELECT * FROM Servicios WHERE fecha_factura= '"+anio+"-"+mes+"-"+dia+"" 
 					+"' AND "+hora +" >=  HOUR(hora) AND "+hora+" < HOUR(hora_salida)"	
 					
 					
@@ -143,7 +145,7 @@ public class ServicioDAO {
 						rs.getInt("estancia_id"),rs.getInt("servicioHotel_id"),
 						rs.getInt("cliente_id"),rs.getString("lugar"),rs.getDate("fecha_factura"),
 						rs.getTime("hora"),rs.getString("tipo_servicio"),rs.getString("platos"),
-						rs.getString("items"), rs.getTime("hora_salida"))); 
+						rs.getString("items"), rs.getTime("hora_salida"), rs.getInt("precio"))); 
 			}
 		}catch (SQLException ex){ 
 			System.out.println("SQLException: " + ex.getMessage());
