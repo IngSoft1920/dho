@@ -13,6 +13,9 @@ public class HotelBean {
 	private String ciudad;
 	
 	
+	
+	
+	
 	public HotelBean() {
 		// TODO Auto-generated constructor stub
 	} 

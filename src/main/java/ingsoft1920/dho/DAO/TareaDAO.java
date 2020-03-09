@@ -46,7 +46,7 @@ public class TareaDAO {
 					"FROM Tarea;"); 
 			if (rs1.next()){ 
 				tarea_id=rs1.getInt("COUNT(tarea_id)")+1;//id del nuevo servicio 
-				stm=conexion.getConexion().prepareStatement("INSERT INTO Tarea values (?,?,?,?,?,?,?,?,?)"); 
+				stm=conexion.getConexion().prepareStatement("INSERT INTO Tarea values (?,?,?,?,?,?,?,?,?,?,?)"); 
 				stm.setInt(1,tarea_id); 
 				stm.setInt(2, tarea.getId_incidencia()); 
 				stm.setInt(3, tarea.getId_empleado()); 
@@ -55,7 +55,9 @@ public class TareaDAO {
 				stm.setBoolean(6,tarea.isEstado()); 
 				stm.setDate(7,tarea.getFecha()); 
 				stm.setString(8,tarea.getTipo_tarea()); 
+				stm.setInt(10,tarea.getHotel_id());
 				stm.setTime(9,tarea.getHora());
+				stm.setTime(10,tarea.getHoraFin());
 				stm.executeUpdate(); 
 			} 
  
@@ -73,7 +75,7 @@ public class TareaDAO {
 
 	/*
 	 * este metodo solo se utiliza cuando F&B nos quiere pasar una nueva tarea.
-	 * Recibe el id_empleado,tipoTrabjo,lugar y hora
+	 * Recibe el id_empleado,tipoTrabjo,lugar y hora y id_hotel
 	 */
 
 	public static int recibirTarea(TareaBean nuevaTarea) {
@@ -110,6 +112,9 @@ public class TareaDAO {
 
 				// no nos pasan fecha de momento devolvemos null
 				nuevaTarea.setFecha(null);
+				
+				
+				
 				return añadirTarea(nuevaTarea);
 
 			} else {
@@ -123,6 +128,8 @@ public class TareaDAO {
 				incidencia.setTipo_incidencia("COCINA");
 				
 				incidencia.setHora(nuevaTarea.getHora());
+				
+				incidencia.setHotel_id(nuevaTarea.getHotel_id());
 
 				IncidenciaDAO.añadirIncidencia(incidencia);
 
@@ -144,6 +151,8 @@ public class TareaDAO {
 			incidencia.setTipo_incidencia(nuevaTarea.getTipo_tarea());
 
 			incidencia.setHora(nuevaTarea.getHora());
+			
+			incidencia.setHotel_id(nuevaTarea.getHotel_id());
 			
 			IncidenciaDAO.añadirIncidencia(incidencia);
 
@@ -172,7 +181,11 @@ public class TareaDAO {
 			while(rs.next()) {
 				res.add(new TareaBean(rs.getInt("tarea_id"), rs.getInt("incidencia_id"), rs.getInt("empleado_id"),
 						rs.getString("descripcion"), rs.getString("tipo_tarea"), rs.getString("lugar_tarea"),
-						rs.getBoolean("estado"), rs.getDate("fecha_tarea"),rs.getTime("hora"), rs.getInt("hotel_id")));
+
+						rs.getBoolean("estado"), rs.getDate("fecha_tarea"),rs.getTime("hora"), rs.getInt("hotel_id"),
+						
+						rs.getTime("horaFin")));
+
 
 			}
 
@@ -270,7 +283,10 @@ public class TareaDAO {
 						res.add(new TareaBean(rs.getInt("tarea_id"),rs.getInt("incidencia_id"),
 								rs.getInt("empleado_id"),rs.getString("descripcion"),
 								rs.getString("tipo_tarea"),rs.getString("lugar_tarea"),
-								rs.getBoolean("estado"),rs.getDate("fecha_tarea"),rs.getTime("hora"), rs.getInt("hotel_id")));  
+
+								rs.getBoolean("estado"),rs.getDate("fecha_tarea"),rs.getTime("hora"), rs.getInt("hotel_id"),
+								rs.getTime("horaFin")));  
+
 					} 
 				}  
 				catch (SQLException ex){  
