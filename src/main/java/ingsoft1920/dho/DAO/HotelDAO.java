@@ -29,7 +29,7 @@ private static Conexion conexion=new Conexion();
 				
 				
 					
-					stm=conexion.getConexion().prepareStatement("INSERT INTO Servicios values (?,?,?,?,?,?,?)"); 
+					stm=conexion.getConexion().prepareStatement("INSERT INTO Hotel values (?,?,?,?,?,?,?)"); 
 					stm.setInt(1,hotel.getHotel_id()); 
 					stm.setString(2, hotel.getNombre()); 
 					stm.setString(3, hotel.getDescripcion()); 

@@ -23,9 +23,9 @@ public class ReservasControll {
 	@GetMapping("/homePageDHO/menu/reservas1")
 	public String reservasGet(Model model) {
 
-		ReservasModel checkin = new ReservasModel();
+		ReservasModel reservas = new ReservasModel();
 
-		List<ServicioBean> listaReservas = checkin.getReservas();
+		List<ServicioBean> listaReservas = reservas.getReservas();
 
 		// se lo añadimos al model
 
