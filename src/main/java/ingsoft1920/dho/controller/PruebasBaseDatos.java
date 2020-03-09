@@ -232,7 +232,7 @@ public class PruebasBaseDatos {
 	EstanciaDAO prueba29 = new EstanciaDAO(conexion);
 	for (EstanciaBean elem: prueba29.getCheckOut()) {
 		System.out.println(elem);
-	}*/
+	}
 	
 	
 	
@@ -243,6 +243,8 @@ public class PruebasBaseDatos {
 	
 	ServicioDAO prueba31 = new ServicioDAO(conexion);
 	System.out.println(prueba31.getServiciosPorFecha("06","03","2020", hora).toString());
+	
+	*/
 	}
 }
 	

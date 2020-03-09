@@ -172,7 +172,7 @@ public class TareaDAO {
 			while(rs.next()) {
 				res.add(new TareaBean(rs.getInt("tarea_id"), rs.getInt("incidencia_id"), rs.getInt("empleado_id"),
 						rs.getString("descripcion"), rs.getString("tipo_tarea"), rs.getString("lugar_tarea"),
-						rs.getBoolean("estado"), rs.getDate("fecha_tarea"),rs.getTime("hora")));
+						rs.getBoolean("estado"), rs.getDate("fecha_tarea"),rs.getTime("hora"), rs.getInt("hotel_id")));
 
 			}
 
@@ -270,7 +270,7 @@ public class TareaDAO {
 						res.add(new TareaBean(rs.getInt("tarea_id"),rs.getInt("incidencia_id"),
 								rs.getInt("empleado_id"),rs.getString("descripcion"),
 								rs.getString("tipo_tarea"),rs.getString("lugar_tarea"),
-								rs.getBoolean("estado"),rs.getDate("fecha_tarea"),rs.getTime("hora")));  
+								rs.getBoolean("estado"),rs.getDate("fecha_tarea"),rs.getTime("hora"), rs.getInt("hotel_id")));  
 					} 
 				}  
 				catch (SQLException ex){  

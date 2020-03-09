@@ -16,6 +16,7 @@ public class TareaBean {
 	private String lugar;// formato: HABITACION id_habitacion
 	private boolean estado;
 	private Date fecha;
+	private int hotel_id;
 	
 	
 	//AÑADIR ESTE CAMPO A LA BASE DE DATOS
@@ -27,7 +28,7 @@ public class TareaBean {
 	
 	
 	public TareaBean(int id_tarea, int id_incidencia, int id_empleado, String descripcion, String tipo_tarea,
-			String lugar, boolean estado, Date fecha,Time hora) {
+			String lugar, boolean estado, Date fecha,Time hora, int hotel_id) {
 		this.id_tarea=id_tarea;
 
 		this.id_incidencia = id_incidencia;
@@ -130,6 +131,16 @@ public class TareaBean {
 
 	public void setHora(Time hora) {
 		this.hora = hora;
+	}
+
+
+	public int getHotel_id() {
+		return hotel_id;
+	}
+
+
+	public void setHotel_id(int hotel_id) {
+		this.hotel_id = hotel_id;
 	}
 
 }
