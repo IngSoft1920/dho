@@ -43,7 +43,7 @@ public class ServiciosDelHotelBean {
 		HoraFinServicio = horaFinServicio;
 		this.DisponibilidadTotal = disponibilidadTotal;
 		this.hotel_id=hotel_id;
-		this.setNombre(nombre);
+		this.nombre=nombre;
 	}
 
 
@@ -91,7 +91,7 @@ public class ServiciosDelHotelBean {
 	public String toString() {
 		return "ServiciosDelHotelBean [id_ServicioHotel=" + id_ServicioHotel + ", HoraInicioServicio="
 				+ HoraInicioServicio + ", HoraFinServicio=" + HoraFinServicio + ", DisponibilidaTotal="
-				+ DisponibilidadTotal + "]";
+				+ DisponibilidadTotal +" hotel_id= "+hotel_id +" nombre= " +nombre + "]";
 	}
 
 
