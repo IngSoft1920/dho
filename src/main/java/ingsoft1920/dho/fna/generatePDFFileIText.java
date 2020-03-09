@@ -56,7 +56,7 @@ public class generatePDFFileIText {
      *      pdf File we are going to write. 
      *      Fichero pdf en el que vamos a escribir. 
      */
-    public void createPDF(File pdfNewFile) {
+    public void createPDF(File pdfNewFile, int cliente_id) {
         // We create the document and set the file name.        
         // Creamos el documento e indicamos el nombre del fichero.
         try {
@@ -88,13 +88,13 @@ public class generatePDFFileIText {
             //Subtitulo (Todas las Facturas)
             chapter.add(new Paragraph("Todas Las Facturas:", subcategoryFont));
             //Obtenemos todas las facturas
-        	for (FacturaBean elem: FacturaDAO.todasFacturasCliente(1)) {
+        	for (FacturaBean elem: FacturaDAO.todasFacturasCliente(cliente_id)) {
         		chapter.add(new Paragraph(elem.toString(), paragraphFont));
         	}
             //Subtitulo (Facturas por pagar)
             chapter.add(new Paragraph("Facturas Por Pagar:", subcategoryFont));
         	int pago_total=0;
-        	for (FacturaBean elem: FacturaDAO.porPagarFacturasCliente(1)) {
+        	for (FacturaBean elem: FacturaDAO.porPagarFacturasCliente(cliente_id)) {
         		pago_total+=elem.getPrecio();
         		chapter.add(new Paragraph(elem.toString(), paragraphFont));
         	}
@@ -111,7 +111,7 @@ public class generatePDFFileIText {
      */
     public static void main(String args[]) {
         generatePDFFileIText generatePDFFileIText = new generatePDFFileIText();
-        generatePDFFileIText.createPDF(new File("C:\\Users\\sergi\\OneDrive\\Desktop\\e.pdf"));
+        generatePDFFileIText.createPDF(new File("files//archivo.pdf"),2);
     }
 }
 
