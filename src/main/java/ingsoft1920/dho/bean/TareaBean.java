@@ -39,6 +39,7 @@ public class TareaBean {
 		this.estado = estado;
 		this.fecha = fecha;
 		this.hora=hora;
+		this.hotel_id=hotel_id;
 	}
 
 	public TareaBean(int id_empleado, String tipo_tarea, String lugar) {
@@ -120,7 +121,7 @@ public class TareaBean {
 	public String toString() {
 		return "TareaBean [id_tarea=" + id_tarea + ", id_incidencia=" + id_incidencia + ", id_empleado=" + id_empleado
 				+ ", descripcion=" + descripcion + ", tipo_tarea=" + tipo_tarea + ", lugar=" + lugar + ", estado="
-				+ estado + ", fecha=" + fecha + "]";
+				+ estado + ", fecha=" + fecha  +", hora= "+hora +", hotel_id= " +hotel_id + "]";
 	}
 
 

@@ -29,6 +29,9 @@ package ingsoft1920.dho.bean;
 		
 		private Time hora_salida;
 		
+		private int precio;
+		
+		
 		public ServicioBean() {
 			
 		}
@@ -40,7 +43,7 @@ package ingsoft1920.dho.bean;
 
 
 		public ServicioBean(int servicios_id, int estancia_id, int id_ServicoHotel, int cliente_id, String lugar,
-				Date fecha_servicio, Time hora, String tipo_servicio,String platos, String items, Time hora_salida) {
+				Date fecha_servicio, Time hora, String tipo_servicio,String platos, String items, Time hora_salida, int precio) {
 			this.servicios_id = servicios_id;
 			this.estancia_id = estancia_id;
 			this.id_ServicoHotel = id_ServicoHotel;
@@ -51,7 +54,9 @@ package ingsoft1920.dho.bean;
 			this.tipo_servicio = tipo_servicio;
 			this.platos=platos;
 			this.items=items;
-			this.setHora_salida(hora_salida);
+			this.hora_salida= hora_salida;
+			this.precio= precio;
+			
 		}
 
 
@@ -186,7 +191,7 @@ package ingsoft1920.dho.bean;
 			return "ServicioBean [servicios_id=" + servicios_id + ", estancia_id=" + estancia_id + ", id_ServicoHotel="
 					+ id_ServicoHotel + ", cliente_id=" + cliente_id + ", lugar=" + lugar + ", fecha_servicio="
 					+ fecha_servicio + ", hora=" + hora + ", tipo_servicio=" + tipo_servicio + ", platos=" + platos
-					+ ", items=" + items + "]";
+					+ ", items=" + items  +" hora_salida= " +hora_salida + "]";
 		}
 
 
@@ -207,6 +212,26 @@ package ingsoft1920.dho.bean;
 
 		public void setHora_salida(Time hora_salida) {
 			this.hora_salida = hora_salida;
+		}
+
+
+
+
+
+
+
+		public int getPrecio() {
+			return precio;
+		}
+
+
+
+
+
+
+
+		public void setPrecio(int precio) {
+			this.precio = precio;
 		}
 		
 		
