@@ -75,7 +75,7 @@ calendar .date .days .number:nth-child(7n+1)
 	font-weight: 600;
 }
 
-calendar .date .days .number .active
+calendar .date .days .number active
 {
 	background: #352b48;
 	color: #fff;

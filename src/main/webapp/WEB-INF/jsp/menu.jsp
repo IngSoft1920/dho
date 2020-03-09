@@ -27,7 +27,9 @@
 	
 	<h2><a href="/homePageDHO/menu/calendario">Vista de calendario</a></h2>
 	
-
+	<h2><a href="/homePageDHO/menu/calendario2">Vista de calendario 2</a></h2>
+	
+	
 	</body>
 	
 
