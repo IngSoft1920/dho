@@ -8,6 +8,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+import ingsoft1920.dho.bean.HotelBean;
 import ingsoft1920.dho.bean.ServicioBean;
 import ingsoft1920.dho.bean.ServiciosDelHotelBean;
 import ingsoft1920.dho.controller.Conexion;
@@ -118,6 +119,32 @@ public class ServiciosDelHotelDAO {
 		System.out.println(cap);
 		return res;
 	}
+	
+	public static void anadirServicioDelHotel(ServiciosDelHotelBean serv) {
+		
+		//consulta de añadir un servicio a la tabla servicios 		
+		if (conexion.getConexion()== null) 
+			conexion.conectar(); 
+		
+		PreparedStatement stm=null; 
+		try {  
+			
+			
+				
+				stm=conexion.getConexion().prepareStatement("INSERT INTO ServiciosHotel values (?,?,?,?,?,?,?)"); 
+				//Falta
+				stm.executeUpdate(); 
+			} 
+ 
+		
+		catch (SQLException ex){  
+			System.out.println("SQLException: " + ex.getMessage()); 
+		} finally { // it is a good idea to release resources in a finally block  
+			if (stm != null) { try {  stm.close(); } catch (SQLException sqlEx) { }  stm = null; }  
+		} 
+ 
+	
+}
 	
 	
 	
