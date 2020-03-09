@@ -76,13 +76,13 @@ public class peticionHotel {
 					JsonArray num_DisponiblesLista = habitacionesListaInt[i].get("num_Disponibles").getAsJsonArray();
 					int[] num_DisponiblesListaInt = new int[num_DisponiblesLista.size()];
 					for (int j = 0; j < idHabLista.size(); j++) {
-						idHabListaInt[j] = idHabLista.get(j).getAsInt();
+						/*idHabListaInt[j] = idHabLista.get(j).getAsInt();
 						nombreHabListaInt[j] = nombreHabLista.get(j).getAsString();
 						num_DisponiblesListaInt[j] = num_DisponiblesLista.get(j).getAsInt();
 						HabitacionBean hab = new HabitacionBean();
 						hab.setId_habitacion(idHabListaInt[j]);
 						hab.setId_hotel(idListaInt[i]);
-						hab.setTipo_habitacion(nombreHabListaInt[j]);
+						hab.setTipo_habitacion(nombreHabListaInt[j]);*/
 						listaHab.add(hab);
 					}
 
