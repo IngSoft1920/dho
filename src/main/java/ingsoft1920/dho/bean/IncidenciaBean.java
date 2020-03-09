@@ -2,6 +2,7 @@ package ingsoft1920.dho.bean;
 
 
 import java.sql.Date;
+import java.sql.Time;
 
 import org.springframework.stereotype.Component; 
 
@@ -24,7 +25,9 @@ public class IncidenciaBean {
 	private int hotel_id;
 	
 	
-	
+	//AÑADIR ESTE CAMPO A LA BASE DE DATOS: COMO TAREA ES UNA TABLA GENERADA DE LA RELACION DE 
+	//EMPLEADO Y INCIDENCIA, ESTE CAMPO TAMBIEN SE AÑADE EN LA TABLA TAREA
+	private Time hora;
 	
 	
 
@@ -32,13 +35,15 @@ public class IncidenciaBean {
 		
 	}
 
-	public IncidenciaBean(int id_incidencia, String tipo_incidencia, String descripcion, String lugar, Date fecha, int hotel_id) {
+	public IncidenciaBean(int id_incidencia, String tipo_incidencia, String descripcion, String lugar, Date fecha, int hotel_id
+			,Time hora) {
 		this.id_incidencia = id_incidencia;
 		this.tipo_incidencia = tipo_incidencia;
 		this.descripcion = descripcion;
 		this.lugar = lugar;
 		this.fecha = fecha;
 		this.setHotel_id(hotel_id);
+		this.hora=hora;
 	}
 	
 	
@@ -94,6 +99,14 @@ public class IncidenciaBean {
 
 	public void setHotel_id(int hotel_id) {
 		this.hotel_id = hotel_id;
+	}
+
+	public Time getHora() {
+		return hora;
+	}
+
+	public void setHora(Time hora) {
+		this.hora = hora;
 	}
 	
 	

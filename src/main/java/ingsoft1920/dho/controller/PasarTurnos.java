@@ -21,7 +21,9 @@ public class PasarTurnos {
 	
 	
 	//Devolvera cero si ha ido todo corecto y -1 en e.o.c
-	public static int  peticionPasarTurnos() {
+	
+	//como argumento pasamos la fecha del dia actual en este formato yyyy/mm/dd 
+	public static int  peticionPasarTurnos(String fecha) {
 		
 		try {
 			
@@ -49,6 +51,7 @@ public class PasarTurnos {
 			//el id_empleado, horaInicio,horaFin de el primer empleado
 			
 			JsonArray id_empleadoLista = new JsonArray();
+			
 			JsonArray horaInicioLista = new JsonArray();
 			JsonArray horaFinLista = new JsonArray();
 			
@@ -62,6 +65,9 @@ public class PasarTurnos {
 			}
 			
 			obj.add("id_empleado", id_empleadoLista );
+			
+			obj.addProperty("dia",fecha);
+			
 			obj.add("horarioInicio", horaInicioLista );
 			obj.add("horarioFin", horaFinLista );
 			
