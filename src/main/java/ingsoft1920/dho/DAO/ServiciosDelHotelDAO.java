@@ -131,8 +131,13 @@ public class ServiciosDelHotelDAO {
 			
 			
 				
-				stm=conexion.getConexion().prepareStatement("INSERT INTO ServiciosHotel values (?,?,?,?,?,?,?)"); 
-				//Falta
+				stm=conexion.getConexion().prepareStatement("INSERT INTO ServiciosHotel values (?,?,?,?,?)"); 
+				
+				stm.setInt(1,serv.getId_ServicioHotel());
+				stm.setTime(2, serv.getHoraInicioServicio());
+				stm.setTime(3, serv.getHoraFinServicio());
+				stm.setInt(4, serv.getHotel_id());
+				stm.setString(5, serv.getNombre());
 				stm.executeUpdate(); 
 			} 
  

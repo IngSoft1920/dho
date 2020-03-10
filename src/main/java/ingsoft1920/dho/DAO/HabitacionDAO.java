@@ -184,26 +184,72 @@ public class HabitacionDAO {
 		return res;
 	}
 	
+	//devuelve el id de la ultima habitacion para saber el id de la siguiente
+	public static int idUltimaHabitacion() {
+		int res=0;
+		
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+		
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conexion.getConexion().createStatement();
+			rs = stmt.executeQuery("SELECT MAX(habitacion_id) AS n FROM Habitaciones ");
+			if(rs.next()) {
+				res=rs.getInt("n");
+			}
+		}catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		conexion.desconectar();
+		return res;
+	}
+	
+	//añade habitaciones a la base de datos
 	public static void anadirHabitaciones(AuxHabitacion habitacion) {
-		
+		int habitacion_id=-1;
 		//consulta de añadir un servicio a la tabla servicios 		
-		if (conexion.getConexion()== null) 
-			conexion.conectar(); 
 		
-		PreparedStatement stm=null; 
-		try {  
-			 
+		
+		
+		 
+			 for(int i=0; i<habitacion.getNum_Disponibles(); i++) {
+				 if (conexion.getConexion()== null) 
+					 conexion.conectar(); 
+				 PreparedStatement stm=null; 
+				 java.sql.Statement stmt = null;
+					ResultSet rs = null;
+				 try {
+					 stmt = conexion.getConexion().createStatement();
+						rs = stmt.executeQuery("SELECT MAX(habitacion_id) AS n FROM Habitaciones ");
+						if(rs.next()) {
+							habitacion_id=rs.getInt("n")+1;
+						
+				 stm=conexion.getConexion().prepareStatement("INSERT INTO Habitaciones VALUES (?,?,?,?)"); 
+				 stm.setInt(1,habitacion_id);
+				 stm.setString(2,habitacion.getTipo_habitacion());
+				 stm.setInt(3,habitacion.getId_hotel());
+				 stm.setInt(4, 0);
+				 
+				 stm.executeUpdate(); 
+			
+				 }}
 				
-				stm.executeUpdate(); 
-			} 
+			
  
 		
 		catch (SQLException ex){  
 			System.out.println("SQLException: " + ex.getMessage()); 
 		} finally { // it is a good idea to release resources in a finally block  
-			if (stm != null) { try {  stm.close(); } catch (SQLException sqlEx) { }  stm = null; }  
+			if (stm != null) { try {  stm.close(); } catch (SQLException sqlEx) { }  stm = null; } 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
 		} 
  
-	
+	 }
 }
 }

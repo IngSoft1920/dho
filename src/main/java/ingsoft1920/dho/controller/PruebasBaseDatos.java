@@ -12,6 +12,7 @@ import ingsoft1920.dho.DAO.IncidenciaDAO;
 import ingsoft1920.dho.DAO.ServicioDAO;
 import ingsoft1920.dho.DAO.ServiciosDelHotelDAO;
 import ingsoft1920.dho.DAO.TareaDAO;
+import ingsoft1920.dho.bean.AuxHabitacion;
 import ingsoft1920.dho.bean.CobrosBean;
 import ingsoft1920.dho.bean.EstanciaBean;
 import ingsoft1920.dho.bean.HabitacionBean;
@@ -252,10 +253,18 @@ public class PruebasBaseDatos {
 	
 	ServiciosDelHotelDAO prueba33= new ServiciosDelHotelDAO(conexion);
 	System.out.println(prueba33.serviciosHotelPorNombre("hotel_prueba"));
-	*/
+	
 	
 	HotelDAO prueba34 = new HotelDAO(conexion);
 	System.out.println(prueba34.devolverElNumeroDeHoteles());
+	
+	
+	AuxHabitacion h1= new AuxHabitacion(3,1,"individual", 4);
+	HabitacionDAO prueba35= new HabitacionDAO(conexion);
+	prueba35.anadirHabitaciones(h1);
+	//System.out.println(h1.getNum_Disponibles());
+	
+	 */
 	
 	}
 }
