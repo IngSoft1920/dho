@@ -161,7 +161,7 @@ public class DhoAPI {
 	@GetMapping("/serviciosDisponibles/{nombre_hotel}")
 	//va a devolver el JSON en string con la informacion de la base
 	//de datos
-	public String darServiciosHotelPorNombre(@PathVariable String nombre_hotel){
+	public String serviciosDisponibles(@PathVariable String nombre_hotel){
 		List<ServiciosDelHotelBean> lista=ServiciosDelHotelDAO.serviciosHotelPorNombre(nombre_hotel);
 		
 		JsonObject obj =new JsonObject();

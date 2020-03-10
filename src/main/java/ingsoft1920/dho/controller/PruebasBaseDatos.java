@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import ingsoft1920.dho.DAO.EstanciaDAO;
 import ingsoft1920.dho.DAO.FacturasDAO;
 import ingsoft1920.dho.DAO.HabitacionDAO;
+import ingsoft1920.dho.DAO.HotelDAO;
 import ingsoft1920.dho.DAO.IncidenciaDAO;
 import ingsoft1920.dho.DAO.ServicioDAO;
 import ingsoft1920.dho.DAO.ServiciosDelHotelDAO;
@@ -247,11 +248,14 @@ public class PruebasBaseDatos {
 	
 	ServicioDAO prueba32 = new ServicioDAO(conexion);
 	System.out.println(prueba32.getServiciosRestaurante().toString()+"\n "+prueba32.getServiciosRestaurante().size());
-	*/
+	
 	
 	ServiciosDelHotelDAO prueba33= new ServiciosDelHotelDAO(conexion);
 	System.out.println(prueba33.serviciosHotelPorNombre("hotel_prueba"));
+	*/
 	
+	HotelDAO prueba34 = new HotelDAO(conexion);
+	System.out.println(prueba34.devolverElNumeroDeHoteles());
 	
 	}
 }
