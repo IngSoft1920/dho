@@ -158,7 +158,7 @@ public class ServiciosDelHotelDAO {
 		ResultSet rs2 = null;
 		try {
 			stmt=conexion.getConexion().createStatement();
-			rs=stmt.executeQuery("SELECT hotel_id FROM Hotel WHERE nombre = "+nombre);
+			rs=stmt.executeQuery("SELECT hotel_id FROM Hotel WHERE nombre = \""+nombre + "\"");
 			
 			if(rs.next()) {
 				hotel_id= rs.getInt("hotel_id");

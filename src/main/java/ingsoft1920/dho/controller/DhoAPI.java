@@ -176,12 +176,12 @@ public class DhoAPI {
 			
 			servicios_disponibles_id.add(elem.getId_ServicioHotel());
 			
-			servicios_disponibles_nombre.add(elem.getDisponibilidadTotal());
+			servicios_disponibles_nombre.add(elem.getNombre());
 			
 			}
-		obj.add("id_ServiciosHotel", servicios_disponibles_id);
+		obj.add("servicios_disponibles_id", servicios_disponibles_id);
 
-		obj.add("HoraInicioServicio", servicios_disponibles_nombre);
+		obj.add("servicios_disponibles_nombre", servicios_disponibles_nombre);
 		
 		return  obj.toString().toString();
 	}
