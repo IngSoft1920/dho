@@ -15,8 +15,6 @@ import ingsoft1920.dho.DAO.HotelDAO;
 import ingsoft1920.dho.DAO.ServicioDAO;
 import ingsoft1920.dho.DAO.ServiciosDelHotelDAO;
 import ingsoft1920.dho.DAO.TareaDAO;
-import ingsoft1920.dho.bean.AuxHabitacion;
-import ingsoft1920.dho.bean.AuxHotelHabServ;
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.HotelBean;
 import ingsoft1920.dho.bean.ServicioBean;
@@ -220,12 +218,10 @@ public class DhoAPI {
 			int idHab = habitacionesLista.get(i).getAsJsonObject().get("id").getAsInt();
 			String nombreHab = habitacionesLista.get(i).getAsJsonObject().get("nombre").getAsString();
 			int num_Disponibles = habitacionesLista.get(i).getAsJsonObject().get("num_Disponibles").getAsInt();
-			AuxHabitacion hab = new AuxHabitacion();
-			hab.setId_tipo(idHab);
+			HabitacionBean hab = new HabitacionBean();
 			hab.setId_hotel(id);
 			hab.setTipo_habitacion(nombreHab);
-			hab.setNum_Disponibles(num_Disponibles);
-			HabitacionDAO.anadirHabitaciones(hab);
+			HabitacionDAO.anadirHabitaciones(hab,num_Disponibles);
 		}
 		/*
 		 * for (int i = 0; i < categoriasLista.size(); i++) {

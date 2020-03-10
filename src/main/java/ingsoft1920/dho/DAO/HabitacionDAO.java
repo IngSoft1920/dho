@@ -1,6 +1,6 @@
 package ingsoft1920.dho.DAO;
 
-import ingsoft1920.dho.bean.AuxHabitacion;
+
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.HotelBean;
 import ingsoft1920.dho.controller.Conexion;
@@ -210,14 +210,14 @@ public class HabitacionDAO {
 	}
 	
 	//añade habitaciones a la base de datos
-	public static void anadirHabitaciones(AuxHabitacion habitacion) {
+	public static void anadirHabitaciones(HabitacionBean habitacion, int num_Disponibles) {
 		int habitacion_id=-1;
 		//consulta de añadir un servicio a la tabla servicios 		
 		
 		
 		
 		 
-			 for(int i=0; i<habitacion.getNum_Disponibles(); i++) {
+			 for(int i=0; i<num_Disponibles; i++) {
 				 if (conexion.getConexion()== null) 
 					 conexion.conectar(); 
 				 PreparedStatement stm=null; 
