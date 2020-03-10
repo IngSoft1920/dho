@@ -1,7 +1,11 @@
 package ingsoft1920.dho.DAO;
 
+import ingsoft1920.dho.bean.AuxHabitacion;
 import ingsoft1920.dho.bean.HabitacionBean;
+import ingsoft1920.dho.bean.HotelBean;
 import ingsoft1920.dho.controller.Conexion;
+
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -179,4 +183,27 @@ public class HabitacionDAO {
 
 		return res;
 	}
+	
+	public static void anadirHabitacion(AuxHabitacion habitacion) {
+		
+		//consulta de añadir un servicio a la tabla servicios 		
+		if (conexion.getConexion()== null) 
+			conexion.conectar(); 
+		
+		PreparedStatement stm=null; 
+		try {  
+			 
+				
+				stm.executeUpdate(); 
+			} 
+ 
+		
+		catch (SQLException ex){  
+			System.out.println("SQLException: " + ex.getMessage()); 
+		} finally { // it is a good idea to release resources in a finally block  
+			if (stm != null) { try {  stm.close(); } catch (SQLException sqlEx) { }  stm = null; }  
+		} 
+ 
+	
+}
 }

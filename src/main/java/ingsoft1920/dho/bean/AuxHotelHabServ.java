@@ -1,5 +1,4 @@
 package ingsoft1920.dho.bean;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -7,12 +6,12 @@ import java.util.List;
 
 public class AuxHotelHabServ {
 	private HotelBean hotel;
-	private List<HabitacionBean> listaHab;
+	private List<AuxHabitacion> listaHab;
 	private List<ServiciosDelHotelBean> listaServ;
 	public AuxHotelHabServ() {
 		
 	}
-	public AuxHotelHabServ(HotelBean hotel, List<HabitacionBean> listaHab, List<ServiciosDelHotelBean> listaServ) {
+	public AuxHotelHabServ(HotelBean hotel, List<AuxHabitacion> listaHab, List<ServiciosDelHotelBean> listaServ) {
 		super();
 		this.hotel = hotel;
 		this.listaHab = listaHab;
@@ -24,10 +23,10 @@ public class AuxHotelHabServ {
 	public void setHotel(HotelBean hotel) {
 		this.hotel = hotel;
 	}
-	public List<HabitacionBean> getListaHab() {
+	public List<AuxHabitacion> getListaHab() {
 		return listaHab;
 	}
-	public void setListaHab(List<HabitacionBean> listaHab) {
+	public void setListaHab(List<AuxHabitacion> listaHab) {
 		this.listaHab = listaHab;
 	}
 	public List<ServiciosDelHotelBean> getListaServ() {

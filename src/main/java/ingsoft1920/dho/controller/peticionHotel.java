@@ -1,6 +1,7 @@
 package ingsoft1920.dho.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.google.gson.JsonArray;
@@ -10,6 +11,7 @@ import com.google.gson.JsonParser;
 import ingsoft1920.dho.bean.HotelBean;
 import ingsoft1920.dho.bean.ServiciosDelHotelBean;
 import ingsoft1920.dho.bean.HabitacionBean;
+import ingsoft1920.dho.bean.AuxHabitacion;
 import ingsoft1920.dho.bean.AuxHotelHabServ;
 import ingsoft1920.dho.DAO.*;
 
@@ -55,9 +57,10 @@ public class peticionHotel {
 				JsonArray serviciosLista = obj.get("servicios").getAsJsonArray();
 				JsonObject[] serviciosListaInt = new JsonObject[serviciosLista.size()];
 				List<AuxHotelHabServ> lista = new ArrayList<AuxHotelHabServ>();
-				List<HabitacionBean> listaHab = new ArrayList<HabitacionBean>();
+				List<AuxHabitacion> listaHab = new ArrayList<AuxHabitacion>();
 				List<ServiciosDelHotelBean> listaServ = new ArrayList<ServiciosDelHotelBean>();
-
+				
+				HashMap<Integer,HabitacionBean> aux=new HashMap<Integer,HabitacionBean>();
 				for (int i = 0; i < idLista.size(); i++) {
 					idListaInt[i] = idLista.get(i).getAsInt();
 					nombreListaInt[i] = nombreLista.get(i).getAsString();
@@ -76,14 +79,20 @@ public class peticionHotel {
 					JsonArray num_DisponiblesLista = habitacionesListaInt[i].get("num_Disponibles").getAsJsonArray();
 					int[] num_DisponiblesListaInt = new int[num_DisponiblesLista.size()];
 					for (int j = 0; j < idHabLista.size(); j++) {
-						/*idHabListaInt[j] = idHabLista.get(j).getAsInt();
+						idHabListaInt[j] = idHabLista.get(j).getAsInt();
 						nombreHabListaInt[j] = nombreHabLista.get(j).getAsString();
 						num_DisponiblesListaInt[j] = num_DisponiblesLista.get(j).getAsInt();
-						HabitacionBean hab = new HabitacionBean();
-						hab.setId_habitacion(idHabListaInt[j]);
+						AuxHabitacion hab = new AuxHabitacion();
+						hab.setId_tipo(idHabListaInt[j]);
 						hab.setId_hotel(idListaInt[i]);
+<<<<<<< Updated upstream
 						hab.setTipo_habitacion(nombreHabListaInt[j]);*/
 						//listaHab.add(hab);
+=======
+						hab.setTipo_habitacion(nombreHabListaInt[j]);
+						hab.setNum_Disponibles(num_DisponiblesListaInt[j]);
+						listaHab.add(hab);
+>>>>>>> Stashed changes
 					}
 
 					JsonArray idCatLista = categoriasListaInt[i].get("id").getAsJsonArray();
@@ -131,11 +140,24 @@ public class peticionHotel {
 		return null;
 
 	}
+	
+	public void guardarHotelesHAbitacionesServicios() {
+		List<AuxHotelHabServ> aux=peticionPedirHotel();
+		guardarHoteles(aux);
+		guardarServicios(aux);
+		guardarHabitaciones(aux);
+	}
 
 	public void guardarHoteles(List<AuxHotelHabServ> lista) {
 		for (int i = 0; i < lista.size(); i++) {
 			HotelDAO.anadirHotel(lista.get(i).getHotel());
 		}
+	}
+	public void guardarHabitaciones(List<AuxHotelHabServ> lista) {
+		for (int i = 0; i < lista.size(); i++) {
+			HabitacionDAO.anadirHabitaciones(lista.get(i).getListaHab());
+		}
+		
 	}
 
 	public void guardarServicios(List<AuxHotelHabServ> lista) {
