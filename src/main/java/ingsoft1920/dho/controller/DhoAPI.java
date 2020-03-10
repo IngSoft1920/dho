@@ -157,6 +157,34 @@ public class DhoAPI {
 		return  obj.toString().toString();
 	}
 	
+	@ResponseBody
+	@GetMapping("/serviciosDisponibles/{nombre_hotel}")
+	//va a devolver el JSON en string con la informacion de la base
+	//de datos
+	public String darServiciosHotelPorNombre(@PathVariable String nombre_hotel){
+		List<ServiciosDelHotelBean> lista=ServiciosDelHotelDAO.serviciosHotelPorNombre(nombre_hotel);
+		
+		JsonObject obj =new JsonObject();
+		
+		//Creamos un campo por cada columna
+		
+		JsonArray servicios_disponibles_id=new JsonArray();
+		
+		JsonArray servicios_disponibles_nombre=new JsonArray();
+		
+		for (ServiciosDelHotelBean elem: lista) {
+			
+			servicios_disponibles_id.add(elem.getId_ServicioHotel());
+			
+			servicios_disponibles_nombre.add(elem.getDisponibilidadTotal());
+			
+			}
+		obj.add("id_ServiciosHotel", servicios_disponibles_id);
+
+		obj.add("HoraInicioServicio", servicios_disponibles_nombre);
+		
+		return  obj.toString().toString();
+	}
 	
 	
 	

@@ -119,7 +119,7 @@ public class ServiciosDelHotelDAO {
 		System.out.println(cap);
 		return res;
 	}
-	
+	//añade un servicioHotel a la base de datos
 	public static void anadirServicioDelHotel(ServiciosDelHotelBean serv) {
 		
 		//consulta de añadir un servicio a la tabla servicios 		
@@ -145,6 +145,45 @@ public class ServiciosDelHotelDAO {
  
 	
 }
+	//Dado el nombre de un hotel devuelve todos sus servicios
+	public static ArrayList<ServiciosDelHotelBean> serviciosHotelPorNombre(String nombre){
+		ArrayList<ServiciosDelHotelBean> res = new ArrayList<ServiciosDelHotelBean>();
+		int hotel_id=-1;
+		if (conexion.getConexion()== null) 
+			conexion.conectar(); 
+		java.sql.Statement stmt = null; 
+		ResultSet rs = null;
+		
+		java.sql.Statement stmt2 = null; 
+		ResultSet rs2 = null;
+		try {
+			stmt=conexion.getConexion().createStatement();
+			rs=stmt.executeQuery("SELECT hotel_id FROM Hotel WHERE nombre = "+nombre);
+			
+			if(rs.next()) {
+				hotel_id= rs.getInt("hotel_id");
+			}
+			
+			if(hotel_id != -1) {
+				stmt2=conexion.getConexion().createStatement();
+				rs2=stmt2.executeQuery("SELECT * FROM ServiciosHotel WHERE hotel_id= "+ hotel_id);
+				
+				while(rs2.next()) {
+					res.add(new ServiciosDelHotelBean(rs2.getInt("servicioHotel_id"), rs2.getTime("horaInicioServicio"), 
+							rs2.getTime("horaFinServicio"), rs2.getInt("disponibilidadTotal"), rs2.getInt("hotel_id"), rs2.getString("nombre")));
+				}}}catch (SQLException ex){  
+					System.out.println("SQLException: " + ex.getMessage()); 
+				} finally { // it is a good idea to release resources in a finally block  
+					if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+					if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; }
+					if (rs2 != null) { try { rs2.close(); } catch (SQLException sqlEx) { } rs2 = null; } 
+					if (stmt2 != null) { try {  stmt2.close(); } catch (SQLException sqlEx) { }  stmt2 = null; }  
+				} 		
+		
+		
+		return res;
+		
+	}
 	
 	
 	
