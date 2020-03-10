@@ -184,7 +184,7 @@ public class HabitacionDAO {
 		return res;
 	}
 	
-	public static void anadirHabitacion(AuxHabitacion habitacion) {
+	public static void anadirHabitaciones(AuxHabitacion habitacion) {
 		
 		//consulta de añadir un servicio a la tabla servicios 		
 		if (conexion.getConexion()== null) 

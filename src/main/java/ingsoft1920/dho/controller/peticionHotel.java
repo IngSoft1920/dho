@@ -85,14 +85,9 @@ public class peticionHotel {
 						AuxHabitacion hab = new AuxHabitacion();
 						hab.setId_tipo(idHabListaInt[j]);
 						hab.setId_hotel(idListaInt[i]);
-<<<<<<< Updated upstream
-						hab.setTipo_habitacion(nombreHabListaInt[j]);*/
-						//listaHab.add(hab);
-=======
 						hab.setTipo_habitacion(nombreHabListaInt[j]);
 						hab.setNum_Disponibles(num_DisponiblesListaInt[j]);
 						listaHab.add(hab);
->>>>>>> Stashed changes
 					}
 
 					JsonArray idCatLista = categoriasListaInt[i].get("id").getAsJsonArray();
@@ -140,9 +135,9 @@ public class peticionHotel {
 		return null;
 
 	}
-	
+
 	public void guardarHotelesHAbitacionesServicios() {
-		List<AuxHotelHabServ> aux=peticionPedirHotel();
+		List<AuxHotelHabServ> aux = peticionPedirHotel();
 		guardarHoteles(aux);
 		guardarServicios(aux);
 		guardarHabitaciones(aux);
@@ -153,11 +148,14 @@ public class peticionHotel {
 			HotelDAO.anadirHotel(lista.get(i).getHotel());
 		}
 	}
+
 	public void guardarHabitaciones(List<AuxHotelHabServ> lista) {
 		for (int i = 0; i < lista.size(); i++) {
-			HabitacionDAO.anadirHabitaciones(lista.get(i).getListaHab());
+			for (int j = 0; j < lista.get(i).getListaHab().size(); j++) {
+				HabitacionDAO.anadirHabitaciones(lista.get(i).getListaHab().get(j));
+			}
 		}
-		
+
 	}
 
 	public void guardarServicios(List<AuxHotelHabServ> lista) {
