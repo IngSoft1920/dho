@@ -82,8 +82,8 @@ public class peticionHotel {
 						HabitacionBean hab = new HabitacionBean();
 						hab.setId_habitacion(idHabListaInt[j]);
 						hab.setId_hotel(idListaInt[i]);
-						hab.setTipo_habitacion(nombreHabListaInt[j]);*/
-						listaHab.add(hab);
+						hab.setTipo_habitacion(nombreHabListaInt[j]);
+						listaHab.add(hab);*/
 					}
 
 					JsonArray idCatLista = categoriasListaInt[i].get("id").getAsJsonArray();
