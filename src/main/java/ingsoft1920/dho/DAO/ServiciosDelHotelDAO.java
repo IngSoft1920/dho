@@ -138,13 +138,8 @@ public class ServiciosDelHotelDAO {
 			
 			
 				
-				stm=conexion.getConexion().prepareStatement("INSERT INTO ServiciosHotel values (?,?,?,?,?)"); 
-				
-				stm.setInt(1,serv.getId_ServicioHotel());
-				stm.setTime(2, serv.getHoraInicioServicio());
-				stm.setTime(3, serv.getHoraFinServicio());
-				stm.setInt(4, serv.getHotel_id());
-				stm.setString(5, serv.getNombre());
+				stm=conexion.getConexion().prepareStatement("INSERT INTO ServiciosHotel values (?,?,?,?,?,?,?)"); 
+				//Falta
 				stm.executeUpdate(); 
 			} 
  
@@ -198,7 +193,7 @@ public class ServiciosDelHotelDAO {
 	}
 	
 	
-	//suponemos que nos pasan un id de servicio correcto ya que les emos pasado ya cuales tenemos
+	//suponemos que nos pasan un id de servicio correcto ya que les hemos pasado ya cuales tenemos
 	public static String[] horasServicio(int id_servicioHotel) {
 		
 		String[] res = new String[2];

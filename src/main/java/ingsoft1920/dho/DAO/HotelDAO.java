@@ -16,6 +16,18 @@ private static Conexion conexion=new Conexion();
 		this.conexion=conexion;
 	}
 	
+	
+	
+	public static String ConseguirNombreHotelDadoID(int id_hotel) {
+		
+		//falta meter la consulta que nos devulve el nombre del Hotel dado su id
+		
+		return "Zero";
+	}
+	
+	
+	
+	
 //Dado un HotelBean lo mete en la base de datos
 	
 	public static void anadirHotel(HotelBean hotel) {

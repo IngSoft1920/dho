@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import ingsoft1920.dho.DAO.EstanciaDAO;
 import ingsoft1920.dho.DAO.HabitacionDAO;
 import ingsoft1920.dho.DAO.HotelDAO;
 import ingsoft1920.dho.DAO.ServicioDAO;
 import ingsoft1920.dho.DAO.ServiciosDelHotelDAO;
 import ingsoft1920.dho.DAO.TareaDAO;
+import ingsoft1920.dho.bean.EstanciaBean;
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.HotelBean;
 import ingsoft1920.dho.bean.ServicioBean;
@@ -154,8 +157,56 @@ public class DhoAPI {
 	}
 	
 	
-	
-	
+
+	@ResponseBody
+	@GetMapping("/reservas")
+	public String obtenerEstanciaDeUnCliente(@RequestBody int id_cliente) {
+		
+		List<EstanciaBean> lista=EstanciaDAO.getEstacia(id_cliente);
+		
+		JsonObject obj =new JsonObject();
+		
+		JsonArray id_estancia_lista =new JsonArray();
+		
+		JsonArray num_hab_lista=new JsonArray();
+		
+		JsonArray fecha_Inicio_Lista=new JsonArray();
+		
+		JsonArray fecha_Fin_Lista=new JsonArray();
+		
+		JsonArray nombre_hotel_Lista=new JsonArray();
+		
+		
+		//falta meter el del check_in
+		
+		for (EstanciaBean elem : lista) {
+			
+			id_estancia_lista.add(elem.getEstancia_id());
+			
+			num_hab_lista.add(elem.getHabitacion_id());
+			
+			fecha_Inicio_Lista.add(elem.getFecha_inicio().toString());
+			
+			fecha_Fin_Lista.add(elem.getFecha_fin().toString());
+			
+			nombre_hotel_Lista.add(HotelDAO.ConseguirNombreHotelDadoID(elem.getHotel_id()));
+			
+		}
+		
+		obj.add("id_estancia_lista", id_estancia_lista);
+		
+		obj.add("num_hab_lista", num_hab_lista);
+		
+		obj.add("fecha_Inicio_Lista", fecha_Inicio_Lista);
+		
+		obj.add("fecha_Fin_Lista", fecha_Fin_Lista);
+		
+		obj.add("nombre_hotel_Lista", nombre_hotel_Lista);
+		
+		
+		return obj.toString().toString();
+		
+	}
 	
 	
 	 

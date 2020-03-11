@@ -19,6 +19,41 @@ public class EstanciaDAO {
 	
 	
 	
+	
+	//dado el cliente_id queremos que nos devuelva la estancia
+		public static List<EstanciaBean> getEstacia(int cliente_id) {
+			if (conexion.getConexion()== null)
+				conexion.conectar();
+			
+			List<EstanciaBean> res=new ArrayList<EstanciaBean>();
+			
+			java.sql.Statement stmt = null; 
+			ResultSet rs = null; 
+			try { 
+				stmt = conexion.getConexion().createStatement() ;
+				rs =  stmt.executeQuery("SELECT * FROM Estancia WHERE cliente_id ="+cliente_id);
+				while(rs.next()) {
+					res.add(new EstanciaBean(rs.getInt("estancia_id"), rs.getInt("habitacion_id"), cliente_id,
+							rs.getInt("hotel_id"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"), rs.getString("estado")));
+				}
+			} 
+			catch (SQLException ex){ 
+				System.out.println("SQLException: " + ex.getMessage());
+			} finally { // it is a good idea to release resources in a finally block 
+				if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+				if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+			}
+			conexion.desconectar();
+
+			return res;
+		}
+	
+	
+	
+	
+	
+	
+	
 	//dado el cliente_id queremos que nos devuelva la estancia_id
 	public static int getEstaciaId(int cliente_id) {
 		if (conexion.getConexion()== null)
