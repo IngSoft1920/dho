@@ -20,6 +20,13 @@ public class ServiciosDelHotelDAO {
 		this.conexion=conexion;
 	}
 
+	
+	
+
+		
+	
+	
+	
 	//aqui iria la consulta que devuelve todas las filas de la tabla
 	//como una lista con el contenido
 	public static ArrayList<ServiciosDelHotelBean> darServiciosHotel() {
@@ -191,5 +198,41 @@ public class ServiciosDelHotelDAO {
 	}
 	
 	
+	//suponemos que nos pasan un id de servicio correcto ya que les emos pasado ya cuales tenemos
+	public static String[] horasServicio(int id_servicioHotel) {
+		
+		String[] res = new String[2];
+		
+		if (conexion.getConexion()== null) 
+			conexion.conectar(); 
+		java.sql.Statement stmt = null; 
+		ResultSet rs = null;
+		
+		try {
+
+				stmt=conexion.getConexion().createStatement();
+				rs=stmt.executeQuery("SELECT * FROM ServiciosHotel WHERE id_ServicioHotel= "+ id_servicioHotel);
+				
+				while(rs.next()) {
+					res[0]=rs.getTime("horaInicioServicio").toString(); 
+					res[1]=rs.getTime("horaFinServicio").toString();
+				}}catch (SQLException ex){  
+					System.out.println("SQLException: " + ex.getMessage()); 
+				} finally { // it is a good idea to release resources in a finally block  
+					if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+					if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+				} 		
+		
+		
+		return res;
+		
+	}
 	
+
+
+
 }
+
+	
+	
+

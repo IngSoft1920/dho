@@ -99,81 +99,66 @@ public class DhoAPI {
 		ServicioDAO.recogerServicio(nuevoServicio);
 
 	}
-
+	
+	
+	
+	
+	
 	@ResponseBody
-	@GetMapping("/getServiciosHotel")
-	// va a devolver el JSON en string con la informacion de la base
-	// de datos
-	public String darServiciosHotel() {
-
-		List<ServiciosDelHotelBean> lista = ServiciosDelHotelDAO.darServiciosHotel();
-
-		JsonObject obj = new JsonObject();
-
-		// creamos un campo por cada columna
-
-		JsonArray id_ServiciosHotel = new JsonArray();
-
-		JsonArray HoraInicioServicio = new JsonArray();
-
-		JsonArray HoraFinServicio = new JsonArray();
-
-		JsonArray DisponibilidaTotal = new JsonArray();
-
-		for (ServiciosDelHotelBean elem : lista) {
-
-			id_ServiciosHotel.add(elem.getId_ServicioHotel());
-
-			// HoraInicioServicio.add(elem.getHoraInicioServicio());
-
-			// HoraFinServicio.add(elem.getHoraFinServicio());
-
-			DisponibilidaTotal.add(elem.getDisponibilidadTotal());
-
-		}
-
-		// en este punto ya tenemos las listas con los elementos
-		// ya solo queda añadirlas al obj y hacer el toString()
-
-		obj.add("id_ServiciosHotel", id_ServiciosHotel);
-
-		obj.add("HoraInicioServicio", HoraInicioServicio);
-
-		obj.add("HoraFinServicio", HoraFinServicio);
-
-		obj.add("DisponibilidaTotal", DisponibilidaTotal);
-
-		return obj.toString().toString();
-	}
-
-	@ResponseBody
-	@GetMapping("/serviciosDisponibles/{nombre_hotel}")
-	// va a devolver el JSON en string con la informacion de la base
-	// de datos
-	public String serviciosDisponibles(@PathVariable String nombre_hotel) {
-		List<ServiciosDelHotelBean> lista = ServiciosDelHotelDAO.serviciosHotelPorNombre(nombre_hotel);
-
-		JsonObject obj = new JsonObject();
-
-		// Creamos un campo por cada columna
-
-		JsonArray servicios_disponibles_id = new JsonArray();
-
-		JsonArray servicios_disponibles_nombre = new JsonArray();
-
-		for (ServiciosDelHotelBean elem : lista) {
-
+	@GetMapping("/serviciosDisponibles")
+	//va a devolver el JSON en string con la informacion de la base
+	//de datos
+	public String serviciosDisponibles(@RequestBody String nombre_Hotel){
+		List<ServiciosDelHotelBean> lista=ServiciosDelHotelDAO.serviciosHotelPorNombre(nombre_Hotel);
+		
+		JsonObject obj =new JsonObject();
+		
+		//Creamos un campo por cada columna
+		
+		JsonArray servicios_disponibles_id=new JsonArray();
+		
+		JsonArray servicios_disponibles_nombre=new JsonArray();
+		
+		for (ServiciosDelHotelBean elem: lista) {
+			
 			servicios_disponibles_id.add(elem.getId_ServicioHotel());
-
+			
 			servicios_disponibles_nombre.add(elem.getNombre());
-
-		}
+			
+			}
 		obj.add("servicios_disponibles_id", servicios_disponibles_id);
 
 		obj.add("servicios_disponibles_nombre", servicios_disponibles_nombre);
-
-		return obj.toString().toString();
+		
+		return  obj.toString().toString();
 	}
+	
+	
+	@ResponseBody
+	@GetMapping("/serviciosHoras")
+	//va a devolver el JSON en string con la informacion de la base
+	//de datos
+	public String HorasDeServicio(@RequestBody int id_servicioHotel) {
+		
+		JsonObject obj =new JsonObject();
+		
+		String[] res;
+		//obtenemos los horarios e un array de dos posiciones
+		res=ServiciosDelHotelDAO.horasServicio(id_servicioHotel);
+		obj.addProperty("horas_Inicio" , res[0]);
+		obj.addProperty("hora_Fin", res[1]);
+		
+		return obj.toString().toString();
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	 
 
 	/**
 	 * @param req
