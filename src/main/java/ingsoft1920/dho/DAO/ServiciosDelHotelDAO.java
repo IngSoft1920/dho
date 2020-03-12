@@ -45,7 +45,7 @@ public class ServiciosDelHotelDAO {
 			while(rs.next()){
 				res.add(new ServiciosDelHotelBean (rs.getInt("servicioHotel_id"), 
 						rs.getTime("horaInicioServicio"), 
-						rs.getTime("horaFinServicio"),rs.getInt("disponibilidadTotal"), rs.getInt("hotel_id"), rs.getString("nombre"))); 
+						rs.getTime("horaFinServicio"),rs.getInt("disponibilidadTotal"), rs.getInt("hotel_id"), rs.getString("nombre"), rs.getInt("importe"))); 
 			}
 
 		} 
@@ -139,7 +139,13 @@ public class ServiciosDelHotelDAO {
 			
 				
 				stm=conexion.getConexion().prepareStatement("INSERT INTO ServiciosHotel values (?,?,?,?,?,?,?)"); 
-				//Falta
+				stm.setInt(1,serv.getId_ServicioHotel());
+				stm.setTime(2, serv.getHoraInicioServicio());
+				stm.setTime(3, serv.getHoraFinServicio());
+				stm.setInt(4, serv.getDisponibilidadTotal());
+				stm.setInt(5, serv.getHotel_id());
+				stm.setString(6, serv.getNombre());
+				stm.setInt(7, serv.getImporte());
 				stm.executeUpdate(); 
 			} 
  
@@ -177,7 +183,8 @@ public class ServiciosDelHotelDAO {
 				
 				while(rs2.next()) {
 					res.add(new ServiciosDelHotelBean(rs2.getInt("servicioHotel_id"), rs2.getTime("horaInicioServicio"), 
-							rs2.getTime("horaFinServicio"), rs2.getInt("disponibilidadTotal"), rs2.getInt("hotel_id"), rs2.getString("nombre")));
+							rs2.getTime("horaFinServicio"), rs2.getInt("disponibilidadTotal"), rs2.getInt("hotel_id"), 
+							rs2.getString("nombre"), rs.getInt("importe")));
 				}}}catch (SQLException ex){  
 					System.out.println("SQLException: " + ex.getMessage()); 
 				} finally { // it is a good idea to release resources in a finally block  

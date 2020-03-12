@@ -30,13 +30,15 @@ public class ServiciosDelHotelBean {
 	
 	private String nombre;
 	
+	private int importe;
+	
 	public ServiciosDelHotelBean() {
 		
 	}
 
 
 	public ServiciosDelHotelBean(int id_ServicioHotel, Time horaInicioServicio, Time horaFinServicio,
-			int disponibilidadTotal, int hotel_id, String nombre) {
+			int disponibilidadTotal, int hotel_id, String nombre, int importe) {
 		
 		this.id_ServicioHotel = id_ServicioHotel;
 		HoraInicioServicio = horaInicioServicio;
@@ -44,6 +46,7 @@ public class ServiciosDelHotelBean {
 		this.DisponibilidadTotal = disponibilidadTotal;
 		this.hotel_id=hotel_id;
 		this.nombre=nombre;
+		this.setImporte(importe);
 	}
 
 
@@ -91,7 +94,7 @@ public class ServiciosDelHotelBean {
 	public String toString() {
 		return "ServiciosDelHotelBean [id_ServicioHotel=" + id_ServicioHotel + ", HoraInicioServicio="
 				+ HoraInicioServicio + ", HoraFinServicio=" + HoraFinServicio + ", DisponibilidaTotal="
-				+ DisponibilidadTotal +" hotel_id= "+hotel_id +" nombre= " +nombre + "]";
+				+ DisponibilidadTotal +" hotel_id= "+hotel_id +" nombre= " +nombre +", "+importe + "]";
 	}
 
 
@@ -112,6 +115,16 @@ public class ServiciosDelHotelBean {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+
+	public int getImporte() {
+		return importe;
+	}
+
+
+	public void setImporte(int importe) {
+		this.importe = importe;
 	}
 	
 	
