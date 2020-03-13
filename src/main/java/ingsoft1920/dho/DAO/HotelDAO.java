@@ -19,10 +19,29 @@ private static Conexion conexion=new Conexion();
 	
 	
 	public static String ConseguirNombreHotelDadoID(int id_hotel) {
+		String res=null;
+		if (conexion.getConexion()== null) 
+			conexion.conectar(); 
 		
-		//falta meter la consulta que nos devulve el nombre del Hotel dado su id
+		java.sql.Statement stmt = null;  
+		ResultSet rs = null;
+		try {
+			stmt=conexion.getConexion().createStatement();
+			rs=stmt.executeQuery("SELECT nombre FROM Hotel WHERE hotel_id= "+id_hotel);
+			
+			if(rs.next()) {
+				res=rs.getString("nombre");
+			}
+					
+		}catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		conexion.desconectar();
 		
-		return "Zero";
+		return res;
 	}
 	
 	
@@ -32,7 +51,7 @@ private static Conexion conexion=new Conexion();
 	
 	public static void anadirHotel(HotelBean hotel) {
 		
-			//consulta de añadir un servicio a la tabla servicios 		
+				
 			if (conexion.getConexion()== null) 
 				conexion.conectar(); 
 			

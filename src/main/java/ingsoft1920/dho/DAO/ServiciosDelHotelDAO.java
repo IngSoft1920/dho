@@ -22,10 +22,29 @@ public class ServiciosDelHotelDAO {
 
 	/*consulta para conseguir el nombre del servicio dado su id_servicioHotel*/
 	public static String conseguirNombreServicioHotel(int id_servicioHotel) {
+		String res=null;
 		
-		//falta la consulta
+		if (conexion.getConexion()== null)
+			conexion.conectar();
 		
-		return "Zero";
+		java.sql.Statement stmt = null; 
+		ResultSet rs = null; 
+		try { 
+			stmt=conexion.getConexion().createStatement();
+			rs=stmt.executeQuery("SELECT nombre FROM ServiciosHotel WHERE servicioHotel_id= "+id_servicioHotel);
+			
+			if(rs.next()) {
+				res=rs.getString("nombre");
+			}
+		}catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		conexion.desconectar();
+		
+		return res;
 	}
 	
 

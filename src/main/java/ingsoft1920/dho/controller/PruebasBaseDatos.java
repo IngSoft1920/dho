@@ -272,7 +272,14 @@ public class PruebasBaseDatos {
 	Time hora= new Time(0);
 	hora.setHours(9);
 	System.out.println(fecha.toString() +" " +hora.toString());
+	
+	
+	HotelDAO prueba36= new HotelDAO(conexion);
+	System.out.println(prueba36.ConseguirNombreHotelDadoID(3));
 	*/
+	
+	ServiciosDelHotelDAO prueba37 = new ServiciosDelHotelDAO(conexion);
+	System.out.println(prueba37.conseguirNombreServicioHotel(4));
 	}
 }
 	
