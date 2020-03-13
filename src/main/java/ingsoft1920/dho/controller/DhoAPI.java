@@ -1,5 +1,6 @@
 package ingsoft1920.dho.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -111,7 +112,7 @@ public class DhoAPI {
 	@PostMapping("/serviciosDisponibles")
 	//va a devolver el JSON en string con la informacion de la base
 	//de datos
-	public String serviciosDisponibles(@RequestBody  String nombre_Hotel){
+	public static  String serviciosDisponibles(@RequestBody  String nombre_Hotel){
 		List<ServiciosDelHotelBean> lista=ServiciosDelHotelDAO.serviciosHotelPorNombre(nombre_Hotel);
 		
 		JsonObject obj =new JsonObject();
@@ -141,15 +142,26 @@ public class DhoAPI {
 	@GetMapping("/serviciosHoras")
 	//va a devolver el JSON en string con la informacion de la base
 	//de datos
-	public String HorasDeServicio(@RequestBody int id_servicioHotel) {
+	public String HorasDeServicio(@RequestBody int id_servicioHotel,@RequestBody String fecha) {
 		
 		JsonObject obj =new JsonObject();
 		
 		String[] res;
-		//obtenemos los horarios e un array de dos posiciones
+		/*obtenemos los horarios e un array de dos posiciones
+		 * res[0]=horaInicio
+		 * res[1]=horaFin
+		 */
 		res=ServiciosDelHotelDAO.horasServicio(id_servicioHotel);
-		obj.addProperty("horas_Inicio" , res[0]);
-		obj.addProperty("hora_Fin", res[1]);
+		
+		
+		int horaInicio=Integer.parseInt(res[0]);
+		int horaFin=Integer.parseInt(res[1]);
+		
+		//queda completarlo
+		
+		//ServiciosDelHotelDAO.plazasLibresServicioHotel(id_servicioHotel, dia, mes, anio, hora)
+		
+		
 		
 		return obj.toString().toString();
 		

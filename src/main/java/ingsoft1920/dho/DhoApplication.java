@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 
 import ingsoft1920.dho.controller.Conexion;
+import ingsoft1920.dho.controller.DhoAPI;
 
 
 @Controller
@@ -29,7 +30,9 @@ public class DhoApplication {
 		Conexion.conectar();
 		SpringApplication.run(DhoApplication.class, args);
 		
+		String res=DhoAPI.serviciosDisponibles("hotel_prueba");
 		
+		System.out.println(res);
 	}
 	
 	
