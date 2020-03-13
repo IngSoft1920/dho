@@ -108,10 +108,10 @@ public class DhoAPI {
 	
 	
 	@ResponseBody
-	@GetMapping("/serviciosDisponibles")
+	@PostMapping("/serviciosDisponibles")
 	//va a devolver el JSON en string con la informacion de la base
 	//de datos
-	public String serviciosDisponibles(@RequestBody String nombre_Hotel){
+	public String serviciosDisponibles(@RequestBody  String nombre_Hotel){
 		List<ServiciosDelHotelBean> lista=ServiciosDelHotelDAO.serviciosHotelPorNombre(nombre_Hotel);
 		
 		JsonObject obj =new JsonObject();
@@ -207,6 +207,41 @@ public class DhoAPI {
 		return obj.toString().toString();
 		
 	}
+	
+	@ResponseBody
+	@GetMapping("/serviciosReservados")
+	/*nos pasan el id_estancia y el id_cliente y consiguen 
+	 * los servivios asociados a esa estancia
+	 */
+	public String serviciosReservadosPorUnCliente(@RequestBody int id_cliente,@RequestBody int id_estancia) {
+		
+		List<ServicioBean> serviciosReservados=ServicioDAO.devuelevServiciosreservadosPorunaEstancia(id_estancia);
+		
+		JsonObject obj =new JsonObject();
+		
+		JsonArray nombreServicio =new JsonArray();
+		
+		JsonArray fechaServicio =new JsonArray();
+		
+		
+		for (ServicioBean elem: serviciosReservados) {
+			
+		
+			fechaServicio.add(elem.getFecha_servicio().toString());
+			
+			
+			nombreServicio.add(ServiciosDelHotelDAO.conseguirNombreServicioHotel(elem.getId_ServicoHotel()));
+			
+		}
+		
+	
+		return obj.toString().toString();
+		
+	}
+	
+	
+	
+	
 	
 	
 	 

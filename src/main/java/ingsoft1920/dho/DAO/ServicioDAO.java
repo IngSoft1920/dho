@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.List;
 
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.ServicioBean;
@@ -18,6 +19,24 @@ public class ServicioDAO {
 		this.conexion=conexion;
 	}
 
+	
+	
+	public static List<ServicioBean> devuelevServiciosreservadosPorunaEstancia(int id_estancia){
+		
+		/*aqui iria la consulta que devuleve los servicios reserservados por una estancia*/
+		
+		return null;
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	public static void recogerServicio(ServicioBean servicio) { 
 		//añadir campos que faltan al servicio para poder añadirlo a la base de datos 
 		//ellos nos van a pasar el lugar, id_servicioHotel, fecha, hora, id_cliente

@@ -20,7 +20,13 @@ public class ServiciosDelHotelDAO {
 		this.conexion=conexion;
 	}
 
-	
+	/*consulta para conseguir el nombre del servicio dado su id_servicioHotel*/
+	public static String conseguirNombreServicioHotel(int id_servicioHotel) {
+		
+		//falta la consulta
+		
+		return "Zero";
+	}
 	
 
 		
