@@ -10,8 +10,23 @@
 meses=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 lasemana=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"]
 diassemana=["lun","mar","mié","jue","vie","sáb","dom"];
+
+diasdelmes1=["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"];
+
+habitacionespiso1=["101","102","103","104","105","106","107"];
+habitacionespiso2=["201","202","203","204","205","206","207"];
+habitacionespiso3=["301","302","303","304","305","306","307"];
+habitacionespiso4=["401","402","403","404","405","406","407"];
+habitacionespiso5=["501","502","503","504","505","506","507"];
+habitacionespiso6=["601","602","603","604","605","606","607"];
+habitacionespiso7=["701","702","703","704","705","706","707"];
+
+
+
+
 //Tras cargarse la página ...
-window.onload = function() {
+window.onload = function() 
+{
 //fecha actual
 hoy=new Date(); //objeto fecha actual
 diasemhoy=hoy.getDay(); //dia semana actual
@@ -22,8 +37,14 @@ annohoy=hoy.getFullYear(); //año actual
 tit=document.getElementById("titulos"); //cabecera del calendario
 ant=document.getElementById("anterior"); //mes anterior
 pos=document.getElementById("posterior"); //mes posterior
-// Elementos del DOM en primera fila
+// Elementos del DOM en las filas
 f0=document.getElementById("fila0");
+f1=document.getElementById("fila1");
+f2=document.getElementById("fila2");
+f3=document.getElementById("fila3");
+f4=document.getElementById("fila4");
+f5=document.getElementById("fila5");
+f6=document.getElementById("fila6");
 //Pie de calendario
 pie=document.getElementById("fechaactual");
 pie.innerHTML+=lasemana[diasemhoy]+", "+diahoy+" de "+meses[meshoy]+" de "+annohoy;
@@ -32,73 +53,59 @@ document.buscar.buscaanno.value=annohoy;
 // Definir elementos iniciales:
 mescal = meshoy; //mes principal
 annocal = annohoy //año principal
+
 //iniciar calendario:
 cabecera() 
-primeralinea()
-escribirdias()
+//rellenarceldas()
 }
+
+
+
+
 //FUNCIONES de creación del calendario:
 //cabecera del calendario
 function cabecera() {
-         tit.innerHTML=meses[mescal]+" de "+annocal;
+         tit.innerHTML=diasemhoy+" "+meses[mescal]+" de "+annocal;
          mesant=mescal-1; //mes anterior
          mespos=mescal+1; //mes posterior
          if (mesant<0) {mesant=11;}
          if (mespos>11) {mespos=0;}
-         ant.innerHTML=meses[mesant]
-         pos.innerHTML=meses[mespos]
+         ant.innerHTML="anterior";
+         pos.innerHTML="posterior";
          } 
 //primera línea de tabla: días de la semana.
-function primeralinea() {
+function rellenarceldas() {
          for (i=0;i<7;i++) {
-             celda0=f0.getElementsByTagName("th")[i];
-             celda0.innerHTML=diassemana[i]
+             celda0=f0.getElementsByTagName("td")[i];
+             celda0.innerHTML=habitacionespiso1[i]
              }
-         }
-//rellenar celdas con los días
-function escribirdias() {
-         //Buscar dia de la semana del dia 1 del mes:
-         primeromes=new Date(annocal,mescal,"1") //buscar primer día del mes
-         prsem=primeromes.getDay() //buscar día de la semana del día 1
-         prsem--; //adaptar al calendario español (empezar por lunes)
-         if (prsem==-1) {prsem=6;}
-         //buscar fecha para primera celda:
-         diaprmes=primeromes.getDate() 
-         prcelda=diaprmes-prsem; //restar días que sobran de la semana
-         empezar=primeromes.setDate(prcelda) //empezar= tiempo UNIX 1ª celda
-         diames=new Date() //convertir en fecha
-         diames.setTime(empezar); //diames=fecha primera celda.
-         //Recorrer las celdas para escribir el día:
-         for (i=1;i<7;i++) { //localizar fila
-             fila=document.getElementById("fila"+i);
-             for (j=0;j<7;j++) {
-                 midia=diames.getDate() 
-                 mimes=diames.getMonth()
-                 mianno=diames.getFullYear()
-                 celda=fila.getElementsByTagName("td")[j];
-                 celda.innerHTML=midia;
-                 //Recuperar estado inicial al cambiar de mes:
-                 celda.style.backgroundColor="#9bf5ff";
-                 celda.style.color="#492736";
-                 //domingos en rojo
-                 if (j==6) { 
-                    celda.style.color="#f11445";
-                    }
-                 //dias restantes del mes en gris
-                 if (mimes!=mescal) { 
-                    celda.style.color="#a0babc";
-                    }
-                 //destacar la fecha actual
-                 if (mimes==meshoy && midia==diahoy && mianno==annohoy ) { 
-                    celda.style.backgroundColor="#f0b19e";
-                    celda.innerHTML="<cite title='Fecha Actual'>"+midia+"</cite>";
-                    }
-                 //pasar al siguiente día
-                 midia=midia+1;
-                 diames.setDate(midia);
-                 }
+         for (i=0;i<7;i++) {
+             celda0=f1.getElementsByTagName("td")[i];
+             celda0.innerHTML=habitacionespiso2[i]
              }
+         for (i=0;i<7;i++) {
+             celda0=f2.getElementsByTagName("td")[i];
+             celda0.innerHTML=habitacionespiso3[i]
+             }
+         for (i=0;i<7;i++) {
+             celda0=f3.getElementsByTagName("td")[i];
+             celda0.innerHTML=habitacionespiso4[i]
+             }
+         for (i=0;i<7;i++) {
+             celda0=f4.getElementsByTagName("td")[i];
+             celda0.innerHTML=habitacionespiso5[i]
+             }
+         for (i=0;i<7;i++) {
+             celda0=f5.getElementsByTagName("td")[i];
+             celda0.innerHTML=habitacionespiso6[i]
+             }
+         for (i=0;i<7;i++) {
+             celda0=f6.getElementsByTagName("td")[i];
+             celda0.innerHTML=habitacionespiso7[i]
+             }
+             
          }
+
 //Ver mes anterior
 function mesantes() {
          nuevomes=new Date() //nuevo objeto de fecha
@@ -107,7 +114,6 @@ function mesantes() {
          mescal=nuevomes.getMonth() //cambiamos las variables que usarán las funciones
          annocal=nuevomes.getFullYear()
          cabecera() //llamada a funcion de cambio de cabecera
-         escribirdias() //llamada a funcion de cambio de tabla.
          }
 //ver mes posterior
 function mesdespues() {
@@ -118,7 +124,6 @@ function mesdespues() {
          mescal=nuevomes.getMonth() //cambiamos variables 
          annocal=nuevomes.getFullYear()
          cabecera() //escribir la cabecera 
-         escribirdias() //escribir la tabla
          }
 //volver al mes actual
 function actualizar() {
@@ -176,14 +181,14 @@ function mifecha() {
 /*cabecera de la página*/
 h1 { text-align: center; padding: 0.5em; }
 /*div principal del calendario*/
-#calendario { border: 4px double black ; max-width: 536px; 
+#calendario { border: 8px double black ; max-width: 1200px; max-height:1000px;
               background-color:#fffafa; text-align: center; }
 /*tabla del calendario*/
 #diasc { border: 1px solid black; border-collapse: 
          separate; border-spacing: 4px; }
-#diasc th,#diasc td { font: normal 14pt arial; width: 70px; height: 30px; }
-#diasc th { color: #990099; background-color: #5ecdec }
-#diasc td { color: #492736; background-color: #9bf5ff }
+#diasc th,#diasc td { font: normal 14pt arial; width: 130px; height: 90px; }
+//#diasc th { background-color: #1fbc22 }
+//#diasc td { background-color: #1fbc22 }
 /*línea de la fecha actual*/
 #fechaactual { font: bold 12pt arial; padding: 0.4em }
 #fechaactual i { cursor: pointer ; }
@@ -216,18 +221,72 @@ h1 { text-align: center; padding: 0.5em; }
   <div id="posterior" onclick="mesdespues()"></div>
   <h2 id="titulos"></h2>
   <table id="diasc">
-    <tr id="fila0"><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>
-    <tr id="fila1"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-    <tr id="fila2"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-    <tr id="fila3"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-    <tr id="fila4"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-    <tr id="fila5"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-    <tr id="fila6"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr id="fila0"><td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">101</a></h3></td>
+    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">102</a></h3></td>
+    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">103</a></h3></td>
+    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">104</a></h3></td>
+    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">105</a></h3></td>
+    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">106</a></h3></td>
+    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">107</a></h3></td></td>
+    			   
+    			   
+    			   
+    <tr id="fila1"><td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">101</a></h3></td>
+    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">202</a></h3></td>
+    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">203</a></h3></td>
+    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">204</a></h3></td>
+    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">205</a></h3></td>
+    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">206</a></h3></td>
+    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">207</a></h3></td></td>
+    			   
+    			   
+    <tr id="fila2"><td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">301</a></h3></td>
+    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">302</a></h3></td>
+    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">303</a></h3></td>
+    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">304</a></h3></td>
+    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">305</a></h3></td>
+    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">306</a></h3></td>
+    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">307</a></h3></td></td>
+    			   
+    			   
+    <tr id="fila3"><td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">401</a></h3></td>
+    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">402</a></h3></td>
+    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">403</a></h3></td>
+    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">404</a></h3></td>
+    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">405</a></h3></td>
+    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">46</a></h3></td>
+    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">407</a></h3></td></td>
+    			   
+    <tr id="fila4"><td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">501</a></h3></td>
+    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">502</a></h3></td>
+    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">503</a></h3></td>
+    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">504</a></h3></td>
+    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">505</a></h3></td>
+    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">506</a></h3></td>
+    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">507</a></h3></td></td>
+    			   
+    <tr id="fila5"><td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">601</a></h3></td>
+    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">602</a></h3></td>
+    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">603</a></h3></td>
+    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">604</a></h3></td>
+    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">605</a></h3></td>
+    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">606</a></h3></td>
+    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">607</a></h3></td></td>
+    			   
+    <tr id="fila6"><td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">701</a></h3></td>
+    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">702</a></h3></td>
+    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">703</a></h3></td>
+    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">704</a></h3></td>
+    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">705</a></h3></td>
+    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">706</a></h3></td>
+    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">707</a></h3></td></td>
+    			   
   </table>
+  
   <div id="fechaactual"><i onclick="actualizar()">HOY: </i></div>
   <div id="buscafecha">
     <form action="#" name="buscar">
-      <p>Buscar ... MES
+      <p>DÍA
         <select name="buscames">
           <option value="0">Enero</option>
           <option value="1">Febrero</option>
