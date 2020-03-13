@@ -29,10 +29,7 @@ public class DhoApplication {
 		Conexion.init(servidor,puerto,usuario,contraseña,baseDeDatos);
 		Conexion.conectar();
 		SpringApplication.run(DhoApplication.class, args);
-		
-		String res=DhoAPI.serviciosDisponibles("hotel_prueba");
-		
-		System.out.println(res);
+	
 	}
 	
 	

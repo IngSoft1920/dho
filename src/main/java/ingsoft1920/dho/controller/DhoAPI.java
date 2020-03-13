@@ -1,6 +1,8 @@
 package ingsoft1920.dho.controller;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ingsoft1920.dho.DAO.EstanciaDAO;
@@ -112,7 +115,13 @@ public class DhoAPI {
 	@PostMapping("/serviciosDisponibles")
 	//va a devolver el JSON en string con la informacion de la base
 	//de datos
-	public static  String serviciosDisponibles(@RequestBody  String nombre_Hotel){
+	public static  String serviciosDisponibles(@RequestBody  String req){
+		
+		
+		JsonObject requeObj = JsonParser.parseString(req).getAsJsonObject();
+		
+		String nombre_Hotel= requeObj.get("nombre_Hotel").getAsString();
+		
 		List<ServiciosDelHotelBean> lista=ServiciosDelHotelDAO.serviciosHotelPorNombre(nombre_Hotel);
 		
 		JsonObject obj =new JsonObject();
@@ -142,9 +151,12 @@ public class DhoAPI {
 	@GetMapping("/serviciosHoras")
 	//va a devolver el JSON en string con la informacion de la base
 	//de datos
-	public String HorasDeServicio(@RequestBody int id_servicioHotel,@RequestBody String fecha) {
+	public String HorasDeServicio(@RequestParam int id_servicioHotel,@RequestParam String fecha) {
 		
 		JsonObject obj =new JsonObject();
+		
+		JsonArray horasDisponibles=new JsonArray();
+		
 		
 		String[] res;
 		/*obtenemos los horarios e un array de dos posiciones
@@ -157,10 +169,38 @@ public class DhoAPI {
 		int horaInicio=Integer.parseInt(res[0]);
 		int horaFin=Integer.parseInt(res[1]);
 		
-		//queda completarlo
 		
-		//ServiciosDelHotelDAO.plazasLibresServicioHotel(id_servicioHotel, dia, mes, anio, hora)
+		//creamos un array en la que cada posicion represnta una hora empezando desde la horaInicio
 		
+		int[] horas= new int[horaFin-horaInicio];
+		int cont=0;
+		int aux=horaInicio;
+		
+		//transforma la fecha en formato String a Date
+		  	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		  	Date date=null;
+	        try {
+
+	            date = (Date) formatter.parse(fecha);
+
+	        } catch (ParseException e) {
+	            e.printStackTrace();
+	        }
+		
+	        
+		if(date!=null) {
+		
+			while(aux<horaFin) {
+				
+			
+				horas[cont]=ServiciosDelHotelDAO.plazasLibresServicioHotel(id_servicioHotel, Integer.toString(date.getDay()), 
+						Integer.toString(date.getMonth()), Integer.toString(date.getYear()), aux);
+				
+				aux++;
+				cont++;
+			}
+			
+		}
 		
 		
 		return obj.toString().toString();
