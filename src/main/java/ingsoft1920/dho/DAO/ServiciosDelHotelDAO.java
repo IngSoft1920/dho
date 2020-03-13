@@ -184,7 +184,7 @@ public class ServiciosDelHotelDAO {
 				while(rs2.next()) {
 					res.add(new ServiciosDelHotelBean(rs2.getInt("servicioHotel_id"), rs2.getTime("horaInicioServicio"), 
 							rs2.getTime("horaFinServicio"), rs2.getInt("disponibilidadTotal"), rs2.getInt("hotel_id"), 
-							rs2.getString("nombre"), rs.getInt("importe")));
+							rs2.getString("nombre"), rs2.getInt("importe")));
 				}}}catch (SQLException ex){  
 					System.out.println("SQLException: " + ex.getMessage()); 
 				} finally { // it is a good idea to release resources in a finally block  

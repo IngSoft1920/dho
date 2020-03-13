@@ -263,7 +263,7 @@ public class PruebasBaseDatos {
 	prueba35.anadirHabitaciones(h1);
 	//System.out.println(h1.getNum_Disponibles());
 	
-	 */
+	 
 	Date fecha= new Date(0);
 	fecha.setYear(125);
 	fecha.setMonth(2);
@@ -272,6 +272,7 @@ public class PruebasBaseDatos {
 	Time hora= new Time(0);
 	hora.setHours(9);
 	System.out.println(fecha.toString() +" " +hora.toString());
+	*/
 	}
 }
 	
