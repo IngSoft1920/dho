@@ -174,7 +174,7 @@ public class DhoAPI {
 	@GetMapping("/reservas")
 	public String obtenerEstanciaDeUnCliente(@RequestBody int id_cliente) {
 		
-		List<EstanciaBean> lista=EstanciaDAO.getEstacia(id_cliente);
+		List<EstanciaBean> lista=EstanciaDAO.getEstancia(id_cliente);
 		
 		JsonObject obj =new JsonObject();
 		
@@ -325,6 +325,38 @@ public class DhoAPI {
 			serv.setNombre(nombreServ);
 			ServiciosDelHotelDAO.anadirServicioDelHotel(serv);
 		}
+
+		return "Procesado correctamente";
+
+	}
+	
+	@ResponseBody
+	@PostMapping("/recibirReserva")
+	public String recibirReserva(@RequestBody String req) {
+		// Nos envian
+		/*
+		     fecha_entrada
+			fecha_salida
+			importe
+			cliente_id
+			numero_acompanantes
+			hotel_id
+			tipo_hab_id
+		 */
+		// Este texto estaria en la variable req
+
+		// Parseamos el texto a un JsonObject
+		JsonObject obj = (JsonObject) JsonParser.parseString(req);
+
+		String fecha_inicio = obj.get("fecha_entrada").getAsString();
+		String fecha_fin = obj.get("fecha_salida").getAsString();
+		String importe = obj.get("importe").getAsString();
+		int cliente_id = obj.get("cliente_id").getAsInt();
+		int num_acompañantes = obj.get("numero_acompanantes").getAsInt();
+		int hotel_id = obj.get("hotel_id").getAsInt();
+		int tipo_hab_id = obj.get("tipo_hab_id").getAsInt();
+
+		EstanciaDAO.anadirEstancia(cliente_id, hotel_id, fecha_inicio,fecha_fin, tipo_hab_id);
 
 		return "Procesado correctamente";
 
