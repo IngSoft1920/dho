@@ -375,8 +375,8 @@ public class DhoAPI {
 	@PostMapping("/recibirReserva")
 	public String recibirReserva(@RequestBody String req) {
 		// Nos envian
-		/*
-		     fecha_entrada
+		/*	reserva_id
+		    fecha_entrada
 			fecha_salida
 			importe
 			cliente_id
@@ -388,16 +388,15 @@ public class DhoAPI {
 
 		// Parseamos el texto a un JsonObject
 		JsonObject obj = (JsonObject) JsonParser.parseString(req);
-
+		int reserva_id=obj.get("reserva_id").getAsInt();
 		String fecha_inicio = obj.get("fecha_entrada").getAsString();
 		String fecha_fin = obj.get("fecha_salida").getAsString();
-		String importe = obj.get("importe").getAsString();
+		int importe = obj.get("importe").getAsInt();
 		int cliente_id = obj.get("cliente_id").getAsInt();
 		int num_acompañantes = obj.get("numero_acompanantes").getAsInt();
 		int hotel_id = obj.get("hotel_id").getAsInt();
 		int tipo_hab_id = obj.get("tipo_hab_id").getAsInt();
-
-		EstanciaDAO.anadirEstancia(cliente_id, hotel_id, fecha_inicio,fecha_fin, tipo_hab_id, importe);
+		EstanciaDAO.anadirEstancia(reserva_id,cliente_id, hotel_id, fecha_inicio,fecha_fin, tipo_hab_id, importe);
 
 		return "Procesado correctamente";
 
