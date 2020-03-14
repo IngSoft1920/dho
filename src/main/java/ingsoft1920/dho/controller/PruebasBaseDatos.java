@@ -276,10 +276,12 @@ public class PruebasBaseDatos {
 	
 	HotelDAO prueba36= new HotelDAO(conexion);
 	System.out.println(prueba36.ConseguirNombreHotelDadoID(3));
-	*/
+	
 	
 	ServiciosDelHotelDAO prueba37 = new ServiciosDelHotelDAO(conexion);
 	System.out.println(prueba37.conseguirNombreServicioHotel(4));
+	*/
+	
 	}
 }
 	

@@ -32,7 +32,7 @@ public class EstanciaDAO {
 			while (rs.next()) {
 				res.add(new EstanciaBean(rs.getInt("estancia_id"), rs.getInt("habitacion_id"), cliente_id,
 						rs.getInt("hotel_id"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"),
-						rs.getString("estado")));
+						rs.getString("estado"), rs.getInt("importe")));
 			}
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
@@ -158,7 +158,7 @@ public class EstanciaDAO {
 			while (rs.next()) {
 				res.add(new EstanciaBean(rs.getInt("estancia_id"), rs.getInt("habitacion_id"), rs.getInt("cliente_id"),
 						rs.getInt("hotel_id"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"),
-						rs.getString("estado")));
+						rs.getString("estado"), rs.getInt("importe")));
 			}
 
 		} catch (SQLException ex) {
@@ -198,7 +198,7 @@ public class EstanciaDAO {
 			while (rs.next()) {
 				res.add(new EstanciaBean(rs.getInt("estancia_id"), rs.getInt("habitacion_id"), rs.getInt("cliente_id"),
 						rs.getInt("hotel_id"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"),
-						rs.getString("estado")));
+						rs.getString("estado"), rs.getInt("importe")));
 			}
 
 		} catch (SQLException ex) {
@@ -238,7 +238,7 @@ public class EstanciaDAO {
 			while (rs.next()) {
 				res.add(new EstanciaBean(rs.getInt("estancia_id"), rs.getInt("habitacion_id"), rs.getInt("cliente_id"),
 						rs.getInt("hotel_id"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"),
-						rs.getString("estado")));
+						rs.getString("estado"), rs.getInt("importe")));
 			}
 
 		} catch (SQLException ex) {
@@ -278,7 +278,7 @@ public class EstanciaDAO {
 			while (rs.next()) {
 				res.add(new EstanciaBean(rs.getInt("estancia_id"), rs.getInt("habitacion_id"), rs.getInt("cliente_id"),
 						rs.getInt("hotel_id"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"),
-						rs.getString("estado")));
+						rs.getString("estado"), rs.getInt("importe")));
 			}
 
 		} catch (SQLException ex) {
@@ -313,6 +313,7 @@ public class EstanciaDAO {
 		java.sql.Statement stmt = null;
 		ResultSet rs = null;
 		/*try {
+		 
 			delete from aux where id=1;
 			insert into estancia(habitacion_id,cliente_id,hotel_id,fecha_inicio,fecha_fin,estado) values (-1,2,1,'2020-03-05','2020-03-10', 'reservada');
 			insert into aux values (1,(select habitacion_id from (select est.habitacion_id from estancia as est
@@ -325,7 +326,7 @@ public class EstanciaDAO {
 					group by habitacion_id order by habitacion_id asc limit 1) );
 
 
-			--  si aux.hab = null 
+			--  si aux.hab = null (Si estan todas cogidas)
 			update aux set hab=(select habitacion_id from habitaciones where not exists(select habitacion_id from estancia
 			 where estancia.habitacion_id=habitaciones.habitacion_id group by habitacion_id) and tipo_habitacion='normal' limit 1) where id=1;
 
