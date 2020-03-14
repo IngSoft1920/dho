@@ -363,6 +363,7 @@ public class DhoAPI {
 			serv.setId_Servicio(idServ);
 			serv.setHotel_id(id);
 			serv.setNombre(nombreServ);
+			serv.setImporte(precio);
 			ServiciosDelHotelDAO.anadirServicioDelHotel(serv);
 		}
 
@@ -396,7 +397,7 @@ public class DhoAPI {
 		int hotel_id = obj.get("hotel_id").getAsInt();
 		int tipo_hab_id = obj.get("tipo_hab_id").getAsInt();
 
-		EstanciaDAO.anadirEstancia(cliente_id, hotel_id, fecha_inicio,fecha_fin, tipo_hab_id);
+		EstanciaDAO.anadirEstancia(cliente_id, hotel_id, fecha_inicio,fecha_fin, tipo_hab_id, importe);
 
 		return "Procesado correctamente";
 
