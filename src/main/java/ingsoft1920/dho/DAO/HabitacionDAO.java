@@ -17,6 +17,18 @@ public class HabitacionDAO {
 	public HabitacionDAO(Conexion conexion) {
 		this.conexion = conexion;
 	}
+	
+	//Dado el int del tipo devuelve un string
+	public static String tipoHabitacion(int id) {
+		String res=null;
+		if(id==1) {
+			res="normal";
+		}
+		if(id==2) {
+			res="premium";
+		}
+		return res;
+	}
 
 	public static HabitacionBean getHabitacionPorId(int id_cliente) {
 		// Devuelve la habitacion que ha alquilado un cliente
