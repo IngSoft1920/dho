@@ -20,12 +20,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ingsoft1920.dho.DAO.EstanciaDAO;
 import ingsoft1920.dho.DAO.HabitacionDAO;
 import ingsoft1920.dho.DAO.HotelDAO;
+import ingsoft1920.dho.DAO.IncidenciaDAO;
 import ingsoft1920.dho.DAO.ServicioDAO;
 import ingsoft1920.dho.DAO.ServiciosDelHotelDAO;
 import ingsoft1920.dho.DAO.TareaDAO;
 import ingsoft1920.dho.bean.EstanciaBean;
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.HotelBean;
+import ingsoft1920.dho.bean.IncidenciaBean;
 import ingsoft1920.dho.bean.ServicioBean;
 import ingsoft1920.dho.bean.ServiciosDelHotelBean;
 import ingsoft1920.dho.bean.TareaBean;
@@ -153,6 +155,53 @@ public class DhoAPI {
 			ServicioDAO.añadirServicio(nuevoServicio);
 		}
 
+		
+		
+	}
+	
+	
+	
+	@ResponseBody
+	@PostMapping("/informarIncidencia")
+	public void recibirIncidencia(@RequestBody String req) {
+		
+	
+		JsonObject requeObj = JsonParser.parseString(req).getAsJsonObject();
+	
+		
+		IncidenciaBean incidencia=new IncidenciaBean();
+		
+		
+		String tipo_trabajo= requeObj.get("asunto").getAsString();
+		
+		incidencia.setTipo_incidencia(tipo_trabajo);
+		
+		String descripcion = requeObj.get("descripcion").getAsString();
+		
+		incidencia.setDescripcion(descripcion);
+		
+		String lugar = requeObj.get("lugar").getAsString();
+		
+		incidencia.setLugar(lugar);
+		
+		String fecha  = requeObj.get("fecha").getAsString();
+		
+		
+		LocalDate date=LocalDate.parse(fecha);
+		incidencia.setFecha( java.sql.Date.valueOf(date));
+		
+		
+		String hora  = requeObj.get("hora").getAsString();
+		
+		LocalTime horaTime=LocalTime.parse(hora);
+		incidencia.setHora(java.sql.Time.valueOf(horaTime));
+		
+		
+		int id_hotel   = requeObj.get("id_hotel").getAsInt();
+		
+		incidencia.setHotel_id(id_hotel);
+		
+		IncidenciaDAO.añadirIncidencia(incidencia);
 		
 		
 	}
