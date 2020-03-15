@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 public class Enlace {
 	@GetMapping("/download/f/{archivoCod}")
-    public static void download(@PathVariable("archivoCod") int archivoCod, HttpServletResponse response) {
+    public static void download(@PathVariable("archivoCod") String archivoCod, HttpServletResponse response) {
         try {
             // Pasa por filtro bbdd que traduce archivoCod a videoFileName, asi como comprueba
             // permisos etc...
@@ -23,7 +23,7 @@ public class Enlace {
             if (archivo == null)
                 throw new Exception("Pdf no registrado en BBDD.");
             // Abrir fichero pedido
-            File f = new File("files//archivo/" + archivo.getNombre_archivo() + ".pdf");
+            File f = new File("files//archivo/" + archivoCod + ".pdf");
             if (!f.exists())
                 throw new Exception("PDF does not exist.");
             // Obtenemos InputSteam del fichero

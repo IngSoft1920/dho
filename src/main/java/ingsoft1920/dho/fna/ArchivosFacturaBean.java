@@ -7,8 +7,7 @@ import java.sql.Date;
 @Component
 public class ArchivosFacturaBean {
 
-	private int archivoCod; 
-	private String nombre_archivo;
+	private String archivoCod;
 	private Date fecha_creacion; 
 	private int cliente_id; 
 	private String enlace_descarga; 
@@ -17,26 +16,18 @@ public class ArchivosFacturaBean {
 		
 	}
 	
-	public ArchivosFacturaBean(int archivoCod, String nombre_archivo, Date fecha_creacion, int cliente_id, String enlace_descarga) {
+	public ArchivosFacturaBean(String archivoCod, Date fecha_creacion, int cliente_id, String enlace_descarga) {
 		this.archivoCod = archivoCod;
-		this.nombre_archivo = nombre_archivo;
 		this.fecha_creacion = fecha_creacion;
 		this.cliente_id = cliente_id;
 		this.enlace_descarga = enlace_descarga;
 		}
 	
-	public int getArchivoCod() {
+	public String getArchivoCod() {
 		return archivoCod;
 	}
-	public void setArchivoCod(int archivoCod) {
+	public void setArchivoCod(String archivoCod) {
 		this.archivoCod = archivoCod;
-	}
-	
-	public String getNombre_archivo() {
-		return nombre_archivo;
-	}
-	public void setNombre_archivo(String nombre_archivo) {
-		this.nombre_archivo = nombre_archivo;
 	}
 	
 	public Date getFecha_creacion() {
