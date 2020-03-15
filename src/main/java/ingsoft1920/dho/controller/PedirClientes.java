@@ -12,7 +12,7 @@ import ingsoft1920.dho.bean.ClienteBean;
 public class PedirClientes {
 
 		
-		public static ClienteBean peticionPedirCliente(int cliente_id) {
+		public static ClienteBean peticionPedirCliente(int reserva_id) {
 			
 			
 			try {
@@ -22,7 +22,7 @@ public class PedirClientes {
 				
 				JsonObject param= new JsonObject();
 				
-				param.addProperty("cliente_id", cliente_id);
+				param.addProperty("reserva_id", reserva_id);
 				
 				client.setRequestBody(param.toString().toString());
 				
@@ -34,14 +34,15 @@ public class PedirClientes {
 					
 					JsonObject obj = (JsonObject) JsonParser.parseString(resp);
 					
-				    cliente_id = obj.get("cliente_id").getAsInt();
+				    int cliente_id = obj.get("cliente_id").getAsInt();
 					String nombre = obj.get("nombre").getAsString();
+					String apellidos=obj.get("apellidos").getAsString();
 					String dni= obj.get("dni").getAsString();
 					String email= obj.get("email").getAsString();
 					String password= obj.get("password").getAsString();
 					String nacionalidad= obj.get("nacionalidad").getAsString();
 					int telefono= obj.get("telefono").getAsInt();
-					ClienteBean cliente = new ClienteBean (cliente_id, nombre, dni, email, password, nacionalidad,telefono);
+					ClienteBean cliente = new ClienteBean (cliente_id, nombre,apellidos, dni, email, password, nacionalidad,telefono);
 					
 				 return cliente;
 				
