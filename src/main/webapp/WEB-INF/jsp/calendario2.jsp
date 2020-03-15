@@ -11,7 +11,9 @@ meses=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septie
 lasemana=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"]
 diassemana=["lun","mar","mié","jue","vie","sáb","dom"];
 
-diasdelmes1=["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"];
+maximodia=["31","28","31","30","31","30","31","31","30","31","30","31"];
+maximodiasig=["32","29","32","31","32","31","32","32","31","32","31","32"];
+
 
 habitacionespiso1=["101","102","103","104","105","106","107"];
 habitacionespiso2=["201","202","203","204","205","206","207"];
@@ -65,13 +67,26 @@ cabecera()
 //FUNCIONES de creación del calendario:
 //cabecera del calendario
 function cabecera() {
-         tit.innerHTML=diasemhoy+" "+meses[mescal]+" de "+annocal;
-         mesant=mescal-1; //mes anterior
-         mespos=mescal+1; //mes posterior
-         if (mesant<0) {mesant=11;}
-         if (mespos>11) {mespos=0;}
-         ant.innerHTML="anterior";
+     	 ant.innerHTML="anterior";
          pos.innerHTML="posterior";
+         mesant=mescal-1;
+         mespos=mescal+1;
+         
+            //cambio de año
+         if(mescal==11 && diahoy==32) { annocal=annocal+1; diahoy=1; mescal=0;}
+         else if(mescal==0 && diahoy==0) { annocal=annocal-1; diahoy=31; mescal=11; } 
+         
+         //cambio de mes bisiesto
+         else if(mescal==2 && diahoy==0 && annocal%4==0 && annocal%100!=0) { diahoy=maximodiasig[mesant]; mescal=mesant; }
+         else if(mescal==1 && diahoy==29 && annocal%4==0 && annocal%100!=0){}
+         else if(mescal==1 && diahoy==30 && annocal%4==0 && annocal%100!=0) { diahoy=1; mescal=mespos; }
+         
+         //cambio de mes normal
+		 else if(diahoy==0){ mescal=mesant;diahoy=maximodia[mesant]; }
+		 else if(diahoy==maximodiasig[mescal]){ mescal=mespos; diahoy=1; }
+		 
+		 //imprimir por pantalla
+         tit.innerHTML=diahoy+" "+meses[mescal]+" de "+annocal;
          } 
 //primera línea de tabla: días de la semana.
 function rellenarceldas() {
@@ -108,21 +123,12 @@ function rellenarceldas() {
 
 //Ver mes anterior
 function mesantes() {
-         nuevomes=new Date() //nuevo objeto de fecha
-         primeromes--; //Restamos un día al 1 del mes visualizado
-         nuevomes.setTime(primeromes) //cambiamos fecha al mes anterior 
-         mescal=nuevomes.getMonth() //cambiamos las variables que usarán las funciones
-         annocal=nuevomes.getFullYear()
+		 diahoy=diahoy-1;
          cabecera() //llamada a funcion de cambio de cabecera
          }
 //ver mes posterior
 function mesdespues() {
-         nuevomes=new Date() //nuevo obejto fecha
-         tiempounix=primeromes.getTime() //tiempo de primero mes visible
-         tiempounix=tiempounix+(45*24*60*60*1000) //le añadimos 45 días 
-         nuevomes.setTime(tiempounix) //fecha con mes posterior.
-         mescal=nuevomes.getMonth() //cambiamos variables 
-         annocal=nuevomes.getFullYear()
+		 diahoy=diahoy+1;
          cabecera() //escribir la cabecera 
          }
 //volver al mes actual
