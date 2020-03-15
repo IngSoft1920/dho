@@ -24,7 +24,13 @@ import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 import ingsoft1920.dho.controller.Conexion;
 
 import java.io.*;
-import java.util.ArrayList; 
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.UUID; 
 
 /**
  * Example of using the iText library to work with PDF documents on Java, 
@@ -56,14 +62,25 @@ public class generatePDFFileIText {
      *      pdf File we are going to write. 
      *      Fichero pdf en el que vamos a escribir. 
      */
-    public void createPDF(File pdfNewFile, int cliente_id) {
+    /*
+     /*
+      * ArchivosFactura
+      * archivoCod String
+      * fecha_creacion DATE
+      * cliente_id int
+      * enlaceDescarga String
+      */
+    public void createPDF(int cliente_id) {
         // We create the document and set the file name.        
-        // Creamos el documento e indicamos el nombre del fichero.
+        // Creamos el documento y generamos el nombre del fichero.
+    	String name=UUID.randomUUID().toString();
+    	File file=new File("files//"+name+".pdf");
+    	Date date=new Date(LocalDate.now().getYear(),LocalDate.now().getMonthValue(),LocalDate.now().getDayOfMonth());
         try {
             Document document = new Document();
             try {
 
-                PdfWriter.getInstance(document, new FileOutputStream(pdfNewFile));
+                PdfWriter.getInstance(document, new FileOutputStream(file));
 
             } catch (FileNotFoundException fileNotFoundException) {
                 System.out.println("No such file was found to generate the PDF "
@@ -98,10 +115,30 @@ public class generatePDFFileIText {
         		pago_total+=elem.getPrecio();
         		chapter.add(new Paragraph(elem.toString(), paragraphFont));
         	}
-        	chapter.add(new Paragraph("Me pagais esto ahora mismo o no os vais de aqui con vida: "+pago_total, paragraphFont));
+        	chapter.add(new Paragraph("TOTAL: "+pago_total, paragraphFont));
             document.add(chapter);
             document.close();
             System.out.println("Your PDF file has been generated!(¡Se ha generado tu hoja PDF!");
+            //Ahora añadimos a la base de datos el PDF creado
+    		Conexion conexion = new Conexion();
+    		if (conexion.getConexion()==null) 
+    			conexion.conectar();
+    		PreparedStatement stm=null; 
+    		try {  
+    				stm=conexion.getConexion().prepareStatement("INSERT INTO ArchivosFactura values (?,?,?,?)"); 
+    				stm.setString(1,name); 
+    				stm.setDate(2, date); 
+    				stm.setInt(3, cliente_id); 
+    				stm.setString(4, ""); 
+    				stm.executeUpdate(); 
+     
+    		}  
+    		catch (SQLException ex){  
+    			System.out.println("SQLException: " + ex.getMessage()); 
+    		} finally { // it is a good idea to release resources in a finally block  
+    			if (stm != null) { try {  stm.close(); } catch (SQLException sqlEx) { }  stm = null; }  
+    		} 
+    		conexion.desconectar();
         } catch (DocumentException documentException) {
             System.out.println("The file not exists (Se ha producido un error al generar un documento): " + documentException);
         }
@@ -111,7 +148,7 @@ public class generatePDFFileIText {
      */
     public static void main(String args[]) {
         generatePDFFileIText generatePDFFileIText = new generatePDFFileIText();
-        generatePDFFileIText.createPDF(new File("files//archivo.pdf"),2);
+        generatePDFFileIText.createPDF(2);
     }
 }
 
