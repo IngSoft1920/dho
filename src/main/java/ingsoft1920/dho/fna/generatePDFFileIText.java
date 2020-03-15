@@ -75,7 +75,7 @@ public class generatePDFFileIText {
         // Creamos el documento y generamos el nombre del fichero.
     	String name=UUID.randomUUID().toString();
     	File file=new File("files//"+name+".pdf");
-    	Date date=new Date(LocalDate.now().getYear(),LocalDate.now().getMonthValue(),LocalDate.now().getDayOfMonth());
+    	Date date=new Date(LocalDate.now().getYear()-1900,LocalDate.now().getMonthValue()-1,LocalDate.now().getDayOfMonth());
         try {
             Document document = new Document();
             try {
@@ -148,7 +148,7 @@ public class generatePDFFileIText {
      */
     public static void main(String args[]) {
         generatePDFFileIText generatePDFFileIText = new generatePDFFileIText();
-        generatePDFFileIText.createPDF(2);
+        generatePDFFileIText.createPDF(1);
     }
 }
 
