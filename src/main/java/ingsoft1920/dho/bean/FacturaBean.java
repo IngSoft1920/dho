@@ -23,7 +23,7 @@ public class FacturaBean {
 	}
 	 
 	public FacturaBean(int factura_id, int estancia_id, int cliente_id, int habitacion_id, Date fecha_factura, 
-			int precio, boolean pagado, String tipo_factura) { 
+		int precio, boolean pagado, String tipo_factura) { 
 		this.factura_id = factura_id; 
 		this.estancia_id = estancia_id; 
 		this.cliente_id = cliente_id; 
