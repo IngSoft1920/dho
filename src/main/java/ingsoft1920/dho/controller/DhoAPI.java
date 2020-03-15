@@ -102,11 +102,59 @@ public class DhoAPI {
 
 	}
 
+	
+	//QUEDA SOLUCIONAR LO DEL PRECIO
 	@ResponseBody
 	@PostMapping("/recibirServicio")
-	public void recibirServicio(@RequestBody ServicioBean nuevoServicio) {
-		ServicioDAO.recogerServicio(nuevoServicio);
+	public void recibirServicio(@RequestBody String req) {
+		
+		ServicioBean nuevoServicio=new ServicioBean();
+		
+		
+		JsonObject requeObj = JsonParser.parseString(req).getAsJsonObject();
+		
+		String fecha= requeObj.get("fecha").getAsString();
+		
+		String hora= requeObj.get("hora").getAsString();
+		
+		String hora_salida = requeObj.get("hora_salida ").getAsString();
+		
+		int id_servicioHotel= requeObj.get("id_servicio").getAsInt();
+		
+		int cliente_id= requeObj.get("cliente_id").getAsInt();
+		
+		int id_reserva= requeObj.get("id_reserva").getAsInt();
+		
+		int num_personas= requeObj.get("num_personas").getAsInt();
+		
+		nuevoServicio.setCliente_id(cliente_id);
+		nuevoServicio.setEstancia_id(id_reserva);
+		LocalDate date=LocalDate.parse(fecha);
+		nuevoServicio.setFecha_servicio( java.sql.Date.valueOf(date));
+		
+		LocalTime horaTime=LocalTime.parse(hora);
+		nuevoServicio.setHora(java.sql.Time.valueOf(horaTime));
+		
+		
+		LocalTime hora_salidaTime=LocalTime.parse(hora_salida);
+		nuevoServicio.setHora_salida(java.sql.Time.valueOf(hora_salidaTime));
+		
+		nuevoServicio.setId_ServicoHotel(id_servicioHotel);
 
+		
+		//Falta ver que hacemos con esto, como va?
+		//nuevoServicio.setPrecio(precio);
+		
+		//el resto de campos se quedan sin valor 
+		
+		for(int i=0;i<num_personas;i++) {
+			
+			//añadimos tantas reservas como nuemero de personas
+			ServicioDAO.añadirServicio(nuevoServicio);
+		}
+
+		
+		
 	}
 	
 	
@@ -233,8 +281,13 @@ public class DhoAPI {
 	
 
 	@ResponseBody
-	@GetMapping("/reservas")
-	public String obtenerEstanciaDeUnCliente(@RequestBody int id_cliente) {
+	@PostMapping("/reservas")
+	public String obtenerEstanciaDeUnCliente(@RequestBody String req) {
+		
+		JsonObject requeObj = JsonParser.parseString(req).getAsJsonObject();
+		
+		int id_cliente= requeObj.get("id_cliente").getAsInt();
+		
 		
 		List<EstanciaBean> lista=EstanciaDAO.getEstancia(id_cliente);
 		
@@ -251,6 +304,7 @@ public class DhoAPI {
 		JsonArray nombre_hotel_Lista=new JsonArray();
 		
 		
+		
 		//falta meter el del check_in
 		
 		for (EstanciaBean elem : lista) {
@@ -262,6 +316,7 @@ public class DhoAPI {
 			fecha_Inicio_Lista.add(elem.getFecha_inicio().toString());
 			
 			fecha_Fin_Lista.add(elem.getFecha_fin().toString());
+			
 			
 			nombre_hotel_Lista.add(HotelDAO.ConseguirNombreHotelDadoID(elem.getHotel_id()));
 			
@@ -283,11 +338,18 @@ public class DhoAPI {
 	}
 	
 	@ResponseBody
-	@GetMapping("/serviciosReservados")
+	@PostMapping("/serviciosReservados")
 	/*nos pasan el id_estancia y el id_cliente y consiguen 
 	 * los servivios asociados a esa estancia
 	 */
-	public String serviciosReservadosPorUnCliente(@RequestBody int id_cliente,@RequestBody int id_estancia) {
+	public String serviciosReservadosPorUnCliente(@RequestBody String req) {
+		
+		JsonObject requeObj = JsonParser.parseString(req).getAsJsonObject();
+		
+		int id_estancia = requeObj.get("id_estancia").getAsInt();
+		
+		int id_cliente = requeObj.get("id_cliente").getAsInt();
+		
 		
 		List<ServicioBean> serviciosReservados=ServicioDAO.devuelevServiciosreservadosPorunaEstancia(id_estancia);
 		
@@ -307,6 +369,11 @@ public class DhoAPI {
 			nombreServicio.add(ServiciosDelHotelDAO.conseguirNombreServicioHotel(elem.getId_ServicoHotel()));
 			
 		}
+		
+		
+		obj.add("fecha", fechaServicio);
+		
+		obj.add("nombreServicio", nombreServicio);
 		
 	
 		return obj.toString().toString();
