@@ -9,7 +9,7 @@ private static Conexion conexion= new Conexion();
 		this.conexion=conexion;
 	}
 	
-	public static ArchivosFacturaBean getPDFByCod(int archivoCod) {
+	public static ArchivosFacturaBean getPDFByCod(String archivoCod) {
 		return null;
 		
 	}
