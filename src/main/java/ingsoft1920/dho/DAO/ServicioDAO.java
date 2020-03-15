@@ -37,15 +37,6 @@ public class ServicioDAO {
 	
 	
 	
-	public static void recogerServicio(ServicioBean servicio) { 
-		//añadir campos que faltan al servicio para poder añadirlo a la base de datos 
-		//ellos nos van a pasar el lugar, id_servicioHotel, fecha, hora, id_cliente
-		//y segun sea una cosa del restaurante o no, nos mandaran los platos y items
-		
-		//solo queda por añadir el id_estancia, para ello llamamos a una consulta que haga eso
-		servicio.setEstancia_id(EstanciaDAO.getEstaciaId(servicio.getCliente_id()));
-		añadirServicio(servicio); 
-	} 
 	 
 	public static void añadirServicio(ServicioBean servicio) { 
 		//consulta de añadir un servicio a la tabla servicios 		
