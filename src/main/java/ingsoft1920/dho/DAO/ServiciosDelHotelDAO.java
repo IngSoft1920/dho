@@ -226,7 +226,7 @@ public class ServiciosDelHotelDAO {
 	
 	
 	//suponemos que nos pasan un id de servicio correcto ya que les hemos pasado ya cuales tenemos
-	public static String[] horasServicio(int id_servicioHotel) {
+	public static String[] horasServicio(int servicioHotel_id) {
 		
 		String[] res = new String[2];
 		
@@ -238,7 +238,7 @@ public class ServiciosDelHotelDAO {
 		try {
 
 				stmt=conexion.getConexion().createStatement();
-				rs=stmt.executeQuery("SELECT * FROM ServiciosHotel WHERE id_ServicioHotel= "+ id_servicioHotel);
+				rs=stmt.executeQuery("SELECT * FROM ServiciosHotel WHERE servicioHotel_id= "+ servicioHotel_id);
 				
 				while(rs.next()) {
 					res[0]=rs.getTime("horaInicioServicio").toString(); 

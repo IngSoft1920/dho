@@ -3,6 +3,8 @@ package ingsoft1920.dho.controller;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -148,14 +150,23 @@ public class DhoAPI {
 	
 	
 	@ResponseBody
-	@GetMapping("/serviciosHoras")
+	@PostMapping("/serviciosHoras")
 	//va a devolver el JSON en string con la informacion de la base
 	//de datos
-	public String HorasDeServicio(@RequestParam int id_servicioHotel,@RequestParam String fecha) {
+	//Recibe el id_servivio y la fecha en el formato correcto
+	public String HorasDeServicio(@RequestBody String req ) {
+		
+		JsonObject requeObj = JsonParser.parseString(req).getAsJsonObject();
+		
+		int id_servicioHotel= requeObj.get("id_servicio").getAsInt();
+		
+		String fecha= requeObj.get("fecha").getAsString();
 		
 		JsonObject obj =new JsonObject();
 		
 		JsonArray horasDisponibles=new JsonArray();
+		
+		JsonArray disponibilidadHora=new JsonArray();
 		
 		
 		String[] res;
@@ -165,42 +176,53 @@ public class DhoAPI {
 		 */
 		res=ServiciosDelHotelDAO.horasServicio(id_servicioHotel);
 		
+		LocalTime horaInicioTime=LocalTime.parse(res[0]);
 		
-		int horaInicio=Integer.parseInt(res[0]);
-		int horaFin=Integer.parseInt(res[1]);
+		LocalTime horaFinTime=LocalTime.parse(res[1]);
 		
 		
-		//creamos un array en la que cada posicion represnta una hora empezando desde la horaInicio
+		int horaInicio=horaInicioTime.getHour();
+		int horaFin=horaFinTime.getHour();
 		
-		int[] horas= new int[horaFin-horaInicio];
-		int cont=0;
-		int aux=horaInicio;
 		
-		//transforma la fecha en formato String a Date
-		  	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		  	Date date=null;
-	        try {
-
-	            date = (Date) formatter.parse(fecha);
-
-	        } catch (ParseException e) {
-	            e.printStackTrace();
-	        }
+		int aux;
+		
+		//transforma la fecha en formato String a LocalDate
+		LocalDate date=LocalDate.parse(fecha); 
 		
 	        
-		if(date!=null) {
 		
-			while(aux<horaFin) {
+			while(horaInicio<horaFin) {
 				
 			
-				horas[cont]=ServiciosDelHotelDAO.plazasLibresServicioHotel(id_servicioHotel, Integer.toString(date.getDay()), 
-						Integer.toString(date.getMonth()), Integer.toString(date.getYear()), aux);
+				aux=ServiciosDelHotelDAO.plazasLibresServicioHotel(id_servicioHotel, Integer.toString(date.getDayOfMonth()), 
+						Integer.toString(date.getMonthValue()), Integer.toString(date.getYear()), horaInicio);
+		
 				
-				aux++;
-				cont++;
+				if(aux>0) {
+					/* significa que aun queda espacio*/
+					
+					/*creamos un LocalTime al que le hacemos toString para enviarlo
+					 * Formato hh:mm
+					 */
+					
+					LocalTime time= LocalTime.of(horaInicio,0);
+					
+					horasDisponibles.add(time.toString());
+					
+					disponibilidadHora.add(aux);
+				
+				}
+					
+					
+				horaInicio++;
+				
 			}
 			
-		}
+		
+		obj.add("horasDisponibles", horasDisponibles);
+		
+		obj.add("disponibilidadHora", disponibilidadHora);
 		
 		
 		return obj.toString().toString();
