@@ -177,14 +177,14 @@ public class TareaDAO {
 		ResultSet rs = null;
 		try {
 			stmt = conexion.getConexion().createStatement();
-			rs = stmt.executeQuery("SELECT Tarea.* FROM Tarea  WHERE empleado_id = " + id_empleado);
+			rs = stmt.executeQuery("SELECT * FROM Tarea  WHERE empleado_id = " + id_empleado);
 			while(rs.next()) {
 				res.add(new TareaBean(rs.getInt("tarea_id"), rs.getInt("incidencia_id"), rs.getInt("empleado_id"),
 						rs.getString("descripcion"), rs.getString("tipo_tarea"), rs.getString("lugar_tarea"),
 
 						rs.getBoolean("estado"), rs.getDate("fecha_tarea"),rs.getTime("hora"), rs.getInt("hotel_id"),
 						
-						rs.getTime("horaFin")));
+						rs.getTime("hora_fin")));
 
 
 			}

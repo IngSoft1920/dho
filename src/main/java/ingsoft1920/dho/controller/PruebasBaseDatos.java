@@ -280,8 +280,13 @@ public class PruebasBaseDatos {
 	
 	ServiciosDelHotelDAO prueba37 = new ServiciosDelHotelDAO(conexion);
 	System.out.println(prueba37.conseguirNombreServicioHotel(4));
-	*/
 	
+	
+	TareaDAO prueba38 = new TareaDAO(conexion) ;
+		System.out.println(prueba38.getTareaPorIdEmpleado(1) );
+	*/
+	ServicioDAO prueba39= new ServicioDAO(conexion);
+	System.out.println(prueba39.devuelevServiciosreservadosPorunaEstancia(1).toString());
 	}
 }
 	

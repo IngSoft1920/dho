@@ -191,7 +191,7 @@ package ingsoft1920.dho.bean;
 			return "ServicioBean [servicios_id=" + servicios_id + ", estancia_id=" + estancia_id + ", id_ServicoHotel="
 					+ id_ServicoHotel + ", cliente_id=" + cliente_id + ", lugar=" + lugar + ", fecha_servicio="
 					+ fecha_servicio + ", hora=" + hora + ", tipo_servicio=" + tipo_servicio + ", platos=" + platos
-					+ ", items=" + items  +" hora_salida= " +hora_salida + "]";
+					+ ", items=" + items  +" hora_salida= " +hora_salida +", precio= " +precio +"]";
 		}
 
 
