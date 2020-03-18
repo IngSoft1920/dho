@@ -91,6 +91,13 @@ public class ClienteBean {
 		this.telefono = telefono;
 	}
 
+	@Override
+	public String toString() {
+		return "ClienteBean [cliente_id=" + cliente_id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", dni="
+				+ dni + ", email=" + email + ", password=" + password + ", nacionalidad=" + nacionalidad + ", telefono="
+				+ telefono + "]";
+	}
+
 	public ClienteBean() {
 	}
 

@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 
+import ingsoft1920.dho.DAO.ClienteDAO;
 import ingsoft1920.dho.DAO.EstanciaDAO;
 import ingsoft1920.dho.DAO.FacturasDAO;
 import ingsoft1920.dho.DAO.HabitacionDAO;
@@ -291,9 +292,13 @@ public class PruebasBaseDatos {
 	
 	EstanciaDAO prueba40 = new EstanciaDAO(conexion);
 	prueba40.anadirEstancia(11,12,1,"2020-03-10", "2020-03-15", 1,0);
-	*/		
+			
 	EstanciaDAO prueba41= new EstanciaDAO(conexion);
 	prueba41.anadirEstancia(17,12,1,"2020-03-10", "2020-03-15", 1,0);
+	
+	ClienteDAO prueba42= new ClienteDAO(conexion);
+	System.out.println(prueba42.datosCliente(1).toString());
+	*/
 	
 	}
 }
