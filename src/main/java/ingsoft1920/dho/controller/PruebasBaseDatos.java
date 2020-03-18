@@ -284,9 +284,16 @@ public class PruebasBaseDatos {
 	
 	TareaDAO prueba38 = new TareaDAO(conexion) ;
 		System.out.println(prueba38.getTareaPorIdEmpleado(1) );
-	*/
+	
 	ServicioDAO prueba39= new ServicioDAO(conexion);
 	System.out.println(prueba39.devuelevServiciosreservadosPorunaEstancia(1).toString());
+	
+	
+	EstanciaDAO prueba40 = new EstanciaDAO(conexion);
+	prueba40.anadirEstancia(11,12,1,"2020-03-10", "2020-03-15", 1,0);*/
+			
+	EstanciaDAO prueba41= new EstanciaDAO(conexion);
+	prueba41.anadirEstancia(16,12,1,"2020-03-10", "2020-03-15", 1,0);
 	}
 }
 	

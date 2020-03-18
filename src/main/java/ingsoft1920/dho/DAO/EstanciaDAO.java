@@ -308,36 +308,77 @@ public class EstanciaDAO {
 			String fecha_fin, int tipo_hab_id, int importe) {
 		if (conexion.getConexion() == null)
 			conexion.conectar();
-
+		PreparedStatement stm2 = null;
 		java.sql.Statement stmt = null;
 		ResultSet rs = null;
 		java.sql.Statement stmt2 = null;
 		ResultSet rs2 = null;
+		PreparedStatement stm = null;
 
 		try {
 			String tipo_hab = HabitacionDAO.tipoHabitacion(tipo_hab_id);
-			stmt = conexion.getConexion().createStatement(); // delete from aux where id=1;
-			rs = stmt.executeQuery("insert into estancia values (" + estancia_id + "," + -1 + "," + cliente_id + ","
-					+ hotel_id + "," + fecha_inicio + "," + fecha_fin + "," + "\"reservada\"" + "," + importe + ");");
+			
+			stm2 = conexion.getConexion().prepareStatement("insert into Estancia values (?,?,?,?,?,?,?,?)");
+			stm2.setInt(1, estancia_id);
+			stm2.setInt(2, -1);
+			stm2.setInt(3, cliente_id);
+			stm2.setInt(4, hotel_id);
+			stm2.setDate(5, null);
+			stm2.setDate(6, null);
+			stm2.setString(7, "reserva");
+			stm2.setInt(8,importe);
+			
+			stm2.executeUpdate();
+			
+			
+			stmt = conexion.getConexion().createStatement();
 			rs = stmt.executeQuery(
-					"select habitacion_id from (select est.habitacion_id from estancia as est join habitaciones as hab on est.habitacion_id=hab.habitacion_id "
-							+ "										where est.hotel_id=" + hotel_id
-							+ " and  hab.tipo_habitacion=\"" + tipo_hab
-							+ "\") tabla where tabla.habitacion_id not in (select est.habitacion_id from estancia as est\r\n"
-							+ "										join habitaciones as hab on est.habitacion_id=hab.habitacion_id\r\n"
-							+ "										where est.hotel_id=" + hotel_id
-							+ " and  hab.tipo_habitacion=\"" + tipo_hab + "\" \r\n"
-							+ "			                            and ((est.fecha_fin>'" + fecha_inicio
-							+ "' and est.fecha_inicio< '" + fecha_inicio + "') ) )\r\n"
-							+ "					group by habitacion_id order by habitacion_id asc limit 1) ;");
+					"select habitacion_id from (select est.habitacion_id from Estancia as est join Habitaciones as hab on est.habitacion_id=hab.habitacion_id "
+							+ " where est.hotel_id=" + hotel_id
+							+ " and  hab.tipo_habitacion=\"" + tipo_hab +"\") tabla where tabla.habitacion_id not in (select est.habitacion_id from Estancia as est"
+							+ "	join Habitaciones as hab on est.habitacion_id = hab.habitacion_id"
+							+ "	where est.hotel_id=" + hotel_id
+							+ " and  hab.tipo_habitacion=\"" + tipo_hab + "\" "
+							+ "	and ((est.fecha_fin>'" + fecha_inicio
+							+ "' and est.fecha_inicio< '" + fecha_inicio + "') ) )"
+							+ "					group by habitacion_id order by habitacion_id asc limit 1 ;");
 
 			if (rs.next()) {
 				try {
-					stmt2 = conexion.getConexion().createStatement();
-					rs2 = stmt.executeQuery("update estancia set habitacion_id=" + rs.getInt("habitacion_id")
+					stm = conexion.getConexion()
+							.prepareStatement("update Estancia set habitacion_id=" + rs.getInt("habitacion_id")
 							+ " where estancia_id order by estancia_id desc limit 1;");
-
+					
+					stm.executeUpdate();
+					
+					
 				} catch (SQLException ex) {
+					System.out.println("SQLException: " + ex.getMessage());
+				} finally { // it is a good idea to release resources in a finally block
+					if (stm != null) {
+						try {
+							stm.close();
+						} catch (SQLException sqlEx) {
+						}
+						stm = null;
+					}
+				}
+			} else {
+				try {
+				stmt2 = conexion.getConexion().createStatement();
+				
+				rs2 = stmt.executeQuery(
+						"select habitacion_id from Habitaciones where not exists(select habitacion_id from Estancia"
+								+ "			 where Estancia.habitacion_id=Habitaciones.habitacion_id group by habitacion_id) and tipo_habitacion=\""
+								+ tipo_hab + "\" limit 1;");
+				if(rs2.next()) {
+				stm = conexion.getConexion()
+						.prepareStatement("update Estancia set habitacion_id=" + rs2.getInt("habitacion_id")
+						+ " where estancia_id order by estancia_id desc limit 1;");
+				
+				stm.executeUpdate();
+				}
+				}catch (SQLException ex) {
 					System.out.println("SQLException: " + ex.getMessage());
 				} finally { // it is a good idea to release resources in a finally block
 					if (rs2 != null) {
@@ -354,14 +395,14 @@ public class EstanciaDAO {
 						}
 						stmt2 = null;
 					}
+					if (stm != null) {
+						try {
+							stm.close();
+						} catch (SQLException sqlEx) {
+						}
+						stm = null;
+					}
 				}
-			} else {
-				rs2 = stmt.executeQuery(
-						"select habitacion_id from habitaciones where not exists(select habitacion_id from estancia\r\n"
-								+ "			 where estancia.habitacion_id=habitaciones.habitacion_id group by habitacion_id) and tipo_habitacion=\""
-								+ tipo_hab + "\" limit 1;");
-				rs2 = stmt.executeQuery("update estancia set habitacion_id=" + rs2.getInt("habitacion_id")
-						+ " where estancia_id order by estancia_id desc limit 1;");
 
 			}
 
@@ -381,6 +422,77 @@ public class EstanciaDAO {
 				} catch (SQLException sqlEx) {
 				}
 				stmt = null;
+			}
+			if (stm2 != null) {
+				try {
+					stm2.close();
+				} catch (SQLException sqlEx) {
+				}
+				stm2 = null;
+			}
+		}
+		conexion.desconectar();
+
+	}
+	
+	public static void anadirEstancia2(int estancia_id, int cliente_id, int hotel_id, String fecha_inicio,
+			String fecha_fin, int tipo_hab_id, int importe) {
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+		java.sql.Statement stmt2 = null;
+		ResultSet rs2 = null;
+		PreparedStatement stm = null;
+
+		try {
+			String tipo_hab = HabitacionDAO.tipoHabitacion(tipo_hab_id);
+			stmt = conexion.getConexion().createStatement(); // delete from aux where id=1;
+			rs = stmt.executeQuery("insert into estancia values (" + estancia_id + "," + -1 + "," + cliente_id + ","
+					+ hotel_id + "," + fecha_inicio + "," + fecha_fin + "," + "\"reservada\"" + "," + importe + ");");
+			stmt2 = conexion.getConexion().createStatement();
+			rs2 = stmt2.executeQuery(
+					"select habitacion_id from (select est.habitacion_id from estancia as est join habitaciones as hab on est.habitacion_id=hab.habitacion_id "
+							+ "										where est.hotel_id=" + hotel_id
+							+ " and  hab.tipo_habitacion=\"" + tipo_hab
+							+ "\") tabla where tabla.habitacion_id not in (select est.habitacion_id from estancia as est\r\n"
+							+ "										join habitaciones as hab on est.habitacion_id=hab.habitacion_id\r\n"
+							+ "										where est.hotel_id=" + hotel_id
+							+ " and  hab.tipo_habitacion=\"" + tipo_hab + "\" \r\n"
+							+ "			                            and ((est.fecha_fin>'" + fecha_inicio
+							+ "' and est.fecha_inicio< '" + fecha_inicio + "') ) )\r\n"
+							+ "					group by habitacion_id order by habitacion_id asc limit 1) ;");
+		}catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+			if (rs2 != null) {
+				try {
+					rs2.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs2 = null;
+			}
+			if (stmt2 != null) {
+				try {
+					stmt2.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt2 = null;
 			}
 		}
 		conexion.desconectar();
