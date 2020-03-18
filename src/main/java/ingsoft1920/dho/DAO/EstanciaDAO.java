@@ -333,15 +333,16 @@ public class EstanciaDAO {
 			
 			stmt = conexion.getConexion().createStatement();
 			rs = stmt.executeQuery(
-					"select habitacion_id from (select est.habitacion_id from Estancia as est join Habitaciones as hab on est.habitacion_id=hab.habitacion_id "
-							+ " where est.hotel_id=" + hotel_id
-							+ " and  hab.tipo_habitacion=\"" + tipo_hab +"\") tabla where tabla.habitacion_id not in (select est.habitacion_id from Estancia as est"
-							+ "	join Habitaciones as hab on est.habitacion_id = hab.habitacion_id"
-							+ "	where est.hotel_id=" + hotel_id
-							+ " and  hab.tipo_habitacion=\"" + tipo_hab + "\" "
-							+ "	and ((est.fecha_fin>'" + fecha_inicio
-							+ "' and est.fecha_inicio< '" + fecha_inicio + "') ) )"
-							+ "					group by habitacion_id order by habitacion_id asc limit 1 ;");
+					"select habitacion_id from (select est.habitacion_id from estancia as est "
+							+ 					"join habitaciones as hab on est.habitacion_id=hab.habitacion_id "
+							+ 					"where est.hotel_id=" + hotel_id + " and  hab.tipo_habitacion=\"" + tipo_hab + "\") tabla "
+							+ " where tabla.habitacion_id not in (select est.habitacion_id from estancia as est\r\n"
+							+ 										" join habitaciones as hab on est.habitacion_id=hab.habitacion_id\r\n"
+							+ 										" where est.hotel_id=" + hotel_id
+							+ 										" and  hab.tipo_habitacion=\"" + tipo_hab + "\" \r\n"
+							+ 										" and (est.fecha_fin>'" + fecha_inicio
+							+ 										"' and est.fecha_inicio< '" + fecha_inicio + "')  )\r\n"
+							+ " group by habitacion_id order by habitacion_id asc limit 1 ;");
 
 			if (rs.next()) {
 				try {
