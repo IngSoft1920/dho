@@ -334,7 +334,7 @@ public class EstanciaDAO {
 							+ 										" where est.hotel_id=" + hotel_id
 							+ 										" and  hab.tipo_habitacion=\"" + tipo_hab + "\" \r\n"
 							+ 										" and (est.fecha_fin>'" + fecha_inicio
-							+ 										"' and est.fecha_inicio< '" + fecha_inicio + "')  )\r\n"
+							+ 										"' and est.fecha_inicio< '" + fecha_fin + "')  )\r\n"
 							+ " group by habitacion_id order by habitacion_id asc limit 1 ;");
 
 			if (rs.next()) {
