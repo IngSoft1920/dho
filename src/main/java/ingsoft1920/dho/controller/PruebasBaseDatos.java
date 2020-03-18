@@ -290,10 +290,11 @@ public class PruebasBaseDatos {
 	
 	
 	EstanciaDAO prueba40 = new EstanciaDAO(conexion);
-	prueba40.anadirEstancia(11,12,1,"2020-03-10", "2020-03-15", 1,0);*/
+	prueba40.anadirEstancia(11,12,1,"2020-03-10", "2020-03-15", 1,0);
 			
 	EstanciaDAO prueba41= new EstanciaDAO(conexion);
 	prueba41.anadirEstancia(16,12,1,"2020-03-10", "2020-03-15", 1,0);
+	*/
 	}
 }
 	
