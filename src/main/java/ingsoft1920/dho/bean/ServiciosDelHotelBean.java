@@ -30,7 +30,7 @@ public class ServiciosDelHotelBean {
 	
 	private String nombre;
 	
-	private int importe;
+	private Integer importe;
 	
 	public ServiciosDelHotelBean() {
 		
@@ -118,12 +118,12 @@ public class ServiciosDelHotelBean {
 	}
 
 
-	public int getImporte() {
+	public Integer getImporte() {
 		return importe;
 	}
 
 
-	public void setImporte(int importe) {
+	public void setImporte(Integer importe) {
 		this.importe = importe;
 	}
 	

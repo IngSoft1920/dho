@@ -469,6 +469,7 @@ public class DhoAPI {
 
 		HotelBean hotel = new HotelBean(id, nombre, descripcion, estrellas, continente, pais, ciudad);
 
+
 		HotelDAO.anadirHotel(hotel);
 
 		JsonArray habitacionesLista = obj.get("habitaciones").getAsJsonArray();
@@ -478,11 +479,12 @@ public class DhoAPI {
 		for (int i = 0; i < habitacionesLista.size(); i++) {
 			int idHab = habitacionesLista.get(i).getAsJsonObject().get("id").getAsInt();
 			String nombreHab = habitacionesLista.get(i).getAsJsonObject().get("nombre").getAsString();
-			int num_Disponibles = habitacionesLista.get(i).getAsJsonObject().get("num_Disponibles").getAsInt();
+			int num_Disponibles = habitacionesLista.get(i).getAsJsonObject().get("num_disponibles").getAsInt();
 			HabitacionBean hab = new HabitacionBean();
 			hab.setId_hotel(id);
 			hab.setTipo_habitacion(nombreHab);
 			HabitacionDAO.anadirHabitaciones(hab,num_Disponibles);
+			
 		}
 		/*
 		 * for (int i = 0; i < categoriasLista.size(); i++) {
@@ -495,8 +497,8 @@ public class DhoAPI {
 
 			int idServ = serviciosLista.get(i).getAsJsonObject().get("id").getAsInt();
 			String nombreServ = serviciosLista.get(i).getAsJsonObject().get("nombre").getAsString();
-			int precio = serviciosLista.get(i).getAsJsonObject().get("precio").getAsInt();
-			String unidadLista = serviciosLista.get(i).getAsJsonObject().get("unidad").getAsString();
+			Integer precio = valueOf2(serviciosLista.get(i).getAsJsonObject().get("precio").toString());
+			String unidadLista = serviciosLista.get(i).getAsJsonObject().get("unidad").toString();
 			ServiciosDelHotelBean serv = new ServiciosDelHotelBean();
 			serv.setId_Servicio(idServ);
 			serv.setHotel_id(id);
@@ -507,6 +509,9 @@ public class DhoAPI {
 
 		return "Procesado correctamente";
 
+	}
+	public Integer valueOf2( String inputString ) {
+	    return (inputString.equals("null")||inputString==null) ? null : Integer.parseInt(inputString);
 	}
 	
 	@ResponseBody

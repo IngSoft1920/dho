@@ -42,9 +42,11 @@ public class HotelBean {
 	public void setHotel_id(int hotel_id) { 
 		this.hotel_id = hotel_id; 
 	} 
-	@Override 
-	public String toString() { 
-		return "Hotel [hotel_id=" + hotel_id + "]"; 
+	@Override
+	public String toString() {
+		return "HotelBean [hotel_id=" + hotel_id + ", nombre=" + nombre + ", descripcion=" + descripcion
+				+ ", estrellas=" + estrellas + ", continente=" + continente + ", pais=" + pais + ", ciudad=" + ciudad
+				+ "]";
 	}
 
 	public String getNombre() {
@@ -94,5 +96,6 @@ public class HotelBean {
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	} 
+	
 
 }
