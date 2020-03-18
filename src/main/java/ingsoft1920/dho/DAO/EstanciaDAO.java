@@ -318,26 +318,19 @@ public class EstanciaDAO {
 		try {
 			String tipo_hab = HabitacionDAO.tipoHabitacion(tipo_hab_id);
 			
-			stm2 = conexion.getConexion().prepareStatement("insert into Estancia values (?,?,?,?,?,?,?,?)");
-			stm2.setInt(1, estancia_id);
-			stm2.setInt(2, -1);
-			stm2.setInt(3, cliente_id);
-			stm2.setInt(4, hotel_id);
-			stm2.setDate(5, null);
-			stm2.setDate(6, null);
-			stm2.setString(7, "reserva");
-			stm2.setInt(8,importe);
+			stm2 = conexion.getConexion().prepareStatement("insert into Estancia values ("+estancia_id +", "+ -1 +", " +cliente_id +", " +hotel_id
+					+", '"+ fecha_inicio +"' , '" +fecha_fin + "', \"reserva\", "+importe +" )");
 			
 			stm2.executeUpdate();
 			
 			
 			stmt = conexion.getConexion().createStatement();
 			rs = stmt.executeQuery(
-					"select habitacion_id from (select est.habitacion_id from estancia as est "
-							+ 					"join habitaciones as hab on est.habitacion_id=hab.habitacion_id "
+					"select habitacion_id from (select est.habitacion_id from Estancia as est "
+							+ 					"join Habitaciones as hab on est.habitacion_id=hab.habitacion_id "
 							+ 					"where est.hotel_id=" + hotel_id + " and  hab.tipo_habitacion=\"" + tipo_hab + "\") tabla "
-							+ " where tabla.habitacion_id not in (select est.habitacion_id from estancia as est\r\n"
-							+ 										" join habitaciones as hab on est.habitacion_id=hab.habitacion_id\r\n"
+							+ " where tabla.habitacion_id not in (select est.habitacion_id from Estancia as est\r\n"
+							+ 										" join Habitaciones as hab on est.habitacion_id=hab.habitacion_id\r\n"
 							+ 										" where est.hotel_id=" + hotel_id
 							+ 										" and  hab.tipo_habitacion=\"" + tipo_hab + "\" \r\n"
 							+ 										" and (est.fecha_fin>'" + fecha_inicio
