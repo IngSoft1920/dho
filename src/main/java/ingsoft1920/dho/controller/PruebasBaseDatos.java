@@ -249,13 +249,18 @@ public class PruebasBaseDatos {
 		 * System.out.println(prueba42.datosCliente(1).toString());
 		 */
 
-	
+			ClienteDAO prueba43 = new ClienteDAO(conexion);
+			//prueba43.modificarDatosCliente(1, "telefono", "777666555");
+			System.out.println(prueba43.getCliente(1).toString());
 
 	/*DhoAPI prueba55 = new DhoAPI();
 	prueba55.recibirHotel(" { \"id\" : 32, \"nombre\" : \"El resplandor\", \"descripcion\" :\"Una experiencia cálida\", \"estrellas\" : 4, \"continente\" : \"Europa\", \"pais\" :\"España\", \"ciudad\" : \"Madrid\", \"habitaciones\" : [ { \"id\": 1 , \"nombre\": \"normal\" , \"num_disponibles\":50 },{\"id\":2,\"nombre\":\"premium\",\"num_disponibles\":10}],\"categorias\":[{\"id\":11,\"nombre\":\"adult-only\"},{\"id\":75,\"nombre\":\"pet-friendly\"}],\"servicios\":[{\"id\":1,\"nombre\":\"piscina\",\"precio\":10,\"unidad\":\"por_dia\"},{\"id\":3,\"nombre\":\"restaurante\",\"precio\":null,\"unidad\":null}]}");
-	}*/
+	}
 	
 	DhoAPI prueba55 = new DhoAPI();
 	prueba55.recibirReserva(" { \"reserva_id\" : 34, \"fecha_entrada\" : \"2020-03-10\", \"fecha_salida\" :\"2020-03-15\", \"importe\" : 4, \"cliente_id\" : 2, \"numero_acompanantes\" : 0, \"hotel_id\" : 32, \"tipo_hab_id\" : 1}");
-	}
+	*/
+			}
+		
+		
 }
