@@ -9,7 +9,9 @@ import java.sql.SQLException;
 import ingsoft1920.dho.bean.HotelBean;
 import ingsoft1920.dho.bean.ServicioBean;
 
+
 public class HotelDAO {
+	
 private static Conexion conexion=new Conexion(); 
 	
 	public HotelDAO(Conexion conexion) {
