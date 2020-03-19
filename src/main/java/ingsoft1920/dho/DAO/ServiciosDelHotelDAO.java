@@ -191,27 +191,35 @@ public class ServiciosDelHotelDAO {
 
 	// añade un servicioHotel a la base de datos
 	public static void anadirServicioDelHotel(ServiciosDelHotelBean serv) {
+		int servicioHotel_id = -1;
 
 		// consulta de añadir un servicio a la tabla servicios
 		if (conexion.getConexion() == null)
 			conexion.conectar();
 
 		PreparedStatement stm = null;
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
 		try {
+			stmt = conexion.getConexion().createStatement();
+			rs = stmt.executeQuery("SELECT MAX(servicioHotel_id) AS n FROM ServiciosHotel ");
+			if (rs.next()) {
+				servicioHotel_id = rs.getInt("n") + 1;
 
-			stm = conexion.getConexion().prepareStatement("INSERT INTO ServiciosHotel values (?,?,?,?,?,?,?)");
-			stm.setInt(1, serv.getId_ServicioHotel());
-			stm.setTime(2, serv.getHoraInicioServicio());
-			stm.setTime(3, serv.getHoraFinServicio());
-			stm.setInt(4, serv.getDisponibilidadTotal());
-			stm.setInt(5, serv.getHotel_id());
-			stm.setString(6, serv.getNombre());
-			if (serv.getImporte()!= null) {
-				stm.setInt(7, serv.getImporte());
-			} else {
-				stm.setNull(7, Types.INTEGER);
+				stm = conexion.getConexion().prepareStatement("INSERT INTO ServiciosHotel values (?,?,?,?,?,?,?)");
+				stm.setInt(1, servicioHotel_id);
+				stm.setTime(2, serv.getHoraInicioServicio());
+				stm.setTime(3, serv.getHoraFinServicio());
+				stm.setInt(4, serv.getDisponibilidadTotal());
+				stm.setInt(5, serv.getHotel_id());
+				stm.setString(6, serv.getNombre());
+				if (serv.getImporte() != null) {
+					stm.setInt(7, serv.getImporte());
+				} else {
+					stm.setNull(7, Types.INTEGER);
+				}
+				stm.executeUpdate();
 			}
-			stm.executeUpdate();
 		}
 
 		catch (SQLException ex) {

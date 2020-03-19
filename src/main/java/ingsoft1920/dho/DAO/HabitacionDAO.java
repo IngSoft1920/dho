@@ -1,6 +1,5 @@
 package ingsoft1920.dho.DAO;
 
-
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.HotelBean;
 import ingsoft1920.dho.controller.Conexion;
@@ -17,15 +16,15 @@ public class HabitacionDAO {
 	public HabitacionDAO(Conexion conexion) {
 		this.conexion = conexion;
 	}
-	
-	//Dado el int del tipo devuelve un string
+
+	// Dado el int del tipo devuelve un string
 	public static String tipoHabitacion(int id) {
-		String res=null;
-		if(id==1) {
-			res="normal";
+		String res = null;
+		if (id == 1) {
+			res = "normal";
 		}
-		if(id==2) {
-			res="premium";
+		if (id == 2) {
+			res = "premium";
 		}
 		return res;
 	}
@@ -195,73 +194,98 @@ public class HabitacionDAO {
 
 		return res;
 	}
-	
-	//devuelve el id de la ultima habitacion para saber el id de la siguiente
+
+	// devuelve el id de la ultima habitacion para saber el id de la siguiente
 	public static int idUltimaHabitacion() {
-		int res=0;
-		
+		int res = 0;
+
 		if (conexion.getConexion() == null)
 			conexion.conectar();
-		
+
 		java.sql.Statement stmt = null;
 		ResultSet rs = null;
 		try {
 			stmt = conexion.getConexion().createStatement();
 			rs = stmt.executeQuery("SELECT MAX(habitacion_id) AS n FROM Habitaciones ");
-			if(rs.next()) {
-				res=rs.getInt("n");
+			if (rs.next()) {
+				res = rs.getInt("n");
 			}
-		}catch (SQLException ex){ 
+		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
-		} finally { // it is a good idea to release resources in a finally block 
-			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
-			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
 		}
 		conexion.desconectar();
 		return res;
 	}
-	
-	//añade habitaciones a la base de datos
+
+	// añade habitaciones a la base de datos
 	public static void anadirHabitaciones(HabitacionBean habitacion, int num_Disponibles) {
-		int habitacion_id=-1;
-		//consulta de añadir un servicio a la tabla servicios 		
-		
-		
-		
-		 
-			 for(int i=0; i<num_Disponibles; i++) {
-				 if (conexion.getConexion()== null) 
-					 conexion.conectar(); 
-				 PreparedStatement stm=null; 
-				 java.sql.Statement stmt = null;
-					ResultSet rs = null;
-				 try {
-					 stmt = conexion.getConexion().createStatement();
-						rs = stmt.executeQuery("SELECT MAX(habitacion_id) AS n FROM Habitaciones ");
-						if(rs.next()) {
-							habitacion_id=rs.getInt("n")+1;
-						
-				 stm=conexion.getConexion().prepareStatement("INSERT INTO Habitaciones VALUES (?,?,?,?)"); 
-				 stm.setInt(1,habitacion_id);
-				 stm.setString(2,habitacion.getTipo_habitacion());
-				 stm.setInt(3,habitacion.getId_hotel());
-				 stm.setInt(4, 0);
-				 
-				 stm.executeUpdate(); 
-			
-				 }}
-				
-			
- 
-		
-		catch (SQLException ex){  
-			System.out.println("SQLException: " + ex.getMessage()); 
-		} finally { // it is a good idea to release resources in a finally block  
-			if (stm != null) { try {  stm.close(); } catch (SQLException sqlEx) { }  stm = null; } 
-			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
-			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
-		} 
- 
-	 }
-}
+		int habitacion_id = -1;
+		// consulta de añadir un servicio a la tabla servicios
+
+		for (int i = 0; i < num_Disponibles; i++) {
+			if (conexion.getConexion() == null)
+				conexion.conectar();
+			PreparedStatement stm = null;
+			java.sql.Statement stmt = null;
+			ResultSet rs = null;
+			try {
+				stmt = conexion.getConexion().createStatement();
+				rs = stmt.executeQuery("SELECT MAX(habitacion_id) AS n FROM Habitaciones ");
+				if (rs.next()) {
+					habitacion_id = rs.getInt("n") + 1;
+
+					stm = conexion.getConexion().prepareStatement("INSERT INTO Habitaciones VALUES (?,?,?,?)");
+					stm.setInt(1, habitacion_id);
+					stm.setString(2, habitacion.getTipo_habitacion());
+					stm.setInt(3, habitacion.getId_hotel());
+					stm.setInt(4, 0);
+
+					stm.executeUpdate();
+
+				}
+			}
+
+			catch (SQLException ex) {
+				System.out.println("SQLException: " + ex.getMessage());
+			} finally { // it is a good idea to release resources in a finally block
+				if (stm != null) {
+					try {
+						stm.close();
+					} catch (SQLException sqlEx) {
+					}
+					stm = null;
+				}
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException sqlEx) {
+					}
+					rs = null;
+				}
+				if (stmt != null) {
+					try {
+						stmt.close();
+					} catch (SQLException sqlEx) {
+					}
+					stmt = null;
+				}
+			}
+
+		}
+	}
 }

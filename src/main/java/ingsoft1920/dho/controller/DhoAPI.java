@@ -500,7 +500,7 @@ public class DhoAPI {
 			Integer precio = valueOf2(serviciosLista.get(i).getAsJsonObject().get("precio").toString());
 			String unidadLista = serviciosLista.get(i).getAsJsonObject().get("unidad").toString();
 			ServiciosDelHotelBean serv = new ServiciosDelHotelBean();
-			serv.setId_Servicio(idServ);
+			//serv.setId_Servicio(idServ);
 			serv.setHotel_id(id);
 			serv.setNombre(nombreServ);
 			serv.setImporte(precio);
