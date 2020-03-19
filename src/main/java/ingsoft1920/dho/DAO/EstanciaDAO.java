@@ -319,9 +319,8 @@ public class EstanciaDAO {
 			String tipo_hab = HabitacionDAO.tipoHabitacion(tipo_hab_id);
 
 			stm2 = conexion.getConexion()
-					.prepareStatement("insert into Estancia values (" + estancia_id + ", " + -1 + ", " + cliente_id
-							+ ", " + hotel_id + ", '" + fecha_inicio + "' , '" + fecha_fin + "', \"reserva\", "
-							+ importe + " )");
+					.prepareStatement("insert into Estancia values (" + estancia_id + ", " + -1 + ", " + hotel_id + ", '" + fecha_inicio + "' , '" + fecha_fin + "', \"reserva\", "
+							+ importe + " , "+cliente_id+" )");
 
 			stm2.executeUpdate();
 
