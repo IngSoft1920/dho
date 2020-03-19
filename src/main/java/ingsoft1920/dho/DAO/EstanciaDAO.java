@@ -359,7 +359,7 @@ public class EstanciaDAO {
 
 					rs2 = stmt.executeQuery(
 							"select habitacion_id from Habitaciones where not exists(select habitacion_id from Estancia"
-									+ "			 where Estancia.habitacion_id=Habitaciones.habitacion_id group by habitacion_id) and tipo_habitacion=\""
+									+ "			 where Estancia.habitacion_id=Habitaciones.habitacion_id group by habitacion_id) and hotel_id="+hotel_id+ " and tipo_habitacion=\""
 									+ tipo_hab + "\" limit 1;");
 					if (rs2.next()) {
 						stm = conexion.getConexion()
