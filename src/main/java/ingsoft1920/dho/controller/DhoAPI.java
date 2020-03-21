@@ -106,6 +106,7 @@ public class DhoAPI {
 
 	
 	//QUEDA SOLUCIONAR LO DEL PRECIO
+	//pedir hora_salida
 	@ResponseBody
 	@PostMapping("/recibirServicio")
 	public void recibirServicio(@RequestBody String req) {
@@ -119,15 +120,68 @@ public class DhoAPI {
 		
 		String hora= requeObj.get("hora").getAsString();
 		
-		String hora_salida = requeObj.get("hora_salida ").getAsString();
-		
-		int id_servicioHotel= requeObj.get("id_servicio").getAsInt();
-		
 		int cliente_id= requeObj.get("cliente_id").getAsInt();
 		
 		int id_reserva= requeObj.get("id_reserva").getAsInt();
 		
 		int num_personas= requeObj.get("num_personas").getAsInt();
+		
+		String lugar=requeObj.get("lugar").getAsString();
+		
+		int id_servicioHotel= requeObj.get("id_servicio").getAsInt();
+		
+		int tipo_servicio=requeObj.get("tipoServicio").getAsInt();
+		
+		String hora_salida = requeObj.get("hora_salida ").getAsString();
+		
+		
+		/*Hemos quedado con GE el siguiente formato:
+		 *  	1-: serivios normales
+		 *  	2-:Encargar Mesa
+		 *  	3-:Encargar Comida
+		 */
+		
+		if(tipo_servicio==2 || tipo_servicio==3) {
+			
+			
+			JsonArray platosJSON=requeObj.get("platos").getAsJsonArray();
+			String platos="";
+			for(int i=0;i<platosJSON.size();i++) {
+				platos+=platosJSON.get(i).getAsString();
+			}
+		
+			JsonArray itemsJSON=requeObj.get("items").getAsJsonArray();
+			String items="";
+			for(int i=0;i<itemsJSON.size();i++) {
+				items+=itemsJSON.get(i).getAsString();
+			}
+		
+			nuevoServicio.setItems(items);
+			nuevoServicio.setPlatos(platos);
+		
+			
+		
+		}
+			
+		
+		
+		switch(tipo_servicio) {
+			case 1: 
+				nuevoServicio.setTipo_servicio("normal");
+				break;
+			case 2:
+				nuevoServicio.setTipo_servicio("mesa");
+				break;
+			case 3:
+				nuevoServicio.setTipo_servicio("habitacion");
+				break;
+		}
+			
+				
+		
+		
+		
+		
 		
 		nuevoServicio.setCliente_id(cliente_id);
 		nuevoServicio.setEstancia_id(id_reserva);
@@ -143,6 +197,10 @@ public class DhoAPI {
 		
 		nuevoServicio.setId_ServicoHotel(id_servicioHotel);
 
+		
+		nuevoServicio.setLugar(lugar);
+		
+		
 		
 		//Falta ver que hacemos con esto, como va?
 		//nuevoServicio.setPrecio(precio);
@@ -197,9 +255,8 @@ public class DhoAPI {
 		incidencia.setHora(java.sql.Time.valueOf(horaTime));
 		
 		
-		int id_hotel   = requeObj.get("id_hotel").getAsInt();
-		
-		incidencia.setHotel_id(id_hotel);
+		String nombre_hotel   = requeObj.get("nombre_hotel").getAsString();
+		incidencia.setHotel_id(HotelDAO.ConseguirIDHotelDadoNombre(nombre_hotel));
 		
 		IncidenciaDAO.añadirIncidencia(incidencia);
 		
@@ -353,8 +410,10 @@ public class DhoAPI {
 		JsonArray nombre_hotel_Lista=new JsonArray();
 		
 		
-		
+		JsonArray is_check_in=new JsonArray();
 		//falta meter el del check_in
+		
+		boolean aux=true;
 		
 		for (EstanciaBean elem : lista) {
 			
@@ -369,6 +428,16 @@ public class DhoAPI {
 			
 			nombre_hotel_Lista.add(HotelDAO.ConseguirNombreHotelDadoID(elem.getHotel_id()));
 			
+			
+			if(elem.getEstado()=="reserva"|| elem.getEstado()=="check out")
+			
+				is_check_in.add(false);
+			
+			else
+				
+				is_check_in.add(true);
+			
+			
 		}
 		
 		obj.add("id_estancia_lista", id_estancia_lista);
@@ -381,6 +450,7 @@ public class DhoAPI {
 		
 		obj.add("nombre_hotel_Lista", nombre_hotel_Lista);
 		
+		obj.add("is_check_in",is_check_in);
 		
 		return obj.toString().toString();
 		

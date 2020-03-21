@@ -19,6 +19,13 @@ private static Conexion conexion=new Conexion();
 	}
 	
 	
+	public static int ConseguirIDHotelDadoNombre(String nombre_hotel) {
+		//falta hacer la consulta
+		return 1;
+		
+	}
+	
+	
 	
 	public static String ConseguirNombreHotelDadoID(int id_hotel) {
 		String res=null;
