@@ -298,17 +298,19 @@ h1 { text-align: center; padding: 0.5em; }
 <div id="calendario">
   <div id="anterior" onclick="mesantes()"></div>
   <div id="posterior" onclick="mesdespues()"></div>
+  
+  
   <h2 id="titulos"></h2>
   <table id="diasc">
+  
+  
     <tr id="fila0"><td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">101</a></h3></td>
-    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">102</a></h3></td>
+    			   <td bgcolor="${colorCelda}"><h3><a href="/homePageDHO/menu/checkin1">102</a></h3></td>
     			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">103</a></h3></td>
     			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">104</a></h3></td>
     			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">105</a></h3></td>
     			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">106</a></h3></td>
     			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">107</a></h3></td></td>
-    			   
-    			   
     			   
     <tr id="fila1"><td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">101</a></h3></td>
     			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">202</a></h3></td>
@@ -317,8 +319,7 @@ h1 { text-align: center; padding: 0.5em; }
     			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">205</a></h3></td>
     			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">206</a></h3></td>
     			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">207</a></h3></td></td>
-    			   
-    			   
+    			       			   
     <tr id="fila2"><td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">301</a></h3></td>
     			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">302</a></h3></td>
     			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">303</a></h3></td>
@@ -326,8 +327,7 @@ h1 { text-align: center; padding: 0.5em; }
     			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">305</a></h3></td>
     			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">306</a></h3></td>
     			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">307</a></h3></td></td>
-    			   
-    			   
+    			   			   
     <tr id="fila3"><td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">401</a></h3></td>
     			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">402</a></h3></td>
     			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">403</a></h3></td>
@@ -359,6 +359,8 @@ h1 { text-align: center; padding: 0.5em; }
     			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">705</a></h3></td>
     			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">706</a></h3></td>
     			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">707</a></h3></td></td>
+    	
+    	
     			   
   </table>
   
