@@ -46,8 +46,7 @@ public class ReservasControll {
 		
 		reservasModel.nuevoServicio(reservasModel);
 		
-		
-		
+		System.out.print(reserva.getEstanciaId());
 		return reservasGet(model);
 		
 	}
