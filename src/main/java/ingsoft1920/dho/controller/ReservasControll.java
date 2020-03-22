@@ -48,7 +48,7 @@ public class ReservasControll {
 		
 		
 		
-		return 
+		return reservasGet(model);
 		
 	}
 
