@@ -12,7 +12,7 @@ import ingsoft1920.dho.bean.ServicioBean;
 import ingsoft1920.dho.bean.TareaBean;
 
 public class ReservasModel {
-	private int servicios_id;
+	
 	private int estancia_id;
 	private int id_ServicoHotel;
 	private int cliente_id;
@@ -23,16 +23,31 @@ public class ReservasModel {
 	private String platos;
 	private String items;
 	private Time hora_salida;
-	int precio;
-	private int reserva_id;
+	private int precio;
+	
 	
 
 	public ReservasModel() {
 
 	}
 
+	
+	//FALTA METER EL PRECIO 
+	
 	public ReservasModel(ServicioBean servicioBean) {
-		this.reserva_id = servicioBean.getServicios_id();
+		
+		this.cliente_id=servicioBean.getCliente_id();
+		this.estancia_id=servicioBean.getEstancia_id();
+		this.fecha_servicio=servicioBean.getFecha_servicio();
+		this.hora=servicioBean.getHora();
+		this.hora_salida=servicioBean.getHora_salida();
+		this.id_ServicoHotel=servicioBean.getId_ServicoHotel();
+		this.items=servicioBean.getItems();
+		this.lugar=servicioBean.getLugar();
+		this.platos=servicioBean.getPlatos();
+		this.tipo_servicio=servicioBean.getTipo_servicio();
+		
+		
 	}
 
 	public List<ServicioBean> getReservas() {
@@ -43,22 +58,9 @@ public class ReservasModel {
 	}
 	public void nuevoServicio(ReservasModel reservasModel) {
 		
-		ServicioBean nuevoServicio =new ServicioBean();
 		
-		nuevoServicio.setCliente_id(cliente_id);
-		nuevoServicio.setEstancia_id(estancia_id);
-		nuevoServicio.setFecha_servicio(fecha_servicio);
-		nuevoServicio.setHora_salida(hora_salida);
-		nuevoServicio.setHora(hora);
-		nuevoServicio.setId_ServicoHotel(id_ServicoHotel);
-		nuevoServicio.setItems(items);
-		nuevoServicio.setLugar(lugar);
-		nuevoServicio.setPlatos(platos);
-		nuevoServicio.setServicios_id(servicios_id);
-		nuevoServicio.setTipo_servicio(tipo_servicio);
-
-		
-		ServicioDAO.añadirServicio(nuevoServicio);
+		ServicioDAO.añadirServicio(new ServicioBean(0, estancia_id, id_ServicoHotel,
+				cliente_id, lugar, fecha_servicio, hora, tipo_servicio, platos, items, hora_salida, precio));
 			
 		}
 

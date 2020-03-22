@@ -1,5 +1,7 @@
 package ingsoft1920.dho.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -39,14 +41,50 @@ public class ReservasControll {
 		return "reservas";
 	}
 	@PostMapping("/homePageDHO/menu/reservas1")
-	public String checkinPost(@Valid @ModelAttribute("ServicioBean") ServicioBean servicioBean, Model model) {
+	public String checkinPost(@Valid @ModelAttribute("fecha_servicioString") String fecha,
+			@Valid @ModelAttribute("hora_salidaString") String horaSalida,
+			@Valid @ModelAttribute("horaString") String hora,
+			@Valid @ModelAttribute("cliente_id") int cliente_id,
+			@Valid @ModelAttribute("estancia_id") int estancia_id,
+			@Valid @ModelAttribute("id_ServicoHotel") int id_ServicoHotel,
+			@Valid @ModelAttribute("items") String items,
+			@Valid @ModelAttribute("lugar") String lugar,
+			@Valid @ModelAttribute("platos") String platos,
+			@Valid @ModelAttribute("tipo_servicio") String tipo_servicio,
+			Model model) {
+		
+		
+		ServicioBean servicioBean=new ServicioBean();
+		
+		System.out.println(fecha);
+		
+		
+		servicioBean.setCliente_id(cliente_id);
+		servicioBean.setEstancia_id(estancia_id);
+		servicioBean.setId_ServicoHotel(id_ServicoHotel);
+		servicioBean.setItems(items);
+		servicioBean.setLugar(lugar);
+		servicioBean.setPlatos(platos);
+		servicioBean.setTipo_servicio(tipo_servicio);
+		
+		
+		LocalDate date=LocalDate.parse(fecha);
+		servicioBean.setFecha_servicio( java.sql.Date.valueOf(date));
+		System.out.println(servicioBean.getFecha_servicio());
+		
+		LocalTime horaTime=LocalTime.parse(hora);
+		servicioBean.setHora(java.sql.Time.valueOf(horaTime));
+		
+		LocalTime horaSalidaTime=LocalTime.parse(horaSalida);
+		servicioBean.setHora_salida(java.sql.Time.valueOf(horaSalidaTime));
+		
 		
 		
 		ReservasModel reservasModel = new ReservasModel(servicioBean);
 		
 		reservasModel.nuevoServicio(reservasModel);
 		
-		System.out.print(reserva.getEstanciaId());
+		
 		return reservasGet(model);
 		
 	}

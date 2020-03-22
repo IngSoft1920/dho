@@ -15,6 +15,8 @@
 		</ul>
 	</nav>
 </header>
+
+
 <style>
 /*Eliminamos los margenes y paddings que agrega el navegador por defecto*/
 * {
@@ -71,8 +73,6 @@ nav ul li:hover {
 }
 </style>
 
-
-
 <section class="contenido wrapper">
 	<head>
 	Reservas
@@ -87,43 +87,42 @@ nav ul li:hover {
 	</ul>
 	
 	</body>
-	<form method="POST">
-		<label>cliente_id</label>
-		<input type="text" name="cliente_id" autocomlete="off" />
-		<br><br>
-		<label>estancia_id</label>
-		<input type="text" name="estancia_id" autocomlete="off" />
-		<br><br>
-		<label>fecha_servicio</label>
-		<input type="text" name="fecha_servicio" autocomlete="off" />
-		<br><br>
-		<label>hora_salida</label>
-		<input type="text" name="hora_salida" autocomplete="off" />
-		<br><br>
-		<label>hora</label>
-		<input type="text" name="hora" autocomplete="off" />
-		<br><br>
-		<label>id_ServicoHotel</label>
-		<input type="text" name="id_ServicoHotel" autocomplete="off" />
-		<br><br>
-		<label>items</label>
-		<input type="text" name="items" autocomplete="off" />
-		<br><br>
-		<label>lugar</label>
-		<input type="text" name="lugar" autocomplete="off" />
-		<br><br>
-		<label>platos</label>
-		<input type="text" name="platos" autocomplete="off" />
-		<br><br>
-		<label>servicios_id</label>
-		<input type="text" name="servicios_id" autocomplete="off" />
-		<br><br>
-		<label>tipo_servicio</label>
-		<input type="text" name="tipo_servicio" autocomplete="off" />
-		<br><br>
 		
-		<input type="submit" value="Registro">
-	</form>
-				
+	<form method="POST"> 
+		<label>cliente_id</label> 
+		<input type="text" name="cliente_id" autocomlete="off" /> 
+		<br><br> 
+		<label>estancia_id</label> 
+		<input type="text" name="estancia_id" autocomlete="off" /> 
+		<br><br> 
+		<label>fecha_servicio</label> 
+		<input type="text" name="fecha_servicioString" autocomlete="off" /> 
+		<br><br> 
+		<label>hora_salida</label> 
+		<input type="text" name="hora_salidaString" autocomplete="off" /> 
+		<br><br> 
+		<label>hora</label> 
+		<input type="text" name="horaString" autocomplete="off" /> 
+		<br><br> 
+		<label>id_ServicoHotel</label> 
+		<input type="text" name="id_ServicoHotel" autocomplete="off" /> 
+		<br><br> 
+		<label>items</label> 
+		<input type="text" name="items" autocomplete="off" /> 
+		<br><br> 
+		<label>lugar</label> 
+		<input type="text" name="lugar" autocomplete="off" /> 
+		<br><br> 
+		<label>platos</label> 
+		<input type="text" name="platos" autocomplete="off" /> 
+		<br><br> 
+		<label>tipo_servicio</label> 
+		<input type="text" name="tipo_servicio" autocomplete="off" /> 
+		<br><br> 
+		 
+		<input type="submit" value="Registro"> 
+	</form> 	
+	
+					
 </section>	
 </html>
