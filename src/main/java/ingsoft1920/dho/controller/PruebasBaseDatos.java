@@ -13,6 +13,7 @@ import ingsoft1920.dho.DAO.IncidenciaDAO;
 import ingsoft1920.dho.DAO.ServicioDAO;
 import ingsoft1920.dho.DAO.ServiciosDelHotelDAO;
 import ingsoft1920.dho.DAO.TareaDAO;
+import ingsoft1920.dho.bean.ClienteBean;
 import ingsoft1920.dho.bean.CobrosBean;
 import ingsoft1920.dho.bean.EstanciaBean;
 import ingsoft1920.dho.bean.HabitacionBean;
@@ -251,7 +252,11 @@ public class PruebasBaseDatos {
 
 			ClienteDAO prueba43 = new ClienteDAO(conexion);
 			//prueba43.modificarDatosCliente(1, "telefono", "777666555");
-			System.out.println(prueba43.getCliente(1).toString());
+			//System.out.println(prueba43.getCliente(1).toString());
+			
+			ClienteBean c1 = new ClienteBean(3,"Pedro","Sanchez", "68394852S", "pedrosanchez@espana.com", "Español", "hola", 654654654);
+			ClienteDAO prueba44 = new ClienteDAO(conexion);
+			prueba44.anadirCliente(c1);
 
 	/*DhoAPI prueba55 = new DhoAPI();
 	prueba55.recibirHotel(" { \"id\" : 32, \"nombre\" : \"El resplandor\", \"descripcion\" :\"Una experiencia cálida\", \"estrellas\" : 4, \"continente\" : \"Europa\", \"pais\" :\"España\", \"ciudad\" : \"Madrid\", \"habitaciones\" : [ { \"id\": 1 , \"nombre\": \"normal\" , \"num_disponibles\":50 },{\"id\":2,\"nombre\":\"premium\",\"num_disponibles\":10}],\"categorias\":[{\"id\":11,\"nombre\":\"adult-only\"},{\"id\":75,\"nombre\":\"pet-friendly\"}],\"servicios\":[{\"id\":1,\"nombre\":\"piscina\",\"precio\":10,\"unidad\":\"por_dia\"},{\"id\":3,\"nombre\":\"restaurante\",\"precio\":null,\"unidad\":null}]}");

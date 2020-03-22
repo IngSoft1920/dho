@@ -144,4 +144,28 @@ public static void modificarDatosCliente(int cliente_id, String dato, String nue
 	
 }
 
+//Dado un ClienteBean lo inserta en la base de datos
+public static void anadirCliente(ClienteBean cliente) {
+	if (conexion.getConexion() == null)
+		conexion.conectar();
+	
+	PreparedStatement stm= null;
+	try {
+		stm=conexion.getConexion().prepareStatement("INSERT INTO Cliente VALUES (?,?,?,?,?,?,?,?)");
+		stm.setInt(1, cliente.getCliente_id());
+		stm.setString(2, cliente.getNombre());
+		stm.setString(3, cliente.getApellidos());
+		stm.setString(4, cliente.getDni());
+		stm.setString(5, cliente.getEmail());
+		stm.setString(6, cliente.getNacionalidad());
+		stm.setString(7, cliente.getPassword());
+		stm.setInt(8,cliente.getTelefono());
+		stm.executeUpdate();
+	}catch (SQLException ex){  
+		System.out.println("SQLException: " + ex.getMessage()); 
+	} finally { // it is a good idea to release resources in a finally block  
+		if (stm != null) { try {  stm.close(); } catch (SQLException sqlEx) { }  stm = null; }  
+	} 
+}
+
 }
