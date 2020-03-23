@@ -1,5 +1,6 @@
 package ingsoft1920.dho.DAO;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -429,6 +430,52 @@ public class EstanciaDAO {
 		conexion.desconectar();
 		return "Procesado correctamente";
 
+	}
+	
+	public static ArrayList<String> getEstadoHabitaciones(String fecha){
+		ArrayList<String> res = new ArrayList<String>();
+		ArrayList<HabitacionBean> habs = HabitacionDAO.getHabitacionByHotel(-1);
+		
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+		
+		for(int i=0; i<habs.size(); i++) {
+			try {
+			stmt=conexion.getConexion().createStatement();
+			rs=stmt.executeQuery("Select estado From Estancia Where habitacion_id= " + habs.get(i).getId_habitacion() + 
+					" AND fecha_inicio < '"+fecha +"' AND fecha_fin >'"+fecha +"'");
+			if(rs.next()) {
+				res.add(i, rs.getString("estado"));
+			}
+			else {
+				res.add(i, "check in");
+			}
+			
+			}catch (SQLException ex) {
+				System.out.println("SQLException: " + ex.getMessage());
+			} finally { // it is a good idea to release resources in a finally block
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException sqlEx) {
+					}
+					rs = null;
+				}
+				if (stmt != null) {
+					try {
+						stmt.close();
+					} catch (SQLException sqlEx) {
+					}
+					stmt = null;
+				}
+				
+			}
+		}
+		conexion.desconectar();
+		
+		return res;
 	}
 
 }
