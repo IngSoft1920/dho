@@ -248,16 +248,27 @@ public class PruebasBaseDatos {
 		 * 
 		 * ClienteDAO prueba42= new ClienteDAO(conexion);
 		 * System.out.println(prueba42.datosCliente(1).toString());
-		 */
+		
 
 			ClienteDAO prueba43 = new ClienteDAO(conexion);
 			//prueba43.modificarDatosCliente(1, "telefono", "777666555");
 			//System.out.println(prueba43.getCliente(1).toString());
 			
-			ClienteBean c1 = new ClienteBean(3,"Pedro","Sanchez", "68394852S", "pedrosanchez@espana.com", "Español", "hola", 654654654);
+			ClienteBean c1 = new ClienteBean(4,"Miguel","Perez", "12365487Z", "mp@gmail.com", "Español", "0000", 654654654);
 			ClienteDAO prueba44 = new ClienteDAO(conexion);
 			prueba44.anadirCliente(c1);
-
+		 	*/
+		 	
+		
+		Date fecha = new Date(120,03,06);
+		
+		Time hora = new Time(21,00,00);
+		Time hora2 = new Time(22,30,00);
+		//System.out.println(fecha +" "+hora);
+			ServicioDAO prueba45= new ServicioDAO(conexion);
+			prueba45.añadirServicio(new ServicioBean(0,5,9,4, "restaurante", fecha, hora, " ", " ", " ", hora2, 100));
+			
+			//System.out.println(prueba45.idUltimoServicio());
 	/*DhoAPI prueba55 = new DhoAPI();
 	prueba55.recibirHotel(" { \"id\" : 32, \"nombre\" : \"El resplandor\", \"descripcion\" :\"Una experiencia cálida\", \"estrellas\" : 4, \"continente\" : \"Europa\", \"pais\" :\"España\", \"ciudad\" : \"Madrid\", \"habitaciones\" : [ { \"id\": 1 , \"nombre\": \"normal\" , \"num_disponibles\":50 },{\"id\":2,\"nombre\":\"premium\",\"num_disponibles\":10}],\"categorias\":[{\"id\":11,\"nombre\":\"adult-only\"},{\"id\":75,\"nombre\":\"pet-friendly\"}],\"servicios\":[{\"id\":1,\"nombre\":\"piscina\",\"precio\":10,\"unidad\":\"por_dia\"},{\"id\":3,\"nombre\":\"restaurante\",\"precio\":null,\"unidad\":null}]}");
 	}

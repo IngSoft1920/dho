@@ -73,25 +73,27 @@ public class ServicioDAO {
 		try {  
 			//Consulta para saber el id de la nueva incidencia a crear 
 			stmt1 = conexion.getConexion().createStatement() ; 
-			rs1 =  stmt1.executeQuery("SELECT COUNT(servicios_id)\r\n" + 
-					"FROM Servicios;"); 
-			if (rs1.next()){ 
-				servicio_id=rs1.getInt("COUNT(servicios_id)")+1;//id del nuevo servicio 
+			//rs1 =  stmt1.executeQuery("SELECT COUNT(servicios_id)\r\n" + 
+					//"FROM Servicios;"); 
+			//if (rs1.next()){ 
+				servicio_id= idUltimoServicio()+1;
+				//servicio_id=rs1.getInt("COUNT(servicios_id)")+1; //id del nuevo servicio 
 				stm=conexion.getConexion().prepareStatement("INSERT INTO Servicios values (?,?,?,?,?,?,?,?,?,?,?,?)"); 
 				stm.setInt(1,servicio_id); 
 				stm.setInt(2, servicio.getEstancia_id()); 
-				stm.setInt(3, servicio.getCliente_id()); 
-				stm.setString(4, servicio.getLugar()); 
-				stm.setDate(5,servicio.getFecha_servicio()); 
-				stm.setTime(6,servicio.getHora()); 
-				stm.setString(7,servicio.getTipo_servicio()); 
-				stm.setInt(8,servicio.getId_ServicoHotel()); 
-				stm.setString(9,servicio.getPlatos());
-				stm.setString(10,servicio.getItems());
-				stm.setTime(11, servicio.getHora_salida());
-				stm.setInt(12, servicio.getPrecio());
+				stm.setString(3, servicio.getLugar()); 
+				stm.setInt(12, servicio.getCliente_id()); 
+				stm.setDate(4,servicio.getFecha_servicio()); 
+				stm.setTime(5,servicio.getHora()); 
+				stm.setString(6,servicio.getTipo_servicio()); 
+				stm.setInt(7,servicio.getId_ServicoHotel()); 
+				stm.setString(8,servicio.getPlatos());
+				stm.setString(9,servicio.getItems());
+				stm.setTime(10, servicio.getHora_salida());
+				stm.setInt(11, servicio.getPrecio());
+				
 				stm.executeUpdate(); 
-			} 
+			//} 
  
 		}  
 		catch (SQLException ex){  
