@@ -154,7 +154,7 @@ public class EstanciaDAO {
 		ResultSet rs = null;
 		try {
 			stmt = conexion.getConexion().createStatement();
-			rs = stmt.executeQuery("SELECT * FROM Estancia");
+			rs = stmt.executeQuery("SELECT * FROM Estancia ORDER BY habitacion_id");
 			while (rs.next()) {
 				res.add(new EstanciaBean(rs.getInt("estancia_id"), rs.getInt("habitacion_id"), rs.getInt("cliente_id"),
 						rs.getInt("hotel_id"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"),
@@ -194,7 +194,7 @@ public class EstanciaDAO {
 		ResultSet rs = null;
 		try {
 			stmt = conexion.getConexion().createStatement();
-			rs = stmt.executeQuery("SELECT * FROM Estancia WHERE estado = \"reserva\"");
+			rs = stmt.executeQuery("SELECT * FROM Estancia WHERE estado = \"reserva\" ORDER BY habitacion_id");
 			while (rs.next()) {
 				res.add(new EstanciaBean(rs.getInt("estancia_id"), rs.getInt("habitacion_id"), rs.getInt("cliente_id"),
 						rs.getInt("hotel_id"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"),
@@ -234,7 +234,7 @@ public class EstanciaDAO {
 		ResultSet rs = null;
 		try {
 			stmt = conexion.getConexion().createStatement();
-			rs = stmt.executeQuery("SELECT * FROM Estancia WHERE estado = \"check in\"");
+			rs = stmt.executeQuery("SELECT * FROM Estancia WHERE estado = \"check in\" ORDER BY habitacion_id");
 			while (rs.next()) {
 				res.add(new EstanciaBean(rs.getInt("estancia_id"), rs.getInt("habitacion_id"), rs.getInt("cliente_id"),
 						rs.getInt("hotel_id"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"),
@@ -274,7 +274,7 @@ public class EstanciaDAO {
 		ResultSet rs = null;
 		try {
 			stmt = conexion.getConexion().createStatement();
-			rs = stmt.executeQuery("SELECT * FROM Estancia WHERE estado = \"check out\"");
+			rs = stmt.executeQuery("SELECT * FROM Estancia WHERE estado = \"check out\" ORDER BY habitacion_id");
 			while (rs.next()) {
 				res.add(new EstanciaBean(rs.getInt("estancia_id"), rs.getInt("habitacion_id"), rs.getInt("cliente_id"),
 						rs.getInt("hotel_id"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"),
