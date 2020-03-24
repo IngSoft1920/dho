@@ -71,5 +71,36 @@ public class FacturaDAO {
 		return facturas;
 	}
 	
+	//Dado el id de un cliente devuelve el precio de su estancua
+	public static EstanciaBean precioEstanciaCliente(int cliente_id){
+		EstanciaBean estancia=null;
+		Conexion conexion = new Conexion();
+		if (conexion.getConexion()==null) 
+			conexion.conectar();
+		
+		java.sql.Statement stmt= null;
+		ResultSet rs= null;
+		Date fecha = null;
+		
+		
+		
+		try {
+			stmt=conexion.getConexion().createStatement();
+			rs=stmt.executeQuery("SELECT importe, fecha_inicio,fecha_fin\r\n" + 
+					"FROM Estancia\r\n" + 
+					"WHERE cliente_id= "+cliente_id+";");
+			if(rs.next()) {
+				estancia= new EstanciaBean(rs.getDate("fecha_inicio"),rs.getDate("fecha_fin"),rs.getDouble("importe"));
+			}
+		}catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		conexion.desconectar();
+		return estancia;
+	}
+	
 
 }

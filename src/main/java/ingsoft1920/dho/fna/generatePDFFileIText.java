@@ -115,6 +115,12 @@ public class generatePDFFileIText {
         		pago_total+=elem.getPrecio();
         		chapter.add(new Paragraph(elem.toString(), paragraphFont));
         	}
+            //Subtitulo (Precio de la estancia)
+            chapter.add(new Paragraph("Precio de la estancia :", subcategoryFont));
+            EstanciaBean aux = FacturaDAO.precioEstanciaCliente(cliente_id);
+    		pago_total+=aux.getImporte();
+    		chapter.add(new Paragraph(aux.toString(), paragraphFont));
+            //Total a pagar
         	chapter.add(new Paragraph("TOTAL: "+pago_total, paragraphFont));
             document.add(chapter);
             document.close();
