@@ -97,18 +97,19 @@ public class EstanciaDAO {
 	}
 
 	// El cliente hace check in
-	public static void checkIn(int cliente_id) {
-
+	public static String checkIn(int estancia_id) {
+		String resp="Procesado correctamente";
 		if (conexion.getConexion() == null)
 			conexion.conectar();
 		PreparedStatement stm = null;
 		try {
 			stm = conexion.getConexion()
-					.prepareStatement("UPDATE Estancia\r\n" + "SET estado=\"check in\"\r\n" + "WHERE cliente_id = ?");
-			stm.setInt(1, cliente_id);
+					.prepareStatement("UPDATE Estancia\r\n" + "SET estado=\"check in\"\r\n" + "WHERE estancia_id = ?");
+			stm.setInt(1, estancia_id);
 			stm.executeUpdate();
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
+			resp="Error en checkIn";
 		} finally { // it is a good idea to release resources in a finally block
 			if (stm != null) {
 				try {
@@ -119,20 +120,23 @@ public class EstanciaDAO {
 			}
 		}
 		conexion.desconectar();
+		return resp;
 	}
 
 	// El cliente hace check out
-	public static void checkOut(int cliente_id) {
+	public static String checkOut(int estancia_id) {
+		String resp="Procesado correctamente";
 		if (conexion.getConexion() == null)
 			conexion.conectar();
 		PreparedStatement stm = null;
 		try {
 			stm = conexion.getConexion()
-					.prepareStatement("UPDATE Estancia\r\n" + "SET estado=\"check out\"\r\n" + "WHERE cliente_id = ?");
-			stm.setInt(1, cliente_id);
+					.prepareStatement("UPDATE Estancia\r\n" + "SET estado=\"check out\"\r\n" + "WHERE estancia_id = ?");
+			stm.setInt(1, estancia_id);
 			stm.executeUpdate();
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
+			resp="Error en checkOut";
 		} finally { // it is a good idea to release resources in a finally block
 			if (stm != null) {
 				try {
@@ -143,6 +147,7 @@ public class EstanciaDAO {
 			}
 		}
 		conexion.desconectar();
+		return resp;
 	}
 
 	public static ArrayList<EstanciaBean> geEstanciaBeans() {

@@ -30,11 +30,11 @@ public class PedirClientes {
 				    int cliente_id = obj.get("cliente_id").getAsInt();
 					String nombre = obj.get("nombre").getAsString();
 					String apellidos=obj.get("apellidos").getAsString();
-					String dni= obj.get("dni").getAsString();
+					String dni= obj.get("DNI").getAsString();
 					String email= obj.get("email").getAsString();
 					String password= obj.get("password").getAsString();
 					String nacionalidad= obj.get("nacionalidad").getAsString();
-					int telefono= obj.get("telefono").getAsInt();
+					Integer telefono= valueOf2(obj.get("telefono").getAsString());
 					ClienteBean cliente = new ClienteBean (cliente_id, nombre,apellidos, dni, email, password, nacionalidad,telefono);
 					
 				 return cliente;
@@ -46,6 +46,9 @@ public class PedirClientes {
 			
 			return null;
 			
+		}
+		public static Integer valueOf2(String inputString) {
+			return (inputString.equals("null") || inputString == null) ? null : Integer.parseInt(inputString);
 		}
 		
 		

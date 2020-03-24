@@ -3,6 +3,7 @@ package ingsoft1920.dho.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 import ingsoft1920.dho.bean.ClienteBean;
 import ingsoft1920.dho.controller.Conexion;
@@ -159,7 +160,11 @@ public static void anadirCliente(ClienteBean cliente) {
 		stm.setString(5, cliente.getEmail());
 		stm.setString(6, cliente.getNacionalidad());
 		stm.setString(7, cliente.getPassword());
-		stm.setInt(8,cliente.getTelefono());
+		if (cliente.getTelefono() != null) {
+			stm.setInt(8, cliente.getTelefono());
+		} else {
+			stm.setNull(8, Types.INTEGER);
+		}
 		stm.executeUpdate();
 	}catch (SQLException ex){  
 		System.out.println("SQLException: " + ex.getMessage()); 

@@ -12,7 +12,7 @@ public class ClienteBean {
 	private String email;
 	private String password;
 	private String nacionalidad;
-	private int telefono;
+	private Integer telefono;
 
 	public int getCliente_id() {
 		return cliente_id;
@@ -70,16 +70,16 @@ public class ClienteBean {
 		this.nacionalidad = nacionalidad;
 	}
 
-	public int getTelefono() {
+	public Integer getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(Integer telefono) {
 		this.telefono = telefono;
 	}
 
 	public ClienteBean(int cliente_id, String nombre, String apellidos, String dni, String email,
-			String password, String nacionalidad, int telefono) {
+			String password, String nacionalidad, Integer telefono) {
 		super();
 		this.cliente_id = cliente_id;
 		this.nombre = nombre;
