@@ -1,5 +1,6 @@
 package ingsoft1920.dho.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -25,20 +26,35 @@ public class MenuController {
 	 @GetMapping("homePageDHO/menu")
 	 public String menu(Model model) 
 	 {		
-		 //Variables
-	 	List<EstanciaBean> listaEstancias= EstanciaDAO.geEstanciaBeans();
-	 	String primero = listaEstancias.get(0).getEstado();
-	 	String colorCelda="";
+		int numHab=49;
+		String estado="";
+	 	List<String> listaEstados= EstanciaDAO.getEstadoHabitaciones(LocalDate.now().toString());
+	 	String[] links = new String[numHab];
+	 	String[] coloresCelda = new String[numHab];
+	 
 	 	
-	 	//if(true) { colorCelda="#EC8B19"; }
-	 	if (primero.equals("check in")) { colorCelda="#dc2816"; } //rojo
-	 	else if (primero.equals("reserva")) { colorCelda="#EC8B19"; } //naranja
-	 	else if (primero.equals("check out")) { colorCelda="#27a912"; } //verde
-	 	
-	 	System.out.print(colorCelda);
+	 	for(int i=0; i<numHab;i++) 
+	 	{
+	 		estado=listaEstados.get(i);
+	 		
+		 	if (estado.equals("check in")) { coloresCelda[i]="#dc2816"; links[i]="/homePageDHO/menu/checkout1"; } //rojo
+		 	else if (estado.equals("reserva")) { coloresCelda[i]="#EC8B19";links[i]="/homePageDHO/menu/checkin1";} //naranja
+		 	else if (estado.equals("check out")) { coloresCelda[i]="#27a912";links[i]="/homePageDHO/menu/checkin1";} //verde
+	
+	 	}
+
+	 	System.out.println(coloresCelda.length);
 	 	//Añadir a model
-	 	model.addAttribute("listaEstancias", listaEstancias);
-	 	model.addAttribute("colorCelda", colorCelda);
-		 return "menu";
+	 	model.addAttribute("coloresCelda", coloresCelda);
+	 	model.addAttribute("links", links);
+		return "menu";
 	 }
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 }

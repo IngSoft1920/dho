@@ -455,7 +455,7 @@ public class EstanciaDAO {
 				res.add(i, rs.getString("estado"));
 			}
 			else {
-				res.add(i, "check in");
+				res.add(i, "check out");
 			}
 			
 			}catch (SQLException ex) {

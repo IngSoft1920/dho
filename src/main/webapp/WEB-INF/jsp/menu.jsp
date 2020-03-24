@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 <header>
@@ -131,7 +131,9 @@ annocal = annohoy //año principal
 
 //iniciar calendario:
 cabecera() 
-//rellenarceldas()
+
+
+
 }
 
 
@@ -160,39 +162,8 @@ function cabecera() {
 		 
 		 //imprimir por pantalla
          tit.innerHTML=diahoy+" "+meses[mescal]+" de "+annocal;
-         } 
-//primera línea de tabla: días de la semana.
-function rellenarceldas() {
-         for (i=0;i<7;i++) {
-             celda0=f0.getElementsByTagName("td")[i];
-             celda0.innerHTML=habitacionespiso1[i]
-             }
-         for (i=0;i<7;i++) {
-             celda0=f1.getElementsByTagName("td")[i];
-             celda0.innerHTML=habitacionespiso2[i]
-             }
-         for (i=0;i<7;i++) {
-             celda0=f2.getElementsByTagName("td")[i];
-             celda0.innerHTML=habitacionespiso3[i]
-             }
-         for (i=0;i<7;i++) {
-             celda0=f3.getElementsByTagName("td")[i];
-             celda0.innerHTML=habitacionespiso4[i]
-             }
-         for (i=0;i<7;i++) {
-             celda0=f4.getElementsByTagName("td")[i];
-             celda0.innerHTML=habitacionespiso5[i]
-             }
-         for (i=0;i<7;i++) {
-             celda0=f5.getElementsByTagName("td")[i];
-             celda0.innerHTML=habitacionespiso6[i]
-             }
-         for (i=0;i<7;i++) {
-             celda0=f6.getElementsByTagName("td")[i];
-             celda0.innerHTML=habitacionespiso7[i]
-             }
-             
-         }
+} 
+
 
 //Ver mes anterior
 function mesantes() {
@@ -234,8 +205,31 @@ function mifecha() {
               cabecera() //escribir cabecera
               escribirdias() //escribir tabla
               }
-         }
-         
+}
+  
+function tabla() {         
+   		var tabla = "";
+		var filas = 7;
+		var columnas = 7;
+		var habitacion=100;
+		var n=0;
+		for (var i = 0; i <filas; i++)
+		{
+			tabla+="<tr>";
+			for(var j = 0; j<columnas;j++)
+			{
+				habitacion+=1;
+				tabla+= "<td bgcolor=\"${coloresCelda[0]}\" width=\"120px\" height=\"120px\" align=\"center\">" + "<h3><a href=\"/homePageDHO/menu/checkin1\">" + habitacion + "</a></h3></td>";;
+				n=n+1;
+				if(j==columnas-1) { tabla+="</td>"; }
+			}
+			habitacion=habitacion+100-7;
+		}
+
+		document.write("<table id=\"diasc\">" + tabla + "</table>");
+}  
+  
+//tabla()
 </script>
 
 
@@ -299,70 +293,30 @@ h1 { text-align: center; padding: 0.5em; }
   <div id="anterior" onclick="mesantes()"></div>
   <div id="posterior" onclick="mesdespues()"></div>
   
-  
   <h2 id="titulos"></h2>
-  <table id="diasc">
+  <%  int n=0;%>
+  <%  int hab=100;%>
+  <% String[] coloresCelda = (String[]) request.getAttribute("coloresCelda");%>
+  <% String[] links = (String[]) request.getAttribute("links");%>
   
-  
-    <tr id="fila0"><td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">101</a></h3></td>
-    			   <td bgcolor="${colorCelda}"><h3><a href="/homePageDHO/menu/checkin1">102</a></h3></td>
-    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">103</a></h3></td>
-    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">104</a></h3></td>
-    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">105</a></h3></td>
-    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">106</a></h3></td>
-    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">107</a></h3></td></td>
-    			   
-    <tr id="fila1"><td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">101</a></h3></td>
-    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">202</a></h3></td>
-    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">203</a></h3></td>
-    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">204</a></h3></td>
-    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">205</a></h3></td>
-    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">206</a></h3></td>
-    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">207</a></h3></td></td>
-    			       			   
-    <tr id="fila2"><td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">301</a></h3></td>
-    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">302</a></h3></td>
-    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">303</a></h3></td>
-    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">304</a></h3></td>
-    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">305</a></h3></td>
-    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">306</a></h3></td>
-    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">307</a></h3></td></td>
-    			   			   
-    <tr id="fila3"><td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">401</a></h3></td>
-    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">402</a></h3></td>
-    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">403</a></h3></td>
-    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">404</a></h3></td>
-    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">405</a></h3></td>
-    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">46</a></h3></td>
-    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">407</a></h3></td></td>
-    			   
-    <tr id="fila4"><td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">501</a></h3></td>
-    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">502</a></h3></td>
-    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">503</a></h3></td>
-    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">504</a></h3></td>
-    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">505</a></h3></td>
-    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">506</a></h3></td>
-    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">507</a></h3></td></td>
-    			   
-    <tr id="fila5"><td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">601</a></h3></td>
-    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">602</a></h3></td>
-    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">603</a></h3></td>
-    			   <td bgcolor="#dc2816"><h3><a href="/homePageDHO/menu/checkin1">604</a></h3></td>
-    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">605</a></h3></td>
-    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">606</a></h3></td>
-    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">607</a></h3></td></td>
-    			   
-    <tr id="fila6"><td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">701</a></h3></td>
-    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">702</a></h3></td>
-    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">703</a></h3></td>
-    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">704</a></h3></td>
-    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">705</a></h3></td>
-    			   <td bgcolor="#27a912"><h3><a href="/homePageDHO/menu/checkin1">706</a></h3></td>
-    			   <td bgcolor="#EC8B19"><h3><a href="/homePageDHO/menu/checkin1">707</a></h3></td></td>
-    	
-    	
-    			   
-  </table>
+ <table>
+
+<%for(int i=0; i<7;i++)
+	{
+	%>	
+	<tr>
+	<%for(int j=0; j<7;j++)
+		{ 
+			hab+=1;%>
+			<td width="120px" height="120px" align="center" bgcolor="<%=coloresCelda[n]%>"><h3><a href="<%=links[n]%>"><%=hab%></a></h3></td> 
+			<% n++;%>
+	  <%}
+	    hab=hab+100-7;%>
+		 </tr>
+	<%}%>
+	
+ </table>
+ 
   
   <div id="fechaactual"><i onclick="actualizar()">HOY: </i></div>
   <div id="buscafecha">
