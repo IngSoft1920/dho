@@ -30,36 +30,11 @@
 
 		<input type="submit" value="Registro">
 	</form>
-	<br></br>
-	<h3>Para la estancia</h3>
-	<form method="POST">
-		<label>estancia_id</label>
-		<input type="text" name="estancia_id" autocomlete="off" />
-	
-	</form>
-	<br></br>
-	<h3> Cambiar el nombre </h3>
-	<form method="POST">
-		<label>nombre</label>
-		<input type="text" name="nombre" autocomlete="off" />
-		<br><br>
 
-		<input type="submit" value="Registro">
-	</form>
-	<br></br>.
-	<h3> Cambiar la fecha de fin </h3>
-	<form method="POST">
-		<label>fecha de salida</label>
-		<input type="text" name="fecha_fin" autocomlete="off" />
-		<br><br>
-
-		<input type="submit" value="Registro">
-	</form>
-	
 	
 	</body>
 	
-	<
+	
 			
 	
 </html>

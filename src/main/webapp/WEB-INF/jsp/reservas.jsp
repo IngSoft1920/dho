@@ -75,10 +75,10 @@ nav ul li:hover {
 
 <section class="contenido wrapper">
 	<head>
-	Reservas
 	</head>
 
 	<body style="background-color:lightblue;">
+	<h1>Reservas</h1>
 	
 	<ul>
 		<c:forEach items="${listaReservas}" var="item">

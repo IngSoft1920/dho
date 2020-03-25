@@ -221,64 +221,64 @@ h2{
         <tr>
             <td>7</td>
             <td>Limpieza</td>
-            <td>"Limpiar la habitaciÃ³n entera"</td>
-            <td>HabitaciÃ³n 1</td>
+            <td>"Limpiar la habitaci&oacute;n entera"</td>
+            <td>Habitaci&oacute;n 1</td>
             <td>25/03/2020</td>
         </tr>
         <tr>
             <td>8</td>
             <td>Limpieza</td>
-            <td>"Limpiar la habitaciÃ³n entera"</td>
-            <td>HabitaciÃ³n 2</td>
+            <td>"Limpiar la habitaci&oacute;n entera"</td>
+            <td>Habitaci&oacute;n 2</td>
             <td>25/03/2020</td>
         </tr>
         <tr>
             <td>9</td>
             <td>Limpieza</td>
-            <td>"Limpiar la habitaciÃ³n entera"</td>
-            <td>HabitaciÃ³n 3</td>
+            <td>"Limpiar la habitaci&oacute;n entera"</td>
+            <td>Habitaci&oacute;n 3</td>
             <td>25/03/2020</td>
         </tr>
         <tr>
             <td>10</td>
             <td>Limpieza</td>
-            <td>"Limpiar la habitaciÃ³n entera"</td>
-            <td>HabitaciÃ³n 4</td>
+            <td>"Limpiar la habitaci&oacute;n entera"</td>
+            <td>Habitaci&oacute;n 4</td>
             <td>25/03/2020</td>
         </tr>
         <tr>
             <td>11</td>
             <td>Cocina</td>
-            <td>"Limpiar la habitaciÃ³n entera"</td>
-            <td>HabitaciÃ³n 5</td>
+            <td>"Limpiar la habitaci&oacute;n entera"</td>
+            <td>Habitaci&oacute;n 5</td>
             <td>25/03/2020</td>
         </tr>
         <tr>
             <td>12</td>
             <td>Cocina</td>
-            <td>"Limpiar la habitaciÃ³n entera"</td>
-            <td>HabitaciÃ³n 6</td>
+            <td>"Limpiar la habitaci&oacute;n entera"</td>
+            <td>Habitaci&oacute;n 6</td>
             <td>25/03/2020</td>
         </tr>
         <tr>
             <td>13</td>
             <td>Cocina</td>
-            <td>"Limpiar la habitaciÃ³n entera"</td>
-            <td>HabitaciÃ³n 7</td>
+            <td>"Limpiar la habitaci&oacute;n entera"</td>
+            <td>Habitaci&oacute;n 7</td>
             <td>25/03/2020</td>
         </tr>
         <tr>
             <td>14</td>
             <td>Cocina</td>
-            <td>"Limpiar la habitaciÃ³n entera"</td>
-            <td>HabitaciÃ³n 8</td>
+            <td>"Limpiar la habitaci&oacute;n entera"</td>
+            <td>Habitaci&oacute;n 8</td>
             <td>25/03/2020</td>
         </tr>
         <tr>
             <td>16</td>
             <td>Mantenimiento</td>
-            <td>"Limpiar la habitaciÃ³n entera"</td>
-            <td>HabitaciÃ³n 9</td>
+            <td>"Limpiar la habitaci&oacute;n entera"</td>
+            <td>Habitaci&oacute;n 9</td>
             <td>25/03/2020</td>
         </tr>
       
@@ -287,7 +287,7 @@ h2{
     
 </div>
 
-<h2>Incidencias sin asignar</h2>
+<h2>Incidencias asignadas</h2>
 	
 <div class="table-wrapper">
     <table class="fl-table">
@@ -295,7 +295,7 @@ h2{
         <tr>
             <th>ID</th>
             <th>TIPO</th>
-            <th>DESCRIPCIÃ“N</th>
+            <th>DESCRIPCI&Oacute;N</th>
             <th>LUGAR</th>
             <th>FECHA</th>
         </tr>
@@ -304,50 +304,50 @@ h2{
         <tr>
             <td>1</td>
             <td>Limpieza</td>
-            <td>"Limpiar la habitaciÃ³n entera"</td>
-            <td>HabitaciÃ³n 1</td>
+            <td>"Limpiar la habitaci&oacute;n entera"</td>
+            <td>Habitaci&oacute;n 1</td>
             <td>25/03/2020</td>
         </tr>
         <tr>
             <td>2</td>
             <td>Limpieza</td>
-            <td>"Limpiar la habitaciÃ³n entera"</td>
-            <td>HabitaciÃ³n 2</td>
+            <td>"Limpiar la habitaci&oacute;n entera"</td>
+            <td>Habitaci&oacute;n 2</td>
             <td>25/03/2020</td>
         </tr>
         <tr>
             <td>3</td>
             <td>Limpieza</td>
-            <td>"Limpiar la habitaciÃ³n entera"</td>
-            <td>HabitaciÃ³n 3</td>
+            <td>"Limpiar la habitaci&oacute;n entera"</td>
+            <td>Habitaci&oacute;n 3</td>
             <td>25/03/2020</td>
         </tr>
         <tr>
             <td>4</td>
             <td>Limpieza</td>
-            <td>"Limpiar la habitaciÃ³n entera"</td>
-            <td>HabitaciÃ³n 4</td>
+            <td>"Limpiar la habitaci&oacute;n entera"</td>
+            <td>Habitaci&oacute;n 4</td>
             <td>25/03/2020</td>
         </tr>
         <tr>
             <td>5</td>
             <td>Cocina</td>
-            <td>"Limpiar la habitaciÃ³n entera"</td>
-            <td>HabitaciÃ³n 5</td>
+            <td>"Limpiar la habitaci&oacute;n entera"</td>
+            <td>Habitaci&oacute;n 5</td>
             <td>25/03/2020</td>
         </tr>
         <tr>
             <td>6</td>
             <td>Cocina</td>
-            <td>"Limpiar la habitaciÃ³n entera"</td>
-            <td>HabitaciÃ³n 6</td>
+            <td>"Limpiar la habitaci&oacute;n entera"</td>
+            <td>Habitaci&oacute;n 6</td>
             <td>25/03/2020</td>
         </tr>
         <tr>
             <td>15</td>
             <td>Cocina</td>
-            <td>"Limpiar la habitaciÃ³n entera"</td>
-            <td>HabitaciÃ³n 7</td>
+            <td>"Limpiar la habitaci&oacute;n entera"</td>
+            <td>Habitaci&oacute;n 7</td>
             <td>25/03/2020</td>
         </tr>
               
