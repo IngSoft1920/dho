@@ -366,8 +366,10 @@ public class DhoAPI {
 
 		JsonArray nombre_hotel_Lista = new JsonArray();
 
-		JsonArray is_check_in = new JsonArray();
+		//JsonArray is_check_in = new JsonArray();
 		// falta meter el del check_in
+		
+		JsonArray estado = new JsonArray();
 
 		boolean aux = true;
 
@@ -382,7 +384,11 @@ public class DhoAPI {
 			fecha_Fin_Lista.add(elem.getFecha_fin().toString());
 
 			nombre_hotel_Lista.add(HotelDAO.ConseguirNombreHotelDadoID(elem.getHotel_id()));
-
+			
+			estado.add(elem.getEstado());
+			
+			
+			/*
 			if (elem.getEstado() == "reserva" || elem.getEstado() == "check out")
 
 				is_check_in.add(false);
@@ -390,7 +396,8 @@ public class DhoAPI {
 			else
 
 				is_check_in.add(true);
-
+			
+			*/
 		}
 
 		obj.add("id_estancia_lista", id_estancia_lista);
@@ -403,7 +410,9 @@ public class DhoAPI {
 
 		obj.add("nombre_hotel_Lista", nombre_hotel_Lista);
 
-		obj.add("is_check_in", is_check_in);
+		//obj.add("is_check_in", is_check_in);
+		
+		obj.add("estado", estado);
 
 		return obj.toString().toString();
 
