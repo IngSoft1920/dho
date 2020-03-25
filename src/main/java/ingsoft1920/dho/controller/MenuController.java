@@ -31,8 +31,8 @@ public class MenuController {
 	 	List<String> listaEstados= EstanciaDAO.getEstadoHabitaciones(LocalDate.now().toString());
 	 	String[] links = new String[numHab];
 	 	String[] coloresCelda = new String[numHab];
-	 
-	 	
+	 	LocalDate hoy = LocalDate.now();
+	 	hoy.plusDays(1);
 	 	for(int i=0; i<numHab;i++) 
 	 	{
 	 		estado=listaEstados.get(i);
@@ -47,6 +47,7 @@ public class MenuController {
 	 	//Añadir a model
 	 	model.addAttribute("coloresCelda", coloresCelda);
 	 	model.addAttribute("links", links);
+	 	model.addAttribute("hoy", hoy);
 		return "menu";
 	 }
 	 
