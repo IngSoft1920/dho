@@ -588,7 +588,8 @@ public class DhoAPI {
 		String resultado = EstanciaDAO.anadirEstancia(reserva_id, cliente_id, hotel_id, fecha_inicio, fecha_fin,
 				tipo_hab_id, importe);
 		ClienteBean cliente=PedirClientes.peticionPedirCliente(reserva_id);
-		ClienteDAO.anadirCliente(cliente);
+		if(ClienteDAO.getCliente(cliente.getCliente_id())==null||ClienteDAO.getCliente(cliente.getCliente_id()).getCliente_id()==0)
+			ClienteDAO.anadirCliente(cliente);
 		return resultado;
 
 	}
