@@ -336,8 +336,8 @@ public class EstanciaDAO {
 					+ hotel_id + " and  hab.tipo_habitacion=\"" + tipo_hab + "\") tabla "
 					+ " where tabla.habitacion_id not in (select est.habitacion_id from Estancia as est\r\n"
 					+ " join Habitaciones as hab on est.habitacion_id=hab.habitacion_id\r\n" + " where est.hotel_id="
-					+ hotel_id + " and  hab.tipo_habitacion=\"" + tipo_hab + "\" \r\n" + " and (est.fecha_fin>'"
-					+ fecha_inicio + "' and est.fecha_inicio< '" + fecha_fin + "')  )\r\n"
+					+ hotel_id + " and  hab.tipo_habitacion=\"" + tipo_hab + "\" \r\n" + " and (est.fecha_fin>='"
+					+ fecha_inicio + "' and est.fecha_inicio<= '" + fecha_fin + "')  )\r\n"
 					+ " group by habitacion_id order by habitacion_id asc limit 1 ;");
 
 			if (rs.next()) {
