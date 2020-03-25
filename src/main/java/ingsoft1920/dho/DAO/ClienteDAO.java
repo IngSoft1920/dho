@@ -86,6 +86,7 @@ public static ClienteBean getCliente(int cliente_id) {
 		}
 	}catch (SQLException ex) {
 		System.out.println("SQLException: " + ex.getMessage());
+		res=null;
 	} finally { // it is a good idea to release resources in a finally block
 		if (rs != null) {
 			try {
