@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 import ingsoft1920.dho.bean.ClienteBean;
+import ingsoft1920.dho.bean.EstanciaBean;
 import ingsoft1920.dho.controller.Conexion;
 
 public class ClienteDAO {private static Conexion conexion = new Conexion();
@@ -86,6 +87,7 @@ public static ClienteBean getCliente(int cliente_id) {
 		}
 	}catch (SQLException ex) {
 		System.out.println("SQLException: " + ex.getMessage());
+		res=null;
 	} finally { // it is a good idea to release resources in a finally block
 		if (rs != null) {
 			try {
@@ -171,6 +173,18 @@ public static void anadirCliente(ClienteBean cliente) {
 	} finally { // it is a good idea to release resources in a finally block  
 		if (stm != null) { try {  stm.close(); } catch (SQLException sqlEx) { }  stm = null; }  
 	} 
+}
+//Dado el numero de una habitacion ver los datos del cliente que esta en esa habitacion actualmente
+public static ClienteBean clientePorHabitacionID(int habitacion_id) {
+	ClienteBean cliente= new ClienteBean();
+	
+	EstanciaBean estancia = new EstanciaBean();
+	estancia=EstanciaDAO.getEstanciaByHabitacionID(habitacion_id);
+	int cliente_id=estancia.getCliente_id();
+	
+	cliente= getCliente(cliente_id);
+	
+	return cliente;
 }
 
 }

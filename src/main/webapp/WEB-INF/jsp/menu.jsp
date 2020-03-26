@@ -254,7 +254,7 @@ function tabla() {
 /*cabecera de la página*/
 h1 { text-align: center; padding: 0.5em; }
 /*div principal del calendario*/
-#calendario { border: 8px double black ; max-width: 1200px; max-height:1000px;
+#calendario { border: 8px double black ; max-width: 1000px; max-height:1000px;
               background-color:#fffafa; text-align: center; }
 /*tabla del calendario*/
 #diasc { border: 1px solid black; border-collapse: 
@@ -286,8 +286,8 @@ h1 { text-align: center; padding: 0.5em; }
 <head>
 <title>Calendario</title> 
 </head>
-<body>
-<h1>Disponibilidad actual</h1>
+<body background ="https://avante.biz/wp-content/uploads/Wood-Print-Wallpapers/Wood-Print-Wallpapers-045.jpg">
+<h1><font size=7>Disponibilidad actual</font></h1>
 <br/><br/>
 <div id="calendario">
   <div id="anterior" onclick="mesantes()"></div>
@@ -308,7 +308,7 @@ h1 { text-align: center; padding: 0.5em; }
 	<%for(int j=0; j<7;j++)
 		{ 
 			hab+=1;%>
-			<td width="120px" height="120px" align="center" bgcolor="<%=coloresCelda[n]%>"><h3><a href="<%=links[n]%>"><%=hab%></a></h3></td> 
+			<td width="100px" height="100px" align="center" bgcolor="<%=coloresCelda[n]%>"><h3><a href="<%=links[n]%>"><%=hab%></a></h3></td> 
 			<% n++;%>
 	  <%}
 	    hab=hab+100-7;%>
@@ -321,7 +321,7 @@ h1 { text-align: center; padding: 0.5em; }
   <div id="fechaactual"><i onclick="actualizar()">HOY: </i></div>
   <div id="buscafecha">
     <form action="#" name="buscar">
-      <p>DÍA
+      <p>MES: 
         <select name="buscames">
           <option value="0">Enero</option>
           <option value="1">Febrero</option>
@@ -336,9 +336,9 @@ h1 { text-align: center; padding: 0.5em; }
           <option value="10">Noviembre</option>
           <option value="11">Diciembre</option>
         </select>
-      ... AÑO ...
+          AÑO: 
         <input type="text" name="buscaanno" maxlength="4" size="4" />
-      ... 
+          
         <input type="button" value="BUSCAR" onclick="mifecha()" />
       </p>
     </form>

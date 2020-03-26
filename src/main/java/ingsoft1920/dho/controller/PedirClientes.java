@@ -17,9 +17,14 @@ public class PedirClientes {
 			
 			try {
 				//construimos la peticion 
-				HttpClient client= new HttpClient("http://piedrafita.ls.fi.upm.es:7000/reserva/getCliente/"+reserva_id,"GET");
-								
+				HttpClient client= new HttpClient("http://piedrafita.ls.fi.upm.es:7000/reserva/getCliente/"+reserva_id,"POST");
 				
+				JsonObject param= new JsonObject();
+				
+				param.addProperty("reserva_id", reserva_id);
+				
+				client.setRequestBody(param.toString());
+								
 				int respCode = client.getResponseCode();
 				
 				if(respCode==200){

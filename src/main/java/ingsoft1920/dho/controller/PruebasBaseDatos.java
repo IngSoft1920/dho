@@ -2,6 +2,7 @@ package ingsoft1920.dho.controller;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import ingsoft1920.dho.DAO.ClienteDAO;
@@ -279,8 +280,21 @@ public class PruebasBaseDatos {
 		
 		EstanciaDAO prueba47 = new EstanciaDAO(conexion);
 		
-		System.out.println(prueba47.getEstadoHabitaciones("2020-04-04").toString());
+		System.out.println(prueba47.getEstadoHabitaciones("2020-03-26").toString());
+		
+		
+	
+		
+		EstanciaDAO prueba48 = new EstanciaDAO(conexion);
+		System.out.println(prueba48.getEstanciaByHabitacionID(103).toString());
+		
+		EstanciaDAO prueba49 = new EstanciaDAO(conexion);
+		prueba49.checkIn(103);
+		System.out.println(prueba48.getEstanciaByHabitacionID(103));
 		*/
+		
+		ClienteDAO prueba50= new ClienteDAO(conexion);
+		System.out.println(prueba50.clientePorHabitacionID(103).toString());
 		
 		
 			//System.out.println(prueba45.idUltimoServicio());

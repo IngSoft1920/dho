@@ -90,6 +90,6 @@ public class EstanciaBean {
 	public String toString() { 
 		return "Estancia [estancia_id=" + estancia_id + ", habitacion_id=" + habitacion_id + ", cliente_id=" 
 				+ cliente_id + ", hotel_id=" + hotel_id + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin 
-				+ "estado="+estado+ ", " + importe + "]"; 
+				+ ", estado= "+estado+ ", " + importe + "]"; 
 	}
 }
