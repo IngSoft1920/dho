@@ -34,7 +34,7 @@ public class EstanciaDAO {
 			while (rs.next()) {
 				res.add(new EstanciaBean(rs.getInt("estancia_id"), rs.getInt("habitacion_id"), cliente_id,
 						rs.getInt("hotel_id"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"),
-						rs.getString("estado"), rs.getInt("importe")));
+						rs.getString("estado"), rs.getInt("importe"), rs.getInt("tipo_hab_id")));
 			}
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
@@ -174,7 +174,7 @@ public class EstanciaDAO {
 			while (rs.next()) {
 				res.add(new EstanciaBean(rs.getInt("estancia_id"), rs.getInt("habitacion_id"), rs.getInt("cliente_id"),
 						rs.getInt("hotel_id"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"),
-						rs.getString("estado"), rs.getInt("importe")));
+						rs.getString("estado"), rs.getInt("importe"), rs.getInt("tipo_hab_id")));
 			}
 
 		} catch (SQLException ex) {
@@ -214,7 +214,7 @@ public class EstanciaDAO {
 			while (rs.next()) {
 				res.add(new EstanciaBean(rs.getInt("estancia_id"), rs.getInt("habitacion_id"), rs.getInt("cliente_id"),
 						rs.getInt("hotel_id"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"),
-						rs.getString("estado"), rs.getInt("importe")));
+						rs.getString("estado"), rs.getInt("importe"), rs.getInt("tipo_hab_id")));
 			}
 
 		} catch (SQLException ex) {
@@ -254,7 +254,7 @@ public class EstanciaDAO {
 			while (rs.next()) {
 				res.add(new EstanciaBean(rs.getInt("estancia_id"), rs.getInt("habitacion_id"), rs.getInt("cliente_id"),
 						rs.getInt("hotel_id"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"),
-						rs.getString("estado"), rs.getInt("importe")));
+						rs.getString("estado"), rs.getInt("importe"), rs.getInt("tipo_hab_id")));
 			}
 
 		} catch (SQLException ex) {
@@ -294,7 +294,7 @@ public class EstanciaDAO {
 			while (rs.next()) {
 				res.add(new EstanciaBean(rs.getInt("estancia_id"), rs.getInt("habitacion_id"), rs.getInt("cliente_id"),
 						rs.getInt("hotel_id"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"),
-						rs.getString("estado"), rs.getInt("importe")));
+						rs.getString("estado"), rs.getInt("importe"), rs.getInt("tipo_hab_id")));
 			}
 
 		} catch (SQLException ex) {
