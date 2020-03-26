@@ -449,7 +449,7 @@ public class EstanciaDAO {
 	
 	public static ArrayList<String> getEstadoHabitaciones(String fecha){
 		ArrayList<String> res = new ArrayList<String>();
-		ArrayList<HabitacionBean> habs = HabitacionDAO.getHabitacionByHotel(-1);
+		ArrayList<HabitacionBean> habs = HabitacionDAO.getHabitacionByHotel(5);
 		
 		if (conexion.getConexion() == null)
 			conexion.conectar();

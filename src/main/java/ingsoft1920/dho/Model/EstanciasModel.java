@@ -38,9 +38,9 @@ public EstanciasModel(EstanciaBean estanciaBean) {
 		
 	}
 
-public void nuevoEstancia(EstanciasModel estanciasModel) {
+public void nuevaEstancia(EstanciasModel estanciasModel) {
 	
-	EstanciaDAO.anadirEstancia(new EstanciaBean(estancia_id, habitacion_id, cliente_id, hotel_id, fecha_inicio, 
+	EstanciaDAO.anadirEstanciaBean(new EstanciaBean(estancia_id, habitacion_id, cliente_id, hotel_id, fecha_inicio, 
 			fecha_fin, estado, importe, tipo_hab_id));
 	
 		

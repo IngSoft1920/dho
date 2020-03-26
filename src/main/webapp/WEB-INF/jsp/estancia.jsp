@@ -78,13 +78,7 @@ nav ul li:hover {
 	</head>
 
 	<body style="background-color:lightblue;">
-	<h1>Reservas Servicios</h1>
-	
-	<ul>
-		<c:forEach items="${listaReservas}" var="item">
-			<li>${item}</li>
-		</c:forEach>
-	</ul>
+	<h1>Reservar una habitación</h1>
 	
 	</body>
 		
@@ -95,29 +89,26 @@ nav ul li:hover {
 		<label>estancia_id</label> 
 		<input type="text" name="estancia_id" autocomlete="off" /> 
 		<br><br> 
-		<label>fecha_servicio</label> 
-		<input type="text" name="fecha_servicioString" autocomlete="off" /> 
+		<label>habitacion_id</label> 
+		<input type="text" name="habitacion_id" autocomlete="off" /> 
 		<br><br> 
-		<label>hora_salida</label> 
-		<input type="text" name="hora_salidaString" autocomplete="off" /> 
+		<label>hotel_id</label> 
+		<input type="text" name="hotel_id" autocomplete="off" /> 
 		<br><br> 
-		<label>hora</label> 
-		<input type="text" name="horaString" autocomplete="off" /> 
+		<label>fecha_inicio</label> 
+		<input type="text" name="fecha_inicio" autocomplete="off" /> 
 		<br><br> 
-		<label>id_ServicoHotel</label> 
-		<input type="text" name="id_ServicoHotel" autocomplete="off" /> 
+		<label>fecha_fin</label> 
+		<input type="text" name="fecha_fin" autocomplete="off" /> 
 		<br><br> 
-		<label>items</label> 
-		<input type="text" name="items" autocomplete="off" /> 
+		<label>estado</label> 
+		<input type="text" name="estado" autocomplete="off" /> 
 		<br><br> 
-		<label>lugar</label> 
-		<input type="text" name="lugar" autocomplete="off" /> 
+		<label>importe</label> 
+		<input type="text" name="importe" autocomplete="off" /> 
 		<br><br> 
-		<label>platos</label> 
-		<input type="text" name="platos" autocomplete="off" /> 
-		<br><br> 
-		<label>tipo_servicio</label> 
-		<input type="text" name="tipo_servicio" autocomplete="off" /> 
+		<label>tipo_hab_id</label> 
+		<input type="text" name="tipo_hab_id" autocomplete="off" /> 
 		<br><br> 
 		 
 		<input type="submit" value="Registro"> 
