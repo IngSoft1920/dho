@@ -7,10 +7,12 @@
 <header>
 	<nav>
 		<ul>
+			
 			<li><a href="/homePageDHO/menu">Inicio</a></li>
 			<li><a href="/homePageDHO/menu/checkout1">Check-out</a></li>
 			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
 			<li><a href="/homePageDHO/menu/calendario">Vista de calendario</a></li>
+			<li><a href="/homePageDHO/menu/registro">Registro</a></li>
 
 		</ul>
 	</nav>
@@ -78,38 +80,31 @@ nav ul li:hover {
 	</head>
 
 	<body style="background-color:lightblue;">
-	<h1>Reservar una habitación</h1>
+	<h1>Registro de un cliente</h1>
+	<br><br>
 	
 	</body>
 		
 	<form method="POST"> 
-		<label>cliente_id</label> 
-		<input type="text" name="cliente_id" autocomlete="off" /> 
+		<label>Nombre</label> 
+		<input type="text" name="nombre" autocomlete="off" /> 
 		<br><br> 
-		<label>estancia_id</label> 
-		<input type="text" name="estancia_id" autocomlete="off" /> 
+		<label>Apellidos</label> 
+		<input type="text" name="apellidos" autocomlete="off" /> 
 		<br><br> 
-		<label>habitacion_id</label> 
-		<input type="text" name="habitacion_id" autocomlete="off" /> 
+		<label>DNI</label> 
+		<input type="text" name="dni" autocomlete="off" /> 
 		<br><br> 
-		<label>hotel_id</label> 
-		<input type="text" name="hotel_id" autocomplete="off" /> 
+		<label>Email</label> 
+		<input type="text" name="email" autocomplete="off" /> 
 		<br><br> 
-		<label>fecha_inicio</label> 
-		<input type="text" name="fecha_inicio" autocomplete="off" /> 
+		<label>Nacionalidad</label> 
+		<input type="text" name="nacionalidad" autocomplete="off" /> 
 		<br><br> 
-		<label>fecha_fin</label> 
-		<input type="text" name="fecha_fin" autocomplete="off" /> 
+		<label>Telefono</label> 
+		<input type="text" name="telefono" autocomplete="off" /> 
 		<br><br> 
-		<label>estado</label> 
-		<input type="text" name="estado" autocomplete="off" /> 
-		<br><br> 
-		<label>importe</label> 
-		<input type="text" name="importe" autocomplete="off" /> 
-		<br><br> 
-		<label>tipo_hab_id</label> 
-		<input type="text" name="tipo_hab_id" autocomplete="off" /> 
-		<br><br> 
+		
 		 
 		<input type="submit" value="Registro"> 
 	</form> 	

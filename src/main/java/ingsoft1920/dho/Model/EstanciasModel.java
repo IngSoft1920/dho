@@ -5,43 +5,42 @@ import java.util.List;
 
 import ingsoft1920.dho.bean.EstanciaBean;
 import ingsoft1920.dho.bean.ServicioBean;
+import ingsoft1920.dho.DAO.ClienteDAO;
 import ingsoft1920.dho.DAO.EstanciaDAO;
 import ingsoft1920.dho.DAO.ServicioDAO;
+import ingsoft1920.dho.bean.ClienteBean;
 
 public class EstanciasModel {
-	private int estancia_id; 
-	private int habitacion_id; 
-	private int cliente_id; 
-	private int hotel_id; 
-	private Date fecha_inicio; 
-	private Date fecha_fin; 
-	//check in, check out o ninguno
-	private String estado;
-	private int importe;
-	private int tipo_hab_id;
+	private int cliente_id;
+	private String nombre;
+	private String apellidos;
+	private String dni;
+	private String email;
+	private String password;
+	private String nacionalidad;
+	private Integer telefono;
+	
 	public EstanciasModel() {
 		
 	}
 	
-public EstanciasModel(EstanciaBean estanciaBean) {
+public EstanciasModel(ClienteBean clienteBean) {
 		
-		this.cliente_id=estanciaBean.getCliente_id();
-		this.estancia_id=estanciaBean.getEstancia_id();
-		this.habitacion_id=estanciaBean.getHabitacion_id();
-		this.hotel_id=estanciaBean.getHotel_id();
-		this.fecha_inicio=estanciaBean.getFecha_inicio();
-		this.fecha_fin=estanciaBean.getFecha_fin();
-		this.estado=estanciaBean.getEstado();
-		this.importe=estanciaBean.getImporte();
-		this.tipo_hab_id=estanciaBean.getTipo_hab_id();
+		this.cliente_id=clienteBean.getCliente_id();
+		this.nombre=clienteBean.getNombre();
+		this.apellidos=clienteBean.getApellidos();
+		this.dni=clienteBean.getDni();
+		this.email=clienteBean.getEmail();
+		this.password=clienteBean.getPassword();
+		this.nacionalidad=clienteBean.getNacionalidad();
+		this.telefono=clienteBean.getTelefono();
 		
 		
 	}
 
-public void nuevaEstancia(EstanciasModel estanciasModel) {
+public void nuevoCliente(EstanciasModel estanciasModel) {
 	
-	EstanciaDAO.anadirEstanciaBean(new EstanciaBean(estancia_id, habitacion_id, cliente_id, hotel_id, fecha_inicio, 
-			fecha_fin, estado, importe, tipo_hab_id));
+	ClienteDAO.anadirCliente(new ClienteBean(cliente_id,nombre,apellidos,dni,email,password,nacionalidad,telefono));
 	
 		
 	}

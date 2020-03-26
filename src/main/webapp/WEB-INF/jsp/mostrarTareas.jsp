@@ -212,7 +212,7 @@ h2{
         <tr>
             <th>ID</th>
             <th>TIPO</th>
-            <th>DESCRIPCIÃ“N</th>
+            <th>DESCRIPCI&Oacute;N</th>
             <th>LUGAR</th>
             <th>FECHA</th>
         </tr>
