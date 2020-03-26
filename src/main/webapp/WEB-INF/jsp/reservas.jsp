@@ -78,7 +78,7 @@ nav ul li:hover {
 	</head>
 
 	<body style="background-color:lightblue;">
-	<h1>Reservas</h1>
+	<h1>Reservas Servicios</h1>
 	
 	<ul>
 		<c:forEach items="${listaReservas}" var="item">
