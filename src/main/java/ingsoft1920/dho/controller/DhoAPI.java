@@ -462,7 +462,7 @@ public class DhoAPI {
 		String resp="Procesado correctamente";
 		JsonObject requeObj = JsonParser.parseString(req).getAsJsonObject();
 		int id_estancia = requeObj.get("reserva_id").getAsInt();
-		resp=EstanciaDAO.checkIn(id_estancia);
+		resp=EstanciaDAO.checkInPorEstancia_id(id_estancia);
 		return resp;
 		
 	}
@@ -481,7 +481,7 @@ public class DhoAPI {
 		String nacionalidad= requeObj.get("nacionalidad").getAsString();
 		String telefono= requeObj.get("telefono").getAsString();
 		String contraseña=requeObj.get("contraseña").getAsString();
-		resp=EstanciaDAO.checkIn(id_estancia);
+		resp=EstanciaDAO.checkInPorEstancia_id(id_estancia);
 		ClienteDAO.modificarDatosCliente(cliente,"nombre",nombre);
 		ClienteDAO.modificarDatosCliente(cliente,"apellidos",apellidos);
 		ClienteDAO.modificarDatosCliente(cliente,"DNI",DNI);

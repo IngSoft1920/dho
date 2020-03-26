@@ -128,6 +128,32 @@ public class EstanciaDAO {
 		conexion.desconectar();
 		return resp;
 	}
+	public static String checkInPorEstancia_id(int estancia_id) {
+		EstanciaBean est = new EstanciaBean();
+		String resp="Procesado correctamente";
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+		PreparedStatement stm = null;
+		try {
+			stm = conexion.getConexion()
+					.prepareStatement("UPDATE Estancia\r\n" + "SET estado=\"check in\"\r\n" + "WHERE estancia_id = ?");
+			stm.setInt(1, estancia_id);
+			stm.executeUpdate();
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+			resp="Error en checkIn";
+		} finally { // it is a good idea to release resources in a finally block
+			if (stm != null) {
+				try {
+					stm.close();
+				} catch (SQLException sqlEx) {
+				}
+				stm = null;
+			}
+		}
+		conexion.desconectar();
+		return resp;
+	}
 
 	// El cliente hace check out
 	public static String checkOut(int habitacion_id) {
@@ -147,6 +173,32 @@ public class EstanciaDAO {
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
 			resp="Error en checkOut";
+		} finally { // it is a good idea to release resources in a finally block
+			if (stm != null) {
+				try {
+					stm.close();
+				} catch (SQLException sqlEx) {
+				}
+				stm = null;
+			}
+		}
+		conexion.desconectar();
+		return resp;
+	}
+	public static String checkOutPorEstancia_id(int estancia_id) {
+		EstanciaBean est = new EstanciaBean();
+		String resp="Procesado correctamente";
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+		PreparedStatement stm = null;
+		try {
+			stm = conexion.getConexion()
+					.prepareStatement("UPDATE Estancia\r\n" + "SET estado=\"check out\"\r\n" + "WHERE estancia_id = ?");
+			stm.setInt(1, estancia_id);
+			stm.executeUpdate();
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+			resp="Error en checkIn";
 		} finally { // it is a good idea to release resources in a finally block
 			if (stm != null) {
 				try {
