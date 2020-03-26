@@ -293,6 +293,9 @@ public class PruebasBaseDatos {
 		System.out.println(prueba48.getEstanciaByHabitacionID(103));
 		*/
 		
+		ClienteDAO prueba50= new ClienteDAO(conexion);
+		System.out.println(prueba50.clientePorHabitacionID(103).toString());
+		
 		
 			//System.out.println(prueba45.idUltimoServicio());
 	/*DhoAPI prueba55 = new DhoAPI();
