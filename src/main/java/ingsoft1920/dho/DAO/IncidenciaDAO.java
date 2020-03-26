@@ -38,7 +38,7 @@ public class IncidenciaDAO {
 			if(rs1.next()){
 				res=new IncidenciaBean(rs1.getInt("incidencia_id"),rs1.getString("tipo_incidencia"),
 						rs1.getString("descripcion"),rs1.getString("lugar_incidencia"),
-						rs1.getDate("fecha_incidencia"));
+						rs1.getDate("fecha_incidencia"), rs1.getInt("hotel_id"),rs1.getTime("hora"));
 				}
 		} 
 		catch (SQLException ex){ 
@@ -73,7 +73,7 @@ public class IncidenciaDAO {
 			while(rs1.next()){
 				res.add(new IncidenciaBean(rs1.getInt("incidencia_id"),rs1.getString("tipo_incidencia"),
 						rs1.getString("descripcion"),rs1.getString("lugar_incidencia"),
-						rs1.getDate("fecha_incidencia")));
+						rs1.getDate("fecha_incidencia"), rs1.getInt("hotel_id"),rs1.getTime("hora")));
 				}
 		} 
 		catch (SQLException ex){ 
@@ -104,7 +104,7 @@ public class IncidenciaDAO {
 			while(rs1.next()){
 				res.add(new IncidenciaBean(rs1.getInt("incidencia_id"),rs1.getString("tipo_incidencia"),
 						rs1.getString("descripcion"),rs1.getString("lugar_incidencia"),
-						rs1.getDate("fecha_incidencia")));
+						rs1.getDate("fecha_incidencia"), rs1.getInt("hotel_id"),rs1.getTime("hora")));
 				}
 		} 
 		catch (SQLException ex){ 
@@ -178,12 +178,15 @@ public class IncidenciaDAO {
 					"FROM Incidencia;"); 
 			if (rs1.next()){ 
 				incidencia_id=rs1.getInt("COUNT(incidencia_id)")+1;//id de la nueva tarea 
-				stm=conexion.getConexion().prepareStatement("INSERT INTO Incidencia values (?,?,?,?,?)"); 
+				stm=conexion.getConexion().prepareStatement("INSERT INTO Incidencia values (?,?,?,?,?,?,?)"); 
 				stm.setInt(1,incidencia_id); 
 				stm.setString(2, incidencia.getDescripcion()); 
 				stm.setString(3, incidencia.getLugar()); 
 				stm.setDate(4, incidencia.getFecha()); 
 				stm.setString(5,incidencia.getTipo_incidencia()); 
+				stm.setInt(6,incidencia.getHotel_id());
+				stm.setTime(7,incidencia.getHora());
+				
 				stm.executeUpdate(); 
 			} 
  

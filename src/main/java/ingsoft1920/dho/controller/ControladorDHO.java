@@ -11,14 +11,6 @@ import ingsoft1920.dho.bean.ReservaBean;
 @Controller
 public class ControladorDHO {
 	
-	
-	
-	
-	@GetMapping("/homePageDHO/menu")
-	public String menu(Model model) {
-		return "menu";
-		
-	}
 
 	@PostMapping("/homePageDHO/hacerReserva")
 	public String hacerReservaSolicitud(Model model, ReservaBean reserva) {

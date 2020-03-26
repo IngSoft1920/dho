@@ -21,7 +21,8 @@
 			<li>${item}</li>
 		</c:forEach>
 	</ul>
-	
+	<br></br>
+	<h3>Hacer check-in de </h3>
 	<form method="POST">
 		<label>estancia_id</label>
 		<input type="text" name="estancia_id" autocomlete="off" />
@@ -29,6 +30,7 @@
 
 		<input type="submit" value="Registro">
 	</form>
+
 	
 	</body>
 	

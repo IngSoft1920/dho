@@ -1,6 +1,7 @@
 package ingsoft1920.dho.bean;
 
 import java.sql.Date;
+import java.sql.Time;
 
 import org.springframework.stereotype.Component;
 
@@ -15,14 +16,24 @@ public class TareaBean {
 	private String lugar;// formato: HABITACION id_habitacion
 	private boolean estado;
 	private Date fecha;
+	
+	private int hotel_id;
+	
+	
+	//AÑADIR ESTE CAMPO A LA BASE DE DATOS
+	private Time hora;
 
+	private Time horaFin;
+	
 	public TareaBean() {
 		
 	}
 	
 	
 	public TareaBean(int id_tarea, int id_incidencia, int id_empleado, String descripcion, String tipo_tarea,
-			String lugar, boolean estado, Date fecha) {
+
+			String lugar, boolean estado, Date fecha,Time hora, int hotel_id,Time horaFin) {
+		
 		this.id_tarea=id_tarea;
 
 		this.id_incidencia = id_incidencia;
@@ -30,8 +41,17 @@ public class TareaBean {
 		this.descripcion = descripcion;
 		this.tipo_tarea = tipo_tarea;
 		this.lugar = lugar;
+		
 		this.estado = estado;
+		
 		this.fecha = fecha;
+		
+		this.hora=hora;
+
+		this.hotel_id=hotel_id;
+
+		this.horaFin=horaFin;
+
 	}
 
 	public TareaBean(int id_empleado, String tipo_tarea, String lugar) {
@@ -113,7 +133,38 @@ public class TareaBean {
 	public String toString() {
 		return "TareaBean [id_tarea=" + id_tarea + ", id_incidencia=" + id_incidencia + ", id_empleado=" + id_empleado
 				+ ", descripcion=" + descripcion + ", tipo_tarea=" + tipo_tarea + ", lugar=" + lugar + ", estado="
-				+ estado + ", fecha=" + fecha + "]";
+				+ estado + ", fecha=" + fecha  +", hora= "+hora +", hotel_id= " +hotel_id + "]";
+	}
+
+
+	public Time getHora() {
+		return hora;
+	}
+
+
+	public void setHora(Time hora) {
+		this.hora = hora;
+	}
+
+
+	public int getHotel_id() {
+		return hotel_id;
+	}
+
+
+	public void setHotel_id(int hotel_id) {
+		this.hotel_id = hotel_id;
+		
+	}
+	
+	public Time getHoraFin() {
+		return horaFin;
+	}
+
+
+	public void setHoraFin(Time horaFin) {
+		this.horaFin = horaFin;
+
 	}
 
 }

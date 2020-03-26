@@ -1,9 +1,12 @@
 package ingsoft1920.dho.DAO; 
  
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.List;
 
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.ServicioBean;
@@ -16,15 +19,46 @@ public class ServicioDAO {
 		this.conexion=conexion;
 	}
 
-	public static void recogerServicio(ServicioBean servicio) { 
-		//añadir campos que faltan al servicio para poder añadirlo a la base de datos 
-		//ellos nos van a pasar el lugar, id_servicioHotel, fecha, hora, id_cliente
-		//y segun sea una cosa del restaurante o no, nos mandaran los platos y items
+	
+	
+	public static List<ServicioBean> devuelevServiciosreservadosPorunaEstancia(int id_estancia){
+		List<ServicioBean> res= new ArrayList<ServicioBean>();
 		
-		//solo queda por añadir el id_estancia, para ello llamamos a una consulta que haga eso
-		servicio.setEstancia_id(EstanciaDAO.getEstaciaId(servicio.getCliente_id()));
-		añadirServicio(servicio); 
-	} 
+		if (conexion.getConexion()== null) 
+			conexion.conectar(); 
+		
+		java.sql.Statement stmt= null;  
+		ResultSet rs = null;  
+		try {
+			stmt=conexion.getConexion().createStatement();
+			rs=stmt.executeQuery("SELECT * FROM Servicios WHERE estancia_id="+id_estancia);
+			
+			while(rs.next()) {
+				res.add(new ServicioBean(rs.getInt("servicios_id"), id_estancia, rs.getInt("servicioHotel_id"),
+						rs.getInt("cliente_id"), rs.getString("lugar"), rs.getDate("fecha_factura"), rs.getTime("hora"), 
+						rs.getString("tipo_servicio"), rs.getString("platos"), rs.getString("platos"), rs.getTime("hora_salida"),
+						rs.getInt("precio")));
+
+			}
+		}catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		
+		return res;
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	 
 	public static void añadirServicio(ServicioBean servicio) { 
 		//consulta de añadir un servicio a la tabla servicios 		
@@ -39,23 +73,27 @@ public class ServicioDAO {
 		try {  
 			//Consulta para saber el id de la nueva incidencia a crear 
 			stmt1 = conexion.getConexion().createStatement() ; 
-			rs1 =  stmt1.executeQuery("SELECT COUNT(servicios_id)\r\n" + 
-					"FROM Servicios;"); 
-			if (rs1.next()){ 
-				servicio_id=rs1.getInt("COUNT(servicios_id)")+1;//id del nuevo servicio 
-				stm=conexion.getConexion().prepareStatement("INSERT INTO Servicios values (?,?,?,?,?,?,?,?,?,?)"); 
+			//rs1 =  stmt1.executeQuery("SELECT COUNT(servicios_id)\r\n" + 
+					//"FROM Servicios;"); 
+			//if (rs1.next()){ 
+				servicio_id= idUltimoServicio()+1;
+				//servicio_id=rs1.getInt("COUNT(servicios_id)")+1; //id del nuevo servicio 
+				stm=conexion.getConexion().prepareStatement("INSERT INTO Servicios values (?,?,?,?,?,?,?,?,?,?,?,?)"); 
 				stm.setInt(1,servicio_id); 
 				stm.setInt(2, servicio.getEstancia_id()); 
-				stm.setInt(3, servicio.getCliente_id()); 
-				stm.setString(4, servicio.getLugar()); 
-				stm.setDate(5,servicio.getFecha_servicio()); 
-				stm.setTime(6,servicio.getHora()); 
-				stm.setString(7,servicio.getTipo_servicio()); 
-				stm.setInt(8,servicio.getId_ServicoHotel()); 
-				stm.setString(9,servicio.getPlatos());
-				stm.setString(10,servicio.getItems());
+				stm.setString(3, servicio.getLugar()); 
+				stm.setInt(12, servicio.getCliente_id()); 
+				stm.setDate(4,servicio.getFecha_servicio()); 
+				stm.setTime(5,servicio.getHora()); 
+				stm.setString(6,servicio.getTipo_servicio()); 
+				stm.setInt(7,servicio.getId_ServicoHotel()); 
+				stm.setString(8,servicio.getPlatos());
+				stm.setString(9,servicio.getItems());
+				stm.setTime(10, servicio.getHora_salida());
+				stm.setInt(11, servicio.getPrecio());
+				
 				stm.executeUpdate(); 
-			} 
+			//} 
  
 		}  
 		catch (SQLException ex){  
@@ -108,7 +146,7 @@ public class ServicioDAO {
 						rs.getInt("estancia_id"),rs.getInt("servicioHotel_id"),
 						rs.getInt("cliente_id"),rs.getString("lugar"),rs.getDate("fecha_factura"),
 						rs.getTime("hora"),rs.getString("tipo_servicio"),rs.getString("platos"),
-						rs.getString("items"))); 
+						rs.getString("items"), rs.getTime("hora_salida"), rs.getInt("precio"))); 
 		} 
 		}
 		catch (SQLException ex){ 
@@ -120,5 +158,66 @@ public class ServicioDAO {
 		conexion.desconectar();
 
 		return res;
+	}
+	//Devolver los servicios reservados en una fecha y hora determinada
+	public static ArrayList<ServicioBean> getServiciosPorFecha(String dia, String mes, String anio, int hora){
+		ArrayList<ServicioBean> res = new ArrayList<ServicioBean>();
+		if (conexion.getConexion()== null)
+			conexion.conectar();
+		java.sql.Statement stmt = null; 
+		ResultSet rs = null; 
+		try {
+			stmt=conexion.getConexion().createStatement();
+			rs=stmt.executeQuery("SELECT * FROM Servicios WHERE fecha_factura= '"+anio+"-"+mes+"-"+dia+"" 
+					+"' AND "+hora +" >=  HOUR(hora) AND "+hora+" < HOUR(hora_salida)"	
+					
+					
+					);
+			
+			while(rs.next()) {
+				res.add(new ServicioBean (rs.getInt("servicios_id"), 
+						rs.getInt("estancia_id"),rs.getInt("servicioHotel_id"),
+						rs.getInt("cliente_id"),rs.getString("lugar"),rs.getDate("fecha_factura"),
+						rs.getTime("hora"),rs.getString("tipo_servicio"),rs.getString("platos"),
+						rs.getString("items"), rs.getTime("hora_salida"), rs.getInt("precio"))); 
+			}
+		}catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		conexion.desconectar();
+		
+		return res;
+	}
+	//Devolver todos los servicios que sean en el restaurante
+	public static ArrayList<ServicioBean> getServiciosRestaurante(){
+		ArrayList<ServicioBean> res= new ArrayList<ServicioBean>();
+		
+		if (conexion.getConexion()== null)
+			conexion.conectar();
+		java.sql.Statement stmt = null; 
+		ResultSet rs = null; 
+		try {
+			stmt=conexion.getConexion().createStatement();
+			rs=stmt.executeQuery("SELECT * FROM Servicios WHERE lugar = \"restaurante\"");
+			
+		while(rs.next()) {
+			res.add(new ServicioBean(rs.getInt("servicios_id"), rs.getInt("estancia_id"),
+					rs.getInt("servicioHotel_id"), rs.getInt("cliente_id"), rs.getString("lugar"), 
+					rs.getDate("fecha_factura"), rs.getTime("hora"), rs.getString("tipo_servicio"), 
+					rs.getString("platos"), rs.getString("items"), rs.getTime("hora_salida"), rs.getInt("precio")));
+		}
+		}catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		conexion.desconectar();
+		
+		return res;
+		
 	}
 	}

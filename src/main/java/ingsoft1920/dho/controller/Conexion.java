@@ -16,7 +16,11 @@ import java.util.Scanner;
 
 public class Conexion {
 	private static Connection conn = null;
-	private static String servidor, usuario, contrasena, baseDeDatos,puerto;
+	private static String servidor = "piedrafita.ls.fi.upm.es";
+	private static String usuario = "dho2";
+	private static String contrasena = "ingSoft20dho2.336"; 
+	private static String baseDeDatos = "dho";
+	private static String puerto = "8000";
 
 	public Connection getConexion() {
 		return this.conn;
