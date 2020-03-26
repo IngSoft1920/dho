@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,7 +98,12 @@ public class EstanciaDAO {
 	}
 
 	// El cliente hace check in
-	public static String checkIn(int estancia_id) {
+	//
+	public static String checkIn(int habitacion_id) {
+		EstanciaBean est = new EstanciaBean();
+		est=getEstanciaByHabitacionID(habitacion_id);
+		int estancia_id = est.getEstancia_id();
+		
 		String resp="Procesado correctamente";
 		if (conexion.getConexion() == null)
 			conexion.conectar();
@@ -124,7 +130,11 @@ public class EstanciaDAO {
 	}
 
 	// El cliente hace check out
-	public static String checkOut(int estancia_id) {
+	public static String checkOut(int habitacion_id) {
+		EstanciaBean est = new EstanciaBean();
+		est=getEstanciaByHabitacionID(habitacion_id);
+		int estancia_id = est.getEstancia_id();
+		
 		String resp="Procesado correctamente";
 		if (conexion.getConexion() == null)
 			conexion.conectar();
@@ -450,7 +460,7 @@ public class EstanciaDAO {
 			try {
 			stmt=conexion.getConexion().createStatement();
 			rs=stmt.executeQuery("Select estado From Estancia Where habitacion_id= " + habs.get(i).getId_habitacion() + 
-					" AND fecha_inicio < '"+fecha +"' AND fecha_fin >'"+fecha +"'");
+					" AND fecha_inicio <= '"+fecha +"' AND fecha_fin >= '"+fecha +"'");
 			if(rs.next()) {
 				res.add(i, rs.getString("estado"));
 			}
@@ -477,6 +487,58 @@ public class EstanciaDAO {
 				}
 				
 			}
+		}
+		conexion.desconectar();
+		
+		return res;
+	}
+	
+	//Dado el id de una habitacion devuelve la estancia (en la fecha del dia en el que estamos)
+	public static EstanciaBean getEstanciaByHabitacionID(int habitacion_id) {
+		EstanciaBean res=new EstanciaBean();
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+		
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+		String hoy = LocalDate.now().toString();
+		
+		try {
+			stmt=conexion.getConexion().createStatement();
+			rs=stmt.executeQuery("SELECT * FROM Estancia WHERE habitacion_id = " +habitacion_id
+					+ " AND fecha_inicio < '"+hoy + "' AND fecha_fin > '"+hoy +"'");
+		
+		if(rs.next()) {
+			res.setEstancia_id(rs.getInt("estancia_id"));
+			res.setCliente_id(rs.getInt("cliente_id"));
+			res.setEstado(rs.getString("estado"));			
+			res.setFecha_fin(rs.getDate("fecha_fin"));
+			res.setFecha_inicio(rs.getDate("fecha_inicio"));
+			res.setHabitacion_id(habitacion_id);
+			res.setHotel_id(rs.getInt("hotel_id"));
+			res.setImporte(rs.getInt("importe"));
+		}
+		else {
+			System.out.println("No hay ninguna estancia para esta habitacion.");
+		}
+		}catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+			
 		}
 		conexion.desconectar();
 		
