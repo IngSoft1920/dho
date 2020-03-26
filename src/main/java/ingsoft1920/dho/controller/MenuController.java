@@ -39,7 +39,7 @@ public class MenuController {
 	 		
 		 	if (estado.equals("check in")) { coloresCelda[i]="#dc2816"; links[i]="/homePageDHO/menu/checkout1"; } //rojo
 		 	else if (estado.equals("reserva")) { coloresCelda[i]="#EC8B19";links[i]="/homePageDHO/menu/checkin1";} //naranja
-		 	else if (estado.equals("check out")) { coloresCelda[i]="#27a912";links[i]="/homePageDHO/menu/checkin1";} //verde
+		 	else if (estado.equals("check out")) { coloresCelda[i]="#27a912";links[i]="/homePageDHO/menu/estancias1";} //verde
 	
 	 	}
 
