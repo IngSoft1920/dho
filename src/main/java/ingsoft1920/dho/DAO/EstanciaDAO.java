@@ -544,5 +544,39 @@ public class EstanciaDAO {
 		
 		return res;
 	}
+	
+	//añade un estancia bean a la base de datos
+	public static void anadirEstanciaBean(EstanciaBean estancia) {
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+		PreparedStatement stm=null;
+	
+		try {
+			stm= conexion.getConexion().prepareStatement("INSERT INTO Estancia VALUES(?,?,?,?,?,?,?,?)");
+			stm.setInt(1, estancia.getEstancia_id());
+			stm.setInt(2, estancia.getHabitacion_id());
+			stm.setInt(3, estancia.getHotel_id());
+			stm.setDate(4, estancia.getFecha_inicio());
+			stm.setDate(5, estancia.getFecha_fin());
+			stm.setString(6, estancia.getEstado());
+			stm.setInt(7, estancia.getImporte());
+			stm.setInt(8, estancia.getCliente_id());
+			stm.executeUpdate();
+			
+		}catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			
+			if (stm != null) {
+				try {
+					stm.close();
+				} catch (SQLException sqlEx) {
+				}
+				stm = null;
+			}
+			
+		}
+		conexion.desconectar();
+	}
 
 }

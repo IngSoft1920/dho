@@ -291,12 +291,17 @@ public class PruebasBaseDatos {
 		EstanciaDAO prueba49 = new EstanciaDAO(conexion);
 		prueba49.checkIn(103);
 		System.out.println(prueba48.getEstanciaByHabitacionID(103));
-		*/
+		
+		
 		
 		ClienteDAO prueba50= new ClienteDAO(conexion);
 		System.out.println(prueba50.clientePorHabitacionID(103).toString());
 		
-		
+		//estancia_id, habitacion_id, hotel_id, fecha_inicio, fecha_fin, estado importe cliente_id
+		// estancia, hab, cli hotel fehca fehca estado importe tipo_hab_id
+		EstanciaDAO prueba51 = new EstanciaDAO(conexion);
+		prueba51.anadirEstanciaBean(new EstanciaBean(35,404, 4, -1, new Date(120,03,05), new Date(120,03,10), "reserva", 100, 1));
+		*/
 			//System.out.println(prueba45.idUltimoServicio());
 	/*DhoAPI prueba55 = new DhoAPI();
 	prueba55.recibirHotel(" { \"id\" : 32, \"nombre\" : \"El resplandor\", \"descripcion\" :\"Una experiencia cálida\", \"estrellas\" : 4, \"continente\" : \"Europa\", \"pais\" :\"España\", \"ciudad\" : \"Madrid\", \"habitaciones\" : [ { \"id\": 1 , \"nombre\": \"normal\" , \"num_disponibles\":50 },{\"id\":2,\"nombre\":\"premium\",\"num_disponibles\":10}],\"categorias\":[{\"id\":11,\"nombre\":\"adult-only\"},{\"id\":75,\"nombre\":\"pet-friendly\"}],\"servicios\":[{\"id\":1,\"nombre\":\"piscina\",\"precio\":10,\"unidad\":\"por_dia\"},{\"id\":3,\"nombre\":\"restaurante\",\"precio\":null,\"unidad\":null}]}");
