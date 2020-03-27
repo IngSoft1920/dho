@@ -40,7 +40,7 @@ public EstanciasModel(ClienteBean clienteBean) {
 
 public void nuevoCliente(EstanciasModel estanciasModel) {
 	
-	ClienteDAO.anadirCliente(new ClienteBean(cliente_id,nombre,apellidos,dni,email,password,nacionalidad,telefono));
+	ClienteDAO.anadirClienteSinID(new ClienteBean(cliente_id,nombre,apellidos,dni,email,password,nacionalidad,telefono));
 	
 		
 	}
