@@ -74,7 +74,6 @@ nav ul li:hover {
 
 <section class="contenido wrapper">
 	<head>
-	Check-OUT
 	</head>
 
 	<body style="background-color:lightblue;">
@@ -83,24 +82,17 @@ nav ul li:hover {
 		</style>
 	</body>
 	
-	<ul>
-		<c:forEach items="${listaConCheckIn}" var="item">
-			<li>${item}</li>
-		</c:forEach>
-	</ul>
-	
-	<ul>
-		<c:forEach items="${listaConCheckOut}" var="item">
-			<li>${item}</li>
-		</c:forEach>
-	</ul>
 	<br><br>
 	<h3>Hacer check-out de </h3>
+	<br></br>
 	<form method="POST">
-		<label>estancia_id</label>
-		<input type="text" name="estancia_id" autocomlete="off" />
+		<label>NºHabitaci&oacute;n</label>
+		<input type="text" name="habitacion_id" autocomlete="off" />
 		<br><br>
+		
 		<input type="submit" value="Registro">
+		<br><br>
+		<input type="button" onclick="history.back()" name="Volver atrás" value="Volver atrás">
 	</form>
 	
 	

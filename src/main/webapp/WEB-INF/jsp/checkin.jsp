@@ -5,7 +5,6 @@
 <html>
 
 	<head>
-	Check-IN
 	</head>
 
 	<body style="background-color:lightblue;">
@@ -24,11 +23,13 @@
 	<br></br>
 	<h3>Hacer check-in de </h3>
 	<form method="POST">
-		<label>estancia_id</label>
-		<input type="text" name="estancia_id" autocomlete="off" />
+		<label>NºHabitaci&oacute;n</label>
+		<input type="text" name="habitacion_id" autocomlete="off" />
 		<br><br>
 
 		<input type="submit" value="Registro">
+		<br><br>
+		<input type="button" onclick="history.back()" name="volver atrás" value="Volver atrás">
 	</form>
 
 	
