@@ -493,6 +493,17 @@ public class DhoAPI {
 		
 	}
 	
+	@ResponseBody
+	@PostMapping("/confirmarCheckout")
+	public String confirmarCheckOut(@RequestBody String req) {
+		String resp="Procesado correctamente";
+		JsonObject requeObj = JsonParser.parseString(req).getAsJsonObject();
+		int id_estancia = requeObj.get("reserva_id").getAsInt();
+		resp=EstanciaDAO.checkOutPorEstancia_id(id_estancia);
+		return resp;
+		
+	}
+	
 	
 	
 
