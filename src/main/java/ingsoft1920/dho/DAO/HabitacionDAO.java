@@ -22,10 +22,12 @@ public class HabitacionDAO {
 		String res = null;
 		if (id == 1) {
 			res = "normal";
-		}
-		if (id == 2) {
+		} else if (id == 2) {
 			res = "premium";
+		} else if (id == 3) {
+			res = "presidencial";
 		}
+
 		return res;
 	}
 
