@@ -132,7 +132,7 @@ public class DhoAPI {
 
 		int tipo_servicio = requeObj.get("tipoServicio").getAsInt();
 
-		String hora_salida = requeObj.get("hora_salida ").getAsString();
+		String hora_salida = requeObj.get("hora_salida").getAsString();
 
 		/*
 		 * Hemos quedado con GE el siguiente formato: 1-: serivios normales 2-:Encargar
