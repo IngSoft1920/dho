@@ -15,16 +15,18 @@ private static Conexion conexion= new Conexion();
 	
 	public static ArchivosFacturaBean getPDFByCod(int cliente_id) {
 		ArchivosFacturaBean aux=null;
-		if (conexion==null) 
+		Conexion conexion = new Conexion();
+		if (conexion.getConexion()==null) 
 			conexion.conectar();
+		
 		
 		java.sql.Statement stmt= null;
 		ResultSet rs= null;
 		try {
 			stmt=conexion.getConexion().createStatement();
-			rs=stmt.executeQuery("SELECT * FROM ArchivosFacturaBean WHERE cliente_id=" +cliente_id);
+			rs=stmt.executeQuery("SELECT * FROM ArchivosFactura WHERE cliente_id=" +cliente_id);
 			if(rs.next()) {
-				ArchivosFacturaBean res= new ArchivosFacturaBean(rs.getString("archivoCod"), rs.getDate("fecha_creacion"), rs.getInt("cliente_id"), rs.getString("enlace_descarga"));
+				ArchivosFacturaBean res= new ArchivosFacturaBean(rs.getString("archivoCod"), rs.getDate("fecha_creacion"), rs.getInt("cliente_id"),"");
 				aux=res;
 			}
 		}catch (SQLException ex){ 
