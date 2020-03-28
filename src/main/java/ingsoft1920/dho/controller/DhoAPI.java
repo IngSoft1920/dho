@@ -140,7 +140,7 @@ public class DhoAPI {
 		 */
 
 		if (tipo_servicio == 2 || tipo_servicio == 3) {
-			String restaurante = requeObj.get("restaurante").getAsString();
+			//String restaurante = requeObj.get("restaurante").getAsString();
 			// nuevoServicio.setRestaurante(restaurante);
 			if (tipo_servicio == 3) {
 				JsonArray platosJSON = requeObj.get("platos").getAsJsonArray();
