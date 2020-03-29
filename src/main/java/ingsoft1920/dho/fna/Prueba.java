@@ -11,6 +11,8 @@ import com.itextpdf.text.Paragraph;
 
 public class Prueba {
 	public static void main(String[] args) {
+		ArchivosFacturaBean archivo = ArchivosFacturaDAO.getPDFByCod(1); 
+		System.out.println(archivo.toString()); 
 	}
 
 }
