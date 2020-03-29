@@ -12,8 +12,11 @@ import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 public class Enlace {
+	
+	@ResponseBody
 	@GetMapping("/download/f/{cliente_id}")
     public static void download(@PathVariable("cliente_id") int cliente_id, HttpServletResponse response) {
         try {
