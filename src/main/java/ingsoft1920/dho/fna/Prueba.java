@@ -13,10 +13,11 @@ import com.itextpdf.text.Paragraph;
 public class Prueba {
 	public static void main(String[] args) throws Exception {
         ArchivosFacturaBean archivo = ArchivosFacturaDAO.getPDFByCod(1);
+        System.out.println(archivo.getArchivoCod());
         if (archivo == null)
             throw new Exception("Pdf no registrado en BBDD.");
         // Abrir fichero pedido
-        File f = new File("files//archivo.pdf");
+        File f = new File("files//" + archivo.getArchivoCod() + ".pdf");
         if (!f.exists())
             throw new Exception("PDF does not exist.");
 	}
