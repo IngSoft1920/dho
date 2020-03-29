@@ -36,6 +36,8 @@ package ingsoft1920.dho.controller;
 			return "estancia";
 
 		}
+		
+		//QUEDA CAMBIAR COSAS PARA SPRING 3(LO COMENTADO)
 		@PostMapping("/homePageDHO/menu/estancias1")
 		public String checkinPost(
 				@Valid @ModelAttribute("nombre")String nombre,
@@ -59,15 +61,16 @@ package ingsoft1920.dho.controller;
 			
 			
 		
-			
+			//AQUI IRIA UNA PETICION A CM QUE LES PASA LOS DATOS DEL CLIENTE EXCEPTO SU ID Y PASSWORD
+			//ELLOS NOS DEVOLVERIAN ESOS DATOS Y YA LOS PORDIAMOS INSERTAR TODO EN LA BBDD
 			
 			
 			EstanciasModel estanciasModel = new EstanciasModel(clienteBean);
 			
-			estanciasModel.nuevoCliente(estanciasModel);
+			int cliente_id=estanciasModel.nuevoCliente(estanciasModel);
 			
 			
-			return estanciasGet(model);
+			return "redirect:/homePageDHO/menu/registro/"+cliente_id;
 			
 		}
 

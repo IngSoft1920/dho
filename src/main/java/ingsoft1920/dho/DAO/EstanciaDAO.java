@@ -17,6 +17,47 @@ public class EstanciaDAO {
 	public EstanciaDAO(Conexion conexion) {
 		this.conexion = conexion;
 	}
+	
+	
+	
+	// devuelve el id de la ultima Esatncia para saber el id de la siguiente
+		public static int idUltimaEstancia() {
+			int res = 0;
+
+			if (conexion.getConexion() == null)
+				conexion.conectar();
+
+			java.sql.Statement stmt = null;
+			ResultSet rs = null;
+			try {
+				stmt = conexion.getConexion().createStatement();
+				rs= stmt.executeQuery("SELECT estancia_id FROM Estancia ORDER BY estancia_id");
+				if (rs.next()) {
+					res = rs.getInt("estancia_id")-1;
+				}
+			} catch (SQLException ex) {
+				System.out.println("SQLException: " + ex.getMessage());
+			} finally { // it is a good idea to release resources in a finally block
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException sqlEx) {
+					}
+					rs = null;
+				}
+				if (stmt != null) {
+					try {
+						stmt.close();
+					} catch (SQLException sqlEx) {
+					}
+					stmt = null;
+				}
+			}
+			conexion.desconectar();
+			return res;
+		}
+	
+	
 
 	// dado el cliente_id queremos que nos devuelva la estancia
 	public static List<EstanciaBean> getEstancia(int cliente_id) {

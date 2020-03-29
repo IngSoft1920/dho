@@ -186,13 +186,15 @@ public static ClienteBean clientePorHabitacionID(int habitacion_id) {
 	
 	return cliente;
 }
-public static void anadirClienteSinID(ClienteBean cliente) {
+public static int anadirClienteSinID(ClienteBean cliente) {
 	if (conexion.getConexion() == null)
 		conexion.conectar();
 	
 	PreparedStatement stm= null;
 	java.sql.Statement stmt = null;
 	ResultSet rs = null;
+	
+	int aux=0;
 	
 	try {
 		
@@ -201,7 +203,8 @@ public static void anadirClienteSinID(ClienteBean cliente) {
 		
 		if(rs.next()) {
 		stm=conexion.getConexion().prepareStatement("INSERT INTO Cliente VALUES (?,?,?,?,?,?,?,?)");
-		stm.setInt(1, rs.getInt("cliente_id")-1);
+		aux=rs.getInt("cliente_id")-1;
+		stm.setInt(1, aux);
 		stm.setString(2, cliente.getNombre());
 		stm.setString(3, cliente.getApellidos());
 		stm.setString(4, cliente.getDni());
@@ -222,6 +225,7 @@ public static void anadirClienteSinID(ClienteBean cliente) {
 		if (stm != null) { try {  stm.close(); } catch (SQLException sqlEx) { }  stm = null; }  
 	} 
 	
+	return aux;
 }
 }
  

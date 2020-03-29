@@ -38,10 +38,11 @@ public EstanciasModel(ClienteBean clienteBean) {
 		
 	}
 
-public void nuevoCliente(EstanciasModel estanciasModel) {
+public int nuevoCliente(EstanciasModel estanciasModel) {
 	
-	ClienteDAO.anadirClienteSinID(new ClienteBean(cliente_id,nombre,apellidos,dni,email,password,nacionalidad,telefono));
+	int res=ClienteDAO.anadirClienteSinID(new ClienteBean(cliente_id,nombre,apellidos,dni,email,password,nacionalidad,telefono));
 	
+	return res;
 		
 	}
 
