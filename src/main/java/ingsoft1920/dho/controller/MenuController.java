@@ -24,7 +24,7 @@ public class MenuController {
 	 final static Logger logger = LogManager.getLogger(LoginController.class.getName());
 
 	 @GetMapping("homePageDHO/menu")
-	 public String menu(Model model) 
+	 public static String menu(Model model) 
 	 {		
 		int numHab=49;
 		String estado="";

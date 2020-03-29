@@ -21,7 +21,7 @@ private static Conexion conexion=new Conexion();
 	
 	public static int ConseguirIDHotelDadoNombre(String nombre_hotel) {
 		//falta hacer la consulta
-		return 1;
+		return 5;
 		
 	}
 	

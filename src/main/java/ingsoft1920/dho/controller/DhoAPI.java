@@ -68,6 +68,7 @@ public class DhoAPI {
 
 		JsonArray dia = new JsonArray();
 
+		JsonArray lugar= new JsonArray();
 		obj.addProperty("empleado_id", id_empleado);
 
 		for (TareaBean elem : lista) {
@@ -81,6 +82,9 @@ public class DhoAPI {
 			horaFin.add(elem.getHoraFin().toString());
 
 			dia.add(elem.getFecha().toString());
+			
+			lugar.add(elem.getLugar());
+		
 		}
 
 		obj.add("id_TareaLista", tarea_id);
@@ -92,6 +96,8 @@ public class DhoAPI {
 		obj.add("horaFin", horaFin);
 
 		obj.add("dia", dia);
+		
+		obj.add("lugar", lugar);
 
 		return obj.toString().toString();
 
