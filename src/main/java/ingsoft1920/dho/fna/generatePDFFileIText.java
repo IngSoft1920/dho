@@ -1,45 +1,32 @@
 package ingsoft1920.dho.fna;
 
-import com.itextpdf.text.Anchor;
-import com.itextpdf.text.BadElementException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.List;
-import com.itextpdf.text.ListItem;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Section;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 
 import ingsoft1920.dho.controller.Conexion;
-
-import java.io.*;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.UUID;
-
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Example of using the iText library to work with PDF documents on Java, lets
@@ -86,7 +73,7 @@ public class generatePDFFileIText {
 		// We create the document and set the file name.        
 		// Creamos el documento y generamos el nombre del fichero.
 		String name=UUID.randomUUID().toString();
-		File file=new File("files//"+name+".pdf");
+		File file=new File("/hs/dho/files/"+name+".pdf");
 		Date date=new Date(LocalDate.now().getYear()-1900,LocalDate.now().getMonthValue()-1,LocalDate.now().getDayOfMonth());
 		try {
 			Document document = new Document();
@@ -97,6 +84,11 @@ public class generatePDFFileIText {
 			} catch (FileNotFoundException fileNotFoundException) {
 				System.out.println("No such file was found to generate the PDF "
 						+ "(No se encontró el fichero para generar el pdf)" + fileNotFoundException);
+				System.out.println(file.getAbsolutePath());
+				System.out.println("Can write:" + file.canWrite());
+				
+				
+				return;
 			}
 			document.open();
 			// We add metadata to PDF

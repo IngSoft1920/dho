@@ -29,7 +29,7 @@ public class Enlace {
             if (archivo == null)
                 throw new Exception("Pdf no registrado en BBDD.");
             // Abrir fichero pedido
-            File f = new File("files//" + archivo.getArchivoCod() + ".pdf");
+            File f = new File("/hs/dho/files/" + archivo.getArchivoCod() + ".pdf");
             if (!f.exists())
                 throw new Exception("PDF does not exist.");
             // Obtenemos InputSteam del fichero
