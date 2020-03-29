@@ -162,7 +162,7 @@ public class generatePDFFileIText {
 	@GetMapping("/generatePDF/{cliente_id}")
 	public String generatePDF(@PathVariable("cliente_id") int cliente_id) {
 		generatePDFFileIText generatePDFFileIText = new generatePDFFileIText();
-		generatePDFFileIText.createPDF(1);
+		generatePDFFileIText.createPDF(cliente_id);
 		return "";
 
 	}
