@@ -55,9 +55,9 @@ public class TareaDAO {
 				stm.setBoolean(6,tarea.isEstado()); 
 				stm.setDate(7,tarea.getFecha()); 
 				stm.setString(8,tarea.getTipo_tarea()); 
-				stm.setInt(10,tarea.getHotel_id());
-				stm.setTime(9,tarea.getHora());
-				stm.setTime(10,tarea.getHoraFin());
+				stm.setInt(9,tarea.getHotel_id());
+				stm.setTime(10,tarea.getHora());
+				stm.setTime(11,tarea.getHoraFin());
 				stm.executeUpdate(); 
 			} 
  
