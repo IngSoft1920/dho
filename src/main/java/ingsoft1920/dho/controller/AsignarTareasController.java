@@ -1,5 +1,6 @@
 package ingsoft1920.dho.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import ingsoft1920.dho.DAO.EstanciaDAO;
 import ingsoft1920.dho.Model.AsignarTareasModel;
 import ingsoft1920.dho.bean.EmpleadoBean;
 import ingsoft1920.dho.bean.EstanciaBean;
@@ -29,17 +31,25 @@ public class AsignarTareasController {
 			
 			AsignarTareasModel asignarTareas=new AsignarTareasModel();
 			
-			List<IncidenciaBean> incidenciasSinAsignar= asignarTareas.getIncidenciaSinAsignar();
+			int cantidadIncidenciasSinAsignar = asignarTareas.getIncidenciaSinAsignar().size();
 			
+			List<IncidenciaBean> incidenciasSinAsignar= asignarTareas.getIncidenciaSinAsignar();
+	
 			List<IncidenciaBean> incidenciasAsignadas= asignarTareas.getIncidenciaAsignadas();
 			
 			List<EmpleadoBean> empleados=asignarTareas.getEmpleados();
 			
 			
+			
+		
+			
+			
+			model.addAttribute("cantidadIncidenciasSinAsignar", cantidadIncidenciasSinAsignar);
+			
 			model.addAttribute("incidenciasSinAsignar", incidenciasSinAsignar);
 			
 			model.addAttribute("incidenciasAsignadas", incidenciasAsignadas);
-			
+						
 			model.addAttribute("empleados", empleados);
 			
 			return "mostrarTareas";

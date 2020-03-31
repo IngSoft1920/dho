@@ -11,24 +11,36 @@ import com.google.gson.JsonParser;
 
 import ingsoft1920.dho.bean.EmpleadoBean;
 
+
+
+
+
 public class PedirEmpleados {
 
 	/*Esta pretende ser un peticion de tipo GET:
 	 * EM nos deberia devolver una lista de Empleados
 	 */
 	
-	public static List<EmpleadoBean> peticionPedirEmpleado() {
+	public static List<EmpleadoBean> peticionPedirEmpleado(int id_hotel) {
 		
 		
 		try {
 			//construimos la peticion 
-			HttpClient client= new HttpClient("http://localhost:7001/getHabitacio/7","GET");
+			HttpClient client= new HttpClient("http://piedrafita.ls.fi.upm.es:7002/sacaEmpleadoHotel","POST");
 			
 			
-			//creo que como es una peticion de tipo GET y no pasamos parametros, no hace
-			//falta establecer cuerpo de la peticion
+			//metemos en el cuerpo de la peticion el id_hotel
+			
+			JsonObject param= new JsonObject();
+			
+			param.addProperty("id_hotel", id_hotel);
+			
+			client.setRequestBody(param.toString());
+			
 			
 			int respCode = client.getResponseCode();
+			
+			
 			
 			if(respCode==200){
 				String resp=client.getResponseBody();
@@ -37,6 +49,8 @@ public class PedirEmpleados {
 				 * El tratamiento del JSON recibido va a ser como se hace en 
 				 * el proyecto de ejemplo en la clase API en el metodo procesaDatos1
 				 */
+				
+				
 				
 				JsonObject obj = (JsonObject) JsonParser.parseString(resp);
 				
@@ -48,12 +62,15 @@ public class PedirEmpleados {
 				int[] id_empleadoListaInt= new int[id_empleadoLista.size()];
 				JsonArray rolLista=obj.get("rol").getAsJsonArray();
 				String[] rolListaInt= new String[rolLista.size()];
+				JsonArray id_hotelLista=obj.get("id_hotel").getAsJsonArray();
+				int[] id_hotelListaInt= new int[id_hotelLista.size()];
 				List<EmpleadoBean> lista=new ArrayList<EmpleadoBean>();
 
 				for(int i=0;i<rolLista.size();i++) {
 					id_empleadoListaInt[i]=id_empleadoLista.get(i).getAsInt();
 					rolListaInt[i]=rolLista.get(i).getAsString();
-					lista.add(new EmpleadoBean(id_empleadoListaInt[i], rolListaInt[i]));
+					id_hotelListaInt[i]=id_hotelLista.get(i).getAsInt();
+					lista.add(new EmpleadoBean(id_empleadoListaInt[i], rolListaInt[i], id_hotelListaInt[i]));
 				}
 				
 				return lista;
@@ -67,6 +84,8 @@ public class PedirEmpleados {
 		return null;
 		
 	}
+	
+	
 	
 	
 }

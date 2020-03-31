@@ -29,26 +29,13 @@ import ingsoft1920.dho.bean.EstanciaBean;
 			
 			//vamos a llmar al checkinModel parar trabajar con el
 			CheckoutModel checkout=new CheckoutModel();
-			
-			//conseguimos la lista de estancias que hay guardadas
-			
-			List<EstanciaBean>listaConCheckIn=checkout.getEstanciasconCheckIn();
-			
-			List<EstanciaBean>listaConCheckOut=checkout.getEstanciasconCheckOut();
-			
-			//se lo añadimos al model
-			
-			model.addAttribute("listaConCheckIn", listaConCheckIn);
-			
-			model.addAttribute("listaConCheckOut", listaConCheckOut);
-			
-			//devolvemos la pagina que queremos que se muestre
+		
 			
 			return "checkout";
 		}
 
 		@PostMapping("/homePageDHO/menu/checkout1")
-		public String checkinPost(@Valid @ModelAttribute("EstanciaBean") EstanciaBean estanciaBean,
+		public String checkoutPost(@Valid @ModelAttribute("EstanciaBean") EstanciaBean estanciaBean,
 				Model model) {
 		
 		

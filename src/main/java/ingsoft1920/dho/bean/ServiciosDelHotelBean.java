@@ -24,11 +24,13 @@ public class ServiciosDelHotelBean {
 	//fijamos una disponibilidad
 	//este campo se va a ir actualiando segun nos vayan reservando(se ira decrementando segun
 	//reserven servicios)
-	private int DisponibilidaTotal;
+	private int DisponibilidadTotal;
 
+	private int hotel_id;
 	
+	private String nombre;
 	
-	
+	private Integer importe;
 	
 	public ServiciosDelHotelBean() {
 		
@@ -36,12 +38,15 @@ public class ServiciosDelHotelBean {
 
 
 	public ServiciosDelHotelBean(int id_ServicioHotel, Time horaInicioServicio, Time horaFinServicio,
-			int disponibilidadTotal) {
+			int disponibilidadTotal, int hotel_id, String nombre, int importe) {
 		
 		this.id_ServicioHotel = id_ServicioHotel;
 		HoraInicioServicio = horaInicioServicio;
 		HoraFinServicio = horaFinServicio;
-		disponibilidadTotal = disponibilidadTotal;
+		this.DisponibilidadTotal = disponibilidadTotal;
+		this.hotel_id=hotel_id;
+		this.nombre=nombre;
+		this.setImporte(importe);
 	}
 
 
@@ -76,12 +81,12 @@ public class ServiciosDelHotelBean {
 
 
 	public int getDisponibilidadTotal() {
-		return DisponibilidaTotal;
+		return DisponibilidadTotal;
 	}
 
 
 	public void setDisponibilidadTotal(int disponibilidadTotal) {
-		disponibilidadTotal = DisponibilidaTotal;
+		this.DisponibilidadTotal=disponibilidadTotal;
 	}
 
 
@@ -89,7 +94,37 @@ public class ServiciosDelHotelBean {
 	public String toString() {
 		return "ServiciosDelHotelBean [id_ServicioHotel=" + id_ServicioHotel + ", HoraInicioServicio="
 				+ HoraInicioServicio + ", HoraFinServicio=" + HoraFinServicio + ", DisponibilidaTotal="
-				+ DisponibilidaTotal + "]";
+				+ DisponibilidadTotal +" hotel_id= "+hotel_id +" nombre= " +nombre +", "+importe + "]";
+	}
+
+
+	public int getHotel_id() {
+		return hotel_id;
+	}
+
+
+	public void setHotel_id(int hotel_id) {
+		this.hotel_id = hotel_id;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public Integer getImporte() {
+		return importe;
+	}
+
+
+	public void setImporte(Integer importe) {
+		this.importe = importe;
 	}
 	
 	

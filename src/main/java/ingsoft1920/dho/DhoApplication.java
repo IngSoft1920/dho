@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 
 import ingsoft1920.dho.controller.Conexion;
+import ingsoft1920.dho.controller.DhoAPI;
 
 
 @Controller
@@ -28,7 +29,7 @@ public class DhoApplication {
 		Conexion.init(servidor,puerto,usuario,contraseña,baseDeDatos);
 		Conexion.conectar();
 		SpringApplication.run(DhoApplication.class, args);
-		
+	
 	}
 	
 	

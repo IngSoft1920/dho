@@ -7,6 +7,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import ingsoft1920.dho.DAO.HotelDAO;
 import ingsoft1920.dho.bean.EmpleadoBean;
 
 public class PasarTurnos {
@@ -21,17 +22,38 @@ public class PasarTurnos {
 	
 	
 	//Devolvera cero si ha ido todo corecto y -1 en e.o.c
-	public static int  peticionPasarTurnos() {
+	
+	//como argumento pasamos la fecha del dia actual en este formato yyyy/mm/dd
+	
+	public static int AsignarTurnoAEmpleado() {
+		
+		//pedimos la lista con los empleados
+		
+		List<EmpleadoBean> lista=new ArrayList<EmpleadoBean>();
+		
+		for(int i=1; i<=HotelDAO.devolverElNumeroDeHoteles();i++) {
+			lista.addAll(PedirEmpleados.peticionPedirEmpleado(i));
+		}
+		
+		
+		return peticionPasarTurnos("2020-03-30", lista.get(0).getId_empleado());
+		
+		
+	}
+	
+	
+	
+	
+	
+	public static int  peticionPasarTurnos(String fecha,int id_empleado) {
 		
 		try {
 			
-			//pedimos la lista con los empleados
 			
-			List<EmpleadoBean> lista=PedirEmpleados.peticionPedirEmpleado();
 			
 			//construimos la peticion (cambiamos url y tipo de solicitud)
 			
-			HttpClient client= new HttpClient("http://localhost:7001/asignarTurnos/7","POST");
+			HttpClient client= new HttpClient("http://piedrafita.ls.fi.upm.es:7002/creaTurno","POST");
 			
 			
 			//creo que como es una peticion de tipo POST y si pasamos parametros, hace
@@ -48,22 +70,15 @@ public class PasarTurnos {
 			//es una forma de asignacion asi, si cogemos el primer elemento de cada lista, constituira
 			//el id_empleado, horaInicio,horaFin de el primer empleado
 			
-			JsonArray id_empleadoLista = new JsonArray();
-			JsonArray horaInicioLista = new JsonArray();
-			JsonArray horaFinLista = new JsonArray();
-			
-			//sacamos los empleados de la lista
-			//los horarios estan como ejemplo luego se pueden retocar
-			for (EmpleadoBean elem: lista) {
-				id_empleadoLista.add(elem.getId_empleado());
-				horaInicioLista.add("9:00");
-				horaFinLista.add("17:00");
+
 				
-			}
 			
-			obj.add("id_empleado", id_empleadoLista );
-			obj.add("horarioInicio", horaInicioLista );
-			obj.add("horarioFin", horaFinLista );
+			obj.addProperty("id_empleado", id_empleado );
+			
+			obj.addProperty("dia",fecha);
+			
+			obj.addProperty("horarioInicio", "9:00" );
+			obj.addProperty("horarioFin", "17:00" );
 			
 			//ya tenemos en obj las lista con todos los datos solo queda meterla
 			//en el cuerpo de la solicitud como String
@@ -72,6 +87,8 @@ public class PasarTurnos {
 			client.setRequestBody(obj.toString().toString());
 			
 			int respCode = client.getResponseCode();
+			
+			System.out.print(obj.toString().toString());
 			
 			if(respCode==200){
 			
@@ -90,5 +107,14 @@ public class PasarTurnos {
 	
 		
 	}
+	
+	
+	
+	public static void main(String[] args) {
+		
+		System.out.print(AsignarTurnoAEmpleado());
+		
+	}
+	
 	
 }

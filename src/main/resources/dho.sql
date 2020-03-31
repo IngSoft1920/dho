@@ -123,3 +123,11 @@ ALTER TABLE Servicios
 ADD COLUMN platos VARCHAR(150),
 ADD COLUMN items VARCHAR(150)
 ;
+
+CREATE TABLE  IF NOT EXISTS ArchivosFactura(
+archivoCod VARCHAR(150),
+fecha_creacion DATE,
+#Quien lo puede descargar
+cliente_id INT,
+enlaceDescarga VARCHAR(150),
+PRIMARY KEY(archivoCod));
