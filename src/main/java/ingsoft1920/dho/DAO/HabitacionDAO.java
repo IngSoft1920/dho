@@ -22,10 +22,26 @@ public class HabitacionDAO {
 		String res = null;
 		if (id == 1) {
 			res = "normal";
-		}
-		if (id == 2) {
+		} else if (id == 2) {
 			res = "premium";
+		} else if (id == 3) {
+			res = "presidencial";
 		}
+
+		return res;
+	}
+
+	// Dado el int del tipo devuelve un string
+	public static int idTipoHabitacion(String tipo) {
+		int res = 0;
+		if (tipo == "normal") {
+			res = 1;
+		} else if (tipo == "premium") {
+			res = 2;
+		} else if (tipo == "presidencial") {
+			res = 3;
+		}
+
 		return res;
 	}
 

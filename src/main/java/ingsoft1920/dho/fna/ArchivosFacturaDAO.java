@@ -15,9 +15,9 @@ private static Conexion conexion= new Conexion();
 	
 	public static ArchivosFacturaBean getPDFByCod(int cliente_id) {
 		ArchivosFacturaBean aux=null;
-		Conexion conexion = new Conexion();
-		if (conexion.getConexion()==null) 
-			conexion.conectar();
+		Conexion conexion = new Conexion(); 
+		if (conexion.getConexion()==null)  
+			conexion.conectar(); 
 		
 		
 		java.sql.Statement stmt= null;

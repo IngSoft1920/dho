@@ -5,6 +5,8 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import com.google.gson.JsonObject;
+
 import ingsoft1920.dho.DAO.ClienteDAO;
 import ingsoft1920.dho.DAO.EstanciaDAO;
 import ingsoft1920.dho.DAO.FacturasDAO;
@@ -291,10 +293,24 @@ public class PruebasBaseDatos {
 		EstanciaDAO prueba49 = new EstanciaDAO(conexion);
 		prueba49.checkIn(103);
 		System.out.println(prueba48.getEstanciaByHabitacionID(103));
-		*/
+		
+		
 		
 		ClienteDAO prueba50= new ClienteDAO(conexion);
 		System.out.println(prueba50.clientePorHabitacionID(103).toString());
+		
+		//estancia_id, habitacion_id, hotel_id, fecha_inicio, fecha_fin, estado importe cliente_id
+		// estancia, hab, cli hotel fehca fehca estado importe tipo_hab_id
+		EstanciaDAO prueba51 = new EstanciaDAO(conexion);
+		prueba51.anadirEstanciaBean(new EstanciaBean(35,404, 4, -1, new Date(120,03,05), new Date(120,03,10), "reserva", 100, 1));
+		
+		ClienteBean c1 = new ClienteBean(4,"esto","es", "una", "prueba", "nada", "mas", 000000000);
+		ClienteDAO prueba51 = new ClienteDAO(conexion);
+		prueba51.anadirClienteSinID(c1);*/
+		Date fecha= new Date(0);
+		Time hora = new Time(0);
+		TareaDAO prueba52 = new TareaDAO(conexion);
+		prueba52.añadirTarea(new TareaBean(100,1,1,"","","",true,fecha,hora,0,hora));
 		
 		
 			//System.out.println(prueba45.idUltimoServicio());
@@ -305,7 +321,24 @@ public class PruebasBaseDatos {
 	DhoAPI prueba55 = new DhoAPI();
 	prueba55.recibirReserva(" { \"reserva_id\" : 34, \"fecha_entrada\" : \"2020-03-10\", \"fecha_salida\" :\"2020-03-15\", \"importe\" : 4, \"cliente_id\" : 2, \"numero_acompanantes\" : 0, \"hotel_id\" : 32, \"tipo_hab_id\" : 1}");
 	*/
-			}
+	/*	DhoAPI prueba55 = new DhoAPI();
+		JsonObject json = new JsonObject();
+        json.addProperty("id_servicio",1 );
+        json.addProperty("fecha", "2020-03-10");
+        json.addProperty("hora", "20:30");
+        json.addProperty("cliente_id", 1);
+        json.addProperty("lugar", "en mi puta casa");
+        json.addProperty("num_personas", 3);
+        json.addProperty("id_reserva", 27);
+        json.addProperty("tipoServicio", 1);
+        json.addProperty("hora_salida", "21:00");
+		prueba55.recibirServicio(json.toString());
+		*/
+		//DhoAPI prueba55 = new DhoAPI();
+		//prueba55.recibirReserva(" { \"reserva_id\" : 36, \"fecha_entrada\" : \"2020-03-10\", \"fecha_salida\" :\"2020-03-15\", \"importe\" : 4, \"cliente_id\" : 2, \"numero_acompanantes\" : 0, \"hotel_id\" : 5, \"tipo_hab_id\" : 1}");
+		//PedirClientes a=new PedirClientes();
+		//System.out.println("BBBBBBBBBB"+a.peticionPedirCliente(22));
+		 }
 		
 		
 }

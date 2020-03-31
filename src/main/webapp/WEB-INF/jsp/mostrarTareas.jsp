@@ -8,9 +8,8 @@
 	<nav>
 		<ul>
 			<li><a href="/homePageDHO/menu">Inicio</a></li>
-			<li><a href="/homePageDHO/menu/checkout1">Check-out</a></li>
 			<li><a href="/homePageDHO/menu/reservas1">Reservas</a></li>
-			<li><a href="/homePageDHO/menu/calendario">Vista de calendario</a></li>
+			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
 
 		</ul>
 	</nav>
@@ -204,89 +203,6 @@ h2{
 
 <section class="contenido wrapper">
 
-	<h2>Incidencias sin asignar</h2>
-	
-<div class="table-wrapper">
-    <table class="fl-table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>TIPO</th>
-            <th>DESCRIPCIÃ“N</th>
-            <th>LUGAR</th>
-            <th>FECHA</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>7</td>
-            <td>Limpieza</td>
-            <td>"Limpiar la habitaci&oacute;n entera"</td>
-            <td>Habitaci&oacute;n 1</td>
-            <td>25/03/2020</td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>Limpieza</td>
-            <td>"Limpiar la habitaci&oacute;n entera"</td>
-            <td>Habitaci&oacute;n 2</td>
-            <td>25/03/2020</td>
-        </tr>
-        <tr>
-            <td>9</td>
-            <td>Limpieza</td>
-            <td>"Limpiar la habitaci&oacute;n entera"</td>
-            <td>Habitaci&oacute;n 3</td>
-            <td>25/03/2020</td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>Limpieza</td>
-            <td>"Limpiar la habitaci&oacute;n entera"</td>
-            <td>Habitaci&oacute;n 4</td>
-            <td>25/03/2020</td>
-        </tr>
-        <tr>
-            <td>11</td>
-            <td>Cocina</td>
-            <td>"Limpiar la habitaci&oacute;n entera"</td>
-            <td>Habitaci&oacute;n 5</td>
-            <td>25/03/2020</td>
-        </tr>
-        <tr>
-            <td>12</td>
-            <td>Cocina</td>
-            <td>"Limpiar la habitaci&oacute;n entera"</td>
-            <td>Habitaci&oacute;n 6</td>
-            <td>25/03/2020</td>
-        </tr>
-        <tr>
-            <td>13</td>
-            <td>Cocina</td>
-            <td>"Limpiar la habitaci&oacute;n entera"</td>
-            <td>Habitaci&oacute;n 7</td>
-            <td>25/03/2020</td>
-        </tr>
-        <tr>
-            <td>14</td>
-            <td>Cocina</td>
-            <td>"Limpiar la habitaci&oacute;n entera"</td>
-            <td>Habitaci&oacute;n 8</td>
-            <td>25/03/2020</td>
-        </tr>
-        <tr>
-            <td>16</td>
-            <td>Mantenimiento</td>
-            <td>"Limpiar la habitaci&oacute;n entera"</td>
-            <td>Habitaci&oacute;n 9</td>
-            <td>25/03/2020</td>
-        </tr>
-      
-        <tbody>
-    </table>
-    
-</div>
-
 <h2>Incidencias asignadas</h2>
 	
 <div class="table-wrapper">
@@ -295,66 +211,85 @@ h2{
         <tr>
             <th>ID</th>
             <th>TIPO</th>
-            <th>DESCRIPCI&Oacute;N</th>
+            <th>DESCRIPCIÓN</th>
             <th>LUGAR</th>
             <th>FECHA</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>1</td>
-            <td>Limpieza</td>
-            <td>"Limpiar la habitaci&oacute;n entera"</td>
-            <td>Habitaci&oacute;n 1</td>
-            <td>25/03/2020</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Limpieza</td>
-            <td>"Limpiar la habitaci&oacute;n entera"</td>
-            <td>Habitaci&oacute;n 2</td>
-            <td>25/03/2020</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Limpieza</td>
-            <td>"Limpiar la habitaci&oacute;n entera"</td>
-            <td>Habitaci&oacute;n 3</td>
-            <td>25/03/2020</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Limpieza</td>
-            <td>"Limpiar la habitaci&oacute;n entera"</td>
-            <td>Habitaci&oacute;n 4</td>
-            <td>25/03/2020</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Cocina</td>
-            <td>"Limpiar la habitaci&oacute;n entera"</td>
-            <td>Habitaci&oacute;n 5</td>
-            <td>25/03/2020</td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>Cocina</td>
-            <td>"Limpiar la habitaci&oacute;n entera"</td>
-            <td>Habitaci&oacute;n 6</td>
-            <td>25/03/2020</td>
-        </tr>
-        <tr>
-            <td>15</td>
-            <td>Cocina</td>
-            <td>"Limpiar la habitaci&oacute;n entera"</td>
-            <td>Habitaci&oacute;n 7</td>
-            <td>25/03/2020</td>
-        </tr>
+        <c:forEach items="${incidenciasAsignadas}" var="item2">	
+	<tr>			
+		    <td><h4>${item2.getId_incidencia()}</h4></td> 
+			<td><h4>${item2.getTipo_incidencia()}</h4></td> 	
+			<td><h4>${item2.getDescripcion()}</h4></td> 	
+			<td><h4>${item2.getLugar()}</h4></td> 	
+			<td><h4>${item2.getFecha()}</h4></td> 		    
+	</tr>
+	</c:forEach>
               
         <tbody>
     </table>
     
 </div>
+
+
+<h2>Incidencias sin asignar</h2>
+	
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>TIPO</th>
+            <th>DESCRIPCIÓN</th>
+            <th>LUGAR</th>
+            <th>FECHA</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${incidenciasSinAsignar}" var="item2">	
+	<tr>			
+			<td><h4>${item2.getId_incidencia()}</h4></td>	
+			<td><h4>${item2.getTipo_incidencia()}</h4></td> 	
+			<td><h4>${item2.getDescripcion()}</h4></td> 	
+			<td><h4>${item2.getLugar()}</h4></td> 	
+			<td><h4>${item2.getFecha()}</h4></td> 		    
+	</tr>
+	</c:forEach>
+              
+        <tbody>
+    </table>
+    
+</div>
+
+
+<h2>Empleados disponibles</h2>
+	
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+        
+            <th>ID</th>
+            <th>TIPO</th>
+           
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${empleados}" var="item2">	
+	<tr>			
+				
+			<td><h4>${item2.getId_empleado()}</h4></td> 	
+			<td><h4>${item2.getTipo_trabajo()}</h4></td> 	
+				    
+	</tr>
+	</c:forEach>
+              
+        <tbody>
+    </table>
+    
+</div>
+
 
 <div class="container">
 <form method="POST">

@@ -3,6 +3,7 @@ package ingsoft1920.dho.Model;
 import java.util.ArrayList;
 import java.util.List;
 
+import ingsoft1920.dho.DAO.HotelDAO;
 import ingsoft1920.dho.DAO.IncidenciaDAO;
 import ingsoft1920.dho.DAO.TareaDAO;
 import ingsoft1920.dho.bean.EmpleadoBean;
@@ -49,14 +50,21 @@ import ingsoft1920.dho.controller.PedirEmpleados;
 	
 	
 		//con esta lineaa pedimos a la API de EM los empleados
-		//de momento vamos a simularlo
+		
+		List<EmpleadoBean> lista=new ArrayList<EmpleadoBean>();
+		
+		for(int i=1; i<=HotelDAO.devolverElNumeroDeHoteles();i++) {
+			lista.addAll(PedirEmpleados.peticionPedirEmpleado(i));
+		}
 	
-		//List<EmpleadoBean> lista=PedirEmpleados.peticionPedirEmpleado();
-	
+		
+	/*
+		
 		List<EmpleadoBean> lista=new ArrayList<EmpleadoBean>();
 		lista.add(new EmpleadoBean(1,"COCINA",1));
 		lista.add(new EmpleadoBean(2, "LIMPIEZA",1));
 	
+	*/
 		return lista;
 	}
 

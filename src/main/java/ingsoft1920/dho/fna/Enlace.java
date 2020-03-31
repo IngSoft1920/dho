@@ -10,10 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+@Controller
 public class Enlace {
+	
+	@ResponseBody
 	@GetMapping("/download/f/{cliente_id}")
     public static void download(@PathVariable("cliente_id") int cliente_id, HttpServletResponse response) {
         try {
@@ -23,7 +29,7 @@ public class Enlace {
             if (archivo == null)
                 throw new Exception("Pdf no registrado en BBDD.");
             // Abrir fichero pedido
-            File f = new File("files//" + archivo.getArchivoCod() + ".pdf");
+            File f = new File("/hs/dho/files/" + archivo.getArchivoCod() + ".pdf");
             if (!f.exists())
                 throw new Exception("PDF does not exist.");
             // Obtenemos InputSteam del fichero

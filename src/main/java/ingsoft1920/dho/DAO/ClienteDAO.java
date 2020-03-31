@@ -160,8 +160,8 @@ public static void anadirCliente(ClienteBean cliente) {
 		stm.setString(3, cliente.getApellidos());
 		stm.setString(4, cliente.getDni());
 		stm.setString(5, cliente.getEmail());
-		stm.setString(6, cliente.getNacionalidad());
-		stm.setString(7, cliente.getPassword());
+		stm.setString(7, cliente.getNacionalidad());
+		stm.setString(6, cliente.getPassword());
 		if (cliente.getTelefono() != null) {
 			stm.setInt(8, cliente.getTelefono());
 		} else {
@@ -186,5 +186,46 @@ public static ClienteBean clientePorHabitacionID(int habitacion_id) {
 	
 	return cliente;
 }
-
+public static int anadirClienteSinID(ClienteBean cliente) {
+	if (conexion.getConexion() == null)
+		conexion.conectar();
+	
+	PreparedStatement stm= null;
+	java.sql.Statement stmt = null;
+	ResultSet rs = null;
+	
+	int aux=0;
+	
+	try {
+		
+		stmt=conexion.getConexion().createStatement();
+		rs= stmt.executeQuery("SELECT cliente_id FROM Cliente ORDER BY cliente_id");
+		
+		if(rs.next()) {
+		stm=conexion.getConexion().prepareStatement("INSERT INTO Cliente VALUES (?,?,?,?,?,?,?,?)");
+		aux=rs.getInt("cliente_id")-1;
+		stm.setInt(1, aux);
+		stm.setString(2, cliente.getNombre());
+		stm.setString(3, cliente.getApellidos());
+		stm.setString(4, cliente.getDni());
+		stm.setString(5, cliente.getEmail());
+		stm.setString(7, cliente.getNacionalidad());
+		stm.setString(6, "");
+		if (cliente.getTelefono() != null) {
+			stm.setInt(8, cliente.getTelefono());
+		} else {
+			stm.setNull(8, Types.INTEGER);
+		}
+		stm.executeUpdate();
+		
+		}
+	}catch (SQLException ex){  
+		System.out.println("SQLException: " + ex.getMessage()); 
+	} finally { // it is a good idea to release resources in a finally block  
+		if (stm != null) { try {  stm.close(); } catch (SQLException sqlEx) { }  stm = null; }  
+	} 
+	
+	return aux;
 }
+}
+ 
