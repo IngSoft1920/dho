@@ -448,9 +448,10 @@ public class EstanciaDAO {
 			if (rs.next()) {
 				try {
 					stm = conexion.getConexion().prepareStatement("update Estancia set habitacion_id="
-							+ rs.getInt("habitacion_id") + " where estancia_id order by estancia_id desc limit 1;");
+							+ rs.getInt("habitacion_id") + " where estancia_id="+estancia_id+";");
 
 					stm.executeUpdate();
+					return rs.getString("habitacion_id");
 
 				} catch (SQLException ex) {
 					System.out.println("SQLException: " + ex.getMessage());
@@ -474,9 +475,10 @@ public class EstanciaDAO {
 					if (rs2.next()) {
 						stm = conexion.getConexion()
 								.prepareStatement("update Estancia set habitacion_id=" + rs2.getInt("habitacion_id")
-										+ " where estancia_id order by estancia_id desc limit 1;");
+										+ " where estancia_id="+estancia_id+";");
 
 						stm.executeUpdate();
+						return rs2.getString("habitacion_id");
 					} else {
 						stm = conexion.getConexion()
 								.prepareStatement("delete from Estancia where estancia_id=" + estancia_id + ";");

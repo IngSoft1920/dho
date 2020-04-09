@@ -523,7 +523,7 @@ public class DhoAPI {
 		/*
 		 * { { "id" : 21, "nombre" : "El resplandor", "descripcion" :
 		 * "Una experiencia cálida", "estrellas" : 4, "continente" : "Europa", "pais" :
-		 * "España", "ciudad" : "Madrid", "habitaciones" : [ { "id": 1 , "nombre":
+		 * "España", "ciudad" : "Madrid", "habitaciones" : [ { "id": 1 , "nombre_tipo":
 		 * "normal" , "num_disponibles":50 }, { "id": 2 , "nombre": "premium" ,
 		 * "num_disponibles":10} ], "categorias": [ { "id":11 , "nombre":"adult-only"},
 		 * { "id":75 , "nombre":"pet-friendly"} ], "servicios" : [ { "id" : 1 , "nombre"
@@ -553,7 +553,7 @@ public class DhoAPI {
 
 		for (int i = 0; i < habitacionesLista.size(); i++) {
 			int idHab = habitacionesLista.get(i).getAsJsonObject().get("id").getAsInt();
-			String nombreHab = habitacionesLista.get(i).getAsJsonObject().get("nombre").getAsString();
+			String nombreHab = habitacionesLista.get(i).getAsJsonObject().get("nombre_tipo").getAsString();
 			int num_Disponibles = habitacionesLista.get(i).getAsJsonObject().get("num_disponibles").getAsInt();
 			HabitacionBean hab = new HabitacionBean();
 			hab.setId_hotel(id);

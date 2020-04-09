@@ -315,7 +315,7 @@ public class PruebasBaseDatos {
 		
 			//System.out.println(prueba45.idUltimoServicio());
 	/*DhoAPI prueba55 = new DhoAPI();
-	prueba55.recibirHotel(" { \"id\" : 32, \"nombre\" : \"El resplandor\", \"descripcion\" :\"Una experiencia cálida\", \"estrellas\" : 4, \"continente\" : \"Europa\", \"pais\" :\"España\", \"ciudad\" : \"Madrid\", \"habitaciones\" : [ { \"id\": 1 , \"nombre\": \"normal\" , \"num_disponibles\":50 },{\"id\":2,\"nombre\":\"premium\",\"num_disponibles\":10}],\"categorias\":[{\"id\":11,\"nombre\":\"adult-only\"},{\"id\":75,\"nombre\":\"pet-friendly\"}],\"servicios\":[{\"id\":1,\"nombre\":\"piscina\",\"precio\":10,\"unidad\":\"por_dia\"},{\"id\":3,\"nombre\":\"restaurante\",\"precio\":null,\"unidad\":null}]}");
+	prueba55.recibirHotel(" { \"id\" : 32, \"nombre\" : \"El resplandor\", \"descripcion\" :\"Una experiencia cálida\", \"estrellas\" : 4, \"continente\" : \"Europa\", \"pais\" :\"España\", \"ciudad\" : \"Madrid\", \"habitaciones\" : [ { \"id\": 1 , \"nombre_tipo\": \"normal\" , \"num_disponibles\":50 },{\"id\":2,\"nombre_tipo\":\"premium\",\"num_disponibles\":10}],\"categorias\":[{\"id\":11,\"nombre\":\"adult-only\"},{\"id\":75,\"nombre\":\"pet-friendly\"}],\"servicios\":[{\"id\":1,\"nombre\":\"piscina\",\"precio\":10,\"unidad\":\"por_dia\"},{\"id\":3,\"nombre\":\"restaurante\",\"precio\":null,\"unidad\":null}]}");
 	}
 	
 	DhoAPI prueba55 = new DhoAPI();
@@ -334,10 +334,10 @@ public class PruebasBaseDatos {
         json.addProperty("hora_salida", "21:00");
 		prueba55.recibirServicio(json.toString());
 		*/
-		//DhoAPI prueba55 = new DhoAPI();
-		//prueba55.recibirReserva(" { \"reserva_id\" : 36, \"fecha_entrada\" : \"2020-03-10\", \"fecha_salida\" :\"2020-03-15\", \"importe\" : 4, \"cliente_id\" : 2, \"numero_acompanantes\" : 0, \"hotel_id\" : 5, \"tipo_hab_id\" : 1}");
+		DhoAPI prueba55 = new DhoAPI();
+		System.out.println(prueba55.recibirReserva(" { \"reserva_id\" : 19, \"fecha_entrada\" : \"2020-04-03\", \"fecha_salida\" :\"2020-04-16\", \"importe\" : 4, \"cliente_id\" : 10, \"numero_acompanantes\" : 0, \"hotel_id\" : 5, \"tipo_hab_id\" : 1}"));
 		//PedirClientes a=new PedirClientes();
-		//System.out.println("BBBBBBBBBB"+a.peticionPedirCliente(22));
+		//System.out.println("BBBBBBBBBB"+a.peticionPedirCliente(19));
 		 }
 		
 		
