@@ -32,7 +32,7 @@ public class PedirClientes {
 					String password= cambio(obj.get("password").toString());
 					String nacionalidad= cambio(obj.get("nacionalidad").toString());
 					Integer telefono= valueOf2(obj.get("telefono").toString());
-					ClienteBean cliente = new ClienteBean (cliente_id, nombre,apellidos, dni, email, password, nacionalidad,telefono);
+					ClienteBean cliente = new ClienteBean (cliente_id, nombre,apellidos, dni, email, password, nacionalidad,telefono,"");
 					
 				 return cliente;
 				

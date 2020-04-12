@@ -37,6 +37,7 @@ public static ClienteBean datosCliente(int estancia_id) {
 			res.setNacionalidad(rs.getString("nacionalidad"));
 			res.setPassword(rs.getString("password"));
 			res.setTelefono(rs.getInt("telefono"));
+			res.setPreferencias(rs.getString("preferencias"));
 		}
 	}catch (SQLException ex) {
 		System.out.println("SQLException: " + ex.getMessage());
@@ -84,6 +85,7 @@ public static ClienteBean getCliente(int cliente_id) {
 			res.setNacionalidad(rs.getString("nacionalidad"));
 			res.setPassword(rs.getString("password"));
 			res.setTelefono(rs.getInt("telefono"));
+			res.setPreferencias(rs.getString("preferencias"));
 		}
 	}catch (SQLException ex) {
 		System.out.println("SQLException: " + ex.getMessage());
@@ -154,7 +156,7 @@ public static void anadirCliente(ClienteBean cliente) {
 	
 	PreparedStatement stm= null;
 	try {
-		stm=conexion.getConexion().prepareStatement("INSERT INTO Cliente VALUES (?,?,?,?,?,?,?,?)");
+		stm=conexion.getConexion().prepareStatement("INSERT INTO Cliente VALUES (?,?,?,?,?,?,?,?,?)");
 		stm.setInt(1, cliente.getCliente_id());
 		stm.setString(2, cliente.getNombre());
 		stm.setString(3, cliente.getApellidos());
@@ -167,6 +169,7 @@ public static void anadirCliente(ClienteBean cliente) {
 		} else {
 			stm.setNull(8, Types.INTEGER);
 		}
+		stm.setString(9, cliente.getPreferencias());
 		stm.executeUpdate();
 	}catch (SQLException ex){  
 		System.out.println("SQLException: " + ex.getMessage()); 
@@ -216,6 +219,7 @@ public static int anadirClienteSinID(ClienteBean cliente) {
 		} else {
 			stm.setNull(8, Types.INTEGER);
 		}
+		stm.setString(9, cliente.getPreferencias());
 		stm.executeUpdate();
 		
 		}
