@@ -673,5 +673,53 @@ public class EstanciaDAO {
 		}
 		conexion.desconectar();
 	}
+	public static EstanciaBean getEstanciaFecha(int habitacion_id, String fecha) {
+		EstanciaBean res = new EstanciaBean();
+		
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+		
+
+		try {
+			stmt = conexion.getConexion().createStatement();
+			rs = stmt.executeQuery("SELECT * FROM Estancia WHERE habitacion_id = " + habitacion_id
+					+ " AND fecha_inicio < '" + fecha + "' AND fecha_fin > '" + fecha + "'");
+
+			if (rs.next()) {
+				res.setEstancia_id(rs.getInt("estancia_id"));
+				res.setCliente_id(rs.getInt("cliente_id"));
+				res.setEstado(rs.getString("estado"));
+				res.setFecha_fin(rs.getDate("fecha_fin"));
+				res.setFecha_inicio(rs.getDate("fecha_inicio"));
+				res.setHotel_id(rs.getInt("hotel_id"));
+				res.setImporte(rs.getInt("importe"));
+			} 
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+
+		}
+		conexion.desconectar();
+		
+		
+		return res;
+	}
 
 }
