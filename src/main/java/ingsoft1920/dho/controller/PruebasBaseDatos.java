@@ -306,11 +306,13 @@ public class PruebasBaseDatos {
 		
 		ClienteBean c1 = new ClienteBean(4,"esto","es", "una", "prueba", "nada", "mas", 000000000);
 		ClienteDAO prueba51 = new ClienteDAO(conexion);
-		prueba51.anadirClienteSinID(c1);*/
+		prueba51.anadirClienteSinID(c1);
 		Date fecha= new Date(0);
 		Time hora = new Time(0);
 		TareaDAO prueba52 = new TareaDAO(conexion);
 		prueba52.añadirTarea(new TareaBean(100,1,1,"","","",true,fecha,hora,0,hora));
+		*/
+		
 		
 		
 			//System.out.println(prueba45.idUltimoServicio());
@@ -333,10 +335,16 @@ public class PruebasBaseDatos {
         json.addProperty("tipoServicio", 1);
         json.addProperty("hora_salida", "21:00");
 		prueba55.recibirServicio(json.toString());
-		*/
+		
 		EstanciaDAO prueba56 = new EstanciaDAO(conexion);
 		System.out.println(prueba56.getEstanciaFecha(102, "2020-04-08").toString());
+		*/
 		
+		HotelDAO prueba57 = new HotelDAO(conexion);
+		System.out.println(prueba57.porcentajeReservas("2020-04-01"));
+		
+		EstanciaDAO prueba58 = new EstanciaDAO(conexion);
+		//System.out.println(prueba58.getEstadoHabitaciones("2020-04-01").toString());
 		
 		//DhoAPI prueba55 = new DhoAPI();
 		//System.out.println(prueba55.recibirReserva(" { \"reserva_id\" : 19, \"fecha_entrada\" : \"2020-04-03\", \"fecha_salida\" :\"2020-04-16\", \"importe\" : 4, \"cliente_id\" : 10, \"numero_acompanantes\" : 0, \"hotel_id\" : 5, \"tipo_hab_id\" : 1}"));

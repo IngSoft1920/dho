@@ -5,6 +5,7 @@ import ingsoft1920.dho.controller.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import ingsoft1920.dho.bean.HotelBean;
 import ingsoft1920.dho.bean.ServicioBean;
@@ -116,4 +117,39 @@ private static Conexion conexion=new Conexion();
 		return res;
 	}
 	
+	public static double porcentajeOcupacion(String fecha) {
+		double res= 0;
+		int numHabs= HabitacionDAO.getHabitacionByHotel(5).size();
+		int numOcups=0;
+		ArrayList<String> estados = new ArrayList<String>();
+		estados= EstanciaDAO.getEstadoHabitaciones(fecha);
+		for(int i=0; i<estados.size(); i++) {
+			if(estados.get(i).equals("check in")) {
+				numOcups++;
+			}
+		}
+		res=(double)numOcups/numHabs;
+		
+		res= res*100;
+		
+		return res;
+	}
+	public static double porcentajeReservas(String fecha) {
+		double res= 0;
+		int numHabs= HabitacionDAO.getHabitacionByHotel(5).size();
+		int numOcups=0;
+		ArrayList<String> estados = new ArrayList<String>();
+		estados= EstanciaDAO.getEstadoHabitaciones(fecha);
+		for(int i=0; i<estados.size(); i++) {
+			if(estados.get(i).equals("reserva")) {
+				numOcups++;
+			}
+		}
+		
+		res=(double)numOcups/numHabs;
+		
+		res= res*100;
+		
+		return res;
+	}
 }
