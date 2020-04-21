@@ -224,7 +224,7 @@ h1 { text-align: center; padding: 0.5em; }
   
         
   	<form:form method="POST" action="/homePageDHO/menu/buscar">
-        <input type="date" name="fechaConsultaString" value=${fechaConsultaString} min="2020-01-01" max="2020-12-31">
+        <input type="date" name="fechaConsultaString" value=${fechaConsultaString} min=${fechaConsultaString} max="2020-12-31">
         <input type="submit" value="Buscar"/>
     </form:form>
     

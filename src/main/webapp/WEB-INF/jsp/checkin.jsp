@@ -8,9 +8,9 @@
 	<nav>
 		<ul>
 			<li><a href="/homePageDHO/menu">Inicio</a></li>
-			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
 			<li><a href="/homePageDHO/menu/reservas1">Reservas</a></li>
-			<li><a href="/homePageDHO/menu/calendario">Vista de calendario</a></li>
+			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
+			<li><a href="/homePageDHO/menu/calendario">Vista de calendario</a></li>>
 
 		</ul>
 	</nav>
