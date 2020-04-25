@@ -3,6 +3,7 @@ package ingsoft1920.dho.controller;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -27,7 +28,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ingsoft1920.dho.DAO.EstanciaDAO;
+import ingsoft1920.dho.DAO.HabitacionDAO;
 import ingsoft1920.dho.bean.EstanciaBean;
+import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.LoginBean;
 
 
@@ -61,13 +64,16 @@ public class MenuController {
 	 	List<String> listaEstados= EstanciaDAO.getEstadoHabitaciones(fechaConsulta.toString());
 	 	String[] links = new String[numHab];
 	 	String[] coloresCelda = new String[numHab];
+	 	ArrayList<HabitacionBean> habitaciones; 
 	 	//fechaConsulta.plusDays(1);
 	 	for(int i=0; i<numHab;i++) 
 	 	{
 	 		estado=listaEstados.get(i);
-	 		
-		 	if (estado.equals("check in")) { coloresCelda[i]=ROJO; links[i]="/homePageDHO/menu/checkout1/"+i+"/"+fechaConsultaString; } // Rojo
-		 	else if (estado.equals("reserva")) { coloresCelda[i]=NARANJA;links[i]="/homePageDHO/menu/checkin1"+i+"/"+fechaConsultaString;} // Naranja
+	 		habitaciones= HabitacionDAO.getHabitacionByHotel(99);
+		 	if (estado.equals("check in")) { coloresCelda[i]=ROJO; links[i]="/homePageDHO/menu/checkout1/"+
+		 			habitaciones.get(i).getId_habitacion()+"/"+fechaConsultaString; } // Rojo
+		 	else if (estado.equals("reserva")) { coloresCelda[i]=NARANJA;links[i]="/homePageDHO/menu/checkin1"+"/"+
+		 			habitaciones.get(i).getId_habitacion()+"/"+fechaConsultaString;} // Naranja
 		 	else if (estado.equals("check out")) { coloresCelda[i]=VERDE;links[i]="/homePageDHO/menu/estancias1";} // Verde
 	
 	 	}
