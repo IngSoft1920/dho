@@ -66,8 +66,8 @@ public class MenuController {
 	 	{
 	 		estado=listaEstados.get(i);
 	 		
-		 	if (estado.equals("check in")) { coloresCelda[i]=ROJO; links[i]="/homePageDHO/menu/checkout1"; } // Rojo
-		 	else if (estado.equals("reserva")) { coloresCelda[i]=NARANJA;links[i]="/homePageDHO/menu/checkin1";} // Naranja
+		 	if (estado.equals("check in")) { coloresCelda[i]=ROJO; links[i]="/homePageDHO/menu/checkout1/"+i+"/"+fechaConsultaString; } // Rojo
+		 	else if (estado.equals("reserva")) { coloresCelda[i]=NARANJA;links[i]="/homePageDHO/menu/checkin1"+i+"/"+fechaConsultaString;} // Naranja
 		 	else if (estado.equals("check out")) { coloresCelda[i]=VERDE;links[i]="/homePageDHO/menu/estancias1";} // Verde
 	
 	 	}

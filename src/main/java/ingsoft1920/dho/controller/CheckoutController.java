@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ingsoft1920.dho.Model.CheckinModel;
@@ -24,8 +25,8 @@ import ingsoft1920.dho.bean.EstanciaBean;
 		final static Logger logger = LogManager.getLogger(LoginController.class.getName());
 		
 		
-		@GetMapping("/homePageDHO/menu/checkout1")
-		public String checkoutGet(Model model) {
+		@GetMapping("/homePageDHO/menu/checkout1/{num_hab}/{fecha}")
+		public String checkoutGet(Model model, @PathVariable int num_hab, @PathVariable String fecha) {
 			
 			//vamos a llmar al checkinModel parar trabajar con el
 			CheckoutModel checkout=new CheckoutModel();
@@ -34,7 +35,7 @@ import ingsoft1920.dho.bean.EstanciaBean;
 			return "checkout";
 		}
 
-		@PostMapping("/homePageDHO/menu/checkout1")
+		@PostMapping("/homePageDHO/menu/checkout1/{num_hab}/{fecha}")
 		public String checkoutPost(@Valid @ModelAttribute("EstanciaBean") EstanciaBean estanciaBean,
 				Model model) {
 		
@@ -46,7 +47,7 @@ import ingsoft1920.dho.bean.EstanciaBean;
 
 		System.out.println("ckeckout:\n"+estanciaBean);
 		
-		return this.checkoutGet(model);
+		return "redirect:/homePageDHO/menu";
 		
 		}
 	
