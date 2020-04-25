@@ -20,7 +20,7 @@ public class EstanciaDAO {
 	
 	
 	
-	// devuelve el id de la ultima Esatncia para saber el id de la siguiente
+	// devuelve el id de la ultima estancia para saber el id de la siguiente
 		public static int idUltimaEstancia() {
 			int res = 0;
 

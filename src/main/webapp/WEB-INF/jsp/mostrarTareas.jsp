@@ -13,6 +13,7 @@
 			
 =======
 			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
+			<li><a href="/homePageDHO/menu/calendario">Vista de calendario</a></li>
 >>>>>>> release
 
 		</ul>

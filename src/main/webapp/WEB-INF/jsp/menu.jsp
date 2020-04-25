@@ -7,10 +7,9 @@
 	<nav>
 		<ul>
 			<li><a href="/homePageDHO/menu">Inicio</a></li>
-			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
 			<li><a href="/homePageDHO/menu/reservas1">Reservas</a></li>
-			
-
+			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
+			<li><a href="/homePageDHO/menu/calendario">Vista de calendario</a></li>
 		</ul>
 	</nav>
 </header>
@@ -70,9 +69,8 @@ nav ul li:hover {
   margin: auto;
   overflow:hidden;
 }
+/* A partir de aquí el código del calendario */
 </style>
-
-/*A partir de aquí el código del calendario*/
 
 <section class="contenido wrapper">
 
@@ -87,6 +85,7 @@ diassemana=["lun","mar","mié","jue","vie","sáb","dom"];
 maximodia=["31","28","31","30","31","30","31","31","30","31","30","31"];
 maximodiasig=["32","29","32","31","32","31","32","32","31","32","31","32"];
 
+fechaString = '${fechaConsultaString}'
 
 habitacionespiso1=["101","102","103","104","105","106","107"];
 habitacionespiso2=["201","202","203","204","205","206","207"];
@@ -97,115 +96,6 @@ habitacionespiso6=["601","602","603","604","605","606","607"];
 habitacionespiso7=["701","702","703","704","705","706","707"];
 
 
-
-
-//Tras cargarse la página ...
-window.onload = function() 
-{
-//fecha actual
-hoy=new Date(); //objeto fecha actual
-diasemhoy=hoy.getDay(); //dia semana actual
-diahoy=hoy.getDate(); //dia mes actual
-meshoy=hoy.getMonth(); //mes actual
-annohoy=hoy.getFullYear(); //año actual
-// Elementos del DOM: en cabecera de calendario 
-tit=document.getElementById("titulos"); //cabecera del calendario
-ant=document.getElementById("anterior"); //mes anterior
-pos=document.getElementById("posterior"); //mes posterior
-// Elementos del DOM en las filas
-f0=document.getElementById("fila0");
-f1=document.getElementById("fila1");
-f2=document.getElementById("fila2");
-f3=document.getElementById("fila3");
-f4=document.getElementById("fila4");
-f5=document.getElementById("fila5");
-f6=document.getElementById("fila6");
-//Pie de calendario
-pie=document.getElementById("fechaactual");
-pie.innerHTML+=lasemana[diasemhoy]+", "+diahoy+" de "+meses[meshoy]+" de "+annohoy;
-//formulario: datos iniciales:
-document.buscar.buscaanno.value=annohoy;
-// Definir elementos iniciales:
-mescal = meshoy; //mes principal
-annocal = annohoy //año principal
-
-//iniciar calendario:
-cabecera() 
-
-
-
-}
-
-
-
-
-//FUNCIONES de creación del calendario:
-//cabecera del calendario
-function cabecera() {
-     	 ant.innerHTML="anterior";
-         pos.innerHTML="posterior";
-         mesant=mescal-1;
-         mespos=mescal+1;
-         
-            //cambio de año
-         if(mescal==11 && diahoy==32) { annocal=annocal+1; diahoy=1; mescal=0;}
-         else if(mescal==0 && diahoy==0) { annocal=annocal-1; diahoy=31; mescal=11; } 
-         
-         //cambio de mes bisiesto
-         else if(mescal==2 && diahoy==0 && annocal%4==0 && annocal%100!=0) { diahoy=maximodiasig[mesant]; mescal=mesant; }
-         else if(mescal==1 && diahoy==29 && annocal%4==0 && annocal%100!=0){}
-         else if(mescal==1 && diahoy==30 && annocal%4==0 && annocal%100!=0) { diahoy=1; mescal=mespos; }
-         
-         //cambio de mes normal
-		 else if(diahoy==0){ mescal=mesant;diahoy=maximodia[mesant]; }
-		 else if(diahoy==maximodiasig[mescal]){ mescal=mespos; diahoy=1; }
-		 
-		 //imprimir por pantalla
-         tit.innerHTML=diahoy+" "+meses[mescal]+" de "+annocal;
-} 
-
-
-//Ver mes anterior
-function mesantes() {
-		 diahoy=diahoy-1;
-         cabecera() //llamada a funcion de cambio de cabecera
-         }
-//ver mes posterior
-function mesdespues() {
-		 diahoy=diahoy+1;
-         cabecera() //escribir la cabecera 
-         }
-//volver al mes actual
-function actualizar() {
-         mescal=hoy.getMonth(); //cambiar a mes actual
-         annocal=hoy.getFullYear(); //cambiar a año actual 
-         cabecera() //escribir la cabecera
-         escribirdias() //escribir la tabla
-         }
-//ir al mes buscado
-function mifecha() {
-         //Recoger dato del año en el formulario
-         mianno=document.buscar.buscaanno.value; 
-         //recoger dato del mes en el formulario
-         listameses=document.buscar.buscames;
-         opciones=listameses.options;
-         num=listameses.selectedIndex
-         mimes=opciones[num].value;
-         //Comprobar si el año está bien escrito
-         if (isNaN(mianno) || mianno<1) { 
-            //año mal escrito: mensaje de error
-            alert("El año no es válido:\n debe ser un número mayor que 0")
-            }
-         else { //año bien escrito: ver mes en calendario:
-              mife=new Date(); //nueva fecha
-              mife.setMonth(mimes); //añadir mes y año a nueva fecha
-              mife.setFullYear(mianno);
-              mescal=mife.getMonth(); //cambiar a mes y año indicados
-              annocal=mife.getFullYear();
-              cabecera() //escribir cabecera
-              escribirdias() //escribir tabla
-              }
-}
   
 function tabla() {         
    		var tabla = "";
@@ -231,9 +121,6 @@ function tabla() {
   
 //tabla()
 </script>
-
-
-
 
 
 
@@ -263,9 +150,9 @@ h1 { text-align: center; padding: 0.5em; }
 //#diasc th { background-color: #1fbc22 }
 //#diasc td { background-color: #1fbc22 }
 /*línea de la fecha actual*/
-#fechaactual { font: bold 12pt arial; padding: 0.4em }
-#fechaactual i { cursor: pointer ; }
-#fechaactual i:hover { color: blue; text-decoration: underline; }
+#fechahoy { font: bold 12pt arial; padding: 0.4em }
+#fechahoy i { cursor: pointer ; }
+#fechahoy i:hover { color: blue; text-decoration: underline; }
 /*formulario de busqueda de fechas*/
 #buscafecha { background-color: #663366; color: #9bf5ff; padding: 5px }
 #buscafecha select, #buscafecha input  { background-color: #9bf5ff; 
@@ -287,13 +174,20 @@ h1 { text-align: center; padding: 0.5em; }
 <title>Calendario</title> 
 </head>
 <body background ="https://avante.biz/wp-content/uploads/Wood-Print-Wallpapers/Wood-Print-Wallpapers-045.jpg">
-<h1><font size=7>Disponibilidad actual</font></h1>
+<h1><font size=7>Disponibilidad</font></h1>
 <br/><br/>
 <div id="calendario">
-  <div id="anterior" onclick="mesantes()"></div>
-  <div id="posterior" onclick="mesdespues()"></div>
-  
-  <h2 id="titulos"></h2>
+  	<div id="anterior">
+  		<form:form method="POST" action="/homePageDHO/menu/ant/${fechaConsultaString}">
+    		<input type="submit" value="Anterior" />
+		</form:form>
+    </div>
+  	<div id="posterior">
+		<form:form method="POST" action="/homePageDHO/menu/post/${fechaConsultaString}">
+    		<input type="submit" value="Posterior" />
+		</form:form>
+	</div>
+  <h2 id="titulos">${Dia} de ${Mes} del ${Año}</h2>
   <%  int n=0;%>
   <%  int hab=100;%>
   <% String[] coloresCelda = (String[]) request.getAttribute("coloresCelda");%>
@@ -310,38 +204,30 @@ h1 { text-align: center; padding: 0.5em; }
 			hab+=1;%>
 			<td width="100px" height="100px" align="center" bgcolor="<%=coloresCelda[n]%>"><h3><a href="<%=links[n]%>"><%=hab%></a></h3></td> 
 			<% n++;%>
-	  <%}
-	    hab=hab+100-7;%>
+	  <%}%>
+	    <%hab=hab+100-7;%>
 		 </tr>
 	<%}%>
 	
  </table>
  
   
-  <div id="fechaactual"><i onclick="actualizar()">HOY: </i></div>
+  <div id="fechahoy">
+  	<form:form method="POST" action="/homePageDHO/menu/hoy">
+  		<i>
+   			<input type="submit" value=" HOY: ${DiaHoy} de ${MesHoy} del ${AñoHoy} "/> 
+   		</i>
+   	</form:form>
+    	
+  </div>
   <div id="buscafecha">
-    <form action="#" name="buscar">
-      <p>MES: 
-        <select name="buscames">
-          <option value="0">Enero</option>
-          <option value="1">Febrero</option>
-          <option value="2">Marzo</option>
-          <option value="3">Abril</option>
-          <option value="4">Mayo</option>
-          <option value="5">Junio</option>
-          <option value="6">Julio</option>
-          <option value="7">Agosto</option>
-          <option value="8">Septiembre</option>
-          <option value="9">Octubre</option>
-          <option value="10">Noviembre</option>
-          <option value="11">Diciembre</option>
-        </select>
-          AÑO: 
-        <input type="text" name="buscaanno" maxlength="4" size="4" />
-          
-        <input type="button" value="BUSCAR" onclick="mifecha()" />
-      </p>
-    </form>
+  
+        
+  	<form:form method="POST" action="/homePageDHO/menu/buscar">
+        <input type="date" name="fechaConsultaString" value=${fechaConsultaString} min=${fechaConsultaString} max="2020-12-31">
+        <input type="submit" value="Buscar"/>
+    </form:form>
+    
   </div>
 </div>
 </body>

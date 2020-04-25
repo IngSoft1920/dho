@@ -67,7 +67,7 @@ public class DhoAPI {
 
 		JsonArray dia = new JsonArray();
 
-		JsonArray lugar= new JsonArray();
+		JsonArray lugar = new JsonArray();
 		obj.addProperty("empleado_id", id_empleado);
 
 		for (TareaBean elem : lista) {
@@ -81,9 +81,9 @@ public class DhoAPI {
 			horaFin.add(elem.getHoraFin().toString());
 
 			dia.add(elem.getFecha().toString());
-			
+
 			lugar.add(elem.getLugar());
-		
+
 		}
 
 		obj.add("id_TareaLista", tarea_id);
@@ -95,7 +95,7 @@ public class DhoAPI {
 		obj.add("horaFin", horaFin);
 
 		obj.add("dia", dia);
-		
+
 		obj.add("lugar", lugar);
 
 		return obj.toString().toString();
@@ -137,7 +137,7 @@ public class DhoAPI {
 
 		int tipo_servicio = requeObj.get("tipoServicio").getAsInt();
 
-		String hora_salida = requeObj.get("hora_salida").getAsString();
+		String hora_salida = cambio(requeObj.get("hora_salida").toString());
 
 		/*
 		 * Hemos quedado con GE el siguiente formato: 1-: serivios normales 2-:Encargar
@@ -145,7 +145,7 @@ public class DhoAPI {
 		 */
 
 		if (tipo_servicio == 2 || tipo_servicio == 3) {
-			//String restaurante = requeObj.get("restaurante").getAsString();
+			// String restaurante = requeObj.get("restaurante").getAsString();
 			// nuevoServicio.setRestaurante(restaurante);
 			if (tipo_servicio == 3) {
 				JsonArray platosJSON = requeObj.get("platos").getAsJsonArray();
@@ -187,8 +187,13 @@ public class DhoAPI {
 		LocalTime horaTime = LocalTime.parse(hora);
 		nuevoServicio.setHora(java.sql.Time.valueOf(horaTime));
 
-		LocalTime hora_salidaTime = LocalTime.parse(hora_salida);
-		nuevoServicio.setHora_salida(java.sql.Time.valueOf(hora_salidaTime));
+		// hora salida puede ser null
+		if (hora_salida != null) {
+			LocalTime hora_salidaTime = LocalTime.parse(hora_salida);
+			nuevoServicio.setHora_salida(java.sql.Time.valueOf(hora_salidaTime));
+		} else {
+			nuevoServicio.setHora_salida(null);
+		}
 
 		nuevoServicio.setId_ServicoHotel(id_servicioHotel);
 
@@ -371,9 +376,9 @@ public class DhoAPI {
 
 		JsonArray nombre_hotel_Lista = new JsonArray();
 
-		//JsonArray is_check_in = new JsonArray();
+		// JsonArray is_check_in = new JsonArray();
 		// falta meter el del check_in
-		
+
 		JsonArray estado = new JsonArray();
 
 		boolean aux = true;
@@ -389,20 +394,19 @@ public class DhoAPI {
 			fecha_Fin_Lista.add(elem.getFecha_fin().toString());
 
 			nombre_hotel_Lista.add(HotelDAO.ConseguirNombreHotelDadoID(elem.getHotel_id()));
-			
+
 			estado.add(elem.getEstado());
-			
-			
+
 			/*
-			if (elem.getEstado() == "reserva" || elem.getEstado() == "check out")
-
-				is_check_in.add(false);
-
-			else
-
-				is_check_in.add(true);
-			
-			*/
+			 * if (elem.getEstado() == "reserva" || elem.getEstado() == "check out")
+			 * 
+			 * is_check_in.add(false);
+			 * 
+			 * else
+			 * 
+			 * is_check_in.add(true);
+			 * 
+			 */
 		}
 
 		obj.add("id_estancia_lista", id_estancia_lista);
@@ -415,8 +419,8 @@ public class DhoAPI {
 
 		obj.add("nombre_hotel_Lista", nombre_hotel_Lista);
 
-		//obj.add("is_check_in", is_check_in);
-		
+		// obj.add("is_check_in", is_check_in);
+
 		obj.add("estado", estado);
 
 		return obj.toString().toString();
@@ -460,57 +464,54 @@ public class DhoAPI {
 		return obj.toString().toString();
 
 	}
-	
+
 	@ResponseBody
 	@PostMapping("/confirmarCheckin")
 	public String confirmarCheckIn(@RequestBody String req) {
-		String resp="Procesado correctamente";
+		String resp = "Procesado correctamente";
 		JsonObject requeObj = JsonParser.parseString(req).getAsJsonObject();
 		int id_estancia = requeObj.get("reserva_id").getAsInt();
-		resp=EstanciaDAO.checkInPorEstancia_id(id_estancia);
+		resp = EstanciaDAO.checkInPorEstancia_id(id_estancia);
 		return resp;
-		
+
 	}
-	
+
 	@ResponseBody
 	@PostMapping("/enviarDatosCambiadosmasCheckIn")
 	public String confirmarCheckInMasCambios(@RequestBody String req) {
-		String resp="Procesado correctamente";
+		String resp = "Procesado correctamente";
 		JsonObject requeObj = JsonParser.parseString(req).getAsJsonObject();
 		int id_estancia = requeObj.get("reserva_id").getAsInt();
-		int cliente= requeObj.get("cliente_id").getAsInt();
-		String nombre= requeObj.get("nombre").getAsString();
-		String apellidos= requeObj.get("apellidos").getAsString();
-		String DNI= requeObj.get("DNI").getAsString();
-		String email= requeObj.get("email").getAsString();
-		String nacionalidad= requeObj.get("nacionalidad").getAsString();
-		String telefono= requeObj.get("telefono").getAsString();
-		String contraseña=requeObj.get("contraseña").getAsString();
-		resp=EstanciaDAO.checkInPorEstancia_id(id_estancia);
-		ClienteDAO.modificarDatosCliente(cliente,"nombre",nombre);
-		ClienteDAO.modificarDatosCliente(cliente,"apellidos",apellidos);
-		ClienteDAO.modificarDatosCliente(cliente,"DNI",DNI);
-		ClienteDAO.modificarDatosCliente(cliente,"nacionalidad",nacionalidad);
-		ClienteDAO.modificarDatosCliente(cliente,"telefono",telefono);
-		ClienteDAO.modificarDatosCliente(cliente,"email",email);
-		ClienteDAO.modificarDatosCliente(cliente,"password",contraseña);
+		int cliente = requeObj.get("cliente_id").getAsInt();
+		String nombre = requeObj.get("nombre").getAsString();
+		String apellidos = requeObj.get("apellidos").getAsString();
+		String DNI = requeObj.get("DNI").getAsString();
+		String email = requeObj.get("email").getAsString();
+		String nacionalidad = requeObj.get("nacionalidad").getAsString();
+		String telefono = requeObj.get("telefono").getAsString();
+		String contraseña = requeObj.get("contraseña").getAsString();
+		resp = EstanciaDAO.checkInPorEstancia_id(id_estancia);
+		ClienteDAO.modificarDatosCliente(cliente, "nombre", nombre);
+		ClienteDAO.modificarDatosCliente(cliente, "apellidos", apellidos);
+		ClienteDAO.modificarDatosCliente(cliente, "DNI", DNI);
+		ClienteDAO.modificarDatosCliente(cliente, "nacionalidad", nacionalidad);
+		ClienteDAO.modificarDatosCliente(cliente, "telefono", telefono);
+		ClienteDAO.modificarDatosCliente(cliente, "email", email);
+		ClienteDAO.modificarDatosCliente(cliente, "password", contraseña);
 		return resp;
-		
+
 	}
-	
+
 	@ResponseBody
 	@PostMapping("/confirmarCheckout")
 	public String confirmarCheckOut(@RequestBody String req) {
-		String resp="Procesado correctamente";
+		String resp = "Procesado correctamente";
 		JsonObject requeObj = JsonParser.parseString(req).getAsJsonObject();
 		int id_estancia = requeObj.get("reserva_id").getAsInt();
-		resp=EstanciaDAO.checkOutPorEstancia_id(id_estancia);
+		resp = EstanciaDAO.checkOutPorEstancia_id(id_estancia);
 		return resp;
-		
+
 	}
-	
-	
-	
 
 	/**
 	 * @param req
@@ -612,10 +613,16 @@ public class DhoAPI {
 		int tipo_hab_id = obj.get("tipo_hab_id").getAsInt();
 		String resultado = EstanciaDAO.anadirEstancia(reserva_id, cliente_id, hotel_id, fecha_inicio, fecha_fin,
 				tipo_hab_id, importe);
-		ClienteBean cliente=PedirClientes.peticionPedirCliente(reserva_id);
-		if(ClienteDAO.getCliente(cliente.getCliente_id())==null||ClienteDAO.getCliente(cliente.getCliente_id()).getCliente_id()==0)
+		ClienteBean cliente = PedirClientes.peticionPedirCliente(reserva_id);
+		if (ClienteDAO.getCliente(cliente.getCliente_id()) == null
+				|| ClienteDAO.getCliente(cliente.getCliente_id()).getCliente_id() == 0)
 			ClienteDAO.anadirCliente(cliente);
 		return resultado;
+
+	}
+
+	public static String cambio(String input) {
+		return (input.equals("null") || input == null) ? null : input;
 
 	}
 
