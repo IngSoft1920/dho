@@ -25,18 +25,17 @@ public class Enlace {
         try {
             // Pasa por filtro bbdd que traduce archivoCod a ArchivosFacturaBean
         	
-            ArchivosFacturaBean archivo = ArchivosFacturaDAO.getPDFByCod(cliente_id);
-            if (archivo == null) {
     			HttpClient client= new HttpClient("http://piedrafita.ls.fi.upm.es:7001/generatePDF/"+cliente_id,"GET");
     			int respCode = client.getResponseCode();
     			if(respCode!=200) {
     				throw new Exception("Error en la conexion");
     			}
-            }
+            ArchivosFacturaBean archivo = ArchivosFacturaDAO.getPDFByCod(cliente_id);
             // Abrir fichero pedido
             File f = new File("/hs/dho/files/" + archivo.getArchivoCod() + ".pdf");
             if (!f.exists())
                 throw new Exception("PDF does not exist.");
+            
             // Obtenemos InputSteam del fichero
             InputStream is = new FileInputStream(f);
             // Marcamos respuesta en cabecera
@@ -54,6 +53,7 @@ public class Enlace {
             try {
                 PrintWriter w = response.getWriter();
                 w.println(ex.getLocalizedMessage());
+                response.setContentType("aplication/pdf");
                 response.flushBuffer();
             } catch (IOException e) {
                 // TODO Auto-generated catch block
