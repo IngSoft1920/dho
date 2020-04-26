@@ -91,15 +91,15 @@ nav ul li:hover {
 	
 	<br></br>
 	<form method="POST">
-			${estancia_id}
-			${cliente_id}	
-			${FechaInicio}	
-			${FechaFin}	
-			${habitacion_id}
-			${hotel_id}
-			${importe}	
+			<br><h4>Id de la estancia:<h4>${estancia_id}<br>
+			<br><h4>Id del cliente:<h4>${cliente_id}<br>
+			<br><h4>Fecha de inicio:<h4>${fecha_inicio}<br>
+			<br><h4>Fecha de fin:<h4>${fecha_fin}<br>
+			<br><h4>N&uacute;mero habitaci&oacute;n:<h4>${habitacion_id}<br>
+			<br><h4>Id del hotel:<h4>${hotel_id}<br>
+			<br><h4>Importe:<h4>${importe}<br>
 	
-
+		<br><br>
 		<input type="submit" value="Check-in">
 		<br><br>
 		<input type="button" onclick="history.back()" name="volver atrás" value="Volver atrás">
