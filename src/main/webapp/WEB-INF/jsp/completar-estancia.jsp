@@ -96,6 +96,9 @@ nav ul li:hover {
 		<label>Tipo_Habitacion</label> 
 		<input type="text" name="Tipo_hab_String" autocomplete="off" /> 
 		<br><br>  
+		<label>Regimen</label> 
+		<input type="text" name="regimen" autocomplete="off" /> 
+		<br><br>  
 		<label>Nombre_Hotel</label> 
 		<input type="text" name="Nombre_Hotel" autocomplete="off" /> 
 		<br><br>  

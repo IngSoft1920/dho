@@ -53,7 +53,8 @@ import ingsoft1920.dho.controller.PedirEmpleados;
 		
 		List<EmpleadoBean> lista=new ArrayList<EmpleadoBean>();
 		
-		for(int i=1; i<=HotelDAO.devolverElNumeroDeHoteles();i++) {
+		int cont=HotelDAO.devolverElNumeroDeHoteles();
+		for(int i=1; i<=cont;i++) {
 			lista.addAll(PedirEmpleados.peticionPedirEmpleado(i));
 		}
 	

@@ -103,6 +103,9 @@ nav ul li:hover {
 		<label>Telefono</label> 
 		<input type="text" name="telefono" autocomplete="off" /> 
 		<br><br> 
+		<label>Password</label> 
+		<input type="text" name="password" autocomplete="off" /> 
+		<br><br> 
 		
 		 
 		<input type="submit" value="Registro"> 

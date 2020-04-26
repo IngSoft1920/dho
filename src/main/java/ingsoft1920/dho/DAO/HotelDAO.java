@@ -19,9 +19,7 @@ public class HotelDAO {
 	}
 
 	public static int ConseguirIDHotelDadoNombre(String nombre_hotel) {
-		// falta hacer la consulta
-		return 5;
-
+		return 99;
 	}
 
 	public static String ConseguirNombreHotelDadoID(int id_hotel) {
