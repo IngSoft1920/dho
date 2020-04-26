@@ -344,5 +344,43 @@ public class ServiciosDelHotelDAO {
 		return res;
 
 	}
+	//devuelve el id del restaurante dado el nombre del hotel
+	public static int getRestauranteId(String nombreHotel) {
+		int res=0;
+		int hotel_id = HotelDAO.getHotelId(nombreHotel);
+		if (conexion.getConexion() == null) 
+			conexion.conectar();
+		
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			stmt = conexion.getConexion().createStatement();
+			rs = stmt.executeQuery("SELECT * FROM ServiciosHotel WHERE nombre = \"restaurante \" AND hotel_id= " + hotel_id);
+			while(rs.next()) {
+				res=rs.getInt("servicioHotel_id");
+			}
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		}finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+			
+		}
+		return res;
+	}
 
 }

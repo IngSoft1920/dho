@@ -152,4 +152,28 @@ private static Conexion conexion=new Conexion();
 		
 		return res;
 	}
+	
+	//devuelve el id del hotel dado el nombre
+	public static int getHotelId(String nombre) {
+		int res=0;
+		if (conexion.getConexion()== null) 
+			conexion.conectar(); 
+		
+		java.sql.Statement stmt = null;  
+		ResultSet rs = null;
+		try {
+			stmt=conexion.getConexion().createStatement();
+			rs=stmt.executeQuery("SELECT * FROM Hotel WHERE nombre = \""+nombre +"\"");
+			if(rs.next()) {
+				res=rs.getInt("hotel_id");
+			}
+		}catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		conexion.desconectar();
+		return res;
+	}
 }
