@@ -43,7 +43,7 @@ import ingsoft1920.dho.controller.Conexion;
  */
 
 @Controller
-public class generatePDFFileIText {
+public class PDF {
 	// Fonts definitions (Definición de fuentes).
 	private static final Font titleFont = FontFactory.getFont(FontFactory.COURIER_OBLIQUE, 26, Font.ITALIC);
 	private static final Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 26, Font.BOLDITALIC);
@@ -78,7 +78,7 @@ public class generatePDFFileIText {
 		// We create the document and set the file name.        
 		// Creamos el documento y generamos el nombre del fichero.
 		String name=UUID.randomUUID().toString();
-		File file=new File("/hs/dho/files/"+name+".pdf");
+		File file=new File("C:/Users/sergi/OneDrive/Desktop/files/"+name+".pdf");
 		Date date=new Date(LocalDate.now().getYear()-1900,LocalDate.now().getMonthValue()-1,LocalDate.now().getDayOfMonth());
 		try {
 			Document document = new Document();
@@ -223,12 +223,10 @@ public class generatePDFFileIText {
 	 * @param args the command line arguments
 	 */
 
-	@ResponseBody
-	@GetMapping("/generatePDF/{cliente_id}")
-	public String generatePDF(@PathVariable("cliente_id") int cliente_id) {
-		generatePDFFileIText generatePDFFileIText = new generatePDFFileIText();
-		generatePDFFileIText.createPDF(cliente_id);
-		return "";
+	public static void main(String args[]) {
+		PDF generatePDFFileIText = new PDF();
+		generatePDFFileIText.createPDF(3);
+		System.out.println("PDF generado con exito");
 
 	}
 }
