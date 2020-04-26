@@ -70,12 +70,25 @@ nav ul li:hover {
   margin: auto;
   overflow:hidden;
 }
+
+body {
+background-image: url(https://wallup.net/wp-content/uploads/2019/09/46190-hotel-malvivy-pool-interior-ocean-sea-houses-buildings-sky-sunset-3.jpg); /*You will specify your image path here.*/
+
+-moz-background-size: cover;
+-webkit-background-size: cover;
+background-size: cover;
+background-position: top center !important;
+background-repeat: no-repeat !important;
+background-attachment: fixed;
+}
+
 /* A partir de aquí el código del calendario */
 </style>
 
 <section class="contenido wrapper">
 
 <script type="text/javaScript">
+//background ="https://www.todopaisajes.com/1920x1080/hotel-en-la-playa.jpg" background-size=contain
 </script>
 
 <style>
@@ -127,7 +140,7 @@ h1 { text-align: center; padding: 0.5em; }
 <head>
 <title>Menú de DHO</title> 
 </head>
-<body background ="https://www.todopaisajes.com/1920x1080/hotel-en-la-playa.jpg">
+<body>
 <h1><font size=7>Menú</font></h1>
 <br/><br/>
 
