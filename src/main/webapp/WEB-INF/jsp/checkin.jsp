@@ -77,22 +77,25 @@ nav ul li:hover {
 	</head>
 
 	<body style="background-color:lightblue;">
+				    
+	
 		<style>
 			a { text-decoration: none; }
 		</style>
 	</body>
 	
-	<ul>
-		<c:forEach items="${listaSinHacerCheckIn}" var="item">
-			<li>${item}</li>
-		</c:forEach>
-	</ul>
 	
-	<ul>
-		<c:forEach items="${listaConCheckIn}" var="item">
-			<li>${item}</li>
-		</c:forEach>
-	</ul>
+			
+			${estancia_id}
+			${cliente_id}	
+			${FechaInicio}	
+			${FechaFin}	
+			${habitacion_id}
+			${hotel_id}
+			${importe}	
+	
+	
+	
 	<br></br>
 	<h3>Hacer check-in de </h3>
 	<form method="POST">
