@@ -86,6 +86,11 @@ nav ul li:hover {
 	
 	
 			
+			
+	
+	
+	<br></br>
+	<form method="POST">
 			${estancia_id}
 			${cliente_id}	
 			${FechaInicio}	
@@ -94,16 +99,8 @@ nav ul li:hover {
 			${hotel_id}
 			${importe}	
 	
-	
-	
-	<br></br>
-	<h3>Hacer check-in de </h3>
-	<form method="POST">
-		<label>NºHabitaci&oacute;n</label>
-		<input type="text" name="habitacion_id" autocomlete="off" />
-		<br><br>
 
-		<input type="submit" value="Registro">
+		<input type="submit" value="Check-in">
 		<br><br>
 		<input type="button" onclick="history.back()" name="volver atrás" value="Volver atrás">
 	</form>
