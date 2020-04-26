@@ -690,6 +690,7 @@ public class EstanciaDAO {
 
 			if (rs.next()) {
 				res.setEstancia_id(rs.getInt("estancia_id"));
+				res.setHabitacion_id(habitacion_id);
 				res.setCliente_id(rs.getInt("cliente_id"));
 				res.setEstado(rs.getString("estado"));
 				res.setFecha_fin(rs.getDate("fecha_fin"));

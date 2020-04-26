@@ -73,7 +73,7 @@ public class CompletarEstanciaController {
 		
 		
 		EstanciaDAO.anadirEstanciaBean(new EstanciaBean(id_reserva, habitacion_id, CLIENTE_ID, hotel_id,java.sql.Date.valueOf(fechaInicio)
-				, java.sql.Date.valueOf(fechaSalida), "reserva", 0));
+				, java.sql.Date.valueOf(fechaSalida), "check-in", 0));
 		
 		//EstanciaDAO.anadirEstancia(reserva_id, CLIENTE_ID, hotel_id, fecha_entrada, fecha_salida, tipo_hab_id, 0);
 		

@@ -22,9 +22,8 @@ public CheckinModel(EstanciaBean estanciaBean) {
 
 
 
-public void cambiarEstadoEstancia(CheckinModel checkin) {
-	EstanciaDAO.checkIn(checkin.habitacion_id);
-	
+public void cambiarEstadoEstancia(int id_estancia) {
+	EstanciaDAO.checkInPorEstancia_id(id_estancia);
 	
 }
 public void getEstancia(CheckinModel checkin) {

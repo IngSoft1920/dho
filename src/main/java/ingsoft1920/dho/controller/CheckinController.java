@@ -50,6 +50,8 @@ public class CheckinController {
 		model.addAttribute("hotel_id",estancia.getHotel_id());
 		
 		
+		System.out.print(estancia.getEstancia_id());
+		System.out.println(estancia.getHabitacion_id());
 		
 		
 		/*comentario:
@@ -62,18 +64,18 @@ public class CheckinController {
 	}
 
 	@PostMapping("/homePageDHO/menu/disponibilidad/checkin1/{num_hab}/{fecha}")
-	public String checkinPost(@Valid @ModelAttribute("EstanciaBean") EstanciaBean estanciaBean,
-			Model model) {
+	public String checkinPost(Model model,@PathVariable int num_hab,@PathVariable String fecha) {
 		
 		
 		
 		
 		
-		CheckinModel checkinModel=new CheckinModel(estanciaBean);
+		CheckinModel checkinModel=new CheckinModel();
 	
-		System.out.println("ckeckin:\n"+estanciaBean);
 	
-	checkinModel.cambiarEstadoEstancia(checkinModel);
+		EstanciaBean estancia=EstanciaDAO.getEstanciaFecha(num_hab, fecha);
+
+		checkinModel.cambiarEstadoEstancia(estancia.getEstancia_id());
 	
 	return "redirect:/homePageDHO/menu/disponibilidad";
 
