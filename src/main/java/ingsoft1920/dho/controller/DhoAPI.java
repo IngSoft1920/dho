@@ -48,6 +48,13 @@ public class DhoAPI {
 		return HabitacionDAO.getHabitacionPorId(id_cliente);
 
 	}
+	@ResponseBody
+	@GetMapping("/getHabitacion/{hotel_id}")
+	public void eliminarHotel(@PathVariable int hotel_id) {	
+		ServicioDAO.elminarServiciosPorHotel(hotel_id);
+		HotelDAO.eliminarHotel(hotel_id);
+
+	}
 
 	@ResponseBody
 	@GetMapping("/getTarea/{id_empleado}")
@@ -641,5 +648,6 @@ public class DhoAPI {
 		return (input.equals("null") || input == null) ? null :input.substring(1, input.length() - 1);
 
 	}
+
 
 }

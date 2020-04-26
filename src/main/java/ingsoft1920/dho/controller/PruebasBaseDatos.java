@@ -324,7 +324,8 @@ public class PruebasBaseDatos {
 	prueba55.recibirReserva(" { \"reserva_id\" : 34, \"fecha_entrada\" : \"2020-03-10\", \"fecha_salida\" :\"2020-03-15\", \"importe\" : 4, \"cliente_id\" : 2, \"numero_acompanantes\" : 0, \"hotel_id\" : 32, \"tipo_hab_id\" : 1}");
 	*/
 	DhoAPI prueba55 = new DhoAPI();
-		JsonObject json = new JsonObject();
+	prueba55.eliminarHotel(6);
+		/*JsonObject json = new JsonObject();
         json.addProperty("habitacion",101 );
         json.addProperty("Hotel", "Prueba");
         json.addProperty("Factura", 15.8);

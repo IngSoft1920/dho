@@ -324,64 +324,105 @@ public class ServicioDAO {
 		return res;
 
 	}
-	//Recibes habitación, nombreHotel, precio, fecha y hora
+
+	// Recibes habitación, nombreHotel, precio, fecha y hora
 	public static void recibirMesa(int habitacion_id, String hotel, int precio, Date fecha, Time hora) {
-		//servicio_id, estancia_id, lugar, fecha factura, hora, tipo servicio, servicioHotel-id, platos, items, hora salida, precio, cliente_id
+		// servicio_id, estancia_id, lugar, fecha factura, hora, tipo servicio,
+		// servicioHotel-id, platos, items, hora salida, precio, cliente_id
 		if (conexion.getConexion() == null) {
 			conexion.conectar();
 		}
-	int servicio_id= idUltimoServicio() +1;
-	int estancia_id=EstanciaDAO.getEstanciaFecha(habitacion_id,fecha.toString()).getEstancia_id();
-	
-	String tipoServicio= "mesa";
-	int cliente_id = ClienteDAO.datosCliente(estancia_id).getCliente_id();
-	int servicioDelHotel_id = ServiciosDelHotelDAO.getRestauranteId(hotel);
-	java.sql.Statement stmt = null;
-	ResultSet rs = null;
-	PreparedStatement stm = null;
-	try {
-		
-		
-		stm = conexion.getConexion().prepareStatement("INSERT INTO Servicios values (?,?,?,?,?,?,?,?,?,?,?,?)");
-		stm.setInt(1, servicio_id);
-		stm.setInt(2, estancia_id);
-		stm.setString(3, "restaurante");
-		stm.setInt(12, cliente_id);
-		stm.setDate(4, fecha);
-		stm.setTime(5,hora);
-		stm.setString(6,tipoServicio);
-		stm.setInt(7, servicioDelHotel_id);
-		stm.setString(8, null);
-		stm.setString(9,null);
-		stm.setTime(10, null);
-		stm.setInt(11,precio);
+		int servicio_id = idUltimoServicio() + 1;
+		int estancia_id = EstanciaDAO.getEstanciaFecha(habitacion_id, fecha.toString()).getEstancia_id();
 
-		stm.executeUpdate();
-		
-	}catch (SQLException ex) {
-		System.out.println("SQLException: " + ex.getMessage());
-	} finally { // it is a good idea to release resources in a finally block
-		if (rs != null) {
-			try {
-				rs.close();
-			} catch (SQLException sqlEx) {
+		String tipoServicio = "mesa";
+		int cliente_id = ClienteDAO.datosCliente(estancia_id).getCliente_id();
+		int servicioDelHotel_id = ServiciosDelHotelDAO.getRestauranteId(hotel);
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement stm = null;
+		try {
+
+			stm = conexion.getConexion().prepareStatement("INSERT INTO Servicios values (?,?,?,?,?,?,?,?,?,?,?,?)");
+			stm.setInt(1, servicio_id);
+			stm.setInt(2, estancia_id);
+			stm.setString(3, "restaurante");
+			stm.setInt(12, cliente_id);
+			stm.setDate(4, fecha);
+			stm.setTime(5, hora);
+			stm.setString(6, tipoServicio);
+			stm.setInt(7, servicioDelHotel_id);
+			stm.setString(8, null);
+			stm.setString(9, null);
+			stm.setTime(10, null);
+			stm.setInt(11, precio);
+
+			stm.executeUpdate();
+
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
 			}
-			rs = null;
-		}
-		if (stmt != null) {
-			try {
-				stmt.close();
-			} catch (SQLException sqlEx) {
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
 			}
-			stmt = null;
-		}
-		if (stm != null) {
-			try {
-				stm.close();
-			} catch (SQLException sqlEx) {
+			if (stm != null) {
+				try {
+					stm.close();
+				} catch (SQLException sqlEx) {
+				}
+				stm = null;
 			}
-			stm = null;
 		}
 	}
-}
+
+	public static void elminarServiciosPorHotel(int hotel_id) {
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+
+		java.sql.Statement stmt = null;
+		PreparedStatement stm = null;
+		ResultSet rs = null;
+		try {
+			stmt = conexion.getConexion().createStatement();
+			rs = stmt.executeQuery("select servicios_id from Servicios \r\n"
+					+ "join ServiciosHotel as SH on Servicios.servicioHotel_id=SH.servicioHotel_id \r\n"
+					+ " where hotel_id=" + hotel_id + ";");
+			while (rs.next()) {
+				System.out.println(rs.getInt("servicios_id"));
+				stm = conexion.getConexion()
+						.prepareStatement("delete from Servicios where servicios_id=" + rs.getInt("servicios_id") + ";");
+				stm.executeUpdate();
+			}
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+		}
+		conexion.desconectar();
+	}
+
 }
