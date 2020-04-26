@@ -56,7 +56,7 @@ public class FacturaDAO {
 			stmt=conexion.getConexion().createStatement();
 			rs=stmt.executeQuery("SELECT fecha_factura, lugar, precio\r\n" + 
 					"FROM Servicios\r\n" + 
-					"WHERE cliente_id = "+cliente_id+" AND pagado = false\r\n" + 
+					"WHERE cliente_id = "+cliente_id+"\r\n" + 
 					"ORDER BY fecha_factura;");
 			while(rs.next()) {
 				facturas.add(new FacturaBean(rs.getDate("fecha_factura"),rs.getString("lugar"),rs.getInt("precio")));
