@@ -1,5 +1,6 @@
 package ingsoft1920.dho.fna;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -38,6 +39,25 @@ private static Conexion conexion= new Conexion();
 		
 		return aux;
 	}
+	
+	public static void  eliminarPDF(String archivo) {
+		ArchivosFacturaBean aux=null;
+		Conexion conexion = new Conexion(); 
+		if (conexion.getConexion()==null)  
+			conexion.conectar(); 
+		PreparedStatement stm = null;
+		try {
+			stm=conexion.getConexion().prepareStatement("DELETE FROM ArchivosFactura WHERE archivoCod= ?");
+			stm.setString(1, archivo);
+			stm.executeUpdate();
+
+		}catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block  
+			if (stm != null) { try {  stm.close(); } catch (SQLException sqlEx) { }  stm = null; } 
+		}
+	}
+	
 		
 	}
 
