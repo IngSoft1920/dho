@@ -16,6 +16,7 @@ public class Prueba {
         System.out.println(archivo.getArchivoCod());
         if (archivo == null)
             throw new Exception("Pdf no registrado en BBDD.");
+        ArchivosFacturaDAO.eliminarPDF(archivo.getArchivoCod());
         // Abrir fichero pedido
         /*
         File f = new File("files//" + archivo.getArchivoCod() + ".pdf");
