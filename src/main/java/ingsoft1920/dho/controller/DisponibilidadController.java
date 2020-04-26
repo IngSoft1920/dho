@@ -66,7 +66,6 @@ public class DisponibilidadController {
 	
 	 	}
 
-	 	System.out.println(coloresCelda.length);
 	 	//Añadir a model
 	 	model.addAttribute("coloresCelda", coloresCelda);
 	 	model.addAttribute("links", links);

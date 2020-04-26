@@ -36,24 +36,7 @@ public class MenuController {
 		return "menu";
 	 }
 	 
-	 /*@GetMapping("homePageDHO/menu")
-	 public static String menu(Model model) 
-	 {	
-		
-		return "menu";
-	 }
-	 @GetMapping("homePageDHO/menu")
-	 public static String menu(Model model) 
-	 {	
-		
-		return "menu";
-	 }
-	 @GetMapping("homePageDHO/menu")
-	 public static String menu(Model model) 
-	 {	
-		
-		return "menu";
-	 }*/
+	 
 	
 	 
 	 
