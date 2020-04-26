@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import ingsoft1920.dho.DAO.EstanciaDAO;
 import ingsoft1920.dho.Model.CheckinModel;
 import ingsoft1920.dho.Model.CheckoutModel;
 import ingsoft1920.dho.bean.EstanciaBean;
@@ -30,7 +31,16 @@ import ingsoft1920.dho.bean.EstanciaBean;
 			
 			//vamos a llmar al checkinModel parar trabajar con el
 			CheckoutModel checkout=new CheckoutModel();
-		
+			
+			EstanciaBean estancia = EstanciaDAO.getEstanciaFecha(num_hab, fecha);
+			
+			model.addAttribute("estancia_id",estancia.getEstancia_id());
+			model.addAttribute("cliente_id",estancia.getCliente_id());
+			model.addAttribute("fecha_inicio",estancia.getFecha_inicio());
+			model.addAttribute("fecha_fin",estancia.getFecha_fin());
+			model.addAttribute("habitacion_id", estancia.getHabitacion_id());
+			model.addAttribute("importe",estancia.getImporte());
+			model.addAttribute("hotel_id",estancia.getHotel_id());
 			
 			return "checkout";
 		}
