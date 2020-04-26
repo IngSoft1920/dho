@@ -24,7 +24,7 @@ private static Conexion conexion= new Conexion();
 		ResultSet rs= null;
 		try {
 			stmt=conexion.getConexion().createStatement();
-			rs=stmt.executeQuery("SELECT * FROM ArchivosFactura WHERE cliente_id="+cliente_id+"ORDER BY fecha_creacion;");
+			rs=stmt.executeQuery("SELECT * FROM ArchivosFactura WHERE cliente_id="+cliente_id+" ORDER BY fecha_creacion;");
 			if(rs.next()) {
 				ArchivosFacturaBean res= new ArchivosFacturaBean(rs.getString("archivoCod"), rs.getDate("fecha_creacion"), rs.getInt("cliente_id"),"");
 				aux=res;

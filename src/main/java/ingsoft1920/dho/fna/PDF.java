@@ -218,6 +218,11 @@ public class PDF {
 			System.out.println("The file not exists (Se ha producido un error al generar un documento): " + documentException);
 		}
 	}
+	
+	public void borrarPDF(String name) {
+		 File f = new File("C:/Users/sergi/OneDrive/Desktop/files/" + name + ".pdf");
+		 f.delete();
+	}
 
 	/**
 	 * @param args the command line arguments
@@ -225,8 +230,11 @@ public class PDF {
 
 	public static void main(String args[]) {
 		PDF generatePDFFileIText = new PDF();
+		/*
 		generatePDFFileIText.createPDF(3);
 		System.out.println("PDF generado con exito");
+		*/
+		generatePDFFileIText.borrarPDF("1f53ff58-0d22-4f72-9b46-4467759ec31d");
 
 	}
 }
