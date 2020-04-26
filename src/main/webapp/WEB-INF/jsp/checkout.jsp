@@ -89,14 +89,26 @@ nav ul li:hover {
 		<label>NºHabitaci&oacute;n</label>
 		<input type="text" name="habitacion_id" autocomlete="off" />
 		<br><br>
+		<p id="miParrafo" style="display:none; ">Registro realizado correctamente</p>
+		<br><br>
+		<input class="btn" type="submit" value="Registro">
 		
-		<input type="submit" value="Registro">
+		
 		<br><br>
 		<input type="button" onclick="history.back()" name="Volver atrás" value="Volver atrás">
 	</form>
 	
 	
-	
+	<script type="text/javascript">
+	const btn = document.querySelector(".btn");
+	const msg = document.querySelector("#miParrafo");
+	btn.addEventListener("click", e => {
+		e.preventDefault();
+		document.getElementById("miParrafo").style.display = "inline";
+		document.getElementById("miParrafo").style.color = "green";
+		setTimeout(()=> msg.remove(),3000);
+		});
+	</script>
 </section>
 	
 </html>
