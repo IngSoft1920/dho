@@ -8,6 +8,7 @@
 	<nav>
 		<ul>
 			<li><a href="/homePageDHO/menu">Inicio</a></li>
+			<li><a href="/homePageDHO/menu/disponibilidad">Disponibilidad</a></li>
 			<li><a href="/homePageDHO/menu/reservas1">Reservas</a></li>
 <<<<<<< HEAD
 			

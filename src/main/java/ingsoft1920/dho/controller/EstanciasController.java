@@ -28,7 +28,7 @@ package ingsoft1920.dho.controller;
 
 		final static Logger logger = LogManager.getLogger(LoginController.class.getName());
 
-		@GetMapping("/homePageDHO/menu/estancias1")
+		@GetMapping("/homePageDHO/menu/disponibilidad/estancias1")
 		public String estanciasGet(Model model) {
 
 			EstanciasModel estancia = new EstanciasModel();
@@ -38,7 +38,7 @@ package ingsoft1920.dho.controller;
 		}
 		
 		//QUEDA CAMBIAR COSAS PARA SPRING 3(LO COMENTADO)
-		@PostMapping("/homePageDHO/menu/estancias1")
+		@PostMapping("/homePageDHO/menu/disponibilidad/estancias1")
 		public String checkinPost(
 				@Valid @ModelAttribute("nombre")String nombre,
 				@Valid @ModelAttribute("apellidos") String apellidos,

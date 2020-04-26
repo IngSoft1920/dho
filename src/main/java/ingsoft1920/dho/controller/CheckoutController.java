@@ -25,7 +25,7 @@ import ingsoft1920.dho.bean.EstanciaBean;
 		final static Logger logger = LogManager.getLogger(LoginController.class.getName());
 		
 		
-		@GetMapping("/homePageDHO/menu/checkout1/{num_hab}/{fecha}")
+		@GetMapping("/homePageDHO/menu/disponibilidad/checkout1/{num_hab}/{fecha}")
 		public String checkoutGet(Model model, @PathVariable int num_hab, @PathVariable String fecha) {
 			
 			//vamos a llmar al checkinModel parar trabajar con el
@@ -35,7 +35,7 @@ import ingsoft1920.dho.bean.EstanciaBean;
 			return "checkout";
 		}
 
-		@PostMapping("/homePageDHO/menu/checkout1/{num_hab}/{fecha}")
+		@PostMapping("/homePageDHO/menu/disponibilidad/checkout1/{num_hab}/{fecha}")
 		public String checkoutPost(@Valid @ModelAttribute("EstanciaBean") EstanciaBean estanciaBean,
 				Model model) {
 		
@@ -47,7 +47,7 @@ import ingsoft1920.dho.bean.EstanciaBean;
 
 		System.out.println("ckeckout:\n"+estanciaBean);
 		
-		return "redirect:/homePageDHO/menu";
+		return "redirect:/homePageDHO/menu/disponibilidad";
 		
 		}
 	

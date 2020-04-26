@@ -6,7 +6,7 @@
 <header>
 	<nav>
 		<ul>
-			<li><a href="/homePageDHO/menu">Inicio</a></li>
+			<li><a href="/homePageDHO/menu/">Inicio</a></li>
 			<li><a href="/homePageDHO/menu/disponibilidad">Disponibilidad</a></li>
 			<li><a href="/homePageDHO/menu/reservas1">Reservas</a></li>
 			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
@@ -76,7 +76,54 @@ nav ul li:hover {
 <section class="contenido wrapper">
 
 <script type="text/javaScript">
+
+
+//Arrays de datos:
+meses=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+lasemana=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"]
+diassemana=["lun","mar","mié","jue","vie","sáb","dom"];
+
+maximodia=["31","28","31","30","31","30","31","31","30","31","30","31"];
+maximodiasig=["32","29","32","31","32","31","32","32","31","32","31","32"];
+
+fechaString = '${fechaConsultaString}'
+
+habitacionespiso1=["101","102","103","104","105","106","107"];
+habitacionespiso2=["201","202","203","204","205","206","207"];
+habitacionespiso3=["301","302","303","304","305","306","307"];
+habitacionespiso4=["401","402","403","404","405","406","407"];
+habitacionespiso5=["501","502","503","504","505","506","507"];
+habitacionespiso6=["601","602","603","604","605","606","607"];
+habitacionespiso7=["701","702","703","704","705","706","707"];
+
+
+  
+function tabla() {         
+   		var tabla = "";
+		var filas = 7;
+		var columnas = 7;
+		var habitacion=100;
+		var n=0;
+		for (var i = 0; i <filas; i++)
+		{
+			tabla+="<tr>";
+			for(var j = 0; j<columnas;j++)
+			{
+				habitacion+=1;
+				tabla+= "<td bgcolor=\"${coloresCelda[0]}\" width=\"120px\" height=\"120px\" align=\"center\">" + "<h3><a href=\"/homePageDHO/menu/disponibilidad/checkin1\">" + habitacion + "</a></h3></td>";;
+				n=n+1;
+				if(j==columnas-1) { tabla+="</td>"; }
+			}
+			habitacion=habitacion+100-7;
+		}
+
+		document.write("<table id=\"diasc\">" + tabla + "</table>");
+}  
+  
+//tabla()
 </script>
+
+
 
 <style>
 
@@ -125,12 +172,65 @@ h1 { text-align: center; padding: 0.5em; }
 </style>
 
 <head>
-<title>Menú de DHO</title> 
+<title>Calendario</title> 
 </head>
-<body background ="https://www.todopaisajes.com/1920x1080/hotel-en-la-playa.jpg">
-<h1><font size=7>Menú</font></h1>
+<body background ="https://avante.biz/wp-content/uploads/Wood-Print-Wallpapers/Wood-Print-Wallpapers-045.jpg">
+<h1><font size=7>Disponibilidad</font></h1>
 <br/><br/>
+<div id="calendario">
+  	<div id="anterior">
+  		<form:form method="POST" action="/homePageDHO/menu/disponibilidad/ant/${fechaConsultaString}">
+    		<input type="submit" value="Anterior" />
+		</form:form>
+    </div>
+  	<div id="posterior">
+		<form:form method="POST" action="/homePageDHO/menu/disponibilidad/post/${fechaConsultaString}">
+    		<input type="submit" value="Posterior" />
+		</form:form>
+	</div>
+  <h2 id="titulos">${Dia} de ${Mes} del ${Año}</h2>
+  <%  int n=0;%>
+  <%  int hab=100;%>
+  <% String[] coloresCelda = (String[]) request.getAttribute("coloresCelda");%>
+  <% String[] links = (String[]) request.getAttribute("links");%>
+  
+ <table>
 
+<%for(int i=0; i<7;i++)
+	{
+	%>	
+	<tr>
+	<%for(int j=0; j<7;j++)
+		{ 
+			hab+=1;%>
+			<td width="100px" height="100px" align="center" bgcolor="<%=coloresCelda[n]%>"><h3><a href="<%=links[n]%>"><%=hab%></a></h3></td> 
+			<% n++;%>
+	  <%}%>
+	    <%hab=hab+100-7;%>
+		 </tr>
+	<%}%>
+	
+ </table>
+ 
+  
+  <div id="fechahoy">
+  	<form:form method="POST" action="/homePageDHO/menu/disponibilidad/hoy">
+  		<i>
+   			<input type="submit" value=" HOY: ${DiaHoy} de ${MesHoy} del ${AñoHoy} "/> 
+   		</i>
+   	</form:form>
+    	
+  </div>
+  <div id="buscafecha">
+  
+        
+  	<form:form method="POST" action="/homePageDHO/menu/disponibilidad/buscar">
+        <input type="date" name="fechaConsultaString" value=${fechaConsultaString} min=${fechaConsultaString} max="2024-12-31">
+        <input type="submit" value="Buscar"/>
+    </form:form>
+    
+  </div>
+</div>
 </body>
 
 </section>

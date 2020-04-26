@@ -25,7 +25,7 @@ public class CheckinController {
 	final static Logger logger = LogManager.getLogger(LoginController.class.getName());
 	
 	
-	@GetMapping("/homePageDHO/menu/checkin1/{num_hab}/{fecha}")
+	@GetMapping("/homePageDHO/menu/disponibilidad/checkin1/{num_hab}/{fecha}")
 	public String checkinGet(Model model,@PathVariable int num_hab, @PathVariable String fecha) {
 		
 		//vamos a llmar al checkinModel parar trabajar con el
@@ -42,7 +42,7 @@ public class CheckinController {
 		return "checkin";
 	}
 
-	@PostMapping("/homePageDHO/menu/checkin1/{num_hab}/{fecha}")
+	@PostMapping("/homePageDHO/menu/disponibilidad/checkin1/{num_hab}/{fecha}")
 	public String checkinPost(@Valid @ModelAttribute("EstanciaBean") EstanciaBean estanciaBean,
 			Model model) {
 		
@@ -52,7 +52,7 @@ public class CheckinController {
 	
 	checkinModel.cambiarEstadoEstancia(checkinModel);
 	
-	return "redirect:/homePageDHO/menu";
+	return "redirect:/homePageDHO/menu/disponibilidad";
 
 	
 	}
