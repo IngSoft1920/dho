@@ -41,7 +41,6 @@ private static Conexion conexion= new Conexion();
 	}
 	
 	public static void  eliminarPDF(String archivo) {
-		ArchivosFacturaBean aux=null;
 		Conexion conexion = new Conexion(); 
 		if (conexion.getConexion()==null)  
 			conexion.conectar(); 

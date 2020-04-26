@@ -22,12 +22,12 @@ public class FacturaDAO {
 		
 		try {
 			stmt=conexion.getConexion().createStatement();
-			rs=stmt.executeQuery("SELECT fecha_factura, tipo_factura, precio\r\n" + 
-					"FROM Factura\r\n" + 
+			rs=stmt.executeQuery("SELECT fecha_factura, lugar, precio\r\n" + 
+					"FROM Servicios\r\n" + 
 					"WHERE cliente_id ="+cliente_id+"\r\n" + 
-					"ORDER BY fecha_factura");
+					"ORDER BY fecha_factura;");
 			while(rs.next()) {
-				facturas.add(new FacturaBean(rs.getDate("fecha_factura"),rs.getString("tipo_factura"),rs.getInt("precio")));
+				facturas.add(new FacturaBean(rs.getDate("fecha_factura"),rs.getString("lugar"),rs.getInt("precio")));
 			}
 		}catch (SQLException ex){ 
 			System.out.println("SQLException: " + ex.getMessage());
@@ -54,12 +54,12 @@ public class FacturaDAO {
 		
 		try {
 			stmt=conexion.getConexion().createStatement();
-			rs=stmt.executeQuery("SELECT fecha_factura, tipo_factura, precio\r\n" + 
-					"FROM Factura\r\n" + 
+			rs=stmt.executeQuery("SELECT fecha_factura, lugar, precio\r\n" + 
+					"FROM Servicios\r\n" + 
 					"WHERE cliente_id = "+cliente_id+" AND pagado = false\r\n" + 
 					"ORDER BY fecha_factura;");
 			while(rs.next()) {
-				facturas.add(new FacturaBean(rs.getDate("fecha_factura"),rs.getString("tipo_factura"),rs.getInt("precio")));
+				facturas.add(new FacturaBean(rs.getDate("fecha_factura"),rs.getString("lugar"),rs.getInt("precio")));
 			}
 		}catch (SQLException ex){ 
 			System.out.println("SQLException: " + ex.getMessage());
