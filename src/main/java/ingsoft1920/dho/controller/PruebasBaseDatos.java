@@ -323,29 +323,37 @@ public class PruebasBaseDatos {
 	DhoAPI prueba55 = new DhoAPI();
 	prueba55.recibirReserva(" { \"reserva_id\" : 34, \"fecha_entrada\" : \"2020-03-10\", \"fecha_salida\" :\"2020-03-15\", \"importe\" : 4, \"cliente_id\" : 2, \"numero_acompanantes\" : 0, \"hotel_id\" : 32, \"tipo_hab_id\" : 1}");
 	*/
-	/*	DhoAPI prueba55 = new DhoAPI();
-		JsonObject json = new JsonObject();
-        json.addProperty("id_servicio",1 );
-        json.addProperty("fecha", "2020-03-10");
-        json.addProperty("hora", "20:30");
-        json.addProperty("cliente_id", 1);
-        json.addProperty("lugar", "en mi puta casa");
-        json.addProperty("num_personas", 3);
-        json.addProperty("id_reserva", 27);
-        json.addProperty("tipoServicio", 1);
-        json.addProperty("hora_salida", "21:00");
-		prueba55.recibirServicio(json.toString());
-		
+	DhoAPI prueba55 = new DhoAPI();
+	prueba55.eliminarHotel(6);
+		/*JsonObject json = new JsonObject();
+        json.addProperty("habitacion",101 );
+        json.addProperty("Hotel", "Prueba");
+        json.addProperty("Factura", 15.8);
+		prueba55.recibirMesa(json.toString());
+		/*
 		EstanciaDAO prueba56 = new EstanciaDAO(conexion);
 		System.out.println(prueba56.getEstanciaFecha(102, "2020-04-08").toString());
-		*/
+		
 		
 		HotelDAO prueba57 = new HotelDAO(conexion);
 		System.out.println(prueba57.porcentajeReservas("2020-04-01"));
 		
+		
+		
+		HotelDAO prueba59= new HotelDAO(conexion);
+		System.out.println(prueba59.getHotelId("Prueba"));
+		
 		EstanciaDAO prueba58 = new EstanciaDAO(conexion);
 		//System.out.println(prueba58.getEstadoHabitaciones("2020-04-01").toString());
 		
+		//System.out.println(new Date(120,03,28));
+		
+		ServicioDAO prueba59= new ServicioDAO(conexion);
+		prueba59.recibirMesa(205, "Prueba", 50, new Date(120,03,28), new Time(14,00,00));
+		
+		ServiciosDelHotelDAO prueba60 = new ServiciosDelHotelDAO(conexion);
+		*/
+		//System.out.println(prueba60.getRestauranteId("Prueba"));
 		//DhoAPI prueba55 = new DhoAPI();
 		//System.out.println(prueba55.recibirReserva(" { \"reserva_id\" : 19, \"fecha_entrada\" : \"2020-04-03\", \"fecha_salida\" :\"2020-04-16\", \"importe\" : 4, \"cliente_id\" : 10, \"numero_acompanantes\" : 0, \"hotel_id\" : 5, \"tipo_hab_id\" : 1}"));
 		//PedirClientes a=new PedirClientes();
