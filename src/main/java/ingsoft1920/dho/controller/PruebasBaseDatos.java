@@ -323,19 +323,13 @@ public class PruebasBaseDatos {
 	DhoAPI prueba55 = new DhoAPI();
 	prueba55.recibirReserva(" { \"reserva_id\" : 34, \"fecha_entrada\" : \"2020-03-10\", \"fecha_salida\" :\"2020-03-15\", \"importe\" : 4, \"cliente_id\" : 2, \"numero_acompanantes\" : 0, \"hotel_id\" : 32, \"tipo_hab_id\" : 1}");
 	*/
-	/*	DhoAPI prueba55 = new DhoAPI();
+	DhoAPI prueba55 = new DhoAPI();
 		JsonObject json = new JsonObject();
-        json.addProperty("id_servicio",1 );
-        json.addProperty("fecha", "2020-03-10");
-        json.addProperty("hora", "20:30");
-        json.addProperty("cliente_id", 1);
-        json.addProperty("lugar", "en mi puta casa");
-        json.addProperty("num_personas", 3);
-        json.addProperty("id_reserva", 27);
-        json.addProperty("tipoServicio", 1);
-        json.addProperty("hora_salida", "21:00");
-		prueba55.recibirServicio(json.toString());
-		
+        json.addProperty("habitacion",101 );
+        json.addProperty("Hotel", "Prueba");
+        json.addProperty("Factura", 15.8);
+		prueba55.recibirMesa(json.toString());
+		/*
 		EstanciaDAO prueba56 = new EstanciaDAO(conexion);
 		System.out.println(prueba56.getEstanciaFecha(102, "2020-04-08").toString());
 		

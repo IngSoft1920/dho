@@ -1,11 +1,13 @@
 package ingsoft1920.dho.controller;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -210,6 +212,20 @@ public class DhoAPI {
 			ServicioDAO.añadirServicio(nuevoServicio);
 		}
 
+	}
+	
+	@ResponseBody
+	@PostMapping("/recibirMesa")
+	public String recibirMesa(@RequestBody String req) {
+		JsonObject obj = (JsonObject) JsonParser.parseString(req);
+		int habitacion_id = obj.get("habitacion").getAsInt();
+		String hotel=obj.get("Hotel").getAsString();
+		int factura=(int) obj.get("Factura").getAsFloat();
+		long now = System.currentTimeMillis();
+        Time sqlTime = new Time(now);
+		Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+		ServicioDAO.recibirMesa(habitacion_id,hotel,factura,date,sqlTime);
+		return "Procesado";
 	}
 
 	@ResponseBody
@@ -622,7 +638,7 @@ public class DhoAPI {
 	}
 
 	public static String cambio(String input) {
-		return (input.equals("null") || input == null) ? null : input;
+		return (input.equals("null") || input == null) ? null :input.substring(1, input.length() - 1);
 
 	}
 
