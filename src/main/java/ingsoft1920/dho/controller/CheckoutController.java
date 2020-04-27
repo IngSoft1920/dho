@@ -48,7 +48,7 @@ import ingsoft1920.dho.bean.EstanciaBean;
 			return "checkout";
 		}
 
-		@PostMapping("/homePageDHO/menu/disponibilidad/checkin1/{num_hab}/{fecha}")
+		@PostMapping("/homePageDHO/menu/disponibilidad/checkout1/{num_hab}/{fecha}")
 		public String checkoutPost(Model model,@PathVariable int num_hab,@PathVariable String fecha) {
 		
 		
