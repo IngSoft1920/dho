@@ -57,7 +57,7 @@ public class TareaDAO {
 				stm.setString(8,tarea.getTipo_tarea()); 
 				stm.setInt(9,tarea.getHotel_id());
 				stm.setTime(10,tarea.getHora());
-				stm.setTime(11,tarea.getHoraFin());
+				stm.setString(11,tarea.getHoraFin());
 				stm.executeUpdate(); 
 			} 
  
@@ -184,7 +184,7 @@ public class TareaDAO {
 
 						rs.getBoolean("estado"), rs.getDate("fecha_tarea"),rs.getTime("hora"), rs.getInt("hotel_id"),
 						
-						rs.getTime("hora_fin")));
+						rs.getString("hora_fin")));
 
 
 			}
@@ -285,7 +285,7 @@ public class TareaDAO {
 								rs.getString("tipo_tarea"),rs.getString("lugar_tarea"),
 
 								rs.getBoolean("estado"),rs.getDate("fecha_tarea"),rs.getTime("hora"), rs.getInt("hotel_id"),
-								rs.getTime("horaFin")));  
+								rs.getString("horaFin")));  
 
 					} 
 				}  

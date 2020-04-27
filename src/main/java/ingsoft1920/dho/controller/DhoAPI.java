@@ -80,18 +80,12 @@ public class DhoAPI {
 		obj.addProperty("empleado_id", id_empleado);
 
 		for (TareaBean elem : lista) {
-
-			tarea_id.add(elem.getId_tarea());
-
+			tarea_id.add(elem.getId_tarea());;
 			descripcion.add(elem.getDescripcion());
-
 			horaInico.add(elem.getHora().toString());
-
-			horaFin.add(elem.getHoraFin().toString());
-
+			horaFin.add(cambio(elem.getHoraFin()));
 			dia.add(elem.getFecha().toString());
-
-			lugar.add(elem.getLugar());
+			lugar.add(elem.getLugar().toString());
 
 		}
 
@@ -645,7 +639,7 @@ public class DhoAPI {
 	}
 
 	public static String cambio(String input) {
-		return (input.equals("null") || input == null) ? null :input.substring(1, input.length() - 1);
+		return (input == null||input.equals("null")) ? null :input;
 
 	}
 
