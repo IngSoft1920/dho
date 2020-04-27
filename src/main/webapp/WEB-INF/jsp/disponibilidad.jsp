@@ -174,7 +174,7 @@ h1 { text-align: center; padding: 0.5em; }
 <head>
 <title>Calendario</title> 
 </head>
-<body background ="https://avante.biz/wp-content/uploads/Wood-Print-Wallpapers/Wood-Print-Wallpapers-045.jpg">
+<body background ="https://www.dhresource.com/0x0/f2/albu/g5/M00/41/F0/rBVaI1lsb-OAPmhoAAZftdBWzDY234.jpg">
 <h1><font size=7>Disponibilidad</font></h1>
 <br/><br/>
 <div id="calendario">
