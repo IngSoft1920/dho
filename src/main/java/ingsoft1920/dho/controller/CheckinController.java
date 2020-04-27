@@ -17,11 +17,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ingsoft1920.dho.DAO.EstanciaDAO;
 import ingsoft1920.dho.DAO.HabitacionDAO;
 import ingsoft1920.dho.DAO.HotelDAO;
+import ingsoft1920.dho.DAO.ServicioDAO;
 import ingsoft1920.dho.Model.AsignarTareasModel;
 import ingsoft1920.dho.Model.CheckinModel;
 import ingsoft1920.dho.bean.EmpleadoBean;
 import ingsoft1920.dho.bean.EstanciaBean;
 import ingsoft1920.dho.bean.IncidenciaBean;
+import ingsoft1920.dho.bean.ServicioBean;
+import ingsoft1920.dho.bean.ClienteBean;
+import ingsoft1920.dho.DAO.ClienteDAO;
 
 
 
@@ -40,6 +44,8 @@ public class CheckinController {
 		CheckinModel checkin=new CheckinModel();
 		
 		EstanciaBean estancia = EstanciaDAO.getEstanciaFecha(num_hab, fecha);
+		ClienteBean cliente = ClienteDAO.getClienteHabitacionFecha(num_hab, fecha);
+		List<ServicioBean> servicios= checkin.getClienteHabitacionFecha(num_hab, fecha);
 		
 		model.addAttribute("estancia_id",estancia.getEstancia_id());
 		model.addAttribute("cliente_id",estancia.getCliente_id());
@@ -48,10 +54,17 @@ public class CheckinController {
 		model.addAttribute("habitacion_id", estancia.getHabitacion_id());
 		model.addAttribute("importe",estancia.getImporte());
 		model.addAttribute("hotel_id",estancia.getHotel_id());
+		model.addAttribute("nombre", cliente.getNombre());
+		model.addAttribute("apellidos", cliente.getApellidos());
+		model.addAttribute("DNI", cliente.getDni());
+		model.addAttribute("email", cliente.getEmail());
+		model.addAttribute("nacionalidad",cliente.getNacionalidad());
+		model.addAttribute("telefono", cliente.getTelefono());
+		model.addAttribute("preferencias",cliente.getPreferencias());
+		model.addAttribute("servicios",servicios);
 		
 		
-		System.out.print(estancia.getEstancia_id());
-		System.out.println(estancia.getHabitacion_id());
+		
 		
 		
 		/*comentario:
@@ -77,7 +90,7 @@ public class CheckinController {
 
 		checkinModel.cambiarEstadoEstancia(estancia.getEstancia_id());
 	
-	return "redirect:/homePageDHO/menu/disponibilidad";
+	return "redirect:/homePageDHO/menu/disponibilidad/checkin1/{num_hab}/{fecha}";
 
 	
 	}
