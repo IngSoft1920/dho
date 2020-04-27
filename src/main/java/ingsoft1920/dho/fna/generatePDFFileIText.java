@@ -51,7 +51,7 @@ public class generatePDFFileIText {
 
 	private static final Font categoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
 	private static final Font subcategoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
-	private static final Font blueFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
+	private static final Font blueFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL);
 	private static final Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
 
 	private static final String iTextExampleImage = "/home/xules/codigoxules/iText-Example-image.png";
@@ -123,47 +123,28 @@ public class generatePDFFileIText {
 	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	        table.addCell(c1);
 
-	        c1 = new PdfPCell(new Phrase("Descripcion"));
+	        c1 = new PdfPCell(new Phrase("Descripción"));
 	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	        table.addCell(c1);
 
 	        c1 = new PdfPCell(new Phrase("Importe"));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        
+	        c1 = new PdfPCell(new Phrase("Pagado"));
 	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	        table.addCell(c1);
 	        table.setHeaderRows(1);
 			//Obtenemos todas las facturas
+	        int pago_total=0;
 			for (FacturaBean elem: FacturaDAO.todasFacturasCliente(cliente_id)) {
-		        table.addCell(elem.getFecha_factura().toString());
-		        table.addCell(elem.getTipo_factura());
-		        table.addCell(String.valueOf(elem.getPrecio()));
-			}
-			chapter.add(table);
-			//Subtitulo (Facturas por pagar)
-	        chapter.add(new Paragraph("\n", paragraphFont));
-			chapter.add(new Paragraph("Detalles:", subcategoryFont));
-	        chapter.add(new Paragraph("\n", paragraphFont));
-			table = new PdfPTable(3);
-			c1 = new PdfPCell(new Phrase("Fecha"));
-	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-	        table.addCell(c1);
-
-	        c1 = new PdfPCell(new Phrase("Descripcion"));
-	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-	        table.addCell(c1);
-
-	        c1 = new PdfPCell(new Phrase("Importe"));
-	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-	        table.addCell(c1);
-	        table.setHeaderRows(1);
-			int pago_total=0;
-			for (FacturaBean elem: FacturaDAO.porPagarFacturasCliente(cliente_id)) {
 				pago_total+=elem.getPrecio();
 		        table.addCell(elem.getFecha_factura().toString());
 		        table.addCell(elem.getTipo_factura());
 		        table.addCell(String.valueOf(elem.getPrecio()));
+		        table.addCell("No");
 			}
 			chapter.add(table);
-	        chapter.add(new Paragraph("\n", paragraphFont));
 			//Subtitulo (Precio de la estancia)
 			chapter.add(new Paragraph("Estancia :", subcategoryFont));
 			EstanciaBean aux = FacturaDAO.precioEstanciaCliente(cliente_id);
