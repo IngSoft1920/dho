@@ -88,6 +88,13 @@ public class DisponibilidadController {
         return "redirect:/homePageDHO/menu/disponibilidad";
     }
 	
+	@PostMapping(value = "homePageDHO/menu/disponibilidad/{fechaConsultaString}")
+    public String buscaDía(  @PathVariable String fechaConsultaString, Model model) {
+		fechaConsulta = LocalDate.parse(fechaConsultaString);
+        //System.out.println(fechaConsultaString);
+        return "redirect:/homePageDHO/menu/disponibilidad";
+    }
+	
 	@InitBinder
 	public void bindingPreparation(WebDataBinder binder) {
 	  DateFormat dateFormat = new SimpleDateFormat("dd-MM-YYYY");

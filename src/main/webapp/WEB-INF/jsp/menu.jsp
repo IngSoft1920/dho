@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<%@page import="java.text.DecimalFormat" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ page  language="java" import="java.util.*,java.text.*"%>
 <%!
@@ -18,26 +19,28 @@ public int nullIntconv(String inv)
 }
 %>
 <%
- int iYear=nullIntconv(request.getParameter("iYear"));
- int iMonth=nullIntconv(request.getParameter("iMonth"));
+SimpleDateFormat formatter=new SimpleDateFormat("dd-MM-yyyy");
+DecimalFormat priceFormatter = new DecimalFormat("%0.0");
+ int anio=nullIntconv(request.getParameter("anio"));
+ int mes=nullIntconv(request.getParameter("mes"));
 
  Calendar ca = new GregorianCalendar();
  int iTDay=ca.get(Calendar.DATE);
  int iTYear=ca.get(Calendar.YEAR);
  int iTMonth=ca.get(Calendar.MONTH);
 
- if(iYear==0)
+ if(anio==0)
  {
-      iYear=iTYear;
-      iMonth=iTMonth;
+      anio=iTYear;
+      mes=iTMonth;
  }
 
- GregorianCalendar cal = new GregorianCalendar (iYear, iMonth, 1); 
+ GregorianCalendar cal = new GregorianCalendar (anio, mes, 1); 
 
  int days=cal.getActualMaximum(Calendar.DAY_OF_MONTH);
  int weekStartDay=cal.get(Calendar.DAY_OF_WEEK);
  
- cal = new GregorianCalendar (iYear, iMonth, days); 
+ cal = new GregorianCalendar (anio, mes, days); 
  int iTotalweeks=cal.get(Calendar.WEEK_OF_MONTH);
   
 %>
@@ -65,7 +68,7 @@ public int nullIntconv(String inv)
  
 /*Agregamos margenes inferiores a los parrafos*/
 p {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 header {
@@ -98,11 +101,11 @@ nav ul li a {
 }
  
 nav ul li:hover {
-  background: #3ead47;
+  background: #4982D1;
 }
 
 .contenido {
-  padding-top: 80px;
+  padding-top: 60px;
 }
 
 .wrapper {
@@ -122,9 +125,10 @@ background-repeat: no-repeat !important;
 background-attachment: fixed;
 }
 
+
 .dsb
 {
- 
+  background-color: #CCC8BE
 }
 
 table.center{
@@ -139,6 +143,10 @@ margin-right:auto;
 
 <script type="text/javaScript">
 //background ="https://www.todopaisajes.com/1920x1080/hotel-en-la-playa.jpg" background-size=contain
+function goTo()
+{
+  document.postTabla.submit()
+}
 </script>
 
 <style>
@@ -156,9 +164,9 @@ margin-right:auto;
 /*instrucciones generales*/
 * { margin: auto; }
 /*cabecera de la página*/
-h1 { text-align: center; padding: 0.5em; }
+h1 {font: normal 40pt "arial black"; text-align: center; }
 /*div principal del calendario*/
-#calendario { border: 8px double black ; max-width: 1000px; max-height:1000px;
+#calendario { border: 16px double black ; max-width: 1000px; max-height:500px;
               background-color:#fffafa; text-align: center; }
 /*tabla del calendario*/
 #diasc { border: 1px solid black; border-collapse: 
@@ -166,9 +174,16 @@ h1 { text-align: center; padding: 0.5em; }
 #diasc th,#diasc td { font: normal 14pt arial; width: 130px; height: 90px; }
 //#diasc th { background-color: #1fbc22 }
 //#diasc td { background-color: #1fbc22 }
-
+#anterior { float: left; width: 100px; font: bold 10pt arial;
+          padding: 0.5em 0.1em; cursor: pointer ; }
+#posterior { float: right; width: 100px; font: bold 10pt arial; 
+          padding: 0.5em 0.1em; cursor: pointer ;}
 /*cabecera del calendario*/ 
-
+#buscafecha { background-color: #663366; color: #9bf5ff; padding: 5px }
+#buscafecha select, #buscafecha input  { background-color: #9bf5ff; 
+            color: #990099; font: bold 10pt arial;  }
+#buscafecha [type=text]  { text-align: center; }
+#buscafecha  [type=button] { cursor: pointer; }
 #titulos { font: normal 20pt "arial black"; padding:0.2em; } 
 	
 </style>
@@ -177,104 +192,81 @@ h1 { text-align: center; padding: 0.5em; }
 <title >Menú de DHO</title> 
 </head>
 
-<body>
-<h1><align="center" font size=7 >Menú</font></h1>
+<body><br/><br/>
+<h1><align="center" font size=20 >Menú</font></h1>
 <br/><br/>
 
+<div id="calendario">
 <center>
-<form name="frm" method="post">
-<table class="center" width="100%" border="0.5" cellspacing="0" cellpadding="0">
-  <tr align="center" bottom="middle">
+<form:form method="POST" name="postTabla" >
+<table class="center" width=900px height=120px border="0" cellspacing="0" cellpadding="0">
+  <tr align="center" >
+    <td align="center" width="25%" >&nbsp;</td>
+    <td align="center" width="50%">&nbsp;</td>
     <td align="center" width="25%">&nbsp;</td>
-    <td align="center" width="45%">&nbsp;</td>
-    <td align="center" width="30%">&nbsp;</td>
   </tr>
   <tr>
     <td>&nbsp;</td>
-    <td><table width="100%" border="2" cellspacing="0" cellpadding="0">
+    <td><table width="100%" height="10" border="2" cellspacing="0" cellpadding="0">
   <tr>
-    <td><table width="100%" border="1" cellspacing="0" cellpadding="0">
+    <td><table width="100%" height="2" border="1" cellspacing="0" cellpadding="0">
       <tr>
-        <td width="6%">Year</td>
-        <td width="7%">
-        <select name="iYear" onChange="goTo()">
-        <%
-        // start year and end year in combo box to change year in calendar
-        for(int iy=iTYear-70;iy<=iTYear+70;iy++)
-        {
-          if(iy==iYear)
-          {
-            %>
-          <option value="<%=iy%>" selected="selected"><%=iy%></option>
-          <%
-          }
-          else
-          {
-            %>
-          <option value="<%=iy%>"><%=iy%></option>
-          <%
-          }
-        }
-       %>
-        </select></td>
-        <td width="73%" align="center" style="color:#000000"><h3><%=new SimpleDateFormat("MMMM").format(new Date(2008,iMonth,01))%> <%=iYear%></h3></td>
-        <td width="6%">Month</td>
-        <td width="8%">
-        <select name="iMonth" onChange="goTo()">
-        <%
-        // print month in combo box to change month in calendar
-        for(int im=0;im<=11;im++)
-        {
-          if(im==iMonth)
-          {
-         %>
-          <option value="<%=im%>" selected="selected"><%=new SimpleDateFormat("MMMM").format(new Date(2008,im,01))%></option>
-          <%
-          }
-          else
-          {
-            %>
-          <option value="<%=im%>"><%=new SimpleDateFormat("MMMM").format(new Date(2008,im,01))%></option>
-          <%
-          }
-        }
-       %>
-        </select></td>
+        
+        <td width="70%" align="center" style="color:#000000"><h3>${Mes} del ${Año}</h3></td>
+        
+        <td width="40%"> <h3 align="center">  Cambiar mes:  </h3>
+  		
+    	<div id="anterior" style="padding-left:20px;">
+  		<form:form method="POST" action="/homePageDHO/menu/ant/${fechaConsultaString}">
+    		<input type="submit" value="Anterior" />
+		</form:form>
+    	</div>
+  		<div id="posterior">
+		<form:form method="POST" action="/homePageDHO/menu/post/${fechaConsultaString}">
+    		<input type="submit" value="Posterior" />
+		</form:form>
+		</div>
+  		</td>
+  		
       </tr>
     </table></td>
   </tr>
   <tr>
-    <td><table align="center" border="0" cellpadding="3" cellspacing="0" width="100%">
+    <td><table align="center" width=800 height=100 border="0" cellpadding="0" cellspacing="0" >
       <tbody align="center">
-        <tr>
-          <th>Sun</th>
-          <th>Mon</th>
-          <th>Tue</th>
-          <th>Wed</th>
-          <th>Thu</th>
-          <th>Fri</th>
-          <th>Sat</th>
+        <tr width="100%" height="100%">
+          <th width="14,28%" height="14,28%">Sun</th>
+          <th width="14,28%" height="14,28%">Mon</th>
+          <th width="14,28%" height="14,28%">Tue</th>
+          <th width="14,28%" height="14,28%">Wed</th>
+          <th width="14,28%" height="14,28%">Thu</th>
+          <th width="14,28%" height="14,28%">Fri</th>
+          <th width="14,28%" height="14,28%">Sat</th>
         </tr>
         <%
         int cnt =1;
+        int n = 0;
+        int[] misPorcentajes = (int[]) request.getAttribute("misPorcentajes");
+        String[] misColores = (String[]) request.getAttribute("misColores");
+        
         for(int i=1;i<=iTotalweeks;i++)
         {
         %>
-        <tr>
-          <% 
+        <tr width="100%" height="60%">
+          <%   
             for(int j=1;j<=7;j++)
             {
                 if(cnt<weekStartDay || (cnt-weekStartDay+1)>days)
                 {
                  %>
-                <td align="center" height="35" class="dsb">&nbsp;</td>
+                <td align="center"  height="50" width="50" class="dsb">&nbsp;</td>
                <% 
                 }
                 else
-                {
+                { 
                  %>
-                <td align="center" height="35" id="day_<%=(cnt-weekStartDay+1)%>"><span><%=(cnt-weekStartDay+1)%></span></td>
-               <% 
+                <td align="center" height="50" width="50" id="day_<%=(cnt-weekStartDay+1)%>" bgcolor="<%=misColores[n]%>">   <h3>  <a href=<""> <%=(cnt-weekStartDay+1)%> </a> </h3>  <span> <%=misPorcentajes[n]%>% </span>     </td>
+               <% n++;
                 }
                 cnt++;
               }
@@ -295,8 +287,9 @@ h1 { text-align: center; padding: 0.5em; }
     <td>&nbsp;</td>
   </tr>
 </table>
-</form>
+</form:form>
 </center>
+</div>
 </body>
 
 </section>

@@ -203,7 +203,7 @@ h1 { text-align: center; padding: 0.5em; }
 	<%for(int j=0; j<7;j++)
 		{ 
 			hab+=1;%>
-			<td width="100px" height="100px" align="center" bgcolor="<%=coloresCelda[n]%>"><h3><a href="<%=links[n]%>"><%=hab%></a></h3></td> 
+			<td width="100px" height="100px" align="center" bgcolor="<%=coloresCelda[n]%>">  <h3>    <a href="<%=links[n]%>">  <%=hab%>    </a>    </h3>    </td> 
 			<% n++;%>
 	  <%}%>
 	    <%hab=hab+100-7;%>
@@ -212,24 +212,21 @@ h1 { text-align: center; padding: 0.5em; }
 	
  </table>
  
-  
   <div id="fechahoy">
   	<form:form method="POST" action="/homePageDHO/menu/disponibilidad/hoy">
   		<i>
    			<input type="submit" value=" HOY: ${DiaHoy} de ${MesHoy} del ${AñoHoy} "/> 
    		</i>
    	</form:form>
-    	
   </div>
-  <div id="buscafecha">
   
-        
+  <div id="buscafecha">      
   	<form:form method="POST" action="/homePageDHO/menu/disponibilidad/buscar">
         <input type="date" name="fechaConsultaString" value=${fechaConsultaString} min=${fechaConsultaString} max="2024-12-31">
         <input type="submit" value="Buscar"/>
     </form:form>
-    
   </div>
+  
 </div>
 </body>
 
