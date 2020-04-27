@@ -129,5 +129,32 @@ public class FacturaDAO {
 		return cliente;
 	}
 	
+	//Dado el cliente_id devuelve toda la informacion util del hotel para facturas
+	public static HotelBean datosHotel(int cliente_id) {
+		HotelBean hotel=null;
+		Conexion conexion = new Conexion();
+		if (conexion.getConexion()==null) 
+			conexion.conectar();
+		
+		java.sql.Statement stmt= null;
+		ResultSet rs= null;
+		try {
+			stmt=conexion.getConexion().createStatement();
+			rs=stmt.executeQuery("SELECT H.nombre,H.pais,H.ciudad \r\n" + 
+					"FROM Hotel AS H\r\n" + 
+					"JOIN Estancia AS E ON H.hotel_id = E.hotel_id\r\n" + 
+					"WHERE E.cliente_id ="+cliente_id);
+			if(rs.next()) {
+				hotel= new HotelBean(rs.getString("H.nombre"),rs.getString("H.pais"),rs.getString("H.ciudad"));
+			}
+		}catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		conexion.desconectar();
+		return hotel;
+	}
 
 }
