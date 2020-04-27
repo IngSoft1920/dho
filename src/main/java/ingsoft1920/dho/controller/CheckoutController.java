@@ -42,20 +42,23 @@ import ingsoft1920.dho.bean.EstanciaBean;
 			model.addAttribute("importe",estancia.getImporte());
 			model.addAttribute("hotel_id",estancia.getHotel_id());
 			
+			System.out.print(estancia.getEstancia_id());
+			System.out.println(estancia.getHabitacion_id());
+			
 			return "checkout";
 		}
 
-		@PostMapping("/homePageDHO/menu/disponibilidad/checkout1/{num_hab}/{fecha}")
-		public String checkoutPost(@Valid @ModelAttribute("EstanciaBean") EstanciaBean estanciaBean,
-				Model model) {
+		@PostMapping("/homePageDHO/menu/disponibilidad/checkin1/{num_hab}/{fecha}")
+		public String checkoutPost(Model model,@PathVariable int num_hab,@PathVariable String fecha) {
 		
 		
 	
-		CheckoutModel checkoutModel=new CheckoutModel(estanciaBean);
+		CheckoutModel checkoutModel=new CheckoutModel();
 		
-		checkoutModel.cambiarEstadoEstancia(checkoutModel);
+		EstanciaBean estancia=EstanciaDAO.getEstanciaFecha(num_hab, fecha);
+		
+		checkoutModel.cambiarEstadoEstancia(estancia.getEstancia_id());
 
-		System.out.println("ckeckout:\n"+estanciaBean);
 		
 		return "redirect:/homePageDHO/menu/disponibilidad";
 		
