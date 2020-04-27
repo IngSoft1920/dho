@@ -44,12 +44,12 @@ public class PedirClientes {
 			return null;
 			
 		}
-		public static Integer valueOf2(String inputString) {
-			return (inputString.equals("null") || inputString == null) ? null : Integer.parseInt(inputString);
+		public static Integer valueOf2(String input) {
+			return (input.equals("null") || input == null) ? null : Integer.parseInt(input.substring(1, input.length() - 1));
 		}
 		public static String cambio(String input) {
-			return (input.equals("null") || input == null) ? null : input;
-			
+			return (input.equals("null") || input == null) ? null :input.substring(1, input.length() - 1);
+
 		}
 		
 		
