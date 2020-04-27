@@ -11,7 +11,6 @@
 			<li><a href="/homePageDHO/menu/disponibilidad">Disponibilidad</a></li>
 			<li><a href="/homePageDHO/menu/reservas1">Reservas</a></li>
 			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
-			<li><a href="/homePageDHO/menu/calendario">Vista de calendario</a></li>>
 
 		</ul>
 	</nav>
@@ -82,7 +81,7 @@ nav ul li:hover {
 		<style>
 			a { text-decoration: none; }
 		</style>
-	</body>
+
 	
 	
 			
@@ -104,13 +103,17 @@ nav ul li:hover {
 			<br><h4>Fecha de fin:<h4>${fecha_fin}<br>
 			<br><h4>N&uacute;mero habitaci&oacute;n:<h4>${habitacion_id}<br>
 			<br><h4>Importe:<h4>${importe}<br>
-			
+			<br><br>
+			<h4>Servicios<h4>
 			<c:forEach items="${servicios}" var="item2">	
 			<h4>${item2.getServicios_id()}</h4>	
 			<h4>${item2.getLugar()}</h4>
 			<h4>${item2.getFecha_servicio()}</h4>
-			<h4>${item2.getHora()}</h4><		    
+			<h4>${item2.getHora()}</h4>	
+			<br><br>	    
 			</c:forEach>
+			
+			
 			
 			
 	
@@ -119,10 +122,19 @@ nav ul li:hover {
 		<br><br>
 		<input type="button" onclick="history.back()" name="volver atrás" value="Volver atrás">
 	</form>
+	<script type="text/javascript">
+	const btn = document.querySelector(".btn");
+	const msg = document.querySelector("#miParrafo");
+	btn.addEventListener("click", e => {
+		e.preventDefault();
+		document.getElementById("miParrafo").style.display = "inline";
+		document.getElementById("miParrafo").style.color = "green";
+		setTimeout(()=> msg.remove(),3000);
+		});
+	</script>
 
 	
 	</body>
-	
 	
 			
 	

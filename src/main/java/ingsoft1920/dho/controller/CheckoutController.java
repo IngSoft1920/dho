@@ -74,7 +74,7 @@ import ingsoft1920.dho.DAO.ServicioDAO;
 		checkoutModel.cambiarEstadoEstancia(estancia.getEstancia_id());
 
 		
-		return "redirect:/homePageDHO/menu/disponibilidad";
+		return "redirect:/homePageDHO/menu/disponibilidad/checkout1/{num_hab}/{fecha}";
 		
 		}
 	

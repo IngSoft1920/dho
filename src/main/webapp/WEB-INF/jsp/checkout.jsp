@@ -81,7 +81,7 @@ nav ul li:hover {
 		<style>
 			a { text-decoration: none; }
 		</style>
-	</body>
+
 	
 	
 	
@@ -105,7 +105,7 @@ nav ul li:hover {
 			<h4>${item2.getServicios_id()}</h4>	
 			<h4>${item2.getLugar()}</h4>
 			<h4>${item2.getFecha_servicio()}</h4>
-			<h4>${item2.getHora()}</h4><		    
+			<h4>${item2.getHora()}</h4>		    
 			</c:forEach>
 	
 		<br><br>
@@ -127,6 +127,7 @@ nav ul li:hover {
 		setTimeout(()=> msg.remove(),3000);
 		});
 	</script>
+		</body>
 </section>
 	
 </html>

@@ -77,7 +77,7 @@ public class CompletarEstanciaController {
 		
 		//EstanciaDAO.anadirEstancia(reserva_id, CLIENTE_ID, hotel_id, fecha_entrada, fecha_salida, tipo_hab_id, 0);
 		
-		return "redirect:/homePageDHO/menu";
+		return "redirect:/homePageDHO/menu/disponibilidad";
 		
 	}
 	

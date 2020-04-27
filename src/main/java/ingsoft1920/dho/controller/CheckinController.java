@@ -90,7 +90,7 @@ public class CheckinController {
 
 		checkinModel.cambiarEstadoEstancia(estancia.getEstancia_id());
 	
-	return "redirect:/homePageDHO/menu/disponibilidad";
+	return "redirect:/homePageDHO/menu/disponibilidad/checkin1/{num_hab}/{fecha}";
 
 	
 	}
