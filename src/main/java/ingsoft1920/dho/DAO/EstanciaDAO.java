@@ -686,7 +686,7 @@ public class EstanciaDAO {
 		try {
 			stmt = conexion.getConexion().createStatement();
 			rs = stmt.executeQuery("SELECT * FROM Estancia WHERE habitacion_id = " + habitacion_id
-					+ " AND fecha_inicio < '" + fecha + "' AND fecha_fin > '" + fecha + "'");
+					+ " AND fecha_inicio <='" + fecha + "' AND fecha_fin >='" + fecha + "'");
 
 			if (rs.next()) {
 				res.setEstancia_id(rs.getInt("estancia_id"));

@@ -322,18 +322,18 @@ public class PruebasBaseDatos {
 	
 	DhoAPI prueba55 = new DhoAPI();
 	prueba55.recibirReserva(" { \"reserva_id\" : 34, \"fecha_entrada\" : \"2020-03-10\", \"fecha_salida\" :\"2020-03-15\", \"importe\" : 4, \"cliente_id\" : 2, \"numero_acompanantes\" : 0, \"hotel_id\" : 32, \"tipo_hab_id\" : 1}");
-	*/
+	
 	DhoAPI prueba55 = new DhoAPI();
-	prueba55.eliminarHotel(6);
+	prueba55.eliminarHotel(6);*/
 		/*JsonObject json = new JsonObject();
         json.addProperty("habitacion",101 );
         json.addProperty("Hotel", "Prueba");
         json.addProperty("Factura", 15.8);
 		prueba55.recibirMesa(json.toString());
-		/*
+		*/
 		EstanciaDAO prueba56 = new EstanciaDAO(conexion);
-		System.out.println(prueba56.getEstanciaFecha(102, "2020-04-08").toString());
-		
+		System.out.println(prueba56.getEstanciaFecha(107, "2020-04-27").toString());
+		/*
 		
 		HotelDAO prueba57 = new HotelDAO(conexion);
 		System.out.println(prueba57.porcentajeReservas("2020-04-01"));
