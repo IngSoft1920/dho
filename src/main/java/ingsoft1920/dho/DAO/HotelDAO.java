@@ -135,7 +135,7 @@ public class HotelDAO {
 
 	public static double porcentajeOcupacion(String fecha) {
 		double res = 0;
-		int numHabs = HabitacionDAO.getHabitacionByHotel(99).size();
+		int numHabs = HabitacionDAO.getHabitacionByHotel(2).size();
 		int numOcups = 0;
 		ArrayList<String> estados = new ArrayList<String>();
 		estados = EstanciaDAO.getEstadoHabitaciones(fecha);
@@ -153,7 +153,7 @@ public class HotelDAO {
 
 	public static double porcentajeReservas(String fecha) {
 		double res = 0;
-		int numHabs = HabitacionDAO.getHabitacionByHotel(99).size();
+		int numHabs = HabitacionDAO.getHabitacionByHotel(2).size();
 		int numOcups = 0;
 		ArrayList<String> estados = new ArrayList<String>();
 		estados = EstanciaDAO.getEstadoHabitaciones(fecha);
