@@ -45,7 +45,7 @@ public class Enlace {
 			// Obtenemos InputSteam del fichero
 			InputStream is = new FileInputStream(f);
 			// Marcamos respuesta en cabecera
-			response.setContentType("aplication/pdf");
+			response.setContentType("application/pdf");
 			response.setContentLength((int) f.length());
 			response.setStatus(HttpStatus.OK.value());
 			// Ponemos el strem del fichero en el stream de la respuesta
