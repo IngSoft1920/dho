@@ -332,7 +332,13 @@ public class PruebasBaseDatos {
 		prueba55.recibirMesa(json.toString());
 		*/
 		EstanciaDAO prueba56 = new EstanciaDAO(conexion);
-		System.out.println(prueba56.getEstanciaFecha(107, "2020-04-27").toString());
+		//System.out.println(prueba56.getEstanciaFecha(107, "2020-04-27").toString());
+		
+		ClienteDAO prueba60= new ClienteDAO(conexion);
+		//System.out.println(prueba60.getClienteHabitacionFecha(101, "2020-04-26").toString());
+		
+		ServicioDAO prueba61 = new ServicioDAO(conexion);
+		System.out.println(prueba61.getClienteHabitacionFecha(101, "2020-04-26").toString());
 		/*
 		
 		HotelDAO prueba57 = new HotelDAO(conexion);
