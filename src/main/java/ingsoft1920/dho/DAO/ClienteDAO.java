@@ -231,5 +231,14 @@ public static int anadirClienteSinID(ClienteBean cliente) {
 	
 	return aux;
 }
+
+//dado habitacion_id y un fecha devuelve los datos del cliente
+public static ClienteBean getClienteHabitacionFecha(int habitacion_id, String fecha) {
+	ClienteBean res= new ClienteBean();
+	int estancia_id = EstanciaDAO.getEstanciaFecha(habitacion_id, fecha).getEstancia_id();
+	res= datosCliente(estancia_id);
+	
+	return res;
+}
 }
  

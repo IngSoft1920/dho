@@ -8,6 +8,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+import ingsoft1920.dho.bean.ClienteBean;
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.ServicioBean;
 import ingsoft1920.dho.controller.Conexion;
@@ -424,5 +425,14 @@ public class ServicioDAO {
 		}
 		conexion.desconectar();
 	}
-
+	//dado habitacion_id y un fecha devuelve los servicios del cliente
+	public static List<ServicioBean> getClienteHabitacionFecha(int habitacion_id, String fecha) {
+		int cliente_id=0;
+		List<ServicioBean> res= new ArrayList<ServicioBean>();
+	
+		int estancia_id = EstanciaDAO.getEstanciaFecha(habitacion_id, fecha).getEstancia_id();
+		res= devuelevServiciosreservadosPorunaEstancia(estancia_id);
+		
+		return res;
+	}
 }
