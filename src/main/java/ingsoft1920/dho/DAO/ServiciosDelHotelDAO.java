@@ -143,7 +143,7 @@ public class ServiciosDelHotelDAO {
 		aux = ServicioDAO.getServiciosPorFecha(dia, mes, anio, hora);
 		System.out.println(aux.size());
 		for (int i = 0; i < aux.size(); i++) {
-			if (aux.get(i).getId_ServicoHotel() == servicioHotel_id) {
+			if (aux.get(i).getId_ServicioHotel() == servicioHotel_id) {
 				serv.add(aux.get(i));
 			}
 		}

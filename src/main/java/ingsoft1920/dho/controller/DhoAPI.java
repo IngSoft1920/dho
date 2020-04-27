@@ -48,9 +48,10 @@ public class DhoAPI {
 		return HabitacionDAO.getHabitacionPorId(id_cliente);
 
 	}
+
 	@ResponseBody
 	@GetMapping("/getHabitacion/{hotel_id}")
-	public void eliminarHotel(@PathVariable int hotel_id) {	
+	public void eliminarHotel(@PathVariable int hotel_id) {
 		ServicioDAO.elminarServiciosPorHotel(hotel_id);
 		HotelDAO.eliminarHotel(hotel_id);
 
@@ -80,7 +81,7 @@ public class DhoAPI {
 		obj.addProperty("empleado_id", id_empleado);
 
 		for (TareaBean elem : lista) {
-			tarea_id.add(elem.getId_tarea());;
+			tarea_id.add(elem.getId_tarea());
 			descripcion.add(elem.getDescripcion());
 			horaInico.add(elem.getHora().toString());
 			horaFin.add(cambio(elem.getHoraFin()));
@@ -140,36 +141,10 @@ public class DhoAPI {
 
 		int tipo_servicio = requeObj.get("tipoServicio").getAsInt();
 
-		String hora_salida = cambio(requeObj.get("hora_salida").toString());
-
 		/*
 		 * Hemos quedado con GE el siguiente formato: 1-: serivios normales 2-:Encargar
 		 * Mesa 3-:Encargar Comida
 		 */
-
-		if (tipo_servicio == 2 || tipo_servicio == 3) {
-			// String restaurante = requeObj.get("restaurante").getAsString();
-			// nuevoServicio.setRestaurante(restaurante);
-			if (tipo_servicio == 3) {
-				JsonArray platosJSON = requeObj.get("platos").getAsJsonArray();
-				String platos = "";
-				for (int i = 0; i < platosJSON.size(); i++) {
-					platos += platosJSON.get(i).getAsString();
-				}
-
-				JsonArray itemsJSON = requeObj.get("items").getAsJsonArray();
-				String items = "";
-				for (int i = 0; i < itemsJSON.size(); i++) {
-					items += itemsJSON.get(i).getAsString();
-				}
-
-				nuevoServicio.setItems(items);
-				nuevoServicio.setPlatos(platos);
-
-			}
-
-		}
-
 		switch (tipo_servicio) {
 		case 1:
 			nuevoServicio.setTipo_servicio("normal");
@@ -181,51 +156,33 @@ public class DhoAPI {
 			nuevoServicio.setTipo_servicio("habitacion");
 			break;
 		}
-
 		nuevoServicio.setCliente_id(cliente_id);
 		nuevoServicio.setEstancia_id(id_reserva);
 		LocalDate date = LocalDate.parse(fecha);
 		nuevoServicio.setFecha_servicio(java.sql.Date.valueOf(date));
-
 		LocalTime horaTime = LocalTime.parse(hora);
 		nuevoServicio.setHora(java.sql.Time.valueOf(horaTime));
-
-		// hora salida puede ser null
-		if (hora_salida != null) {
-			LocalTime hora_salidaTime = LocalTime.parse(hora_salida);
-			nuevoServicio.setHora_salida(java.sql.Time.valueOf(hora_salidaTime));
-		} else {
-			nuevoServicio.setHora_salida(null);
-		}
-
-		nuevoServicio.setId_ServicoHotel(id_servicioHotel);
-
+		nuevoServicio.setId_ServicioHotel(id_servicioHotel);
 		nuevoServicio.setLugar(lugar);
 
-		// Falta ver que hacemos con esto, como va?
-		// nuevoServicio.setPrecio(precio);
-
-		// el resto de campos se quedan sin valor
-
 		for (int i = 0; i < num_personas; i++) {
-
 			// añadimos tantas reservas como nuemero de personas
 			ServicioDAO.añadirServicio(nuevoServicio);
 		}
 
 	}
-	
+
 	@ResponseBody
 	@PostMapping("/recibirMesa")
 	public String recibirMesa(@RequestBody String req) {
 		JsonObject obj = (JsonObject) JsonParser.parseString(req);
 		int habitacion_id = obj.get("habitacion").getAsInt();
-		String hotel=obj.get("Hotel").getAsString();
-		int factura=(int) obj.get("Factura").getAsFloat();
+		String hotel = obj.get("Hotel").getAsString();
+		int factura = (int) obj.get("Factura").getAsFloat();
 		long now = System.currentTimeMillis();
-        Time sqlTime = new Time(now);
+		Time sqlTime = new Time(now);
 		Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-		ServicioDAO.recibirMesa(habitacion_id,hotel,factura,date,sqlTime);
+		ServicioDAO.recibirMesa(habitacion_id, hotel, factura, date, sqlTime);
 		return "Procesado";
 	}
 
@@ -470,7 +427,7 @@ public class DhoAPI {
 
 			fechaServicio.add(elem.getFecha_servicio().toString());
 
-			nombreServicio.add(ServiciosDelHotelDAO.conseguirNombreServicioHotel(elem.getId_ServicoHotel()));
+			nombreServicio.add(ServiciosDelHotelDAO.conseguirNombreServicioHotel(elem.getId_ServicioHotel()));
 
 		}
 
@@ -639,9 +596,8 @@ public class DhoAPI {
 	}
 
 	public static String cambio(String input) {
-		return (input == null||input.equals("null")) ? null :input;
+		return (input == null || input.equals("null")) ? null : input;
 
 	}
-
 
 }
