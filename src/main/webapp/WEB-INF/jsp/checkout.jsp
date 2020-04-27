@@ -89,11 +89,24 @@ nav ul li:hover {
 	<form method="POST">
 			<br><h4>Id de la estancia:<h4>${estancia_id}<br>
 			<br><h4>Id del cliente:<h4>${cliente_id}<br>
+			<br><h4>Nombre:<h4>${nombre}<br>
+			<br><h4>Apellidos:<h4>${apellidos}<br>
+			<br><h4>DNI:<h4>${DNI}<br>
+			<br><h4>Email:<h4>${email}<br>
+			<br><h4>Nacionalidad:<h4>${nacionalidad}<br>
+			<br><h4>Tel&eacute;fono:<h4>${telefono}<br>
+			<br><h4>Preferencias:<h4>${preferencias}<br>
 			<br><h4>Fecha de inicio:<h4>${fecha_inicio}<br>
 			<br><h4>Fecha de fin:<h4>${fecha_fin}<br>
 			<br><h4>N&uacute;mero habitaci&oacute;n:<h4>${habitacion_id}<br>
 			<br><h4>Id del hotel:<h4>${hotel_id}<br>
 			<br><h4>Importe:<h4>${importe}<br>
+			<c:forEach items="${servicios}" var="item2">	
+			<h4>${item2.getServicios_id()}</h4>	
+			<h4>${item2.getLugar()}</h4>
+			<h4>${item2.getFecha_servicio()}</h4>
+			<h4>${item2.getHora()}</h4><		    
+			</c:forEach>
 	
 		<br><br>
 		<input type="submit" value="Check-out">

@@ -17,6 +17,10 @@ import ingsoft1920.dho.DAO.EstanciaDAO;
 import ingsoft1920.dho.Model.CheckinModel;
 import ingsoft1920.dho.Model.CheckoutModel;
 import ingsoft1920.dho.bean.EstanciaBean;
+import ingsoft1920.dho.bean.ClienteBean;
+import ingsoft1920.dho.DAO.ClienteDAO;
+import ingsoft1920.dho.bean.ServicioBean;
+import ingsoft1920.dho.DAO.ServicioDAO;
 
 	
 	@Controller
@@ -33,6 +37,9 @@ import ingsoft1920.dho.bean.EstanciaBean;
 			CheckoutModel checkout=new CheckoutModel();
 			
 			EstanciaBean estancia = EstanciaDAO.getEstanciaFecha(num_hab, fecha);
+			ClienteBean cliente = ClienteDAO.getClienteHabitacionFecha(num_hab, fecha);
+			List<ServicioBean> servicios= checkout.getClienteHabitacionFecha(num_hab, fecha);
+			
 			
 			model.addAttribute("estancia_id",estancia.getEstancia_id());
 			model.addAttribute("cliente_id",estancia.getCliente_id());
@@ -41,9 +48,16 @@ import ingsoft1920.dho.bean.EstanciaBean;
 			model.addAttribute("habitacion_id", estancia.getHabitacion_id());
 			model.addAttribute("importe",estancia.getImporte());
 			model.addAttribute("hotel_id",estancia.getHotel_id());
+			model.addAttribute("nombre", cliente.getNombre());
+			model.addAttribute("apellidos", cliente.getApellidos());
+			model.addAttribute("DNI", cliente.getDni());
+			model.addAttribute("email", cliente.getEmail());
+			model.addAttribute("nacionalidad",cliente.getNacionalidad());
+			model.addAttribute("telefono", cliente.getTelefono());
+			model.addAttribute("preferencias",cliente.getPreferencias());
+			model.addAttribute("servicios",servicios);
 			
-			System.out.print(estancia.getEstancia_id());
-			System.out.println(estancia.getHabitacion_id());
+			
 			
 			return "checkout";
 		}
