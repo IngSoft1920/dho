@@ -102,5 +102,32 @@ public class FacturaDAO {
 		return estancia;
 	}
 	
+	
+	
+	//Dado el cliente_id devuelve toda la informacion util del cliente para facturas
+	public static ClienteBean datosCliente(int cliente_id) {
+		ClienteBean cliente=null;
+		Conexion conexion = new Conexion();
+		if (conexion.getConexion()==null) 
+			conexion.conectar();
+		
+		java.sql.Statement stmt= null;
+		ResultSet rs= null;
+		try {
+			stmt=conexion.getConexion().createStatement();
+			rs=stmt.executeQuery("SELECT * FROM Cliente WHERE cliente_id ="+cliente_id);
+			if(rs.next()) {
+				cliente= new ClienteBean(rs.getString("nombre"),rs.getString("apellidos"),rs.getString("DNI"),rs.getString("email"),rs.getString("telefono"));
+			}
+		}catch (SQLException ex){ 
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block 
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; } 
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; } 
+		}
+		conexion.desconectar();
+		return cliente;
+	}
+	
 
 }

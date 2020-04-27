@@ -1,4 +1,4 @@
-package ingsoft1920.dho.DAO;
+ package ingsoft1920.dho.DAO;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -8,7 +8,6 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import ingsoft1920.dho.bean.ClienteBean;
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.ServicioBean;
 import ingsoft1920.dho.controller.Conexion;
@@ -35,8 +34,7 @@ public class ServicioDAO {
 			while (rs.next()) {
 				res.add(new ServicioBean(rs.getInt("servicios_id"), id_estancia, rs.getInt("servicioHotel_id"),
 						rs.getInt("cliente_id"), rs.getString("lugar"), rs.getDate("fecha_factura"), rs.getTime("hora"),
-						rs.getString("tipo_servicio"), rs.getString("platos"), rs.getString("platos"),
-						rs.getTime("hora_salida"), rs.getInt("precio")));
+						rs.getString("tipo_servicio"), rs.getInt("precio")));
 
 			}
 		} catch (SQLException ex) {
@@ -80,19 +78,16 @@ public class ServicioDAO {
 			// if (rs1.next()){
 			servicio_id = idUltimoServicio() + 1;
 			// servicio_id=rs1.getInt("COUNT(servicios_id)")+1; //id del nuevo servicio
-			stm = conexion.getConexion().prepareStatement("INSERT INTO Servicios values (?,?,?,?,?,?,?,?,?,?,?,?)");
+			stm = conexion.getConexion().prepareStatement("INSERT INTO Servicios values (?,?,?,?,?,?,?,?,?)");
 			stm.setInt(1, servicio_id);
 			stm.setInt(2, servicio.getEstancia_id());
 			stm.setString(3, servicio.getLugar());
-			stm.setInt(12, servicio.getCliente_id());
+			stm.setInt(9, servicio.getCliente_id());
 			stm.setDate(4, servicio.getFecha_servicio());
 			stm.setTime(5, servicio.getHora());
 			stm.setString(6, servicio.getTipo_servicio());
-			stm.setInt(7, servicio.getId_ServicoHotel());
-			stm.setString(8, servicio.getPlatos());
-			stm.setString(9, servicio.getItems());
-			stm.setTime(10, servicio.getHora_salida());
-			stm.setInt(11, servicio.getPrecio());
+			stm.setInt(7, servicio.getId_ServicioHotel());
+			stm.setInt(8, servicio.getPrecio());
 
 			stm.executeUpdate();
 			// }
@@ -177,7 +172,7 @@ public class ServicioDAO {
 				res.add(new ServicioBean(rs.getInt("servicios_id"), rs.getInt("estancia_id"),
 						rs.getInt("servicioHotel_id"), rs.getInt("cliente_id"), rs.getString("lugar"),
 						rs.getDate("fecha_factura"), rs.getTime("hora"), rs.getString("tipo_servicio"),
-						rs.getString("platos"), rs.getString("items"), rs.getTime("hora_salida"), rs.getInt("precio")));
+						 rs.getInt("precio")));
 			}
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
@@ -220,7 +215,7 @@ public class ServicioDAO {
 				res.add(new ServicioBean(rs.getInt("servicios_id"), rs.getInt("estancia_id"),
 						rs.getInt("servicioHotel_id"), rs.getInt("cliente_id"), rs.getString("lugar"),
 						rs.getDate("fecha_factura"), rs.getTime("hora"), rs.getString("tipo_servicio"),
-						rs.getString("platos"), rs.getString("items"), rs.getTime("hora_salida"), rs.getInt("precio")));
+						 rs.getInt("precio")));
 			}
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
@@ -259,7 +254,7 @@ public class ServicioDAO {
 				res.add(new ServicioBean(rs.getInt("servicios_id"), rs.getInt("estancia_id"),
 						rs.getInt("servicioHotel_id"), rs.getInt("cliente_id"), rs.getString("lugar"),
 						rs.getDate("fecha_factura"), rs.getTime("hora"), rs.getString("tipo_servicio"),
-						rs.getString("platos"), rs.getString("items"), rs.getTime("hora_salida"), rs.getInt("precio")));
+						 rs.getInt("precio")));
 			}
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
@@ -300,7 +295,7 @@ public class ServicioDAO {
 				res.add(new ServicioBean(rs.getInt("servicios_id"), rs.getInt("estancia_id"),
 						rs.getInt("servicioHotel_id"), rs.getInt("cliente_id"), rs.getString("lugar"),
 						rs.getDate("fecha_factura"), rs.getTime("hora"), rs.getString("tipo_servicio"),
-						rs.getString("platos"), rs.getString("items"), rs.getTime("hora_salida"), rs.getInt("precio")));
+						 rs.getInt("precio")));
 			}
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
@@ -344,19 +339,16 @@ public class ServicioDAO {
 		PreparedStatement stm = null;
 		try {
 
-			stm = conexion.getConexion().prepareStatement("INSERT INTO Servicios values (?,?,?,?,?,?,?,?,?,?,?,?)");
+			stm = conexion.getConexion().prepareStatement("INSERT INTO Servicios values (?,?,?,?,?,?,?,?,?)");
 			stm.setInt(1, servicio_id);
 			stm.setInt(2, estancia_id);
 			stm.setString(3, "restaurante");
-			stm.setInt(12, cliente_id);
+			stm.setInt(9, cliente_id);
 			stm.setDate(4, fecha);
 			stm.setTime(5, hora);
 			stm.setString(6, tipoServicio);
 			stm.setInt(7, servicioDelHotel_id);
-			stm.setString(8, null);
-			stm.setString(9, null);
-			stm.setTime(10, null);
-			stm.setInt(11, precio);
+			stm.setInt(8, precio);
 
 			stm.executeUpdate();
 
@@ -425,14 +417,15 @@ public class ServicioDAO {
 		}
 		conexion.desconectar();
 	}
-	//dado habitacion_id y un fecha devuelve los servicios del cliente
-	public static List<ServicioBean> getClienteHabitacionFecha(int habitacion_id, String fecha) {
-		int cliente_id=0;
-		List<ServicioBean> res= new ArrayList<ServicioBean>();
-	
-		int estancia_id = EstanciaDAO.getEstanciaFecha(habitacion_id, fecha).getEstancia_id();
-		res= devuelevServiciosreservadosPorunaEstancia(estancia_id);
-		
-		return res;
-	}
+	//dado habitacion_id y un fecha devuelve los servicios del cliente 
+		public static List<ServicioBean> getClienteHabitacionFecha(int habitacion_id, String fecha) { 
+			int cliente_id=0; 
+			List<ServicioBean> res= new ArrayList<ServicioBean>(); 
+		 
+			int estancia_id = EstanciaDAO.getEstanciaFecha(habitacion_id, fecha).getEstancia_id(); 
+			res= devuelevServiciosreservadosPorunaEstancia(estancia_id); 
+			 
+			return res; 
+		}
+
 }

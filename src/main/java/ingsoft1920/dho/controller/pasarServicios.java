@@ -32,23 +32,17 @@ public class pasarServicios {
 			JsonArray fecha_servicio = new JsonArray();
 			JsonArray hora = new JsonArray();
 			JsonArray tipo_servicio = new JsonArray();
-			JsonArray platos = new JsonArray();
-			JsonArray items = new JsonArray();
-			JsonArray hora_salida = new JsonArray();
 			JsonArray precio = new JsonArray();
 			for (ServicioBean elem : servicios) {
 
 				servicios_id.add(elem.getServicios_id());
 				reserva_id.add(elem.getEstancia_id());
-				id_ServicioHotel.add(elem.getId_ServicoHotel());
+				id_ServicioHotel.add(elem.getId_ServicioHotel());
 				cliente_id.add(elem.getCliente_id());
 				lugar.add(elem.getLugar());
 				fecha_servicio.add(elem.getFecha_servicio().toString());
 				hora.add(elem.getHora().toString());
 				tipo_servicio.add(elem.getTipo_servicio());
-				platos.add(elem.getPlatos());
-				items.add(elem.getItems());
-				hora_salida.add(elem.getHora_salida().toString());
 				precio.add(elem.getPrecio());
 
 			}
@@ -59,9 +53,6 @@ public class pasarServicios {
 			obj.add("lugar", lugar);
 			obj.add("hora", hora);
 			obj.add("tipo_servicio", tipo_servicio);
-			obj.add("platos", platos);
-			obj.add("items", items);
-			obj.add("hora_salida", hora_salida);
 			obj.add("precio", precio);
 
 			client.setRequestBody(obj.toString());

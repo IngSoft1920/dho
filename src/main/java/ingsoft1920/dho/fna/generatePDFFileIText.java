@@ -114,11 +114,19 @@ public class generatePDFFileIText {
 			//Creamos el primer capitulo 
 			Chapter chapter = new Chapter(p, 1);
 			chapter.setNumberDepth(0);
+			//Subtitulo (Datos cliente)
+	        chapter.add(new Paragraph("\n", paragraphFont));
+			chapter.add(new Paragraph("Datos Receptor:", subcategoryFont));
+	        chapter.add(new Paragraph("\n", paragraphFont));
+	        ClienteBean cliente=FacturaDAO.datosCliente(cliente_id);
+	        p=new Paragraph("",paragraphFont);
+	        p.add("Nombre: "+cliente.getNombre()+"\n"+"Apellidos: "+cliente.getApellidos()+"\n"+"DNI: "+cliente.getDNI()+"\n Telefono: "+cliente.getTelefono()+"\n Email: "+cliente.getEmail());
+	        chapter.add(p);
 			//Subtitulo (Todas las Facturas)
 	        chapter.add(new Paragraph("\n", paragraphFont));
 			chapter.add(new Paragraph("Resumen:", subcategoryFont));
 	        chapter.add(new Paragraph("\n", paragraphFont));
-			table = new PdfPTable(3);
+			table = new PdfPTable(4);
 			c1 = new PdfPCell(new Phrase("Fecha"));
 	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	        table.addCell(c1);

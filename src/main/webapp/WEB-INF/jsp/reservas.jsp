@@ -207,7 +207,7 @@ h2{
 	
 
 	
-	<h2>Reservas Servicios</h2>
+	<h2>Servicios</h2>
   <div class="table-wrapper">
     <table class="fl-table">
         <thead>
@@ -219,25 +219,19 @@ h2{
             <th>FECHA</th>
             <th>HORA</th>
             <th>TIPO</th>
-            <th>PLATOS</th>
-            <th>ITEMS</th>
-            <th>HORA SALIDA</th>
             <th>PRECIO</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${listaReservas}" var="item2">	
 	<tr>			
-		    <td><h4>${item2.getId_ServicoHotel()}</h4></td> 
+		    <td><h4>${item2.getId_ServicioHotel()}</h4></td> 
 		    <td><h4>${item2.getEstancia_id()}</h4></td> 	
 		    <td><h4>${item2.getCliente_id()}</h4></td>
 		    <td><h4>${item2.getLugar()}</h4></td>
 		    <td><h4>${item2.getFecha_servicio()}</h4></td>
 		    <td><h4>${item2.getHora()}</h4></td>
 		    <td><h4>${item2.getTipo_servicio()}</h4></td>
-		    <td><h4>${item2.getPlatos()}</h4></td>
-		    <td><h4>${item2.getItems()}</h4></td>
-		    <td><h4>${item2.getHora_salida()}</h4></td>
 		    <td><h4>${item2.getPrecio()}</h4></td>
 		  
 		    
@@ -262,23 +256,14 @@ h2{
 		<label>fecha_servicio</label> 
 		<input type="text" name="fecha_servicioString" autocomlete="off" /> 
 		<br><br> 
-		<label>hora_salida</label> 
-		<input type="text" name="hora_salidaString" autocomplete="off" /> 
-		<br><br> 
 		<label>hora</label> 
 		<input type="text" name="horaString" autocomplete="off" /> 
 		<br><br> 
-		<label>id_ServicoHotel</label> 
-		<input type="text" name="id_ServicoHotel" autocomplete="off" /> 
-		<br><br> 
-		<label>items</label> 
-		<input type="text" name="items" autocomplete="off" /> 
-		<br><br> 
+		<label>id_ServicioHotel</label> 
+		<input type="text" name="id_ServicioHotel" autocomplete="off" /> 
+		<br><br>  
 		<label>lugar</label> 
 		<input type="text" name="lugar" autocomplete="off" /> 
-		<br><br> 
-		<label>platos</label> 
-		<input type="text" name="platos" autocomplete="off" /> 
 		<br><br> 
 		<label>tipo_servicio</label> 
 		<input type="text" name="tipo_servicio" autocomplete="off" /> 

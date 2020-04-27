@@ -338,7 +338,15 @@ public class PruebasBaseDatos {
 		//System.out.println(prueba60.getClienteHabitacionFecha(101, "2020-04-26").toString());
 		
 		ServicioDAO prueba61 = new ServicioDAO(conexion);
-		System.out.println(prueba61.getClienteHabitacionFecha(101, "2020-04-26").toString());
+		//System.out.println(prueba61.getClienteHabitacionFecha(101, "2020-04-26").toString());
+		
+		HotelDAO prueba62 = new HotelDAO(conexion);
+		/*
+		System.out.println(prueba62.porcentajeOcupacion("2020-04-01"));
+		System.out.println(prueba62.porcentajeOcupacion("2020-04-02"));
+		System.out.println(prueba62.porcentajeOcupacion("2020-04-03"));
+		*/
+		System.out.println(prueba62.porcentajeOcupacionMes(4, 2020).toString());
 		/*
 		
 		HotelDAO prueba57 = new HotelDAO(conexion);
