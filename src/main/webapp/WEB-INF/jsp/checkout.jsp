@@ -83,21 +83,25 @@ nav ul li:hover {
 		</style>
 	</body>
 	
-	<br><br>
-	<h3>Hacer check-out de </h3>
+	
+	
 	<br></br>
 	<form method="POST">
-		<label>NºHabitaci&oacute;n</label>
-		<input type="text" name="habitacion_id" autocomlete="off" />
+			<br><h4>Id de la estancia:<h4>${estancia_id}<br>
+			<br><h4>Id del cliente:<h4>${cliente_id}<br>
+			<br><h4>Fecha de inicio:<h4>${fecha_inicio}<br>
+			<br><h4>Fecha de fin:<h4>${fecha_fin}<br>
+			<br><h4>N&uacute;mero habitaci&oacute;n:<h4>${habitacion_id}<br>
+			<br><h4>Id del hotel:<h4>${hotel_id}<br>
+			<br><h4>Importe:<h4>${importe}<br>
+	
 		<br><br>
-		<p id="miParrafo" style="display:none; ">Registro realizado correctamente</p>
+		<input type="submit" value="Check-out">
 		<br><br>
-		<input class="btn" type="submit" value="Registro">
-		
-		
-		<br><br>
-		<input type="button" onclick="history.back()" name="Volver atrás" value="Volver atrás">
+		<input type="button" onclick="history.back()" name="volver atrás" value="Volver atrás">
 	</form>
+	
+
 	
 	
 	<script type="text/javascript">
