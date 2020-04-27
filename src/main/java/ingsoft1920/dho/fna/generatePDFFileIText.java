@@ -119,8 +119,8 @@ public class generatePDFFileIText {
 			chapter.add(new Paragraph("Datos Receptor:", subcategoryFont));
 	        chapter.add(new Paragraph("\n", paragraphFont));
 	        ClienteBean cliente=FacturaDAO.datosCliente(cliente_id);
-	        p=new Paragraph("\n", paragraphFont);
-	        p.add("Nombre: "+cliente.getNombre()+"\t"+"Apellidos: "+cliente.getApellidos()+"\n"+"DNI: "+cliente.getDNI()+"\n Telefono: "+cliente.getTelefono()+"\n Email: "+cliente.getEmail());
+	        p=new Paragraph("",paragraphFont);
+	        p.add("Nombre: "+cliente.getNombre()+"\n"+"Apellidos: "+cliente.getApellidos()+"\n"+"DNI: "+cliente.getDNI()+"\n Telefono: "+cliente.getTelefono()+"\n Email: "+cliente.getEmail());
 	        chapter.add(p);
 			//Subtitulo (Todas las Facturas)
 	        chapter.add(new Paragraph("\n", paragraphFont));
