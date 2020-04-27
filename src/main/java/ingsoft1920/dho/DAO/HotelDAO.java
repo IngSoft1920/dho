@@ -265,4 +265,40 @@ public class HotelDAO {
 		conexion.desconectar();
 		return res;
 	}
+	
+	//Porcentaje ocupacion en un mes	
+	public static ArrayList<Double> porcentajeOcupacionMes(int mes, int anio){
+		ArrayList<Double> res= new ArrayList<Double>();
+		if (mes==2) {
+			if(anio%4 == 0) {
+				for(int i=1; i<30; i++) {
+					String dia = Integer.toString(anio) + "-" + Integer.toString(mes) +"-"+Integer.toString(i);
+					
+					res.add(porcentajeOcupacion(dia));
+					}
+			}
+			else {
+				for(int i=1; i<29; i++) {
+					String dia = Integer.toString(anio) + "-" + Integer.toString(mes) +"-"+Integer.toString(i);
+					
+					res.add(porcentajeOcupacion(dia));
+					}
+			}
+		}
+		else if (mes==4 || mes==6 || mes ==9 || mes == 11) {
+			for(int i=1; i<31; i++) {
+				String dia = Integer.toString(anio) + "-" + Integer.toString(mes) +"-"+Integer.toString(i);
+				
+				res.add(porcentajeOcupacion(dia));
+				}
+		}
+		else {
+			for(int i=1; i<32; i++) {
+				String dia = Integer.toString(anio) + "-" + Integer.toString(mes) +"-"+Integer.toString(i);
+				
+				res.add(porcentajeOcupacion(dia));
+				}
+		}
+		return res;
+	}
 }
