@@ -50,11 +50,40 @@ public class DhoAPI {
 	}
 
 	@ResponseBody
-	@GetMapping("/getHabitacion/{hotel_id}")
+	@PostMapping("/eliminarHotel/{hotel_id}")
 	public void eliminarHotel(@PathVariable int hotel_id) {
 		ServicioDAO.elminarServiciosPorHotel(hotel_id);
 		HotelDAO.eliminarHotel(hotel_id);
 
+	}
+	@ResponseBody
+	@PostMapping("/pasarEstanciasCheckOutCliente/{id_cliente}")
+	public String pasarEstanciaCheckOut(@PathVariable int id_cliente) {
+		ArrayList<EstanciaBean> lista= EstanciaDAO.getCheckOutDeCliente(id_cliente);
+		JsonObject obj = new JsonObject();
+		JsonArray reserva_id = new JsonArray();
+		JsonArray habitacion_id = new JsonArray();
+		JsonArray fecha_inicio = new JsonArray();
+		JsonArray fecha_fin = new JsonArray();
+		JsonArray importe = new JsonArray();
+		JsonArray hotel = new JsonArray();
+		for (EstanciaBean elem : lista) {
+
+			reserva_id.add(elem.getEstancia_id());
+			habitacion_id.add(elem.getHabitacion_id());
+			fecha_inicio.add(elem.getFecha_inicio().toString());
+			fecha_fin.add(elem.getFecha_fin().toString());
+			importe.add(elem.getImporte());
+			hotel.add(HotelDAO.ConseguirNombreHotelDadoID(elem.getHotel_id()));
+		}
+		obj.add("reserva_id", reserva_id);
+		obj.add("hotel", hotel);
+		obj.add("habitacion_id", habitacion_id);
+		obj.add("fecha_inicio", fecha_inicio);
+		obj.add("fecha_fin", fecha_fin);
+		obj.add("importe", importe);
+		
+		return obj.toString();
 	}
 
 	@ResponseBody
