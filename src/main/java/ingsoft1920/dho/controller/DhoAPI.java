@@ -577,8 +577,12 @@ public class DhoAPI {
 
 			int idServ = serviciosLista.get(i).getAsJsonObject().get("id").getAsInt();
 			String nombreServ = serviciosLista.get(i).getAsJsonObject().get("nombre").getAsString();
-			Integer precio = valueOf2(serviciosLista.get(i).getAsJsonObject().get("precio").toString());
-			String unidadLista = serviciosLista.get(i).getAsJsonObject().get("unidad_medida").toString();
+			Integer precio=null;
+			if(serviciosLista.get(i).getAsJsonObject().get("precio")!=null)
+				 precio = valueOf2(serviciosLista.get(i).getAsJsonObject().get("precio").toString());
+			String unidadLista;
+			if(serviciosLista.get(i).getAsJsonObject().get("unidad_medida")!=null)
+				 unidadLista = serviciosLista.get(i).getAsJsonObject().get("unidad_medida").toString();
 			ServiciosDelHotelBean serv = new ServiciosDelHotelBean();
 			// serv.setId_Servicio(idServ);
 			serv.setHotel_id(id);
