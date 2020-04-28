@@ -90,6 +90,10 @@ import ingsoft1920.dho.controller.PedirEmpleados;
 	
 	nuevaTarea.setId_incidencia(id_incidencia);
 	
+	nuevaTarea.setHora(incidenciautilizada.getHora());
+	
+	nuevaTarea.setHoraFin(incidenciautilizada.getHora().toLocalTime().plusMinutes(30).toString());
+	
 	TareaDAO.añadirTarea(nuevaTarea);
 		
 	}
