@@ -12,6 +12,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import ingsoft1920.dho.DAO.ServicioDAO;
+import ingsoft1920.dho.DAO.ServiciosDelHotelDAO;
 import ingsoft1920.dho.bean.ServicioBean;
 
 @Component
@@ -19,57 +20,32 @@ public class pasarServicios {
 
 	@Scheduled(cron = "0 55 23 * * ? ")
 	public static void enviarServicios() {
+		HttpClient client;
 		try {
-			HttpClient client = new HttpClient("http://piedrafita.ls.fi.upm.es:7000/pasarServicios", "POST");
+			client = new HttpClient("http://piedrafita.ls.fi.upm.es:7000/facturas", "POST");
+			JsonArray lista = new JsonArray();
 			Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 			ArrayList<ServicioBean> servicios = ServicioDAO.getServiciosPorFecha2(date);
-			JsonObject obj = new JsonObject();
-			JsonArray servicios_id = new JsonArray();
-			JsonArray reserva_id = new JsonArray();
-			JsonArray id_ServicioHotel = new JsonArray();
-			JsonArray cliente_id = new JsonArray();
-			JsonArray lugar = new JsonArray();
-			JsonArray fecha_servicio = new JsonArray();
-			JsonArray hora = new JsonArray();
-			JsonArray tipo_servicio = new JsonArray();
-			JsonArray precio = new JsonArray();
 			for (ServicioBean elem : servicios) {
-
-				servicios_id.add(elem.getServicios_id());
-				reserva_id.add(elem.getEstancia_id());
-				id_ServicioHotel.add(elem.getId_ServicioHotel());
-				cliente_id.add(elem.getCliente_id());
-				lugar.add(elem.getLugar());
-				fecha_servicio.add(elem.getFecha_servicio().toString());
-				hora.add(elem.getHora().toString());
-				tipo_servicio.add(elem.getTipo_servicio());
-				precio.add(elem.getPrecio());
-
+				JsonObject obj = new JsonObject();
+				obj.addProperty("reserva_id", elem.getEstancia_id());
+				obj.addProperty("pagado", false);
+				obj.addProperty("cantidad_consumida", 1);
+				String nombre = ServiciosDelHotelDAO.conseguirNombreServicioHotel(elem.getId_ServicioHotel());
+				obj.addProperty("nombre_servicio", nombre);
+				obj.addProperty("importe", elem.getPrecio());
+				lista.add(obj);
 			}
-			obj.add("servicios_id", servicios_id);
-			obj.add("reserva_id", reserva_id);
-			obj.add("id_ServicioHotel", id_ServicioHotel);
-			obj.add("cliente_id", cliente_id);
-			obj.add("lugar", lugar);
-			obj.add("hora", hora);
-			obj.add("tipo_servicio", tipo_servicio);
-			obj.add("precio", precio);
-
-			client.setRequestBody(obj.toString());
-			int respCode = client.getResponseCode();
-			if (respCode != 200) {
-				System.out.println("Ha habido un error, con código " + respCode);
-				return;
-			}
-			String resp = client.getResponseBody();
-			System.out.println((JsonObject) JsonParser.parseString(resp));
-
-		} catch (
-
-		Exception e) {
+			client.setRequestBody(lista.toString());
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+	}
+
+	public static void main(String[] args) {
+		enviarServicios();
 	}
 
 }
