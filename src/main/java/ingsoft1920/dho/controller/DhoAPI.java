@@ -91,6 +91,38 @@ public class DhoAPI {
 		
 		return obj.toString();
 	}
+	@ResponseBody
+	@PostMapping("/pasarIncidenciasCliente/{cliente_id}")
+	public String pasarIncidenciasCliente(@PathVariable int cliente_id) {
+		ArrayList<IncidenciaBean> lista= IncidenciaDAO.getIncidenciasPorCliente(cliente_id);
+		JsonObject obj = new JsonObject();
+		JsonArray incidencia_id = new JsonArray();
+		JsonArray tipo_incidencia = new JsonArray();
+		JsonArray descripcion = new JsonArray();
+		JsonArray lugar_incidencia = new JsonArray();
+		JsonArray nombre_hotel = new JsonArray();
+		JsonArray fecha = new JsonArray();
+		JsonArray hora = new JsonArray();
+		for (IncidenciaBean elem : lista) {
+
+			incidencia_id.add(elem.getId_incidencia());
+			tipo_incidencia.add(elem.getTipo_incidencia());
+			descripcion.add(elem.getDescripcion());
+			lugar_incidencia.add(elem.getLugar());
+			fecha.add(elem.getFecha().toString());
+			hora.add(elem.getHora().toString());
+			nombre_hotel.add(HotelDAO.ConseguirNombreHotelDadoID(elem.getHotel_id()));
+		}
+		obj.add("incidencia_id", incidencia_id);
+		obj.add("nombre_hotel", nombre_hotel);
+		obj.add("tipo_incidencia", tipo_incidencia);
+		obj.add("descripcion", descripcion);
+		obj.add("lugar_incidencia", lugar_incidencia);
+		obj.add("fecha", fecha);
+		obj.add("hora", hora);
+		
+		return obj.toString();
+	}
 
 	@ResponseBody
 	@GetMapping("/getTarea/{id_empleado}")
@@ -264,7 +296,10 @@ public class DhoAPI {
 
 		String nombre_hotel = requeObj.get("nombre_hotel").getAsString();
 		incidencia.setHotel_id(HotelDAO.ConseguirIDHotelDadoNombre(nombre_hotel));
-
+		
+		int cliente_id=requeObj.get("cliente_id").getAsInt();
+		incidencia.setCliente_id(cliente_id);
+		
 		IncidenciaDAO.añadirIncidencia(incidencia);
 
 	}
