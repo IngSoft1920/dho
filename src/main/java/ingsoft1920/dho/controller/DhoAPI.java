@@ -57,6 +57,11 @@ public class DhoAPI {
 		return "Procesado correctamente";
 
 	}
+	
+	
+	
+	
+	
 	@ResponseBody
 	@PostMapping("/pasarEstanciasCheckOutCliente/{id_cliente}")
 	public String pasarEstanciaCheckOut(@PathVariable int id_cliente) {
@@ -135,6 +140,17 @@ public class DhoAPI {
 		return obj.toString().toString();
 
 	}
+	
+	
+	@ResponseBody
+	@GetMapping("/eliminarTarea/{id_tarea}")
+	public void eliminarTarea(@PathVariable int id_tarea) {
+		TareaDAO.eliminarTareaDadoSuId(id_tarea);
+		
+	}
+	
+	
+	
 
 	@ResponseBody
 	@PostMapping("/recibirTarea")

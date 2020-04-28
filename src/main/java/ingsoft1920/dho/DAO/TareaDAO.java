@@ -20,6 +20,108 @@ public class TareaDAO {
 		this.conexion=conexion;
 	}
 
+	
+	
+	public static void eliminarTareaDadoSuId(int id_tarea) {
+		
+		
+		TareaBean tarea= conseguirTareaDadoSuId(id_tarea);
+		
+		if (tarea!=null) {
+			
+			int res = 0;
+			if (conexion.getConexion() == null)
+				conexion.conectar();
+			java.sql.Statement stmt = null;
+			PreparedStatement stm = null;
+			ResultSet rs = null;
+			try {
+				stm = conexion.getConexion()
+						.prepareStatement("delete from Tarea where tarea_id=" + id_tarea + ";");
+				stm.executeUpdate();
+				
+
+			} catch (
+
+			SQLException ex) {
+				System.out.println("SQLException: " + ex.getMessage());
+			} finally { // it is a good idea to release resources in a finally block
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException sqlEx) {
+					}
+					rs = null;
+				}
+				if (stmt != null) {
+					try {
+						stmt.close();
+					} catch (SQLException sqlEx) {
+					}
+					stmt = null;
+				}
+			}
+			conexion.desconectar();
+			IncidenciaDAO.eliminiarIncidenciaDadoSuId(tarea.getId_incidencia());
+		}
+			
+			
+		}
+		
+	
+	
+	
+	
+	public static TareaBean conseguirTareaDadoSuId(int id_tarea) {
+		/*completar codigo, si se elimina la tarea supongo que habra que eliminar la incidencia
+		 * pues se van a elimiar en teoria tareas ya realizadas
+		 */
+		
+			if (conexion.getConexion() == null)
+			conexion.conectar();
+
+		TareaBean tarea = null ;
+		
+
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conexion.getConexion().createStatement();
+			rs = stmt.executeQuery("SELECT * FROM Tarea  WHERE tarea_id = " + id_tarea);
+			while(rs.next()) {
+				tarea=new TareaBean(rs.getInt("tarea_id"), rs.getInt("incidencia_id"), rs.getInt("empleado_id"),
+						rs.getString("descripcion"), rs.getString("tipo_tarea"), rs.getString("lugar_tarea"),
+
+						rs.getBoolean("estado"), rs.getDate("fecha_tarea"),rs.getTime("hora"), rs.getInt("hotel_id"),
+						
+						rs.getString("hora_fin"));
+
+			}
+
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+		}
+		conexion.desconectar();
+		return tarea;
+		
+	}
+	
+	
 	public static int añadirTarea(TareaBean tarea) {
 
 		/*

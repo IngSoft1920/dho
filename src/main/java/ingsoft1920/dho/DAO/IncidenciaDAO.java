@@ -20,7 +20,63 @@ public class IncidenciaDAO {
 	 this.conexion=conexion;
  
 	}
-		 
+	
+	
+	
+	
+	
+	public static void eliminiarIncidenciaDadoSuId(int id_incidencia) {
+		
+		
+		int res = 0;
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+		java.sql.Statement stmt = null;
+		PreparedStatement stm = null;
+		ResultSet rs = null;
+		try {
+			
+			stm = conexion.getConexion()
+					.prepareStatement("delete from Incidencia where incidencia_id=" + id_incidencia + ";");
+			stm.executeUpdate();
+			
+
+		} catch (
+
+		SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+		}
+		conexion.desconectar();
+	
+	}
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//metodo que nos devuelve el Bean de la incidencia dado su id_incidencia
 	public static IncidenciaBean getIncidenciaDadoId(int id_incidencia) {
 		if (conexion.getConexion()== null)
