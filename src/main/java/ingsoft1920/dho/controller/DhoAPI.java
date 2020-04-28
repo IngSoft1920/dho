@@ -51,9 +51,10 @@ public class DhoAPI {
 
 	@ResponseBody
 	@PostMapping("/eliminarHotel/{hotel_id}")
-	public void eliminarHotel(@PathVariable int hotel_id) {
+	public String eliminarHotel(@PathVariable int hotel_id) {
 		ServicioDAO.elminarServiciosPorHotel(hotel_id);
 		HotelDAO.eliminarHotel(hotel_id);
+		return "Procesado correctamente";
 
 	}
 	@ResponseBody
@@ -577,7 +578,7 @@ public class DhoAPI {
 			int idServ = serviciosLista.get(i).getAsJsonObject().get("id").getAsInt();
 			String nombreServ = serviciosLista.get(i).getAsJsonObject().get("nombre").getAsString();
 			Integer precio = valueOf2(serviciosLista.get(i).getAsJsonObject().get("precio").toString());
-			String unidadLista = serviciosLista.get(i).getAsJsonObject().get("unidad").toString();
+			String unidadLista = serviciosLista.get(i).getAsJsonObject().get("unidad_medida").toString();
 			ServiciosDelHotelBean serv = new ServiciosDelHotelBean();
 			// serv.setId_Servicio(idServ);
 			serv.setHotel_id(id);
