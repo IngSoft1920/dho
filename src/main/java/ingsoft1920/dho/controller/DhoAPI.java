@@ -295,7 +295,7 @@ public class DhoAPI {
 		incidencia.setHora(java.sql.Time.valueOf(horaTime));
 
 		String nombre_hotel = requeObj.get("nombre_hotel").getAsString();
-		incidencia.setHotel_id(HotelDAO.ConseguirIDHotelDadoNombre(nombre_hotel));
+		incidencia.setHotel_id(HotelDAO.ConseguirIDHotelDadoNombre2(nombre_hotel));
 		
 		int cliente_id=requeObj.get("cliente_id").getAsInt();
 		incidencia.setCliente_id(cliente_id);

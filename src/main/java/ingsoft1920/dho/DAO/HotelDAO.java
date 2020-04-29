@@ -59,6 +59,43 @@ public class HotelDAO {
 
 		return res;
 	}
+	public static int ConseguirIDHotelDadoNombre2(String hotel) {
+		int res = 0;
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conexion.getConexion().createStatement();
+			rs = stmt.executeQuery("SELECT hotel_id FROM Hotel WHERE nombre='" + hotel+"';");
+
+			if (rs.next()) {
+				res = rs.getInt("hotel_id");
+			}
+
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+		}
+		conexion.desconectar();
+
+		return res;
+	}
 
 	// Dado un HotelBean lo mete en la base de datos
 

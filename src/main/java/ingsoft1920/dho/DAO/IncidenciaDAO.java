@@ -285,5 +285,8 @@ public class IncidenciaDAO {
 		conexion.desconectar();
 		return res;
 	}
+	public static void main (String[]args) {
+		System.out.print(getIncidenciasSinAsignar());
+	}
 		
 	} 
