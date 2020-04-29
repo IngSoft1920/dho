@@ -28,12 +28,13 @@ public class IncidenciaDAO {
 	 * -1 e.oc
 	 */
 	public static int BuscarServicioDeHabitacionEnFechayLugar(String lugar, String fecha) {
-		
+		if (conexion.getConexion()== null)
+			conexion.conectar();
 		
 		int res = -1; 
 		 
-		java.sql.Statement stmt = null;  
-		ResultSet rs = null;  
+		java.sql.Statement stmt = null; 
+		ResultSet rs = null; 
 		try {  
 			stmt = conexion.getConexion().createStatement() ; 
 			rs =  stmt.executeQuery("SELECT incidencia_id\r\n" + 
@@ -53,8 +54,6 @@ public class IncidenciaDAO {
 		return res; 
 		
 	}
-	
-	
 	
 	
 	public static void eliminiarIncidenciaDadoSuId(int id_incidencia) {
