@@ -94,6 +94,7 @@ import ingsoft1920.dho.controller.PedirEmpleados;
 	
 	nuevaTarea.setHoraFin(incidenciautilizada.getHora().toLocalTime().plusMinutes(30).toString());
 	
+	
 	TareaDAO.añadirTarea(nuevaTarea);
 		
 	}

@@ -23,6 +23,38 @@ public class IncidenciaDAO {
 	
 	
 	
+	/*Deulve != -1 si existe ya una incidencia de limpieza para 
+	 * la habitacion de numero lugar y en la fecha pasada.
+	 * -1 e.oc
+	 */
+	public static int BuscarServicioDeHabitacionEnFechayLugar(String lugar, String fecha) {
+		
+		
+		int res = -1; 
+		 
+		java.sql.Statement stmt = null;  
+		ResultSet rs = null;  
+		try {  
+			stmt = conexion.getConexion().createStatement() ; 
+			rs =  stmt.executeQuery("SELECT incidencia_id\r\n" + 
+					"FROM Incidencia\r\n" + 
+					"WHERE fecha_incidencia <= '" +fecha+ "'  AND fecha_incidencia >= '" +fecha+ "' AND lugar_incidencia= '" +lugar+ "'"
+							+ " AND tipo_incidencia= \"limpieza\""); 
+			if (rs.next()){ 
+				res = rs.getInt("incidencia_id");  
+			} 
+		}  
+		catch (SQLException ex){  
+			System.out.println("SQLException: " + ex.getMessage()); 
+		} finally { // it is a good idea to release resources in a finally block  
+			if (rs != null) { try { rs.close(); } catch (SQLException sqlEx) { } rs = null; }  
+			if (stmt != null) { try {  stmt.close(); } catch (SQLException sqlEx) { }  stmt = null; }  
+		} 
+		return res; 
+		
+	}
+	
+	
 	
 	
 	public static void eliminiarIncidenciaDadoSuId(int id_incidencia) {
@@ -230,12 +262,13 @@ public class IncidenciaDAO {
 		try {  
 			//Consulta para saber el id de la nueva incidencia a crear 
 			stmt1 = conexion.getConexion().createStatement() ; 
-			rs1 =  stmt1.executeQuery("SELECT COUNT(incidencia_id)\r\n" + 
+			rs1 =  stmt1.executeQuery("SELECT MAX(incidencia_id)\r\n" + 
 					"FROM Incidencia;"); 
 			if (rs1.next()){ 
-				incidencia_id=rs1.getInt("COUNT(incidencia_id)")+1;//id de la nueva tarea 
+				incidencia_id=rs1.getInt("MAX(incidencia_id)")+1;//id de la nueva tarea 
 				stm=conexion.getConexion().prepareStatement("INSERT INTO Incidencia values (?,?,?,?,?,?,?,?)"); 
 				stm.setInt(1,incidencia_id); 
+				System.out.println(incidencia_id);
 				stm.setString(2, incidencia.getDescripcion()); 
 				stm.setString(3, incidencia.getLugar()); 
 				stm.setDate(4, incidencia.getFecha()); 
@@ -245,6 +278,8 @@ public class IncidenciaDAO {
 				stm.setInt(8, incidencia.getCliente_id());
 				
 				stm.executeUpdate(); 
+			
+			
 			} 
  
 		}  
@@ -284,9 +319,6 @@ public class IncidenciaDAO {
 		}
 		conexion.desconectar();
 		return res;
-	}
-	public static void main (String[]args) {
-		System.out.print(getIncidenciasSinAsignar());
 	}
 		
 	} 

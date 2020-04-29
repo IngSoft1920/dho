@@ -253,13 +253,13 @@ h2{
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${incidenciasSinAsignar}" var="item2">	
+        <c:forEach items="${incidenciasSinAsignar}" var="item3">	
 	<tr>			
-			<td><h4>${item2.getId_incidencia()}</h4></td>	
-			<td><h4>${item2.getTipo_incidencia()}</h4></td> 	
-			<td><h4>${item2.getDescripcion()}</h4></td> 	
-			<td><h4>${item2.getLugar()}</h4></td> 	
-			<td><h4>${item2.getFecha()}</h4></td> 		    
+			<td><h4>${item3.getId_incidencia()}</h4></td>	
+			<td><h4>${item3.getTipo_incidencia()}</h4></td> 	
+			<td><h4>${item3.getDescripcion()}</h4></td> 	
+			<td><h4>${item3.getLugar()}</h4></td> 	
+			<td><h4>${item3.getFecha()}</h4></td> 		    
 	</tr>
 	</c:forEach>
               

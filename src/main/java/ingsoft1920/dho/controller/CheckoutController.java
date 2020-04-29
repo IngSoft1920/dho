@@ -1,5 +1,7 @@
 package ingsoft1920.dho.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -14,9 +16,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ingsoft1920.dho.DAO.EstanciaDAO;
+import ingsoft1920.dho.DAO.IncidenciaDAO;
 import ingsoft1920.dho.Model.CheckinModel;
 import ingsoft1920.dho.Model.CheckoutModel;
 import ingsoft1920.dho.bean.EstanciaBean;
+import ingsoft1920.dho.bean.IncidenciaBean;
 import ingsoft1920.dho.bean.ClienteBean;
 import ingsoft1920.dho.DAO.ClienteDAO;
 import ingsoft1920.dho.bean.ServicioBean;
@@ -56,6 +60,7 @@ import ingsoft1920.dho.DAO.ServicioDAO;
 			model.addAttribute("telefono", cliente.getTelefono());
 			model.addAttribute("preferencias",cliente.getPreferencias());
 			model.addAttribute("servicios",servicios);
+			model.addAttribute("fecha_aux", fecha);
 			
 			
 			
@@ -75,6 +80,58 @@ import ingsoft1920.dho.DAO.ServicioDAO;
 
 		
 		return "redirect:/homePageDHO/menu/disponibilidad/checkout1/{num_hab}/{fecha}";
+		
+		}
+		
+		
+		
+		
+		/*este boton va a funcionar de la siguiente forma, se va a poder clickar sobre el para
+		 * generar la incidencia de realizar el servicio de la habitacion, 
+		 * (comportamiento avanzado:si no se ha realizado hoy este servicio para la habitacion
+		 * se creara una incidencia autmaticamente y te dejara ir a la pagina de gestion de las
+		 * incidencias, en caso contrario te dira que ya has asignado el servicio) 
+		 */
+		@PostMapping("/homePageDHO/menu/disponibilidad/checkout1/servivioHabitaciones/{num_hab}/{fecha}/{hotel_id}/{cliente_id}")
+		public String checkoutPost(Model model,@PathVariable int num_hab,@PathVariable String fecha,
+				@PathVariable int hotel_id,@PathVariable int cliente_id) {
+		
+			
+		
+		
+			//comprobamos si ya se ha hecho limpieza de la habitacion ese dia
+			
+			if (IncidenciaDAO.BuscarServicioDeHabitacionEnFechayLugar("H "+num_hab, fecha) !=-1) {
+				//ya se ha asiganado la incidencia
+				
+				
+				
+				model.addAttribute("realizada", "YA SE HA ASIGANDO HOY" );
+				
+				return checkoutGet(model, num_hab, fecha);
+				
+			}else {
+				
+				//vamos a crear la incidencia
+				
+				System.out.print("Estoy aqui");
+				
+				IncidenciaBean nuevaIncidencia= new IncidenciaBean(0, "limpieza", "limpieza rutinaria habitacion", "H "+num_hab,
+						java.sql.Date.valueOf(LocalDate.parse(fecha)), hotel_id,java.sql.Time.valueOf(LocalTime.now()) , cliente_id);
+			
+
+				//hay que añadirla a la bbdd
+				
+				IncidenciaDAO.añadirIncidencia(nuevaIncidencia);
+				
+				//ya esta añadidia
+				
+				return "redirect:/homePageDHO/menu/asignarTareas";
+				
+				
+			}
+			
+		
 		
 		}
 	

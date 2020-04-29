@@ -144,10 +144,10 @@ public class TareaDAO {
 		try {  
 			//Consulta para saber el id de la nueva incidencia a crear 
 			stmt1 = conexion.getConexion().createStatement() ; 
-			rs1 =  stmt1.executeQuery("SELECT COUNT(tarea_id)\r\n" + 
+			rs1 =  stmt1.executeQuery("SELECT MAX(tarea_id)\r\n" + 
 					"FROM Tarea;"); 
 			if (rs1.next()){ 
-				tarea_id=rs1.getInt("COUNT(tarea_id)")+1;//id del nuevo servicio 
+				tarea_id=rs1.getInt("MAX(tarea_id)")+1;//id del nuevo servicio 
 				stm=conexion.getConexion().prepareStatement("INSERT INTO Tarea values (?,?,?,?,?,?,?,?,?,?,?)"); 
 				stm.setInt(1,tarea_id); 
 				stm.setInt(2, tarea.getId_incidencia()); 

@@ -236,6 +236,16 @@ input[type=button], input[type=submit]{
 	<br></br>
 	
 	
+	<form method="POST" action="/homePageDHO/menu/disponibilidad/checkout1/servivioHabitaciones/${habitacion_id}/${fecha_aux}/${hotel_id}/${cliente_id}" > 
+		<td>${realizada}</td>	
+		<br><br>
+		<input type="submit" value="servicio"> 
+	</form> 	
+	
+	
+	
+	
+	
 
 	
 	
