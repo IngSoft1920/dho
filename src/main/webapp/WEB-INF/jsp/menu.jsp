@@ -19,30 +19,7 @@ public int nullIntconv(String inv)
 }
 %>
 <%
-SimpleDateFormat formatter=new SimpleDateFormat("dd-MM-yyyy");
-DecimalFormat priceFormatter = new DecimalFormat("%0.0");
- int anio=nullIntconv(request.getParameter("anio"));
- int mes=nullIntconv(request.getParameter("mes"));
 
- Calendar ca = new GregorianCalendar();
- int iTDay=ca.get(Calendar.DATE);
- int iTYear=ca.get(Calendar.YEAR);
- int iTMonth=ca.get(Calendar.MONTH);
-
- if(anio==0)
- {
-      anio=iTYear;
-      mes=iTMonth;
- }
-
- GregorianCalendar cal = new GregorianCalendar (anio, mes, 1); 
-
- int days=cal.getActualMaximum(Calendar.DAY_OF_MONTH);
- int weekStartDay=cal.get(Calendar.DAY_OF_WEEK);
- 
- cal = new GregorianCalendar (anio, mes, days); 
- int iTotalweeks=cal.get(Calendar.WEEK_OF_MONTH);
-  
 %>
 
 
@@ -55,7 +32,6 @@ DecimalFormat priceFormatter = new DecimalFormat("%0.0");
 			<li><a href="/homePageDHO/menu/disponibilidad">Disponibilidad</a></li>
 			<li><a href="/homePageDHO/menu/reservas1">Reservas</a></li>
 			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
-			<li><a href="/homePageDHO/menu/calendario">Vista de calendario</a></li>
 		</ul>
 	</nav>
 </header>
@@ -143,9 +119,9 @@ margin-right:auto;
 
 <script type="text/javaScript">
 //background ="https://www.todopaisajes.com/1920x1080/hotel-en-la-playa.jpg" background-size=contain
-function goTo()
+function refresh()
 {
-  document.postTabla.submit()
+  
 }
 </script>
 
@@ -172,8 +148,8 @@ h1 {font: normal 40pt "arial black"; text-align: center; }
 #diasc { border: 1px solid black; border-collapse: 
          separate; border-spacing: 4px; }
 #diasc th,#diasc td { font: normal 14pt arial; width: 130px; height: 90px; }
-//#diasc th { background-color: #1fbc22 }
-//#diasc td { background-color: #1fbc22 }
+#diasc th { background-color: #1fbc22 }
+#diasc td { background-color: #1fbc22 }
 #anterior { float: left; width: 100px; font: bold 10pt arial;
           padding: 0.5em 0.1em; cursor: pointer ; }
 #posterior { float: right; width: 100px; font: bold 10pt arial; 
@@ -193,7 +169,7 @@ h1 {font: normal 40pt "arial black"; text-align: center; }
 </head>
 
 <body><br/><br/>
-<h1><align="center" font size=20 >Menú</font></h1>
+<h1><align="center" font size=20 >Ocupación del hotel</font></h1>
 <br/><br/>
 
 <div id="calendario">
@@ -216,15 +192,11 @@ h1 {font: normal 40pt "arial black"; text-align: center; }
         
         <td width="40%"> <h3 align="center">  Cambiar mes:  </h3>
   		
-    	<div id="anterior" style="padding-left:20px;">
-  		<form:form method="POST" action="/homePageDHO/menu/ant/${fechaConsultaString}">
-    		<input type="submit" value="Anterior" />
-		</form:form>
+    	<div id="anterior"  style="padding-left:20px;">
+  			<a href="/homePageDHO/menu/ant"> Anterior </a>
     	</div>
   		<div id="posterior">
-		<form:form method="POST" action="/homePageDHO/menu/post/${fechaConsultaString}">
-    		<input type="submit" value="Posterior" />
-		</form:form>
+			<a href="/homePageDHO/menu/post"> Posterior </a>
 		</div>
   		</td>
   		
@@ -248,7 +220,11 @@ h1 {font: normal 40pt "arial black"; text-align: center; }
         int n = 0;
         int[] misPorcentajes = (int[]) request.getAttribute("misPorcentajes");
         String[] misColores = (String[]) request.getAttribute("misColores");
-        
+        int mesnum = (int) request.getAttribute("MesNum");
+        int anno = (int) request.getAttribute("Año");
+        int iTotalweeks = (int) request.getAttribute("iTotalweeks");
+        int weekStartDay =  (int) request.getAttribute("weekStartDay");
+        int days =  (int) request.getAttribute("days");
         for(int i=1;i<=iTotalweeks;i++)
         {
         %>
@@ -263,9 +239,21 @@ h1 {font: normal 40pt "arial black"; text-align: center; }
                <% 
                 }
                 else
-                { 
+                { 	String fecha = "";
+          			if(mesnum == 10 || mesnum == 11 || mesnum == 12){
+          				if((cnt-weekStartDay+1)<10)
+          					{fecha = "menu/disponibilidad/" + anno + "-" + mesnum + "-0" + ""+(cnt-weekStartDay+1);}
+          				else{
+          					fecha = "menu/disponibilidad/" + anno + "-" + mesnum + "-" + ""+(cnt-weekStartDay+1);}
+          			}
+                	else{
+                		if((cnt-weekStartDay+1)<10){
+          					fecha = "menu/disponibilidad/" + anno + "-0" + mesnum + "-0" + ""+(cnt-weekStartDay+1);}
+          				else{
+          					fecha = "menu/disponibilidad/" + anno + "-0" + mesnum + "-" + ""+(cnt-weekStartDay+1);}
+                	}
                  %>
-                <td align="center" height="50" width="50" id="day_<%=(cnt-weekStartDay+1)%>" bgcolor="<%=misColores[n]%>">   <h3>  <a href=<""> <%=(cnt-weekStartDay+1)%> </a> </h3>  <span> <%=misPorcentajes[n]%>% </span>     </td>
+                <td align="center" height="50" width="50" id="day_<%=(cnt-weekStartDay+1)%>" bgcolor="<%=misColores[n]%>">   <h3>  <a href=<%=fecha%>> <%=(cnt-weekStartDay+1)%> </a> </h3>  <span> <%=misPorcentajes[n]%>% </span>     </td>
                <% n++;
                 }
                 cnt++;

@@ -4,7 +4,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -45,9 +47,12 @@ public class MenuController {
 		String fechaConsultaString = fechaConsulta.toString();
 		model.addAttribute("fechaConsultaString",fechaConsultaString);
 		model.addAttribute("Dia",fechaConsulta.getDayOfMonth());
+		//System.out.println(fechaConsulta.getMonthValue()+"\n\n\n");
 		model.addAttribute("Mes",meses[fechaConsulta.getMonthValue()-1]);
+		model.addAttribute("MesNum",fechaConsulta.getMonthValue());
 		model.addAttribute("Año",fechaConsulta.getYear());
-		//String link = "homePageDHO/menu/{" + fechaConsultaString+"}";
+		String link = "menu/disponibilidad/" + fechaConsultaString;
+		model.addAttribute("link", link);
 		ArrayList<Double> listaOcupaciones = HotelDAO.porcentajeOcupacionMes(fechaConsulta.getMonthValue(), fechaConsulta.getYear());
 		String[] misColores = new String[listaOcupaciones.size()];
 		
@@ -61,22 +66,58 @@ public class MenuController {
 		//model.addAttribute("link", link);
 		model.addAttribute("misPorcentajes", misPorcentajes);
 		model.addAttribute("misColores", misColores);
-			
+		
+		
+		
+		int iYear=fechaConsulta.getYear();
+		int iMonth=fechaConsulta.getMonthValue()-1;
+
+		Calendar ca = new GregorianCalendar();
+		int iTDay=ca.get(Calendar.DATE);
+		int iTYear=ca.get(Calendar.YEAR);
+		int iTMonth=ca.get(Calendar.MONTH);
+
+		if(iYear==0)
+		{
+		     iYear=iTYear;
+		     iMonth=iTMonth;
+		}
+
+		GregorianCalendar cal = new GregorianCalendar (iYear, iMonth, 1); 
+
+		int days=cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+		int weekStartDay=cal.get(Calendar.DAY_OF_WEEK);
+		 
+		cal = new GregorianCalendar (iYear, iMonth, days); 
+		int iTotalweeks=cal.get(Calendar.WEEK_OF_MONTH);
+		if(iMonth==4/*MAYO*/) iTotalweeks+=2;
+		model.addAttribute("iYear", iYear);
+		model.addAttribute("iMonth", iMonth);
+		model.addAttribute("iTDay", iTDay);
+		model.addAttribute("iTYear", iTYear);
+		model.addAttribute("iTMonth", iTMonth);
+		model.addAttribute("cal", cal);
+		model.addAttribute("weekStartDay", weekStartDay);
+		model.addAttribute("iTotalweeks", iTotalweeks);
+		model.addAttribute("days", days);
+		//System.out.println(iTotalweeks+"\n\n\n");
+		//System.out.println(days+"\n\n\n");
+		
 		return "menu";
 	 }
 	 
-	@PostMapping(value = "homePageDHO/menu/ant/{fechaConsultaString}")
-	public String diaAnterior(  @PathVariable String fechaConsultaString, Model model) {
-		fechaConsulta = LocalDate.parse(fechaConsultaString).plusMonths(-1);
+	@GetMapping(value = "homePageDHO/menu/ant")
+	public String diaAnterior( Model model) {
+		fechaConsulta = fechaConsulta.minusMonths(1);
 	    //System.out.println(fechaConsultaString);
-	    return "redirect:/homePageDHO/menu/";
+	    return "redirect:/homePageDHO/menu";
 	}
 		 
-	@PostMapping(value = "homePageDHO/menu/post/{fechaConsultaString}")
-	public String diaPosterior(  @PathVariable String fechaConsultaString, Model model) {
-		fechaConsulta = LocalDate.parse(fechaConsultaString).plusMonths(1);
+	@GetMapping(value = "homePageDHO/menu/post")
+	public String diaPosterior( Model model) {
+		fechaConsulta = fechaConsulta.plusMonths(1);
 		//System.out.println(fechaConsultaString);
-		return "redirect:/homePageDHO/menu/";
+		return "redirect:/homePageDHO/menu";
 	}
 	 
 	@InitBinder

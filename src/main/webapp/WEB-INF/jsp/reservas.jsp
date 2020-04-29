@@ -59,7 +59,7 @@ nav ul li a {
 }
  
 nav ul li:hover {
-  background: #3ead47;
+  background: #4982D1;
 }
 
 .contenido {

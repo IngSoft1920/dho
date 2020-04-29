@@ -88,7 +88,7 @@ public class DisponibilidadController {
         return "redirect:/homePageDHO/menu/disponibilidad";
     }
 	
-	@PostMapping(value = "homePageDHO/menu/disponibilidad/{fechaConsultaString}")
+	@GetMapping(value = "homePageDHO/menu/disponibilidad/{fechaConsultaString}")
     public String buscaDía(  @PathVariable String fechaConsultaString, Model model) {
 		fechaConsulta = LocalDate.parse(fechaConsultaString);
         //System.out.println(fechaConsultaString);
