@@ -18,9 +18,9 @@ public class HotelDAO {
 		this.conexion = conexion;
 	}
 
-	public static int ConseguirIDHotelDadoNombre(String nombre_hotel) {
+	/*public static int ConseguirIDHotelDadoNombre(String nombre_hotel) {
 		return 99;
-	}
+	}*/
 
 	public static String ConseguirNombreHotelDadoID(int id_hotel) {
 		String res = null;

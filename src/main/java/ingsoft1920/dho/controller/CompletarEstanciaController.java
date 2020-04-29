@@ -55,7 +55,7 @@ public class CompletarEstanciaController {
 		
 		
 		
-		int hotel_id=HotelDAO.ConseguirIDHotelDadoNombre(hotel);
+		int hotel_id=HotelDAO.ConseguirIDHotelDadoNombre2(hotel);
 		
 		int tipo_hab_id=HabitacionDAO.idTipoHabitacion(Thabitacion);
 		
