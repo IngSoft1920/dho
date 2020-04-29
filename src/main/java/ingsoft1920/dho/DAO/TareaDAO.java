@@ -20,6 +20,108 @@ public class TareaDAO {
 		this.conexion=conexion;
 	}
 
+	
+	
+	public static void eliminarTareaDadoSuId(int id_tarea) {
+		
+		
+		TareaBean tarea= conseguirTareaDadoSuId(id_tarea);
+		
+		if (tarea!=null) {
+			
+			int res = 0;
+			if (conexion.getConexion() == null)
+				conexion.conectar();
+			java.sql.Statement stmt = null;
+			PreparedStatement stm = null;
+			ResultSet rs = null;
+			try {
+				stm = conexion.getConexion()
+						.prepareStatement("delete from Tarea where tarea_id=" + id_tarea + ";");
+				stm.executeUpdate();
+				
+
+			} catch (
+
+			SQLException ex) {
+				System.out.println("SQLException: " + ex.getMessage());
+			} finally { // it is a good idea to release resources in a finally block
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException sqlEx) {
+					}
+					rs = null;
+				}
+				if (stmt != null) {
+					try {
+						stmt.close();
+					} catch (SQLException sqlEx) {
+					}
+					stmt = null;
+				}
+			}
+			conexion.desconectar();
+			IncidenciaDAO.eliminiarIncidenciaDadoSuId(tarea.getId_incidencia());
+		}
+			
+			
+		}
+		
+	
+	
+	
+	
+	public static TareaBean conseguirTareaDadoSuId(int id_tarea) {
+		/*completar codigo, si se elimina la tarea supongo que habra que eliminar la incidencia
+		 * pues se van a elimiar en teoria tareas ya realizadas
+		 */
+		
+			if (conexion.getConexion() == null)
+			conexion.conectar();
+
+		TareaBean tarea = null ;
+		
+
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conexion.getConexion().createStatement();
+			rs = stmt.executeQuery("SELECT * FROM Tarea  WHERE tarea_id = " + id_tarea);
+			while(rs.next()) {
+				tarea=new TareaBean(rs.getInt("tarea_id"), rs.getInt("incidencia_id"), rs.getInt("empleado_id"),
+						rs.getString("descripcion"), rs.getString("tipo_tarea"), rs.getString("lugar_tarea"),
+
+						rs.getBoolean("estado"), rs.getDate("fecha_tarea"),rs.getTime("hora"), rs.getInt("hotel_id"),
+						
+						rs.getString("hora_fin"));
+
+			}
+
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+		}
+		conexion.desconectar();
+		return tarea;
+		
+	}
+	
+	
 	public static int añadirTarea(TareaBean tarea) {
 
 		/*
@@ -42,10 +144,10 @@ public class TareaDAO {
 		try {  
 			//Consulta para saber el id de la nueva incidencia a crear 
 			stmt1 = conexion.getConexion().createStatement() ; 
-			rs1 =  stmt1.executeQuery("SELECT COUNT(tarea_id)\r\n" + 
+			rs1 =  stmt1.executeQuery("SELECT MAX(tarea_id)\r\n" + 
 					"FROM Tarea;"); 
 			if (rs1.next()){ 
-				tarea_id=rs1.getInt("COUNT(tarea_id)")+1;//id del nuevo servicio 
+				tarea_id=rs1.getInt("MAX(tarea_id)")+1;//id del nuevo servicio 
 				stm=conexion.getConexion().prepareStatement("INSERT INTO Tarea values (?,?,?,?,?,?,?,?,?,?,?)"); 
 				stm.setInt(1,tarea_id); 
 				stm.setInt(2, tarea.getId_incidencia()); 
@@ -57,7 +159,7 @@ public class TareaDAO {
 				stm.setString(8,tarea.getTipo_tarea()); 
 				stm.setInt(9,tarea.getHotel_id());
 				stm.setTime(10,tarea.getHora());
-				stm.setTime(11,tarea.getHoraFin());
+				stm.setString(11,tarea.getHoraFin());
 				stm.executeUpdate(); 
 			} 
  
@@ -184,7 +286,7 @@ public class TareaDAO {
 
 						rs.getBoolean("estado"), rs.getDate("fecha_tarea"),rs.getTime("hora"), rs.getInt("hotel_id"),
 						
-						rs.getTime("hora_fin")));
+						rs.getString("hora_fin")));
 
 
 			}
@@ -285,7 +387,7 @@ public class TareaDAO {
 								rs.getString("tipo_tarea"),rs.getString("lugar_tarea"),
 
 								rs.getBoolean("estado"),rs.getDate("fecha_tarea"),rs.getTime("hora"), rs.getInt("hotel_id"),
-								rs.getTime("horaFin")));  
+								rs.getString("horaFin")));  
 
 					} 
 				}  

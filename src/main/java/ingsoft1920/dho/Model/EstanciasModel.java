@@ -19,6 +19,7 @@ public class EstanciasModel {
 	private String password;
 	private String nacionalidad;
 	private Integer telefono;
+	private String preferencias;
 	
 	public EstanciasModel() {
 		
@@ -34,15 +35,15 @@ public EstanciasModel(ClienteBean clienteBean) {
 		this.password=clienteBean.getPassword();
 		this.nacionalidad=clienteBean.getNacionalidad();
 		this.telefono=clienteBean.getTelefono();
+		this.preferencias = clienteBean.getPreferencias();
 		
 		
 	}
 
-public int nuevoCliente(EstanciasModel estanciasModel) {
+public void nuevoCliente(EstanciasModel estanciasModel) {
 	
-	int res=ClienteDAO.anadirClienteSinID(new ClienteBean(cliente_id,nombre,apellidos,dni,email,password,nacionalidad,telefono));
-	
-	return res;
+	ClienteDAO.anadirCliente(new ClienteBean(cliente_id,nombre,apellidos,dni,email,password,nacionalidad,telefono, preferencias));
+		
 		
 	}
 

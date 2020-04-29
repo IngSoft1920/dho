@@ -43,7 +43,7 @@ import ingsoft1920.dho.controller.Conexion;
  */
 
 @Controller
-public class generatePDFFileIText {
+public class PDF {
 	// Fonts definitions (Definición de fuentes).
 	private static final Font titleFont = FontFactory.getFont(FontFactory.COURIER_OBLIQUE, 26, Font.ITALIC);
 	private static final Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 26, Font.BOLDITALIC);
@@ -51,7 +51,7 @@ public class generatePDFFileIText {
 
 	private static final Font categoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
 	private static final Font subcategoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
-	private static final Font blueFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL);
+	private static final Font blueFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
 	private static final Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
 
 	private static final String iTextExampleImage = "/home/xules/codigoxules/iText-Example-image.png";
@@ -78,7 +78,7 @@ public class generatePDFFileIText {
 		// We create the document and set the file name.        
 		// Creamos el documento y generamos el nombre del fichero.
 		String name=UUID.randomUUID().toString();
-		File file=new File("/hs/dho/files/"+name+".pdf");
+		File file=new File("C:/Users/sergi/OneDrive/Desktop/files/"+name+".pdf");
 		Date date=new Date(LocalDate.now().getYear()-1900,LocalDate.now().getMonthValue()-1,LocalDate.now().getDayOfMonth());
 		try {
 			Document document = new Document();
@@ -114,53 +114,56 @@ public class generatePDFFileIText {
 			//Creamos el primer capitulo 
 			Chapter chapter = new Chapter(p, 1);
 			chapter.setNumberDepth(0);
-			//Subtitulo (Datos cliente)
-	        chapter.add(new Paragraph("\n", paragraphFont));
-			chapter.add(new Paragraph("Datos Receptor:", subcategoryFont));
-	        chapter.add(new Paragraph("\n", paragraphFont));
-	        ClienteBean cliente=FacturaDAO.datosCliente(cliente_id);
-	        p=new Paragraph("",paragraphFont);
-	        p.add("Nombre: "+cliente.getNombre()+"\n"+"Apellidos: "+cliente.getApellidos()+"\n"+"DNI: "+cliente.getDNI()+"\n Telefono: "+cliente.getTelefono()+"\n Email: "+cliente.getEmail());
-	        chapter.add(p);
-	        //Subtitulo (Datos Hotel)
-	        chapter.add(new Paragraph("\n", paragraphFont));
-			chapter.add(new Paragraph("Datos Hotel:", subcategoryFont));
-	        chapter.add(new Paragraph("\n", paragraphFont));
-	        HotelBean hotel=FacturaDAO.datosHotel(cliente_id);
-	        p=new Paragraph("",paragraphFont);
-	        p.add("Nombre: "+hotel.getNombre()+"\n"+"Pais: "+hotel.getPais()+"\n"+"Ciudad: "+hotel.getCiudad());
-	        chapter.add(p);
 			//Subtitulo (Todas las Facturas)
 	        chapter.add(new Paragraph("\n", paragraphFont));
 			chapter.add(new Paragraph("Resumen:", subcategoryFont));
 	        chapter.add(new Paragraph("\n", paragraphFont));
-			table = new PdfPTable(4);
+			table = new PdfPTable(3);
 			c1 = new PdfPCell(new Phrase("Fecha"));
 	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	        table.addCell(c1);
 
-	        c1 = new PdfPCell(new Phrase("Descripción"));
+	        c1 = new PdfPCell(new Phrase("Descripcion"));
 	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	        table.addCell(c1);
 
 	        c1 = new PdfPCell(new Phrase("Importe"));
 	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	        table.addCell(c1);
-	        
-	        c1 = new PdfPCell(new Phrase("Pagado"));
+	        table.setHeaderRows(1);
+			//Obtenemos todas las facturas
+			for (FacturaBean elem: FacturaDAO.todasFacturasCliente(cliente_id)) {
+		        table.addCell(elem.getFecha_factura().toString());
+		        table.addCell(elem.getTipo_factura());
+		        table.addCell(String.valueOf(elem.getPrecio()));
+			}
+			chapter.add(table);
+			//Subtitulo (Facturas por pagar)
+	        chapter.add(new Paragraph("\n", paragraphFont));
+			chapter.add(new Paragraph("Detalles:", subcategoryFont));
+	        chapter.add(new Paragraph("\n", paragraphFont));
+			table = new PdfPTable(3);
+			c1 = new PdfPCell(new Phrase("Fecha"));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+
+	        c1 = new PdfPCell(new Phrase("Descripcion"));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+
+	        c1 = new PdfPCell(new Phrase("Importe"));
 	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	        table.addCell(c1);
 	        table.setHeaderRows(1);
-			//Obtenemos todas las facturas
-	        int pago_total=0;
-			for (FacturaBean elem: FacturaDAO.todasFacturasCliente(cliente_id)) {
+			int pago_total=0;
+			for (FacturaBean elem: FacturaDAO.porPagarFacturasCliente(cliente_id)) {
 				pago_total+=elem.getPrecio();
 		        table.addCell(elem.getFecha_factura().toString());
 		        table.addCell(elem.getTipo_factura());
 		        table.addCell(String.valueOf(elem.getPrecio()));
-		        table.addCell("No");
 			}
 			chapter.add(table);
+	        chapter.add(new Paragraph("\n", paragraphFont));
 			//Subtitulo (Precio de la estancia)
 			chapter.add(new Paragraph("Estancia :", subcategoryFont));
 			EstanciaBean aux = FacturaDAO.precioEstanciaCliente(cliente_id);
@@ -215,17 +218,23 @@ public class generatePDFFileIText {
 			System.out.println("The file not exists (Se ha producido un error al generar un documento): " + documentException);
 		}
 	}
+	
+	public void borrarPDF(String name) {
+		 File f = new File("C:/Users/sergi/OneDrive/Desktop/files/" + name + ".pdf");
+		 f.delete();
+	}
 
 	/**
 	 * @param args the command line arguments
 	 */
 
-	@ResponseBody
-	@GetMapping("/generatePDF/{cliente_id}")
-	public String generatePDF(@PathVariable("cliente_id") int cliente_id) {
-		generatePDFFileIText generatePDFFileIText = new generatePDFFileIText();
-		generatePDFFileIText.createPDF(cliente_id);
-		return "";
+	public static void main(String args[]) {
+		PDF generatePDFFileIText = new PDF();
+		/*
+		generatePDFFileIText.createPDF(3);
+		System.out.println("PDF generado con exito");
+		*/
+		generatePDFFileIText.borrarPDF("1f53ff58-0d22-4f72-9b46-4467759ec31d");
 
 	}
 }

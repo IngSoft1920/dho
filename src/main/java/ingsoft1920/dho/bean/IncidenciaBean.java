@@ -28,6 +28,7 @@ public class IncidenciaBean {
 	//AÑADIR ESTE CAMPO A LA BASE DE DATOS: COMO TAREA ES UNA TABLA GENERADA DE LA RELACION DE 
 	//EMPLEADO Y INCIDENCIA, ESTE CAMPO TAMBIEN SE AÑADE EN LA TABLA TAREA
 	private Time hora;
+	private int cliente_id;
 	
 	
 
@@ -36,7 +37,7 @@ public class IncidenciaBean {
 	}
 
 	public IncidenciaBean(int id_incidencia, String tipo_incidencia, String descripcion, String lugar, Date fecha, int hotel_id
-			,Time hora) {
+			,Time hora,int cliente_id) {
 		this.id_incidencia = id_incidencia;
 		this.tipo_incidencia = tipo_incidencia;
 		this.descripcion = descripcion;
@@ -44,9 +45,18 @@ public class IncidenciaBean {
 		this.fecha = fecha;
 		this.setHotel_id(hotel_id);
 		this.hora=hora;
+		this.cliente_id=cliente_id;
 	}
 	
 	
+	public int getCliente_id() {
+		return cliente_id;
+	}
+
+	public void setCliente_id(int cliente_id) {
+		this.cliente_id = cliente_id;
+	}
+
 	public int getId_incidencia() {
 		return id_incidencia;
 	}
@@ -87,10 +97,13 @@ public class IncidenciaBean {
 		this.fecha = fecha;
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "IncidenciaBean [id_incidencia=" + id_incidencia + ", tipo_incidencia=" + tipo_incidencia
-				+ ", descripcion=" + descripcion + ", lugar=" + lugar + ", fecha=" + fecha + "]";
+				+ ", descripcion=" + descripcion + ", lugar=" + lugar + ", fecha=" + fecha + ", hotel_id=" + hotel_id
+				+ ", hora=" + hora + ", cliente_id=" + cliente_id + "]";
 	}
 
 	public int getHotel_id() {

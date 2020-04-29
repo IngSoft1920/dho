@@ -7,13 +7,12 @@
 <header>
 	<nav>
 		<ul>
-			
 			<li><a href="/homePageDHO/menu">Inicio</a></li>
-			<li><a href="/homePageDHO/menu/checkout1">Check-out</a></li>
+			<li><a href="/homePageDHO/menu/disponibilidad">Disponibilidad</a></li>
+			<li><a href="/homePageDHO/menu/reservas1">Reservas</a></li>
 			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
-			
-			
-
+			<li><a href="/homePageDHO/menu/calendario">Vista de calendario</a></li>
+			<li><a href="/homePageDHO/menu/checkout1">Check-out</a></li>
 		</ul>
 	</nav>
 </header>
@@ -61,7 +60,7 @@ nav ul li a {
 }
  
 nav ul li:hover {
-  background: #3ead47;
+  background: #4982D1;
 }
 
 .contenido {
@@ -103,6 +102,9 @@ nav ul li:hover {
 		<br><br> 
 		<label>Telefono</label> 
 		<input type="text" name="telefono" autocomplete="off" /> 
+		<br><br> 
+		<label>Password</label> 
+		<input type="text" name="password" autocomplete="off" /> 
 		<br><br> 
 		
 		 

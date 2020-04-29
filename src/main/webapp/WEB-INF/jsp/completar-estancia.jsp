@@ -59,7 +59,7 @@ nav ul li a {
 }
  
 nav ul li:hover {
-  background: #3ead47;
+  background: #4982D1;
 }
 
 .contenido {
@@ -95,6 +95,9 @@ nav ul li:hover {
 		<br><br> 
 		<label>Tipo_Habitacion</label> 
 		<input type="text" name="Tipo_hab_String" autocomplete="off" /> 
+		<br><br>  
+		<label>Regimen</label> 
+		<input type="text" name="regimen" autocomplete="off" /> 
 		<br><br>  
 		<label>Nombre_Hotel</label> 
 		<input type="text" name="Nombre_Hotel" autocomplete="off" /> 
