@@ -126,7 +126,7 @@ import ingsoft1920.dho.DAO.ServicioDAO;
 				
 				//ya esta añadidia
 				
-				return "redirect:/homePageDHO/menu/asignarTareas";
+				return "redirect:/homePageDHO/menu/reservas1";
 				
 				
 			}
