@@ -6,12 +6,11 @@
 
 <header>
 	<nav>
-		<ul>
-			
+		<ul>	
 			<li><a href="/homePageDHO/menu">Inicio</a></li>
-			<li><a href="/homePageDHO/menu/checkout1">Check-out</a></li>
+			<li><a href="/homePageDHO/menu/disponibilidad">Disponibilidad</a></li>
+			<li><a href="/homePageDHO/menu/reservas1">Servicios</a></li>
 			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
-			<li><a href="/homePageDHO/menu/calendario">Vista de calendario</a></li>
 		</ul>
 	</nav>
 </header>
