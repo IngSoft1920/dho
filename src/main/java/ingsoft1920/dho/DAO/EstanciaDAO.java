@@ -29,9 +29,9 @@ public class EstanciaDAO {
 		ResultSet rs = null;
 		try {
 			stmt = conexion.getConexion().createStatement();
-			rs = stmt.executeQuery("SELECT estancia_id FROM Estancia ORDER BY estancia_id");
+			rs = stmt.executeQuery("SELECT MAX(estancia_id) AS n FROM Estancia ORDER BY estancia_id");
 			if (rs.next()) {
-				res = rs.getInt("estancia_id") - 1;
+				res = rs.getInt("n") ;
 			}
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
