@@ -53,40 +53,40 @@ public class PruebasBaseDatos {
 		 * No Funcionan:
 		 * 
 		 * Faltan por probar: recibirTarea asignacionHorarioServicios
-		 */
-
-		/*
+		 *
+		 *
+		 * 
 		 * HabitacionDAO prueba1= new HabitacionDAO(conexion);
 		 * System.out.println(prueba1.getHabitacionPorId(1));
-		 */
-		/*
+		 *
+		 *
 		 * IncidenciaDAO prueba2=new IncidenciaDAO(conexion);
 		 * System.out.println(prueba2.BuscarIncidenciaPor("habitacion 2"));
-		 */
-		/*
+		 *
+		 *
 		 * //Le he puesto id -1 porque el constructor te pide un id, pero este en verdad
 		 * se genera al momento de meterlo en la base de datos IncidenciaBean a = new
 		 * IncidenciaBean(-1,"limpiar","esto es una prueba","cocina",null);
 		 * IncidenciaDAO prueba3=new IncidenciaDAO(conexion);
 		 * prueba3.añadirIncidencia(a);
-		 */
-		/*
+		 *
+		 *
 		 * ServicioBean b = new
 		 * ServicioBean(-1,1,1,1,"cocina",null,null,"hacer una prueba"); ServicioDAO
 		 * prueba4=new ServicioDAO(conexion); prueba4.añadirServicio(b);
-		 */
-		/*
+		 *
+		 *
 		 * ServiciosDelHotelDAO prueba5 = new ServiciosDelHotelDAO(conexion); for
 		 * (ServiciosDelHotelBean elem: prueba5.darServiciosHotel()) {
 		 * System.out.println(elem); }
-		 */
-		/*
+		 *
+		 *
 		 * TareaDAO prueba6 = new TareaDAO(conexion); TareaBean c = new
 		 * TareaBean(-1,1,1,"prueba","limpiar","cocina",false,null);
 		 * prueba6.añadirTarea(c);
 		 * 
-		 */
-		/*
+		 *
+		 *
 		 * HabitacionDAO prueba7 = new HabitacionDAO(conexion);
 		 * System.out.println(prueba7.diasReserva(2));
 		 * 
@@ -106,14 +106,14 @@ public class PruebasBaseDatos {
 		 * System.out.println(res.get(i).toString()); }
 		 * 
 		 * FacturasDAO prueba12= new FacturasDAO(conexion);
-		 * //System.out.println(prueba12.generarFactura(9, 10));
+		 * System.out.println(prueba12.generarFactura(9, 10));
 		 * 
 		 * FacturasDAO prueba13 = new FacturasDAO(conexion);
-		 * //System.out.println(prueba13.generarFactura(1, 10));
+		 * System.out.println(prueba13.generarFactura(1, 10));
 		 * 
 		 * 
-		 */
-		/*
+		 *
+		 *
 		 * 
 		 * HabitacionDAO prueba14=new HabitacionDAO(conexion); for (HabitacionBean elem:
 		 * prueba14.getHabitacionByHotel(1)) { System.out.println(elem); }
@@ -136,18 +136,18 @@ public class PruebasBaseDatos {
 		 * 
 		 * TareaDAO prueba16 = new TareaDAO(conexion); for (TareaBean elem:
 		 * prueba16.enviarTareas()) { System.out.println(elem); }
-		 */
-		/*
+		 *
+		 *
 		 * EstanciaDAO prueba17 = new EstanciaDAO(conexion); prueba17.checkIn(2);
-		 */
-		/*
+		 *
+		 *
 		 * EstanciaDAO prueba18 = new EstanciaDAO(conexion); prueba18.checkOut(2);
-		 */
-		/*
+		 *
+		 *
 		 * EstanciaDAO prueba19 = new EstanciaDAO(conexion); for (EstanciaBean elem:
 		 * prueba19.geEstanciaBeans()) { System.out.println(elem); }
-		 */
-		/*
+		 *
+		 *
 		 * EstanciaDAO prueba20= new EstanciaDAO(conexion);
 		 * System.out.println(prueba20.getEstaciaId(1));
 		 * 
@@ -165,24 +165,24 @@ public class PruebasBaseDatos {
 		 * System.out.println(prueba23.genFacturaCobros(prueba24.cobrosCliente(1),
 		 * 1).toString());
 		 * 
-		 */
-		/*
+		 *
+		 *
 		 * IncidenciaDAO prueba24 = new IncidenciaDAO(conexion); for (IncidenciaBean
 		 * elem: IncidenciaDAO.getIncidenciasSinAsignar()) { System.out.println(elem); }
-		 */
-		/*
+		 *
+		 *
 		 * IncidenciaDAO prueba25 = new IncidenciaDAO(conexion); for (IncidenciaBean
 		 * elem: prueba25.getIncidenciasAsignadas()) { System.out.println(elem); }
-		 */
-		/*
+		 *
+		 *
 		 * IncidenciaDAO prueba26 = new IncidenciaDAO(conexion);
 		 * System.out.println(prueba26.getIncidenciaDadoId(1)); }
-		 */
-		/*
+		 *
+		 *
 		 * EstanciaDAO prueba27 = new EstanciaDAO(conexion); for (EstanciaBean elem:
 		 * prueba27.getReservas()) { System.out.println(elem); }
-		 */
-		/*
+		 *
+		 *
 		 * EstanciaDAO prueba28 = new EstanciaDAO(conexion); for (EstanciaBean elem:
 		 * prueba28.getCheckIn()) { System.out.println(elem); }
 		 * 
@@ -251,94 +251,132 @@ public class PruebasBaseDatos {
 		 * 
 		 * ClienteDAO prueba42= new ClienteDAO(conexion);
 		 * System.out.println(prueba42.datosCliente(1).toString());
+		 * 
+		 * 
+		 * ClienteDAO prueba43 = new ClienteDAO(conexion);
+		 * //prueba43.modificarDatosCliente(1, "telefono", "777666555");
+		 * //System.out.println(prueba43.getCliente(1).toString());
+		 * 
+		 * ClienteBean c1 = new ClienteBean(4,"Miguel","Perez", "12365487Z",
+		 * "mp@gmail.com", "Español", "0000", 654654654); ClienteDAO prueba44 = new
+		 * ClienteDAO(conexion); prueba44.anadirCliente(c1);
+		 * 
+		 * 
+		 * 
+		 * Date fecha = new Date(120,03,06);
+		 * 
+		 * Time hora = new Time(21,00,00); Time hora2 = new Time(22,30,00);
+		 * //System.out.println(fecha +" "+hora); ServicioDAO prueba45= new
+		 * ServicioDAO(conexion); prueba45.añadirServicio(new ServicioBean(0,5,9,4,
+		 * "restaurante", fecha, hora, " ", " ", " ", hora2, 100));
+		 * 
+		 * 
+		 * EstanciaDAO prueba46= new EstanciaDAO(conexion); ArrayList<EstanciaBean> est=
+		 * new ArrayList<EstanciaBean>(); est=prueba46.getReservas(); for(int i=0;
+		 * i<est.size(); i++) { System.out.println(est.get(i).toString()); }
+		 * 
+		 * 
+		 * EstanciaDAO prueba47 = new EstanciaDAO(conexion);
+		 * 
+		 * System.out.println(prueba47.getEstadoHabitaciones("2020-03-26").toString());
+		 * 
+		 * 
+		 * 
+		 * 
+		 * EstanciaDAO prueba48 = new EstanciaDAO(conexion);
+		 * System.out.println(prueba48.getEstanciaByHabitacionID(103).toString());
+		 * 
+		 * EstanciaDAO prueba49 = new EstanciaDAO(conexion); prueba49.checkIn(103);
+		 * System.out.println(prueba48.getEstanciaByHabitacionID(103));
+		 * 
+		 * 
+		 * 
+		 * ClienteDAO prueba50= new ClienteDAO(conexion);
+		 * System.out.println(prueba50.clientePorHabitacionID(103).toString());
+		 * 
+		 * //estancia_id, habitacion_id, hotel_id, fecha_inicio, fecha_fin, estado
+		 * importe cliente_id // estancia, hab, cli hotel fehca fehca estado importe
+		 * tipo_hab_id EstanciaDAO prueba51 = new EstanciaDAO(conexion);
+		 * prueba51.anadirEstanciaBean(new EstanciaBean(35,404, 4, -1, new
+		 * Date(120,03,05), new Date(120,03,10), "reserva", 100, 1));
+		 * 
+		 * ClienteBean c1 = new ClienteBean(4,"esto","es", "una", "prueba", "nada",
+		 * "mas", 000000000); ClienteDAO prueba51 = new ClienteDAO(conexion);
+		 * prueba51.anadirClienteSinID(c1); Date fecha= new Date(0); Time hora = new
+		 * Time(0); TareaDAO prueba52 = new TareaDAO(conexion); prueba52.añadirTarea(new
+		 * TareaBean(100,1,1,"","","",true,fecha,hora,0,hora));
+		 *
+		 * 
+		 * System.out.println(prueba45.idUltimoServicio());
+		 *
+		 * 
+		 * DhoAPI prueba55 = new DhoAPI(); prueba55.
+		 * recibirReserva(" { \"reserva_id\" : 34, \"fecha_entrada\" : \"2020-03-10\", \"fecha_salida\" :\"2020-03-15\", \"importe\" : 4, \"cliente_id\" : 2, \"numero_acompanantes\" : 0, \"hotel_id\" : 32, \"tipo_hab_id\" : 1}"
+		 * );
+		 * 
+		 * DhoAPI prueba55 = new DhoAPI(); prueba55.eliminarHotel(6);
+		 *
+		 *
+		 * JsonObject json = new JsonObject(); json.addProperty("habitacion",101 );
+		 * json.addProperty("Hotel", "Prueba"); json.addProperty("Factura", 15.8);
+		 * prueba55.recibirMesa(json.toString());
+		 *
+		 * EstanciaDAO prueba56 = new EstanciaDAO(conexion);
+		 * System.out.println(prueba56.getEstanciaFecha(107, "2020-04-27").toString());
+		 * 
+		 * ClienteDAO prueba60= new ClienteDAO(conexion);
+		 * System.out.println(prueba60.getClienteHabitacionFecha(101,
+		 * "2020-04-26").toString());
+		 * 
+		 * ServicioDAO prueba61 = new ServicioDAO(conexion);
+		 * System.out.println(prueba61.getClienteHabitacionFecha(101,
+		 * "2020-04-26").toString());
+		 * 
+		 * HotelDAO prueba62 = new HotelDAO(conexion);
+		 *
+		 * System.out.println(prueba62.porcentajeOcupacion("2020-04-01"));
+		 * System.out.println(prueba62.porcentajeOcupacion("2020-04-02"));
+		 * System.out.println(prueba62.porcentajeOcupacion("2020-04-03"));
+		 *
+		 * System.out.println(prueba62.porcentajeOcupacionMes(4, 2020).toString());
+		 *
+		 * 
+		 * HotelDAO prueba57 = new HotelDAO(conexion);
+		 * System.out.println(prueba57.porcentajeReservas("2020-04-01"));
+		 * 
+		 * 
+		 * 
+		 * HotelDAO prueba59= new HotelDAO(conexion);
+		 * System.out.println(prueba59.getHotelId("Prueba"));
+		 * 
+		 * EstanciaDAO prueba58 = new EstanciaDAO(conexion);
+		 * System.out.println(prueba58.getEstadoHabitaciones("2020-04-01").toString()) ;
+		 * 
+		 * System.out.println(new Date(120,03,28));
+		 * 
+		 * ServicioDAO prueba59= new ServicioDAO(conexion); prueba59.recibirMesa(205,
+		 * "Prueba", 50, new Date(120,03,28), new Time(14,00,00));
+		 * 
+		 * ServiciosDelHotelDAO prueba60 = new ServiciosDelHotelDAO(conexion);
+		 *
+		 * System.out.println(prueba60.getRestauranteId("Prueba")); DhoAPI prueba55 =
+		 * new DhoAPI(); System.out.println(prueba55.recibirReserva(" { \"reserva_id\" :
+		 * 19, \"fecha_entrada\" : \"2020-04-03\", \"fecha_salida\" :\"2020-04-16\",
+		 * \"importe\" : 4, \"cliente_id\" : 10, \"numero_acompanantes\" : 0,
+		 * \"hotel_id\" : 5, \"tipo_hab_id\" : 1}")); PedirClientes a=new
+		 * PedirClientes(); System.out.println("BBBBBBBBBB"+a.peticionPedirCliente(19));
 		
-
-			ClienteDAO prueba43 = new ClienteDAO(conexion);
-			//prueba43.modificarDatosCliente(1, "telefono", "777666555");
-			//System.out.println(prueba43.getCliente(1).toString());
-			
-			ClienteBean c1 = new ClienteBean(4,"Miguel","Perez", "12365487Z", "mp@gmail.com", "Español", "0000", 654654654);
-			ClienteDAO prueba44 = new ClienteDAO(conexion);
-			prueba44.anadirCliente(c1);
-		 	
-		 	
+		DhoAPI prueba55 = new DhoAPI();
+		prueba55.eliminarHotel(32); */
 		
-		Date fecha = new Date(120,03,06);
+		EstanciaDAO prueba64= new EstanciaDAO(conexion);
+		System.out.println(prueba64.idUltimaEstancia() +1);
 		
-		Time hora = new Time(21,00,00);
-		Time hora2 = new Time(22,30,00);
-		//System.out.println(fecha +" "+hora);
-			ServicioDAO prueba45= new ServicioDAO(conexion);
-			prueba45.añadirServicio(new ServicioBean(0,5,9,4, "restaurante", fecha, hora, " ", " ", " ", hora2, 100));
-			
-		
-		EstanciaDAO prueba46= new EstanciaDAO(conexion);
-		ArrayList<EstanciaBean> est= new ArrayList<EstanciaBean>();
-		est=prueba46.getReservas();
-		for(int i=0; i<est.size(); i++) {
-			System.out.println(est.get(i).toString());
-		}
-			
-		
-		EstanciaDAO prueba47 = new EstanciaDAO(conexion);
-		
-		System.out.println(prueba47.getEstadoHabitaciones("2020-03-26").toString());
-		
-		
-	
-		
-		EstanciaDAO prueba48 = new EstanciaDAO(conexion);
-		System.out.println(prueba48.getEstanciaByHabitacionID(103).toString());
-		
-		EstanciaDAO prueba49 = new EstanciaDAO(conexion);
-		prueba49.checkIn(103);
-		System.out.println(prueba48.getEstanciaByHabitacionID(103));
-		
-		
-		
-		ClienteDAO prueba50= new ClienteDAO(conexion);
-		System.out.println(prueba50.clientePorHabitacionID(103).toString());
-		
-		//estancia_id, habitacion_id, hotel_id, fecha_inicio, fecha_fin, estado importe cliente_id
-		// estancia, hab, cli hotel fehca fehca estado importe tipo_hab_id
-		EstanciaDAO prueba51 = new EstanciaDAO(conexion);
-		prueba51.anadirEstanciaBean(new EstanciaBean(35,404, 4, -1, new Date(120,03,05), new Date(120,03,10), "reserva", 100, 1));
-		
-		ClienteBean c1 = new ClienteBean(4,"esto","es", "una", "prueba", "nada", "mas", 000000000);
-		ClienteDAO prueba51 = new ClienteDAO(conexion);
-		prueba51.anadirClienteSinID(c1);*/
-		Date fecha= new Date(0);
-		Time hora = new Time(0);
-		TareaDAO prueba52 = new TareaDAO(conexion);
-		prueba52.añadirTarea(new TareaBean(100,1,1,"","","",true,fecha,hora,0,hora));
-		
-		
-			//System.out.println(prueba45.idUltimoServicio());
-	/*DhoAPI prueba55 = new DhoAPI();
-	prueba55.recibirHotel(" { \"id\" : 32, \"nombre\" : \"El resplandor\", \"descripcion\" :\"Una experiencia cálida\", \"estrellas\" : 4, \"continente\" : \"Europa\", \"pais\" :\"España\", \"ciudad\" : \"Madrid\", \"habitaciones\" : [ { \"id\": 1 , \"nombre\": \"normal\" , \"num_disponibles\":50 },{\"id\":2,\"nombre\":\"premium\",\"num_disponibles\":10}],\"categorias\":[{\"id\":11,\"nombre\":\"adult-only\"},{\"id\":75,\"nombre\":\"pet-friendly\"}],\"servicios\":[{\"id\":1,\"nombre\":\"piscina\",\"precio\":10,\"unidad\":\"por_dia\"},{\"id\":3,\"nombre\":\"restaurante\",\"precio\":null,\"unidad\":null}]}");
+		// prueba55.recibirHotel(
+		// " { \"id\" : 32, \"nombre\" : \"El resplandor\", \"descripcion\" :\"Una
+		// experiencia cálida\", \"estrellas\" : 4, \"continente\" : \"Europa\",
+		// \"pais\" :\"España\", \"ciudad\" : \"Madrid\", \"habitaciones\" : [ { \"id\":
+		// 1 , \"nombre_tipo\": \"normal\" , \"num_disponibles\":50
+		// },{\"id\":2,\"nombre_tipo\":\"premium\",\"num_disponibles\":10}],\"categorias\":[{\"id\":11,\"nombre\":\"adult-only\"},{\"id\":75,\"nombre\":\"pet-friendly\"}],\"servicios\":[{\"id\":1,\"nombre\":\"piscina\",\"precio\":10,\"unidad\":\"por_dia\"},{\"id\":3,\"nombre\":\"restaurante\",\"precio\":null,\"unidad\":null}]}");
 	}
-	
-	DhoAPI prueba55 = new DhoAPI();
-	prueba55.recibirReserva(" { \"reserva_id\" : 34, \"fecha_entrada\" : \"2020-03-10\", \"fecha_salida\" :\"2020-03-15\", \"importe\" : 4, \"cliente_id\" : 2, \"numero_acompanantes\" : 0, \"hotel_id\" : 32, \"tipo_hab_id\" : 1}");
-	*/
-	/*	DhoAPI prueba55 = new DhoAPI();
-		JsonObject json = new JsonObject();
-        json.addProperty("id_servicio",1 );
-        json.addProperty("fecha", "2020-03-10");
-        json.addProperty("hora", "20:30");
-        json.addProperty("cliente_id", 1);
-        json.addProperty("lugar", "en mi puta casa");
-        json.addProperty("num_personas", 3);
-        json.addProperty("id_reserva", 27);
-        json.addProperty("tipoServicio", 1);
-        json.addProperty("hora_salida", "21:00");
-		prueba55.recibirServicio(json.toString());
-		*/
-		//DhoAPI prueba55 = new DhoAPI();
-		//prueba55.recibirReserva(" { \"reserva_id\" : 36, \"fecha_entrada\" : \"2020-03-10\", \"fecha_salida\" :\"2020-03-15\", \"importe\" : 4, \"cliente_id\" : 2, \"numero_acompanantes\" : 0, \"hotel_id\" : 5, \"tipo_hab_id\" : 1}");
-		//PedirClientes a=new PedirClientes();
-		//System.out.println("BBBBBBBBBB"+a.peticionPedirCliente(22));
-		 }
-		
-		
 }

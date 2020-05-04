@@ -13,6 +13,7 @@ public class ClienteBean {
 	private String password;
 	private String nacionalidad;
 	private Integer telefono;
+	private String preferencias;
 
 	public int getCliente_id() {
 		return cliente_id;
@@ -77,9 +78,16 @@ public class ClienteBean {
 	public void setTelefono(Integer telefono) {
 		this.telefono = telefono;
 	}
+	public String getPreferencias() {
+		return preferencias;
+	}
+
+	public void setPreferencias(String preferencias) {
+		this.preferencias = preferencias;
+	}
 
 	public ClienteBean(int cliente_id, String nombre, String apellidos, String dni, String email,
-			String password, String nacionalidad, Integer telefono) {
+			String password, String nacionalidad, Integer telefono, String preferencias) {
 		super();
 		this.cliente_id = cliente_id;
 		this.nombre = nombre;
@@ -89,13 +97,14 @@ public class ClienteBean {
 		this.password = password;
 		this.nacionalidad = nacionalidad;
 		this.telefono = telefono;
+		this.preferencias=preferencias;
 	}
 
 	@Override
 	public String toString() {
 		return "ClienteBean [cliente_id=" + cliente_id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", dni="
 				+ dni + ", email=" + email + ", password=" + password + ", nacionalidad=" + nacionalidad + ", telefono="
-				+ telefono + "]";
+				+ telefono + ", preferencias= "+preferencias +"]";
 	}
 
 	public ClienteBean() {

@@ -32,7 +32,7 @@ public class Conexion {
 
 				conn = DriverManager.getConnection("jdbc:mysql://"+servidor+":"+puerto+"/"+baseDeDatos+"?" +       
 						"user="+usuario+"&password=" + contrasena +
-						"&useJDBCCompliantTimezoneShift=true&serverTimezone=UTC");
+						"&useJDBCCompliantTimezoneShift=true");
 			} catch (SQLException ex) { 
 				System.out.println("SQLException: " + ex.getMessage());     
 				System.out.println("SQLState: " + ex.getSQLState()); 

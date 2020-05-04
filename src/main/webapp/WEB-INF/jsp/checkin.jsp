@@ -8,9 +8,9 @@
 	<nav>
 		<ul>
 			<li><a href="/homePageDHO/menu">Inicio</a></li>
+			<li><a href="/homePageDHO/menu/disponibilidad">Disponibilidad</a></li>
+			<li><a href="/homePageDHO/menu/reservas1">Servicios</a></li>
 			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
-			<li><a href="/homePageDHO/menu/reservas1">Reservas</a></li>
-			<li><a href="/homePageDHO/menu/calendario">Vista de calendario</a></li>
 
 		</ul>
 	</nav>
@@ -57,7 +57,7 @@ nav ul li a {
 }
  
 nav ul li:hover {
-  background: #3ead47;
+  background: #4982D1;
 }
 
 .contenido {
@@ -75,38 +75,187 @@ nav ul li:hover {
 	<head>
 	</head>
 
-	<body style="background-color:lightblue;">
+	<body style="background-color:lightblue; margin-bottom: 100px">
+				    
+	
 		<style>
+		
 			a { text-decoration: none; }
+			
+		
+			#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 30%;
+  float: left;
+}
+
+			#servicios {
+			font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 30%;
+  float: right;
+			}
+
+table td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table tr:nth-child(even){background-color: #f2f2f2;}
+
+table td:nth-child(1){font-weight: bold;}
+
+table tr:hover {background-color: #ddd;}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: middle;
+  background-color:#15062c;
+  color: white;
+}
+
+#botones{
+	float: left;
+	display: block;
+	width: 25%;
+	
+}
+
+#botones2{
+	float: right;
+}
+
+input[type=button], input[type=submit]{
+  background-color: #15062c;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-size: 18px;
+ 
+  
+}
+
 		</style>
-	</body>
+
 	
-	<ul>
-		<c:forEach items="${listaSinHacerCheckIn}" var="item">
-			<li>${item}</li>
-		</c:forEach>
-	</ul>
 	
-	<ul>
-		<c:forEach items="${listaConCheckIn}" var="item">
-			<li>${item}</li>
-		</c:forEach>
-	</ul>
+			
+			
+	
+	
 	<br></br>
-	<h3>Hacer check-in de </h3>
-	<form method="POST">
-		<label>NºHabitaci&oacute;n</label>
-		<input type="text" name="habitacion_id" autocomlete="off" />
-		<br><br>
+	
+	<form id="info" method="POST">
+			
+		<table id="customers">
+			<th>
+				Info cliente
+			</th>
+			<tr>
+				<td>Id de la estancia</td>	
+				<td>${estancia_id}</td>	
+			</tr>	
+			<tr>
+				<td>Id del cliente</td>	
+				<td>${cliente_id}</td>	
+			</tr>		
+			<tr>
+				<td>Nombre</td>	
+				<td>${nombre}</td>	
+			</tr>	
+			<tr>
+				<td>Apellidos</td>	
+				<td>${apellidos}</td>	
+			</tr>
+			<tr>
+				<td>DNI</td>	
+				<td>${DNI}</td>	
+			</tr>	
+			<tr>
+				<td>Email</td>	
+				<td>${email}</td>	
+			</tr>
+			<tr>
+				<td>Nacionalidad</td>	
+				<td>${nacionalidad}</td>	
+			</tr>
+			<tr>
+				<td>Tel&eacute;fono</td>	
+				<td>${telefono}</td>	
+			</tr>
+			<tr>
+				<td>Preferencias</td>	
+				<td>${preferencias}</td>	
+			</tr>
+			<tr>
+				<td>Fecha de inicio</td>	
+				<td>${fecha_inicio}</td>	
+			</tr>
+			<tr>
+				<td>Fecha de fin</td>	
+				<td>${fecha_fin}</td>	
+			</tr>
+			<tr>
+				<td>N&uacute;mero habitaci&oacute;n</td>	
+				<td>${habitacion_id}</td>	
+			</tr>
+				<tr>
+				<td>Importe</td>	
+				<td>${importe}</td>	
+			</tr>
+		</table>
+			
+		<table id="servicios">
+			<c:forEach items="${servicios}" var="item2">
+			<th>
+				Servicio_${item2.getServicios_id()}
+			</th>
+			<tr>
+				<td>Lugar</td>	
+				<td>${item2.getLugar()}</td>	
+			</tr>
+			<tr>
+				<td>Fecha</td>	
+				<td>${item2.getFecha_servicio()}</td>	
+			</tr>
+			<tr>
+				<td>Hora</td>	
+				<td>${item2.getHora()}</td>	
+			</tr>
+			</c:forEach>
+		</table>	
+			
 
-		<input type="submit" value="Registro">
+						
+	<br><br>	
+		
+	<div id="botones">
+	<div id="botones2">
+		<input type="submit" value="Check-in">
 		<br><br>
-		<input type="button" onclick="history.back()" name="volver atrás" value="Volver atrás">
+		<input type="button" onclick="history.back()" name="volver atrás" value="Volver atrás">	
+	</div>
+	</div>
 	</form>
+	
+	<script type="text/javascript">
+	const btn = document.querySelector(".btn");
+	const msg = document.querySelector("#miParrafo");
+	btn.addEventListener("click", e => {
+		e.preventDefault();
+		document.getElementById("miParrafo").style.display = "inline";
+		document.getElementById("miParrafo").style.color = "green";
+		setTimeout(()=> msg.remove(),3000);
+		});
+	</script>
 
 	
 	</body>
-	
 	
 			
 	

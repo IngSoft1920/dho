@@ -31,9 +31,11 @@ public class AsignarTareasController {
 			
 			AsignarTareasModel asignarTareas=new AsignarTareasModel();
 			
-			int cantidadIncidenciasSinAsignar = asignarTareas.getIncidenciaSinAsignar().size();
-			
 			List<IncidenciaBean> incidenciasSinAsignar= asignarTareas.getIncidenciaSinAsignar();
+			
+			int cantidadIncidenciasSinAsignar =incidenciasSinAsignar.size();
+			
+			System.out.println(cantidadIncidenciasSinAsignar);
 	
 			List<IncidenciaBean> incidenciasAsignadas= asignarTareas.getIncidenciaAsignadas();
 			

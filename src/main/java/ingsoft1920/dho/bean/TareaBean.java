@@ -23,7 +23,7 @@ public class TareaBean {
 	//AÑADIR ESTE CAMPO A LA BASE DE DATOS
 	private Time hora;
 
-	private Time horaFin;
+	private String horaFin;
 	
 	public TareaBean() {
 		
@@ -32,7 +32,7 @@ public class TareaBean {
 	
 	public TareaBean(int id_tarea, int id_incidencia, int id_empleado, String descripcion, String tipo_tarea,
 
-			String lugar, boolean estado, Date fecha,Time hora, int hotel_id,Time horaFin) {
+			String lugar, boolean estado, Date fecha,Time hora, int hotel_id,String horaFin) {
 		
 		this.id_tarea=id_tarea;
 
@@ -133,7 +133,7 @@ public class TareaBean {
 	public String toString() {
 		return "TareaBean [id_tarea=" + id_tarea + ", id_incidencia=" + id_incidencia + ", id_empleado=" + id_empleado
 				+ ", descripcion=" + descripcion + ", tipo_tarea=" + tipo_tarea + ", lugar=" + lugar + ", estado="
-				+ estado + ", fecha=" + fecha  +", hora= "+hora +", hotel_id= " +hotel_id + "]";
+				+ estado + ", fecha=" + fecha  +", hora= "+hora +", hotel_id= " +hotel_id + ", horaFin= "+horaFin +" ]";
 	}
 
 
@@ -157,12 +157,12 @@ public class TareaBean {
 		
 	}
 	
-	public Time getHoraFin() {
+	public String getHoraFin() {	
 		return horaFin;
 	}
 
 
-	public void setHoraFin(Time horaFin) {
+	public void setHoraFin(String horaFin) {
 		this.horaFin = horaFin;
 
 	}

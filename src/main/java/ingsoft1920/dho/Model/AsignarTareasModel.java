@@ -53,7 +53,8 @@ import ingsoft1920.dho.controller.PedirEmpleados;
 		
 		List<EmpleadoBean> lista=new ArrayList<EmpleadoBean>();
 		
-		for(int i=1; i<=HotelDAO.devolverElNumeroDeHoteles();i++) {
+		int cont=HotelDAO.devolverElNumeroDeHoteles();
+		for(int i=1; i<=cont;i++) {
 			lista.addAll(PedirEmpleados.peticionPedirEmpleado(i));
 		}
 	
@@ -88,6 +89,11 @@ import ingsoft1920.dho.controller.PedirEmpleados;
 	nuevaTarea.setId_empleado(tareaModel.id_empleado);
 	
 	nuevaTarea.setId_incidencia(id_incidencia);
+	
+	nuevaTarea.setHora(incidenciautilizada.getHora());
+	
+	nuevaTarea.setHoraFin(incidenciautilizada.getHora().toLocalTime().plusMinutes(30).toString());
+	
 	
 	TareaDAO.añadirTarea(nuevaTarea);
 		

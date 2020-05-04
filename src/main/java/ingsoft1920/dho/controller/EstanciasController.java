@@ -28,7 +28,7 @@ package ingsoft1920.dho.controller;
 
 		final static Logger logger = LogManager.getLogger(LoginController.class.getName());
 
-		@GetMapping("/homePageDHO/menu/estancias1")
+		@GetMapping("/homePageDHO/menu/disponibilidad/estancias1")
 		public String estanciasGet(Model model) {
 
 			EstanciasModel estancia = new EstanciasModel();
@@ -37,8 +37,7 @@ package ingsoft1920.dho.controller;
 
 		}
 		
-		//QUEDA CAMBIAR COSAS PARA SPRING 3(LO COMENTADO)
-		@PostMapping("/homePageDHO/menu/estancias1")
+		@PostMapping("/homePageDHO/menu/disponibilidad/estancias1")
 		public String checkinPost(
 				@Valid @ModelAttribute("nombre")String nombre,
 				@Valid @ModelAttribute("apellidos") String apellidos,
@@ -46,6 +45,7 @@ package ingsoft1920.dho.controller;
 				@Valid @ModelAttribute("email") String email,
 				@Valid @ModelAttribute("nacionalidad") String nacionalidad,
 				@Valid @ModelAttribute("telefono") Integer telefono,
+				@Valid @ModelAttribute("password") String password,
 				Model model) {
 			
 			
@@ -58,19 +58,17 @@ package ingsoft1920.dho.controller;
 			clienteBean.setEmail(email);
 			clienteBean.setNacionalidad(nacionalidad);
 			clienteBean.setTelefono(telefono);
+			clienteBean.setPassword(password);
 			
 			
-		
-			//AQUI IRIA UNA PETICION A CM QUE LES PASA LOS DATOS DEL CLIENTE EXCEPTO SU ID Y PASSWORD
-			//ELLOS NOS DEVOLVERIAN ESOS DATOS Y YA LOS PORDIAMOS INSERTAR TODO EN LA BBDD
-			
+			clienteBean.setCliente_id(EnviarRegistro.peticionEnviarRegistro(clienteBean));
 			
 			EstanciasModel estanciasModel = new EstanciasModel(clienteBean);
 			
-			int cliente_id=estanciasModel.nuevoCliente(estanciasModel);
+			estanciasModel.nuevoCliente(estanciasModel);
 			
 			
-			return "redirect:/homePageDHO/menu/registro/"+cliente_id;
+			return "redirect:/homePageDHO/menu/registro/"+clienteBean.getCliente_id();
 			
 		}
 
