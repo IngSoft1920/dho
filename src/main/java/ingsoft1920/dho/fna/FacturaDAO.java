@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import ingsoft1920.dho.controller.Conexion;
 
 public class FacturaDAO {
-	//Dado el id de un cliente devuelve todas sus facturas
-	public static ArrayList<FacturaBean> todasFacturasCliente(int cliente_id){
+	//Dado el id de un cliente, y un id de una estancia, devuelve todas sus facturas
+	public static ArrayList<FacturaBean> todasFacturasCliente(int cliente_id, int estancia_id){
 		ArrayList<FacturaBean> facturas= new ArrayList<FacturaBean>();
 		Conexion conexion = new Conexion();
 		if (conexion.getConexion()==null) 
@@ -24,7 +24,7 @@ public class FacturaDAO {
 			stmt=conexion.getConexion().createStatement();
 			rs=stmt.executeQuery("SELECT fecha_factura, lugar, precio\r\n" + 
 					"FROM Servicios\r\n" + 
-					"WHERE cliente_id ="+cliente_id+"\r\n" + 
+					"WHERE cliente_id = "+cliente_id+" AND estancia_id = "+estancia_id+"\r\n" + 
 					"ORDER BY fecha_factura;");
 			while(rs.next()) {
 				facturas.add(new FacturaBean(rs.getDate("fecha_factura"),rs.getString("lugar"),rs.getInt("precio")));
@@ -71,8 +71,8 @@ public class FacturaDAO {
 		return facturas;
 	}
 	
-	//Dado el id de un cliente devuelve el precio de su estancua
-	public static EstanciaBean precioEstanciaCliente(int cliente_id){
+	//Dado el id de un cliente, y su estancia id,  devuelve el precio de su estancua
+	public static EstanciaBean precioEstanciaCliente(int cliente_id,int estancia_id){
 		EstanciaBean estancia=null;
 		Conexion conexion = new Conexion();
 		if (conexion.getConexion()==null) 
@@ -88,7 +88,7 @@ public class FacturaDAO {
 			stmt=conexion.getConexion().createStatement();
 			rs=stmt.executeQuery("SELECT importe, fecha_inicio,fecha_fin\r\n" + 
 					"FROM Estancia\r\n" + 
-					"WHERE cliente_id= "+cliente_id+";");
+					"WHERE cliente_id = "+cliente_id+" AND estancia_id = "+estancia_id+";");
 			if(rs.next()) {
 				estancia= new EstanciaBean(rs.getDate("fecha_inicio"),rs.getDate("fecha_fin"),rs.getDouble("importe"));
 			}

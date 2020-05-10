@@ -74,7 +74,7 @@ public class generatePDFFileIText {
 	 * cliente_id int
 	 * enlaceDescarga String
 	 */
-	public void createPDF(int cliente_id) {
+	public void createPDF(int cliente_id,int estancia_id) {
 		// We create the document and set the file name.        
 		// Creamos el documento y generamos el nombre del fichero.
 		String name=UUID.randomUUID().toString();
@@ -153,7 +153,7 @@ public class generatePDFFileIText {
 	        table.setHeaderRows(1);
 			//Obtenemos todas las facturas
 	        int pago_total=0;
-			for (FacturaBean elem: FacturaDAO.todasFacturasCliente(cliente_id)) {
+			for (FacturaBean elem: FacturaDAO.todasFacturasCliente(cliente_id,estancia_id)) {
 				pago_total+=elem.getPrecio();
 		        table.addCell(elem.getFecha_factura().toString());
 		        table.addCell(elem.getTipo_factura());
@@ -163,7 +163,7 @@ public class generatePDFFileIText {
 			chapter.add(table);
 			//Subtitulo (Precio de la estancia)
 			chapter.add(new Paragraph("Estancia :", subcategoryFont));
-			EstanciaBean aux = FacturaDAO.precioEstanciaCliente(cliente_id);
+			EstanciaBean aux = FacturaDAO.precioEstanciaCliente(cliente_id,estancia_id);
 			table = new PdfPTable(3);
 			c1 = new PdfPCell(new Phrase("Fecha Inicio"));
 	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -224,7 +224,8 @@ public class generatePDFFileIText {
 	@GetMapping("/generatePDF/{cliente_id}")
 	public String generatePDF(@PathVariable("cliente_id") int cliente_id) {
 		generatePDFFileIText generatePDFFileIText = new generatePDFFileIText();
-		generatePDFFileIText.createPDF(cliente_id);
+		int estancia_id = 1;
+		generatePDFFileIText.createPDF(cliente_id,estancia_id);
 		return "";
 
 	}
