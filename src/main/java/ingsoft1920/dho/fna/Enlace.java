@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class Enlace {
 
 	@ResponseBody
-	@GetMapping("/download/f/{cliente_id}")
-	public static void download(@PathVariable("cliente_id") int cliente_id, HttpServletResponse response) {
+	@GetMapping("/download/f/{cliente_id}/{estancia_id}")
+	public static void download(@PathVariable("cliente_id") int cliente_id,@PathVariable("estancia_id") int estancia_id, HttpServletResponse response) {
 		try {
 			// Pasa por filtro bbdd que traduce archivoCod a ArchivosFacturaBean
 			ArchivosFacturaBean archivo = ArchivosFacturaDAO.getPDFByCod(cliente_id);
@@ -31,7 +31,7 @@ public class Enlace {
 				f = new File("/hs/dho/files/" + archivo.getArchivoCod() + ".pdf");
 				f.delete();
 			}
-			HttpClient client= new HttpClient("http://piedrafita.ls.fi.upm.es:7001/generatePDF/"+cliente_id,"GET");
+			HttpClient client= new HttpClient("http://piedrafita.ls.fi.upm.es:7001/generatePDF/"+cliente_id+"/"+estancia_id,"GET");
 			int respCode = client.getResponseCode();
 			if(respCode!=200) {
 				throw new Exception("Error en la conexion");

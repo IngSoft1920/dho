@@ -221,10 +221,9 @@ public class generatePDFFileIText {
 	 */
 
 	@ResponseBody
-	@GetMapping("/generatePDF/{cliente_id}")
-	public String generatePDF(@PathVariable("cliente_id") int cliente_id) {
+	@GetMapping("/generatePDF/{cliente_id}/{estancia_id}")
+	public String generatePDF(@PathVariable("cliente_id") int cliente_id,@PathVariable("estancia_id") int estancia_id) {
 		generatePDFFileIText generatePDFFileIText = new generatePDFFileIText();
-		int estancia_id = 1;
 		generatePDFFileIText.createPDF(cliente_id,estancia_id);
 		return "";
 
