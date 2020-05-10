@@ -126,7 +126,7 @@ public class generatePDFFileIText {
 	        chapter.add(new Paragraph("\n", paragraphFont));
 			chapter.add(new Paragraph("Datos Hotel:", subcategoryFont));
 	        chapter.add(new Paragraph("\n", paragraphFont));
-	        HotelBean hotel=FacturaDAO.datosHotel(cliente_id);
+	        HotelBean hotel=FacturaDAO.datosHotel(cliente_id,estancia_id);
 	        p=new Paragraph("",paragraphFont);
 	        p.add("Nombre: "+hotel.getNombre()+"\n"+"Pais: "+hotel.getPais()+"\n"+"Ciudad: "+hotel.getCiudad());
 	        chapter.add(p);

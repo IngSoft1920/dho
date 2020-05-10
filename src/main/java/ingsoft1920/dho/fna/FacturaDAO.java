@@ -130,7 +130,7 @@ public class FacturaDAO {
 	}
 	
 	//Dado el cliente_id devuelve toda la informacion util del hotel para facturas
-	public static HotelBean datosHotel(int cliente_id) {
+	public static HotelBean datosHotel(int cliente_id,int estancia_id) {
 		HotelBean hotel=null;
 		Conexion conexion = new Conexion();
 		if (conexion.getConexion()==null) 
@@ -143,7 +143,7 @@ public class FacturaDAO {
 			rs=stmt.executeQuery("SELECT H.nombre,H.pais,H.ciudad \r\n" + 
 					"FROM Hotel AS H\r\n" + 
 					"JOIN Estancia AS E ON H.hotel_id = E.hotel_id\r\n" + 
-					"WHERE E.cliente_id ="+cliente_id);
+					"WHERE E.cliente_id ="+cliente_id+" AND E.estancia_id ="+estancia_id);
 			if(rs.next()) {
 				hotel= new HotelBean(rs.getString("H.nombre"),rs.getString("H.pais"),rs.getString("H.ciudad"));
 			}
