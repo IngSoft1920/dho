@@ -1,11 +1,11 @@
 package ingsoft1920.dho.bean;
 
-public class Proveedores {
+public class ProveedoresBean {
 	private int proveedor_id;
 	private String empresa;
 	private int hotel_id;
 	
-	public Proveedores(int proveedor_id, String empresa, int hotel_id) {
+	public ProveedoresBean(int proveedor_id, String empresa, int hotel_id) {
 		this.proveedor_id = proveedor_id;
 		this.empresa=empresa;
 		this.hotel_id=hotel_id;

@@ -2,14 +2,14 @@ package ingsoft1920.dho.bean;
 
 import java.sql.Date;
 
-public class Pedidos {
+public class PedidosBean {
 	private int pedido_id;
 	private int producto_id;
 	private int cantidad;
 	private Date fecha;
 	private String lugar;
 	
-	public Pedidos(int pedido_id, int producto_id, Date fecha, String lugar) {
+	public PedidosBean(int pedido_id, int producto_id, Date fecha, String lugar) {
 		this.pedido_id=pedido_id;
 		this.producto_id=producto_id;
 		this.fecha=fecha;

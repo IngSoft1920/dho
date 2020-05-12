@@ -1,13 +1,13 @@
 package ingsoft1920.dho.bean;
 
-public class Productos {
+public class ProductosBean {
 	
 	private int producto_id;
 	private String nombre;
 	private int precio;
 	private int proveedor_id;
 	
-	public Productos(int producto_id, String nombre, int precio, int proveedor_id) {
+	public ProductosBean(int producto_id, String nombre, int precio, int proveedor_id) {
 		this.producto_id=producto_id;
 		this.nombre=nombre;
 		this.precio=precio;
