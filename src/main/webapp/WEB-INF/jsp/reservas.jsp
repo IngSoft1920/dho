@@ -246,10 +246,10 @@ h2{
 		
 	<div class="container">		
 	<form method="POST"> 
-		<label>Id del Cliente (número): </label> 
+		<label>Id del Cliente (Número): </label> 
 		<input type="text" name="cliente_id" autocomlete="off" /> 
 		<br><br> 
-		<label>Id de la estancia (número): </label> 
+		<label>Id de la estancia (Número): </label> 
 		<input type="text" name="estancia_id" autocomlete="off" /> 
 		<br><br> 
 		<label>Fecha del servicio (YYYY-MM-dd): </label> 
@@ -258,7 +258,7 @@ h2{
 		<label>Hora (Texto): </label> 
 		<input type="text" name="horaString" autocomplete="off" /> 
 		<br><br> 
-		<label>Id del servicio (número): </label> 
+		<label>Id del servicio (Número): </label> 
 		<input type="text" name="id_ServicioHotel" autocomplete="off" /> 
 		<br><br>  
 		<label>Lugar (Nombre): </label> 
