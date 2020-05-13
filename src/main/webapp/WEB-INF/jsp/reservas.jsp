@@ -246,25 +246,25 @@ h2{
 		
 	<div class="container">		
 	<form method="POST"> 
-		<label>cliente_id</label> 
+		<label>Id del Cliente (número): </label> 
 		<input type="text" name="cliente_id" autocomlete="off" /> 
 		<br><br> 
-		<label>estancia_id</label> 
+		<label>Id de la estancia (número): </label> 
 		<input type="text" name="estancia_id" autocomlete="off" /> 
 		<br><br> 
-		<label>fecha_servicio</label> 
+		<label>Fecha del servicio (YYYY-MM-dd): </label> 
 		<input type="text" name="fecha_servicioString" autocomlete="off" /> 
 		<br><br> 
-		<label>hora</label> 
+		<label>Hora (Texto): </label> 
 		<input type="text" name="horaString" autocomplete="off" /> 
 		<br><br> 
-		<label>id_ServicioHotel</label> 
+		<label>Id del servicio (número): </label> 
 		<input type="text" name="id_ServicioHotel" autocomplete="off" /> 
 		<br><br>  
-		<label>lugar</label> 
+		<label>Lugar (Nombre): </label> 
 		<input type="text" name="lugar" autocomplete="off" /> 
 		<br><br> 
-		<label>tipo_servicio</label> 
+		<label>Tipo de servicio (Texto): </label> 
 		<input type="text" name="tipo_servicio" autocomplete="off" /> 
 		<br><br> 
 		 

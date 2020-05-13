@@ -31,6 +31,7 @@ public class DisponibilidadController {
 	 static String ROJO = "#dc2816";
 	 static String NARANJA = "#EC8B19";
 	 static String VERDE = "#27a912";
+	 static String AZULPRECHECKIN = "#1487FF";
 	 
 	 public static LocalDate fechaConsulta = LocalDate.now();
 	 static String meses[]={"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"};
@@ -58,8 +59,10 @@ public class DisponibilidadController {
 	 	{
 	 		estado=listaEstados.get(i);
 	 		habitaciones= HabitacionDAO.getHabitacionByHotel(2);
-		 	if (estado.equals("check in")) { coloresCelda[i]=ROJO; links[i]="/homePageDHO/menu/disponibilidad/checkout1/"+
+		 	if (estado.equals("check in") && false) { coloresCelda[i]=ROJO; links[i]="/homePageDHO/menu/disponibilidad/checkout1/"+
 		 			habitaciones.get(i).getId_habitacion()+"/"+fechaConsultaString; } // Rojo
+		 	else if (estado.equals(/*pre*/"check in") && true) { coloresCelda[i]=AZULPRECHECKIN; links[i]="/homePageDHO/menu/disponibilidad/checkout1/"+
+		 			habitaciones.get(i).getId_habitacion()+"/"+fechaConsultaString; } // Azul Precheckin
 		 	else if (estado.equals("reserva")) { coloresCelda[i]=NARANJA;links[i]="/homePageDHO/menu/disponibilidad/checkin1"+"/"+
 		 			habitaciones.get(i).getId_habitacion()+"/"+fechaConsultaString;} // Naranja
 		 	else if (estado.equals("check out")) { coloresCelda[i]=VERDE;links[i]="/homePageDHO/menu/disponibilidad/estancias1";} // Verde
