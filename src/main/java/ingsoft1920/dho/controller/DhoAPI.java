@@ -58,8 +58,11 @@ public class DhoAPI {
 
 	}
 	
-	
-	
+	@ResponseBody
+	@PostMapping("/precheckin/{reserva_id}")
+	public void precheckin(@PathVariable int reserva_id) {
+		EstanciaDAO.precheckInPorEstancia_id(reserva_id);
+	}
 	
 	
 	@ResponseBody
@@ -219,10 +222,6 @@ public class DhoAPI {
 
 		int tipo_servicio = requeObj.get("tipoServicio").getAsInt();
 
-		/*
-		 * Hemos quedado con GE el siguiente formato: 1-: serivios normales 2-:Encargar
-		 * Mesa 3-:Encargar Comida
-		 */
 		switch (tipo_servicio) {
 		case 1:
 			nuevoServicio.setTipo_servicio("normal");
