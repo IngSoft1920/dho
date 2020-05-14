@@ -241,6 +241,7 @@ public class DhoAPI {
 		nuevoServicio.setHora(java.sql.Time.valueOf(horaTime));
 		nuevoServicio.setId_ServicioHotel(id_servicioHotel);
 		nuevoServicio.setLugar(lugar);
+		nuevoServicio.setPrecio(ServiciosDelHotelDAO.conseguirprecio(id_servicioHotel));
 
 		for (int i = 0; i < num_personas; i++) {
 			// añadimos tantas reservas como nuemero de personas

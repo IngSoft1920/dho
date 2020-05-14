@@ -382,5 +382,43 @@ public class ServiciosDelHotelDAO {
 		}
 		return res;
 	}
+	
+	public static int conseguirprecio(int id_servicioHotel) {
+		int res=0;
+		if (conexion.getConexion() == null) 
+			conexion.conectar();
+		
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			stmt = conexion.getConexion().createStatement();
+			rs = stmt.executeQuery("SELECT importe FROM ServiciosHotel WHERE servicioHotel_id ="+id_servicioHotel+" ;");
+			while(rs.next()) {
+				res=rs.getInt("importe");
+			}
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		}finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+			
+		}
+		return res;
+	}
+	
 
 }
