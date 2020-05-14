@@ -249,7 +249,63 @@ public class EstanciaDAO {
 		conexion.desconectar();
 		return resp;
 	}
+	// Para hecer el precheck in
+		public static String precheckIn(int habitacion_id) {
+			EstanciaBean est = new EstanciaBean();
+			est = getEstanciaByHabitacionID(habitacion_id);
+			int estancia_id = est.getEstancia_id();
 
+			String resp = "Procesado correctamente";
+			if (conexion.getConexion() == null)
+				conexion.conectar();
+			PreparedStatement stm = null;
+			try {
+				stm = conexion.getConexion()
+						.prepareStatement("UPDATE Estancia\r\n" + "SET estado=\"precheck in\"\r\n" + "WHERE estancia_id = ?");
+				stm.setInt(1, estancia_id);
+				stm.executeUpdate();
+			} catch (SQLException ex) {
+				System.out.println("SQLException: " + ex.getMessage());
+				resp = "Error en precheckIn";
+			} finally { // it is a good idea to release resources in a finally block
+				if (stm != null) {
+					try {
+						stm.close();
+					} catch (SQLException sqlEx) {
+					}
+					stm = null;
+				}
+			}
+			conexion.desconectar();
+			return resp;
+		}
+		//para hacer precheck in con estancia_id
+		public static String precheckInPorEstancia_id(int estancia_id) {
+			EstanciaBean est = new EstanciaBean();
+			String resp = "Procesado correctamente";
+			if (conexion.getConexion() == null)
+				conexion.conectar();
+			PreparedStatement stm = null;
+			try {
+				stm = conexion.getConexion()
+						.prepareStatement("UPDATE Estancia\r\n" + "SET estado=\"precheck in\"\r\n" + "WHERE estancia_id = ?");
+				stm.setInt(1, estancia_id);
+				stm.executeUpdate();
+			} catch (SQLException ex) {
+				System.out.println("SQLException: " + ex.getMessage());
+				resp = "Error en precheckIn";
+			} finally { // it is a good idea to release resources in a finally block
+				if (stm != null) {
+					try {
+						stm.close();
+					} catch (SQLException sqlEx) {
+					}
+					stm = null;
+				}
+			}
+			conexion.desconectar();
+			return resp;
+		}
 	public static ArrayList<EstanciaBean> geEstanciaBeans() {
 		if (conexion.getConexion() == null)
 			conexion.conectar();
