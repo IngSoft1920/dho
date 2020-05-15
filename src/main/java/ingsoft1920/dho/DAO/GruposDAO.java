@@ -1,0 +1,102 @@
+package ingsoft1920.dho.DAO;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import ingsoft1920.dho.bean.GruposBean;
+import ingsoft1920.dho.controller.Conexion;
+
+public class GruposDAO {
+	private static Conexion conexion = new Conexion();
+	
+	public GruposDAO(Conexion conexion) {
+	this.conexion = conexion;
+	}
+	
+//Metodo para añadir reservas de grupos
+	public static void añadirReservaGrupos(GruposBean grupo) {
+		
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+
+		PreparedStatement stm = null;
+		try {
+			stm = conexion.getConexion().prepareStatement("INSERT INTO Grupos values (?,?,?,?,?,?,?,?,?,?)");
+			stm.setInt(1, grupo.getGrupo_id());
+			stm.setString(2, grupo.getNombre());
+			stm.setString(3, grupo.getTipo());
+			stm.setString(4, grupo.getEmail());
+			stm.setInt(5, grupo.getHotel_id());
+			stm.setInt(6, grupo.getNum_habitaciones());
+			stm.setInt(7, grupo.getNum_personas());
+			stm.setDate(8, grupo.getFecha_entrada());
+			stm.setDate(9, grupo.getFecha_salida());
+			stm.setString(10, grupo.getEstado());
+				
+			stm.executeUpdate();
+		}catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (stm != null) {
+				try {
+					stm.close();
+				} catch (SQLException sqlEx) {
+				}
+				stm = null;
+			}
+		}
+		conexion.desconectar();
+		
+	}
+	
+	//Metodo que dado el hotel_id te devuelve un arraylist de todas las reservas de grupo que hay en ese hotel
+	public static ArrayList<GruposBean> reservasPorHotelID(int hotel_id){
+		ArrayList<GruposBean> res = new ArrayList<GruposBean>();
+		
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+		
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			stmt = conexion.getConexion().createStatement();
+			rs = stmt.executeQuery("SELECT * FROM Grupos WHERE hotel_id =" +hotel_id);
+			
+			while(rs.next()) {
+				res.add(new GruposBean(rs.getInt("grupo_id"), rs.getString("nombre"), rs.getString("tipo"), rs.getString("email"),
+						hotel_id, rs.getInt("num_habitaciones"), rs.getInt("num_personas"), rs.getDate("fecha_entrada"), rs.getDate("fecha_salida"), rs.getString("estado")));
+				
+			}
+			
+		}catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+		}
+		conexion.desconectar();
+		return res;
+		
+	}
+}
+
+
+
+
+
+

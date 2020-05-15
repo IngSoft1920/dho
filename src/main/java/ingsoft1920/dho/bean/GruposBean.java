@@ -6,6 +6,7 @@ public class GruposBean {
 	private int grupo_id;
 	private String nombre;
 	private String tipo;
+	private String email;
 	private int hotel_id;
 	private int num_habitaciones;
 	private int num_personas;
@@ -14,12 +15,13 @@ public class GruposBean {
 	private String estado;
 	
 
-	public GruposBean(int grupo_id, String nombre, String tipo, int hotel_id, int num_habitaciones, int num_personas,
+	public GruposBean(int grupo_id, String nombre, String tipo, String email, int hotel_id, int num_habitaciones, int num_personas,
 			Date fecha_entrada, Date fecha_salida, String estado) {
 		super();
 		this.grupo_id = grupo_id;
 		this.nombre = nombre;
 		this.tipo = tipo;
+		this.email=email;
 		this.hotel_id = hotel_id;
 		this.num_habitaciones = num_habitaciones;
 		this.num_personas = num_personas;
@@ -28,12 +30,16 @@ public class GruposBean {
 		this.estado = estado;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "GruposBean [grupo_id=" + grupo_id + ", nombre=" + nombre + ", tipo=" + tipo + ", hotel_id=" + hotel_id
-				+ ", num_habitaciones=" + num_habitaciones + ", num_personas=" + num_personas + ", fecha_entrada="
-				+ fecha_entrada + ", fecha_salida=" + fecha_salida + ", estado=" + estado + "]";
+		return "GruposBean [grupo_id=" + grupo_id + ", nombre=" + nombre + ", tipo=" + tipo + ", email=" + email
+				+ ", hotel_id=" + hotel_id + ", num_habitaciones=" + num_habitaciones + ", num_personas=" + num_personas
+				+ ", fecha_entrada=" + fecha_entrada + ", fecha_salida=" + fecha_salida + ", estado=" + estado + "]";
 	}
+
+
 
 	public int getGrupo_id() {
 		return grupo_id;
@@ -105,6 +111,14 @@ public class GruposBean {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
