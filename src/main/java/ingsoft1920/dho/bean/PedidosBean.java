@@ -8,19 +8,25 @@ public class PedidosBean {
 	private int cantidad;
 	private Date fecha;
 	private String lugar;
+	private String especificaciones;
 	
-	public PedidosBean(int pedido_id, int producto_id, Date fecha, String lugar) {
+	public PedidosBean(int pedido_id, int producto_id, Date fecha, String lugar, String especificaciones) {
 		this.pedido_id=pedido_id;
 		this.producto_id=producto_id;
 		this.fecha=fecha;
 		this.lugar=lugar;
+		this.especificaciones=especificaciones;
 	}
+
+	
 
 	@Override
 	public String toString() {
-		return "Pedidos [pedido_id=" + pedido_id + ", producto_id=" + producto_id + ", cantidad=" + cantidad
-				+ ", fecha=" + fecha + ", lugar=" + lugar + "]";
+		return "PedidosBean [pedido_id=" + pedido_id + ", producto_id=" + producto_id + ", cantidad=" + cantidad
+				+ ", fecha=" + fecha + ", lugar=" + lugar + ", especificaciones=" + especificaciones + "]";
 	}
+
+
 
 	public int getPedido_id() {
 		return pedido_id;
@@ -60,5 +66,13 @@ public class PedidosBean {
 
 	public void setLugar(String lugar) {
 		this.lugar = lugar;
+	}
+
+	public String getEspecificaciones() {
+		return especificaciones;
+	}
+
+	public void setEspecificaciones(String especificaciones) {
+		this.especificaciones = especificaciones;
 	}
 }
