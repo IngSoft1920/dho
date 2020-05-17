@@ -40,7 +40,7 @@ public class GruposDAO {
 				stm.setInt(7, grupo.getNum_personas());
 				stm.setDate(8, grupo.getFecha_entrada());
 				stm.setDate(9, grupo.getFecha_salida());
-				stm.setString(10, grupo.getEstado());
+				stm.setString(10, "solicitado");
 				stm.executeUpdate();
 			}
 		} catch (SQLException ex) {

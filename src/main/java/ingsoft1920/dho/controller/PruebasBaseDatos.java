@@ -374,11 +374,16 @@ public class PruebasBaseDatos {
 		//EstanciaDAO prueba64= new EstanciaDAO(conexion);
 		//System.out.println(prueba64.idUltimaEstancia() +1);
 		
-		GruposBean a=new GruposBean();
+		/*GruposBean a=new GruposBean();
 		a.setEmail("Aaa");
 		a.setHotel_id(5);
 		GruposDAO prueba65= new GruposDAO(conexion);
-		GruposDAO.añadirReservaGrupos(a);
+		GruposDAO.añadirReservaGrupos(a);*/
+		
+		DhoAPI prueba55 = new DhoAPI();
+		prueba55.reservaGrupo("{\"nombre\" : \"hola\",\"tipo\" :\"hola\", \"email\" :\"hola\","
+				+ "\"hotel_id\" : 3 , \"numero_habitaciones\" : 5, \"numero_personas\" : 56, "
+				+ "\"fecha_entrada\" :\"2020-05-05\", \"fecha_salida\" :\"2020-05-05\" }");
 		
 		// prueba55.recibirHotel(
 		// " { \"id\" : 32, \"nombre\" : \"El resplandor\", \"descripcion\" :\"Una

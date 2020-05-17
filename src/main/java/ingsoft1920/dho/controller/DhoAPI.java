@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ingsoft1920.dho.DAO.ClienteDAO;
 import ingsoft1920.dho.DAO.EstanciaDAO;
+import ingsoft1920.dho.DAO.GruposDAO;
 import ingsoft1920.dho.DAO.HabitacionDAO;
 import ingsoft1920.dho.DAO.HotelDAO;
 import ingsoft1920.dho.DAO.IncidenciaDAO;
@@ -29,6 +30,7 @@ import ingsoft1920.dho.DAO.ServiciosDelHotelDAO;
 import ingsoft1920.dho.DAO.TareaDAO;
 import ingsoft1920.dho.bean.ClienteBean;
 import ingsoft1920.dho.bean.EstanciaBean;
+import ingsoft1920.dho.bean.GruposBean;
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.HotelBean;
 import ingsoft1920.dho.bean.IncidenciaBean;
@@ -687,7 +689,7 @@ public class DhoAPI {
 
 	@ResponseBody
 	@PostMapping("/reservaGrupo")
-	public String reservaGrupo(@RequestBody String req){
+	public void reservaGrupo(@RequestBody String req){
 		
 		JsonObject obj = (JsonObject) JsonParser.parseString(req);
 		GruposBean grupos = new GruposBean();
@@ -701,24 +703,24 @@ public class DhoAPI {
 		String email = obj.get("email").getAsString();
 		grupos.setEmail(email);
 		
-		int hotel_id = (int) obj.get("hotel_id").getAsFloat();
+		int hotel_id = obj.get("hotel_id").getAsInt();
 		grupos.setHotel_id(hotel_id);
 		
-		int num_habitaciones = (int) obj.get("num_habitaciones").getAsFloat();
+		int num_habitaciones =  obj.get("numero_habitaciones").getAsInt();
 		grupos.setNum_habitaciones(num_habitaciones);
 		
-		int num_personas = (int) obj.get("num_personas").getAsFloat();
+		int num_personas =  obj.get("numero_personas").getAsInt();
 		grupos.setNum_personas(num_personas);
 		
-		String fecha_entrada = requeObj.get("fecha_entrada").getAsString();
+		String fecha_entrada = obj.get("fecha_entrada").getAsString();
 		LocalDate date = LocalDate.parse(fecha_entrada);
 		grupos.setFecha_entrada(java.sql.Date.valueOf(date));
 		
-		String fecha_salida = requeObj.get("fecha_salida").getAsString();
-		LocalDate date = LocalDate.parse(fecha_salida);
-		grupos.setFecha_salida(java.sql.Date.valueOf(date));
+		String fecha_salida = obj.get("fecha_salida").getAsString();
+		LocalDate date2 = LocalDate.parse(fecha_salida);
+		grupos.setFecha_salida(java.sql.Date.valueOf(date2));
 		
-		GrupoDAO.añadirReservaGrupos(grupos);
+		GruposDAO.a√±adirReservaGrupos(grupos);
 		
 	}
 }
