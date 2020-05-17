@@ -14,6 +14,10 @@ public class GruposBean {
 	private Date fecha_salida;
 	private String estado;
 	
+	public GruposBean() {
+		
+	}
+	
 
 	public GruposBean(int grupo_id, String nombre, String tipo, String email, int hotel_id, int num_habitaciones, int num_personas,
 			Date fecha_entrada, Date fecha_salida, String estado) {

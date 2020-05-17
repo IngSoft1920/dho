@@ -10,6 +10,7 @@ import com.google.gson.JsonObject;
 import ingsoft1920.dho.DAO.ClienteDAO;
 import ingsoft1920.dho.DAO.EstanciaDAO;
 import ingsoft1920.dho.DAO.FacturasDAO;
+import ingsoft1920.dho.DAO.GruposDAO;
 import ingsoft1920.dho.DAO.HabitacionDAO;
 import ingsoft1920.dho.DAO.HotelDAO;
 import ingsoft1920.dho.DAO.IncidenciaDAO;
@@ -19,6 +20,7 @@ import ingsoft1920.dho.DAO.TareaDAO;
 import ingsoft1920.dho.bean.ClienteBean;
 import ingsoft1920.dho.bean.CobrosBean;
 import ingsoft1920.dho.bean.EstanciaBean;
+import ingsoft1920.dho.bean.GruposBean;
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.IncidenciaBean;
 import ingsoft1920.dho.bean.ServicioBean;
@@ -369,8 +371,14 @@ public class PruebasBaseDatos {
 		DhoAPI prueba55 = new DhoAPI();
 		prueba55.eliminarHotel(32); */
 		
-		EstanciaDAO prueba64= new EstanciaDAO(conexion);
-		System.out.println(prueba64.idUltimaEstancia() +1);
+		//EstanciaDAO prueba64= new EstanciaDAO(conexion);
+		//System.out.println(prueba64.idUltimaEstancia() +1);
+		
+		GruposBean a=new GruposBean();
+		a.setEmail("Aaa");
+		a.setHotel_id(5);
+		GruposDAO prueba65= new GruposDAO(conexion);
+		GruposDAO.añadirReservaGrupos(a);
 		
 		// prueba55.recibirHotel(
 		// " { \"id\" : 32, \"nombre\" : \"El resplandor\", \"descripcion\" :\"Una
