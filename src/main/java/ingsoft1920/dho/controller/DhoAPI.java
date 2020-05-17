@@ -685,4 +685,40 @@ public class DhoAPI {
 
 	}
 
+	@ResponseBody
+	@PostMapping("/reservaGrupo")
+	public String reservaGrupo(@RequestBody String req){
+		
+		JsonObject obj = (JsonObject) JsonParser.parseString(req);
+		GruposBean grupos = new GruposBean();
+		
+		String nombre = obj.get("nombre").getAsString();
+		grupos.setNombre(nombre);
+		
+		String tipo = obj.get("tipo").getAsString();
+		grupos.setTipo(tipo);
+		
+		String email = obj.get("email").getAsString();
+		grupos.setEmail(email);
+		
+		int hotel_id = (int) obj.get("hotel_id").getAsFloat();
+		grupos.setHotel_id(hotel_id);
+		
+		int num_habitaciones = (int) obj.get("num_habitaciones").getAsFloat();
+		grupos.setNum_habitaciones(num_habitaciones);
+		
+		int num_personas = (int) obj.get("num_personas").getAsFloat();
+		grupos.setNum_personas(num_personas);
+		
+		String fecha_entrada = requeObj.get("fecha_entrada").getAsString();
+		LocalDate date = LocalDate.parse(fecha_entrada);
+		grupos.setFecha_entrada(java.sql.Date.valueOf(date));
+		
+		String fecha_salida = requeObj.get("fecha_salida").getAsString();
+		LocalDate date = LocalDate.parse(fecha_salida);
+		grupos.setFecha_salida(java.sql.Date.valueOf(date));
+		
+		GrupoDAO.a–adirReservaGrupos(grupos);
+		
+	}
 }
