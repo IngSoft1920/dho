@@ -322,7 +322,7 @@ public class ServicioDAO {
 	}
 
 	// Recibes habitación, nombreHotel, precio, fecha y hora
-	public static void recibirMesa(int habitacion_id, String hotel, int precio, Date fecha, Time hora) {
+	public static void recibirMesa(int habitacion_id, String hotel, int precio, Date fecha, Time hora, String tipo) {
 		// servicio_id, estancia_id, lugar, fecha factura, hora, tipo servicio,
 		// servicioHotel-id, platos, items, hora salida, precio, cliente_id
 		if (conexion.getConexion() == null) {
@@ -331,7 +331,6 @@ public class ServicioDAO {
 		int servicio_id = idUltimoServicio() + 1;
 		int estancia_id = EstanciaDAO.getEstanciaFecha(habitacion_id, fecha.toString()).getEstancia_id();
 
-		String tipoServicio = "mesa";
 		int cliente_id = ClienteDAO.datosCliente(estancia_id).getCliente_id();
 		int servicioDelHotel_id = ServiciosDelHotelDAO.getRestauranteId(hotel);
 		java.sql.Statement stmt = null;
@@ -346,7 +345,7 @@ public class ServicioDAO {
 			stm.setInt(9, cliente_id);
 			stm.setDate(4, fecha);
 			stm.setTime(5, hora);
-			stm.setString(6, tipoServicio);
+			stm.setString(6, tipo);
 			stm.setInt(7, servicioDelHotel_id);
 			stm.setInt(8, precio);
 

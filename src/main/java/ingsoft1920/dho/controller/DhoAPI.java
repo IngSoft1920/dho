@@ -259,10 +259,11 @@ public class DhoAPI {
 		int habitacion_id = obj.get("habitacion").getAsInt();
 		String hotel = obj.get("Hotel").getAsString();
 		int factura = (int) obj.get("Factura").getAsFloat();
+		String tipo = obj.get("Tipo").getAsString();
 		long now = System.currentTimeMillis();
 		Time sqlTime = new Time(now);
 		Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-		ServicioDAO.recibirMesa(habitacion_id, hotel, factura, date, sqlTime);
+		ServicioDAO.recibirMesa(habitacion_id, hotel, factura, date, sqlTime, tipo);
 		return "Procesado";
 	}
 
