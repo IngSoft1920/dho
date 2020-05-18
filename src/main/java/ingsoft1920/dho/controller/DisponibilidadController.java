@@ -58,7 +58,7 @@ public class DisponibilidadController {
 	 	for(int i=0; i<numHab;i++) 
 	 	{
 	 		estado=listaEstados.get(i);
-	 		habitaciones= HabitacionDAO.getHabitacionByHotel(2);
+	 		habitaciones= HabitacionDAO.getHabitacionByHotel(6);
 		 	if (estado.equals("check in")) { coloresCelda[i]=ROJO; links[i]="/homePageDHO/menu/disponibilidad/checkout1/"+
 		 			habitaciones.get(i).getId_habitacion()+"/"+fechaConsultaString; } // Rojo
 		 	else if (estado.equals("precheck in")) { coloresCelda[i]=AZULPRECHECKIN; links[i]="/homePageDHO/menu/disponibilidad/checkout1/"+
