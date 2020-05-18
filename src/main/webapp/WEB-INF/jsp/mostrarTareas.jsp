@@ -209,9 +209,11 @@ h2{
 		var input, filter, table, tr, td, i;
 		input = document.getElementById("myInput");
 		filter = input.value.toUpperCase();
-		table = document.getElementById("asig");
-		tr = table.getElementsByTagName("tr");
+		table = document.getElementsByTagName("table");
 		
+		
+		for(j=0; j<table.length;j++){
+		tr = table[j].getElementsByTagName("tr");
 		for (i = 0; i < tr.length; i++) {
   		td = tr[i].getElementsByTagName("td")[1];
     	if (td) {
@@ -221,15 +223,18 @@ h2{
         	tr[i].style.display = "none";
       }
     }
+    }
 	}
 	}
 </script>
 
 <section class="contenido wrapper">
 
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filtrar por tipo..">	
+
 <h2>Incidencias asignadas</h2>
 
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filtrar por tipo..">	
+
 <div class="table-wrapper">
     <table id="asig" class="fl-table">
         <thead>
@@ -261,7 +266,7 @@ h2{
 <h2>Incidencias sin asignar</h2>
 	
 <div class="table-wrapper">
-    <table class="fl-table">
+    <table id="asig" class="fl-table">
         <thead>
         <tr>
             <th>ID</th>
