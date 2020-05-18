@@ -83,25 +83,25 @@ nav ul li:hover {
 	</body>
 		
 	<form method="POST"> 
-		<label>Fecha_Entrada</label> 
+		<label>Fecha Entrada (YY-MM-DD)</label> 
 		<input type="text" name="Fecha_entrada" autocomlete="off" /> 
 		<br><br> 
-		<label>Fecha_Salida</label> 
+		<label>Fecha Salida (YY-MM-DD)</label> 
 		<input type="text" name="Fecha_salida" autocomlete="off" /> 
 		<br><br> 
-		<label>Num_Personas</label> 
+		<label>Nº Personas</label> 
 		<input type="text" name="Num_personas" autocomlete="off" /> 
 		<br><br> 
-		<label>Tipo_Habitacion</label> 
+		<label>Tipo de habitaci&oacuten (normal, premium)</label> 
 		<input type="text" name="Tipo_hab_String" autocomplete="off" /> 
 		<br><br>  
-		<label>Regimen</label> 
+		<label>R&eacutegimen(media,completa)</label> 
 		<input type="text" name="regimen" autocomplete="off" /> 
 		<br><br>  
-		<label>Nombre_Hotel</label> 
+		<label>Nombre del Hotel</label> 
 		<input type="text" name="Nombre_Hotel" autocomplete="off" /> 
 		<br><br>  
-		<label>Numero_Habitacion</label> 
+		<label>N&uacutemero de Habitaci&oacuten</label> 
 		<input type="text" name="Num_Habitacion" autocomplete="off" /> 
 		<br><br> 
 		<input type="submit" value="Registro"> 

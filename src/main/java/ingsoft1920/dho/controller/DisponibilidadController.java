@@ -61,9 +61,9 @@ public class DisponibilidadController {
 	 		habitaciones= HabitacionDAO.getHabitacionByHotel(6);
 		 	if (estado.equals("check in")) { coloresCelda[i]=ROJO; links[i]="/homePageDHO/menu/disponibilidad/checkout1/"+
 		 			habitaciones.get(i).getId_habitacion()+"/"+fechaConsultaString; } // Rojo
-		 	else if (estado.equals("precheck in")) { coloresCelda[i]=AZULPRECHECKIN; links[i]="/homePageDHO/menu/disponibilidad/checkin1/"+
+		 	else if (estado.equals("precheck in")) { coloresCelda[i]=AZULPRECHECKIN; links[i]="/homePageDHO/menu/disponibilidad/checkin1"+"/"+
 		 			habitaciones.get(i).getId_habitacion()+"/"+fechaConsultaString; } // Azul Precheckin
-		 	else if (estado.equals("reserva")) { coloresCelda[i]=NARANJA;links[i]="/homePageDHO/menu/disponibilidad/checkin1"+"/"+
+		 	else if (estado.equals("reserva")) { coloresCelda[i]=NARANJA;links[i]="/homePageDHO/menu/disponibilidad/precheckin"+"/"+
 		 			habitaciones.get(i).getId_habitacion()+"/"+fechaConsultaString;} // Naranja
 		 	else if (estado.equals("check out")) { coloresCelda[i]=VERDE;links[i]="/homePageDHO/menu/disponibilidad/estancias1";} // Verde
 	
