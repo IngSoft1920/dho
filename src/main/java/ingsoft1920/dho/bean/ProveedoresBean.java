@@ -5,6 +5,12 @@ public class ProveedoresBean {
 	private String empresa;
 	private int hotel_id;
 	
+	 public ProveedoresBean() {
+		// TODO Auto-generated constructor stub
+	}
+		
+	
+	
 	public ProveedoresBean(int proveedor_id, String empresa, int hotel_id) {
 		this.proveedor_id = proveedor_id;
 		this.empresa=empresa;

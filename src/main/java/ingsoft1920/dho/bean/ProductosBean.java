@@ -8,6 +8,11 @@ public class ProductosBean {
 	private int proveedor_id;
 	private String unidad;
 	
+	public ProductosBean() {
+		
+	}
+	
+	
 	public ProductosBean(int producto_id, String nombre, int precio, int proveedor_id, String unidad) {
 		this.producto_id=producto_id;
 		this.nombre=nombre;

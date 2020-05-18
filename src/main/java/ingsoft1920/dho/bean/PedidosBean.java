@@ -10,6 +10,11 @@ public class PedidosBean {
 	private String lugar;
 	private String especificaciones;
 	
+	
+	public PedidosBean() {
+		
+	}
+	
 	public PedidosBean(int pedido_id, int producto_id, Date fecha, String lugar, String especificaciones) {
 		this.pedido_id=pedido_id;
 		this.producto_id=producto_id;
