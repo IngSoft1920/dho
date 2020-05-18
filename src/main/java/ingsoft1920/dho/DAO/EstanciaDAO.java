@@ -814,4 +814,50 @@ public class EstanciaDAO {
 
 		return res;
 	}
+	
+	public static int eliminarEstancia(int estancia_id) {
+		int res = 0;
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+		java.sql.Statement stmt = null;
+		PreparedStatement stm = null;
+		ResultSet rs = null;
+		try {
+			stm = conexion.getConexion()
+					.prepareStatement("delete from Cobros where estancia_id=" + estancia_id + ";");
+			stm.executeUpdate();
+			stm = conexion.getConexion()
+					.prepareStatement("delete from Factura where estancia_id=" + estancia_id + ";");
+			stm.executeUpdate();
+			stm = conexion.getConexion()
+					.prepareStatement("delete from Servicios where estancia_id=" + estancia_id + ";");
+			stm.executeUpdate();
+			stm = conexion.getConexion()
+					.prepareStatement("delete from Estancia where estancia_id=" + estancia_id + ";");
+			stm.executeUpdate();
+			stm.executeUpdate();
+
+		} catch (
+
+		SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+		}
+		conexion.desconectar();
+		return res;
+	}
 }

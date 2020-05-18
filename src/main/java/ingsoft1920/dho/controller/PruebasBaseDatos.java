@@ -368,9 +368,9 @@ public class PruebasBaseDatos {
 		 * \"importe\" : 4, \"cliente_id\" : 10, \"numero_acompanantes\" : 0,
 		 * \"hotel_id\" : 5, \"tipo_hab_id\" : 1}")); PedirClientes a=new
 		 * PedirClientes(); System.out.println("BBBBBBBBBB"+a.peticionPedirCliente(19));
-		
+		*/
 		DhoAPI prueba55 = new DhoAPI();
-		prueba55.eliminarHotel(32); */
+		prueba55.cancelarReserva(106); 
 		
 		//EstanciaDAO prueba64= new EstanciaDAO(conexion);
 		//System.out.println(prueba64.idUltimaEstancia() +1);
@@ -388,8 +388,8 @@ public class PruebasBaseDatos {
 		*/
 		//System.out.print(HabitacionDAO.getHabitacionPorIdEstancia(103));
 		
-		enviarReservasFnb p=new enviarReservasFnb();
-		p.enviarReservas(1,2,3,LocalDate.parse("2020-10-10"),LocalTime.parse("20:00:00"),3);
+		//enviarReservasFnb p=new enviarReservasFnb();
+		//p.enviarReservas(1,2,3,LocalDate.parse("2020-10-10"),LocalTime.parse("20:00:00"),3);
 		// prueba55.recibirHotel(
 		// " { \"id\" : 32, \"nombre\" : \"El resplandor\", \"descripcion\" :\"Una
 		// experiencia cálida\", \"estrellas\" : 4, \"continente\" : \"Europa\",

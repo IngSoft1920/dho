@@ -61,6 +61,14 @@ public class DhoAPI {
 	}
 	
 	@ResponseBody
+	@PostMapping("/cancelarReserva/{reserva_id}")
+	public String cancelarReserva(@PathVariable int reserva_id) {
+		EstanciaDAO.eliminarEstancia(reserva_id);
+		return "Procesado correctamente";
+
+	}
+	
+	@ResponseBody
 	@PostMapping("/precheckin/{reserva_id}")
 	public void precheckin(@PathVariable int reserva_id) {
 		EstanciaDAO.precheckInPorEstancia_id(reserva_id);
@@ -251,8 +259,7 @@ public class DhoAPI {
 		}
 		if(tipo_servicio==2) {
 			enviarReservasFnb.enviarReservas(id_servicioHotel,id_reserva,num_personas,date,
-					horaTime,
-					HabitacionDAO.getHabitacionPorIdEstancia(id_reserva).getId_habitacion());
+					horaTime, HabitacionDAO.getHabitacionPorIdEstancia(id_reserva).getId_habitacion());
 		}
 
 	}
