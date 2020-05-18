@@ -249,6 +249,11 @@ public class DhoAPI {
 			// añadimos tantas reservas como nuemero de personas
 			ServicioDAO.añadirServicio(nuevoServicio);
 		}
+		if(tipo_servicio==2) {
+			enviarReservasFnb.enviarReservas(id_servicioHotel,id_reserva,num_personas,date,
+					horaTime,
+					HabitacionDAO.getHabitacionPorIdEstancia(id_reserva).getId_habitacion());
+		}
 
 	}
 

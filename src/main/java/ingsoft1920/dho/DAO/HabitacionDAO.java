@@ -247,6 +247,48 @@ public class HabitacionDAO {
 		conexion.desconectar();
 		return res;
 	}
+	
+	public static HabitacionBean getHabitacionPorIdEstancia(int id_estancia) {
+		// Devuelve la habitacion que ha alquilado un cliente
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+
+		HabitacionBean res = null;
+
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conexion.getConexion().createStatement();
+			rs = stmt.executeQuery("SELECT h.habitacion_id,h.tipo_habitacion,h.hotel_id ,h.capacidad "
+					+ "FROM Habitaciones AS h JOIN Estancia AS e ON h.habitacion_id=e.habitacion_id "
+					+ "WHERE estancia_id =" + id_estancia+";");
+			if (rs.next()) {
+				res = new HabitacionBean(rs.getInt("habitacion_id"), rs.getInt("hotel_id"),
+						rs.getString("tipo_habitacion"), rs.getInt("capacidad"));
+
+			}
+
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+		}
+		return res;
+
+	}
 
 	// añade habitaciones a la base de datos
 	public static void anadirHabitaciones(HabitacionBean habitacion, int num_Disponibles) {

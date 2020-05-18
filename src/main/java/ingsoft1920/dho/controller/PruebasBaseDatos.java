@@ -3,6 +3,7 @@ package ingsoft1920.dho.controller;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import com.google.gson.JsonObject;
@@ -380,11 +381,15 @@ public class PruebasBaseDatos {
 		GruposDAO prueba65= new GruposDAO(conexion);
 		GruposDAO.añadirReservaGrupos(a);*/
 		
-		DhoAPI prueba55 = new DhoAPI();
+		/*DhoAPI prueba55 = new DhoAPI();
 		prueba55.reservaGrupo("{\"nombre\" : \"hola\",\"tipo\" :\"hola\", \"email\" :\"hola\","
 				+ "\"hotel_id\" : 3 , \"numero_habitaciones\" : 5, \"numero_personas\" : 56, "
 				+ "\"fecha_entrada\" :\"2020-05-05\", \"fecha_salida\" :\"2020-05-05\" }");
+		*/
+		//System.out.print(HabitacionDAO.getHabitacionPorIdEstancia(103));
 		
+		enviarReservasFnb p=new enviarReservasFnb();
+		p.enviarReservas(1,2,3,LocalDate.parse("2020-10-10"),LocalTime.parse("20:00:00"),3);
 		// prueba55.recibirHotel(
 		// " { \"id\" : 32, \"nombre\" : \"El resplandor\", \"descripcion\" :\"Una
 		// experiencia cálida\", \"estrellas\" : 4, \"continente\" : \"Europa\",
