@@ -372,6 +372,13 @@ public class PruebasBaseDatos {
 		DhoAPI prueba55 = new DhoAPI();
 		prueba55.cancelarReserva(106); 
 		
+		
+		PasarPedidos prueba=new PasarPedidos();
+		String [] pr= {"agua","botella","cerveza"};
+		int[] c= {4,5,6};
+		String [] e= {"a","b","c"};
+		PasarPedidos.pasarPedidosaFnb(1, LocalDate.parse("2020-10-10"), pr, c, e);
+		
 		//EstanciaDAO prueba64= new EstanciaDAO(conexion);
 		//System.out.println(prueba64.idUltimaEstancia() +1);
 		

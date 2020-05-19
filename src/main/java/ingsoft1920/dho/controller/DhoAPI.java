@@ -736,4 +736,12 @@ public class DhoAPI {
 		GruposDAO.añadirReservaGrupos(grupos);
 		
 	}
+	
+	@ResponseBody
+	@PostMapping("/nombrePorHabitacion/{habitacion_id}")
+	public String nombreporHabitacion(@PathVariable int habitacion_id) {
+		int cliente_id=EstanciaDAO.getEstanciaByHabitacionID(habitacion_id).getCliente_id();
+		return ClienteDAO.datosCliente(cliente_id).getNombre()+" "+ ClienteDAO.datosCliente(cliente_id).getApellidos();
+		
+	}
 }
