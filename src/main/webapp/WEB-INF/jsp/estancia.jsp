@@ -11,6 +11,7 @@
 			<li><a href="/homePageDHO/menu/disponibilidad">Disponibilidad</a></li>
 			<li><a href="/homePageDHO/menu/reservas1">Servicios</a></li>
 			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
+			<li><a href="/homePageDHO/menu/pedidos">Pedidos</a></li>
 		</ul>
 	</nav>
 </header>
@@ -84,13 +85,13 @@ nav ul li:hover {
 		
 	<form method="POST"> 
 		<label>Nombre</label> 
-		<input type="text" name="nombre" autocomlete="off" /> 
+		<input type="text" name="nombre" autocomplete="off" /> 
 		<br><br> 
 		<label>Apellidos</label> 
-		<input type="text" name="apellidos" autocomlete="off" /> 
+		<input type="text" name="apellidos" autocomplete="off" /> 
 		<br><br> 
 		<label>DNI</label> 
-		<input type="text" name="dni" autocomlete="off" /> 
+		<input type="text" name="dni" autocomplete="off" /> 
 		<br><br> 
 		<label>Email</label> 
 		<input type="text" name="email" autocomplete="off" /> 
