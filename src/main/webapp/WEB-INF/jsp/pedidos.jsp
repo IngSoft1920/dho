@@ -155,11 +155,34 @@ input[type=button], input[type=submit]{
 #menu input:checked ~ ul{display:block;}
 
 		</style>
+		<br>
 	<h1><font size=7 align = "center">Pedidos a proveedores</font></h1>
 	<br><br>
 	
-<ul id="menu">
+<form:form method="POST" action="/homePageDHO/menu/pedidos/submit">	
 
+
+<h2><font size=5 align = "center">Datos del pedido</font></h2><br>
+
+<label>Nombre del Hotel:  </label> 
+					<input type="text" name="nombreHotel" value="New York" />  
+					<br> 
+<label>Id del Hotel:  </label> 
+					<input type="number" name="hotel_id" min="0" value="6" /> 
+					<br> 
+<label>Lugar:  </label> 
+					<input type="text" name="lugar" value="Restaurante" /> 
+					<br> 
+<label>Fecha:  </label> 
+					<input type="date" name="fecha" value="2020-05-25"/> 
+<br> 
+<br>
+<br>
+<h2><font size=5 align = "center"> Contenido del pedido </font></h2><br>
+
+<ul id="menu">
+	
+        
    <li><input type="checkbox" name="list" id="nivel1-1"><label for="nivel1-1">Proveedor 1</label>
    <ul class="interior">
            <li><input type="checkbox" name="list" id="nivel2-1"><label for="nivel2-1">Alimentación</label>
@@ -167,13 +190,13 @@ input[type=button], input[type=submit]{
            
              <li><a href="#r">
              		<label>Tomates </label> 
-					<input type="text" name="nombre" autocomplete="off" /> 
+					<input type="number" name="tomates1" min="0" value="0" /> Especificaciones:  <input type="text" name="specstom1" value=" Sin especificar " />
 					<br> 
 				</a></li>
 				
              <li><a href="#r">
              		<label>Lechugas </label> 
-					<input type="text" name="nombre" autocomplete="off" /> 
+					<input type="number" name="lechugas1" min="0" value="0"/> Especificaciones:  <input type="text" name="specslec1" value=" Sin especificar " />
 					<br> 
 				</a></li>
 				
@@ -184,13 +207,13 @@ input[type=button], input[type=submit]{
            
                 <li><a href="#r">
              		<label>Toallas </label> 
-					<input type="text" name="nombre" autocomplete="off" /> 
+					<input type="number" name="toallas1" min="0" value="0"/> Especificaciones:  <input type="text" name="specstoallas1" value=" Sin especificar " />
 					<br> 
 				</a></li>
 				
                <li><a href="#r">
              		<label>Papel </label> 
-					<input type="text" name="nombre" autocomplete="off" /> 
+					<input type="number" name="papel1" min="0" value="0"/> Especificaciones:  <input type="text" name="specspapel1" value=" Sin especificar " />
 					<br> 
 			   </a></li>
              
@@ -202,7 +225,7 @@ input[type=button], input[type=submit]{
            
                 <li><a href="#r">
              		<label>Otros </label> 
-					<input type="text" name="nombre" autocomplete="off" /> 
+					<input type="number" name="otros1" min="0" value="0"/> Especificaciones:  <input type="text" name="specsotros1" value=" Sin especificar " />
 					<br> 
 				</a></li>
   
@@ -223,13 +246,13 @@ input[type=button], input[type=submit]{
            
              <li><a href="#r">
              		<label>Tomates </label> 
-					<input type="text" name="nombre" autocomplete="off" /> 
+					<input type="number" name="tomates2" min="0" value="0" /> Especificaciones:  <input type="text" name="specstom2" value=" Sin especificar " />
 					<br> 
 				</a></li>
 				
              <li><a href="#r">
              		<label>Lechugas </label> 
-					<input type="text" name="nombre" autocomplete="off" /> 
+					<input type="number" name="lechugas2" min="0" value="0"/> Especificaciones:  <input type="text" name="specslec2" value=" Sin especificar " />
 					<br> 
 				</a></li>
 				
@@ -240,13 +263,13 @@ input[type=button], input[type=submit]{
            
                 <li><a href="#r">
              		<label>Toallas </label> 
-					<input type="text" name="nombre" autocomplete="off" /> 
+					<input type="number" name="toallas2" min="0" value="0"/> Especificaciones:  <input type="text" name="specstoallas2" value=" Sin especificar " />
 					<br> 
 				</a></li>
 				
                <li><a href="#r">
              		<label>Papel </label> 
-					<input type="text" name="nombre" autocomplete="off" /> 
+					<input type="number" name="papel2" min="0" value="0"/> Especificaciones:  <input type="text" name="specspapel2" value=" Sin especificar " />
 					<br> 
 			   </a></li>
              
@@ -258,7 +281,7 @@ input[type=button], input[type=submit]{
            
                 <li><a href="#r">
              		<label>Otros </label> 
-					<input type="text" name="nombre" autocomplete="off" /> 
+					<input type="number" name="otros2" min="0" value="0"/> Especificaciones:  <input type="text" name="specsotros2" value=" Sin especificar " />
 					<br> 
 				</a></li>
   
@@ -267,15 +290,12 @@ input[type=button], input[type=submit]{
  
       </ul>
    </li>
-   
-   
-   
-   
+      
 </ul>
 
 	<br>
-	<input type="submit" value="Realizar Pedido"> 
-	</form>		
+	<input type="submit" value=" Realizar Pedido "> 	
+    </form:form>	
 	
 	
 	<script type="text/javascript">

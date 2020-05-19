@@ -56,7 +56,7 @@ public class PasarPedidos {
 			
 			int cont = 0;
 			
-			for(int producto: productos_id ) {
+			for(int producto: productos_id) {
 				JsonObject obj = new JsonObject();
 				
 				obj.addProperty("producto_id", producto);
@@ -64,6 +64,7 @@ public class PasarPedidos {
 				obj.addProperty("especificaciones", especificaciones[cont]);
 				
 				lista.add(obj);
+				cont++;
 			}
 			
 			param.add("productos", lista);
@@ -114,6 +115,7 @@ public class PasarPedidos {
 				obj.addProperty("especificaciones", especificaciones[cont]);
 				
 				lista.add(obj);
+				cont++;
 			}
 			
 			param.add("productos", lista);
