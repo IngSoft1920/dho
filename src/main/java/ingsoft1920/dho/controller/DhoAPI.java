@@ -522,8 +522,14 @@ public class DhoAPI {
 		for (ServicioBean elem : serviciosReservados) {
 
 			fechaServicio.add(elem.getFecha_servicio().toString());
-
-			nombreServicio.add(ServiciosDelHotelDAO.conseguirNombreServicioHotel(elem.getId_ServicioHotel()));
+			
+			if(elem.getTipo_servicio().equals("mesa")) {
+				nombreServicio.add("Mesa en restaurante");
+			}else if(elem.getTipo_servicio().equals("habitacion")) {
+				nombreServicio.add("Pedido a habitacion");	
+			}else {
+				nombreServicio.add(ServiciosDelHotelDAO.conseguirNombreServicioHotel(elem.getId_ServicioHotel()));
+			}
 
 		}
 
