@@ -265,7 +265,7 @@ input[type=submit]:hover {
         <c:forEach items="${listaGrupos}" var="item2">	
 	<tr>			
 		    <td><h4>${item2.getNombre()}</h4></td> 
-			<td><h4>${item2.getGrupo_id()}</h4></td> 	
+			<td><h4>${item2.getTipo()}</h4></td> 	
 			<td><h4>${item2.getEmail()}</h4></td> 	
 			<td><h4>${item2.getHotel_id()}</h4></td> 	
 			<td><h4>${item2.getNum_habitaciones()}</h4></td> 
