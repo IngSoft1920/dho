@@ -271,29 +271,28 @@ h2{
 	
 	</body>
 		
+		${fallo}
+		
+		<br><br> 
+		
 	<div class="container">		
 	<form method="POST"> 
-		<label>Id del Cliente (Número): </label> 
-		<input type="text" name="cliente_id" autocomlete="off" /> 
-		<br><br> 
-		<label>Id de la estancia (Número): </label> 
-		<input type="text" name="estancia_id" autocomlete="off" /> 
-		<br><br> 
 		<label>Fecha del servicio (YYYY-MM-dd): </label> 
 		<input type="text" name="fecha_servicioString" autocomlete="off" /> 
 		<br><br> 
-		<label>Hora (Texto): </label> 
+		<label>Hora (hh:mm): </label> 
 		<input type="text" name="horaString" autocomplete="off" /> 
 		<br><br> 
-		<label>Id del servicio (Número): </label> 
-		<input type="text" name="id_ServicioHotel" autocomplete="off" /> 
+		<label>Nombre del servicio: </label> 
+		<input type="text" name="nombre_servicio" autocomplete="off" /> 
 		<br><br>  
-		<label>Lugar (Nombre): </label> 
-		<input type="text" name="lugar" autocomplete="off" /> 
+		<label>Número Habitacion: </label> 
+		<input type="text" name="num_habitacion" autocomplete="off" /> 
 		<br><br> 
-		<label>Tipo de servicio (Texto): </label> 
-		<input type="text" name="tipo_servicio" autocomplete="off" /> 
+		<label>Nombre Hotel: </label> 
+		<input type="text" name="ombre_hotel" autocomplete="off" /> 
 		<br><br> 
+		
 		 
 		<input type="submit" value="Registro"> 
 	</form> 	
