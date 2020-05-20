@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
-
+  
 <header>
 	<nav>
 		<ul>
@@ -13,7 +13,7 @@
 			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
 			<li><a href="/homePageDHO/menu/pedidos">Pedidos</a></li>
 			<li><a href="/homePageDHO/menu/reservaGrupos">Reserva Grupos</a></li>
-		
+
 		</ul>
 	</nav>
 </header>
@@ -201,108 +201,9 @@ h2{
         display: block;
         text-align: center;
     }
-}
-</style>
-
-<script>
-	function myFunction(){
-	
-		var input, filter, table, tr, td, i;
-		input = document.getElementById("myInput");
-		filter = input.value.toUpperCase();
-		table = document.getElementById("asig");
-		tr = table.getElementsByTagName("tr");
-		
-		
-		for (i = 0; i < tr.length; i++) {
-  		td = tr[i].getElementsByTagName("td")[3];
-    	if (td) {
-      		if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        		tr[i].style.display = "";
-      		} else {
-        	tr[i].style.display = "none";
-      }
-    
-    }
-	}
-	}
-</script>
-<section class="contenido wrapper">
-	
-
-	
-	<h2>Servicios</h2>
-	
-	<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filtrar por tipo..">
-	
-  <div class="table-wrapper">
-    <table id="asig" class="fl-table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>ESTANCIA</th>
-            <th>CLIENTE</th>
-            <th>LUGAR</th>
-            <th>FECHA</th>
-            <th>HORA</th>
-            <th>TIPO</th>
-            <th>PRECIO</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${listaReservas}" var="item2">	
-	<tr>			
-		    <td><h4>${item2.getId_ServicioHotel()}</h4></td> 
-		    <td><h4>${item2.getEstancia_id()}</h4></td> 	
-		    <td><h4>${item2.getCliente_id()}</h4></td>
-		    <td><h4>${item2.getLugar()}</h4></td>
-		    <td><h4>${item2.getFecha_servicio()}</h4></td>
-		    <td><h4>${item2.getHora()}</h4></td>
-		    <td><h4>${item2.getTipo_servicio()}</h4></td>
-		    <td><h4>${item2.getPrecio()}</h4></td>
-		  
-		    
-	</tr>
-	</c:forEach>
-              
-        <tbody>
-    </table>
-    
-</div>
-	
-	</body>
-		
-		${fallo}
-		
-		<br><br> 
-		
-	<div class="container">		
-	<form method="POST"> 
-		<label>Fecha del servicio (YYYY-MM-dd): </label> 
-		<input type="text" name="fecha_servicioString" autocomlete="off" /> 
-		<br><br> 
-		<label>Hora (hh:mm): </label> 
-		<input type="text" name="horaString" autocomplete="off" /> 
-		<br><br> 
-		<label>Nombre del servicio: </label> 
-		<input type="text" name="nombre_servicio" autocomplete="off" /> 
-		<br><br>  
-		<label>Número Habitacion: </label> 
-		<input type="text" name="num_habitacion" autocomplete="off" /> 
-		<br><br> 
-		<label>Nombre Hotel: </label> 
-		<input type="text" name="ombre_hotel" autocomplete="off" /> 
-		<br><br> 
-		
-		 
-		<input type="submit" value="Registro"> 
-	</form> 	
-
-  <style>
-
-/* Style inputs with type="text", select elements and textareas */
+ /* Style inputs with type="text", select elements and textareas */
 input[type=text], select, textarea {
-  width: 100%; /* Full width */
+  width: 100%;
   padding: 12px; /* Some padding */ 
   border: 1px solid #ccc; /* Gray border */
   border-radius: 4px; /* Rounded borders */
@@ -333,12 +234,59 @@ input[type=submit]:hover {
   background-color: #f2f2f2;
   padding: 20px;
 }
+    
 
 </style>
 
-</div>					
+
+<section class="contenido wrapper">
+
 	
+
+<h2>Reservas de grupo</h2>
+
+
+<div class="table-wrapper">
+    <table id="asig" class="fl-table">
+        <thead>
+        <tr>
+            <th>NOMBRE</th>
+            <th>TIPO DE GRUPO</th>
+            <th>CORREO</th>
+            <th>HOTEL</th>
+            <th>NUM HABS</th>
+            <th>NUM PERSONAS</th>
+            <th>FECHA ENTRADA</th>
+            <th>FECHA SALIDA</th>
+            <th>ESTADO</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${listaGrupos}" var="item2">	
+	<tr>			
+		    <td><h4>${item2.getNombre()}</h4></td> 
+			<td><h4>${item2.getGrupo_id()}</h4></td> 	
+			<td><h4>${item2.getEmail()}</h4></td> 	
+			<td><h4>${item2.getHotel_id()}</h4></td> 	
+			<td><h4>${item2.getNum_habitaciones()}</h4></td> 
+			<td><h4>${item2.getNum_personas()}</h4></td>
+			<td><h4>${item2.getFecha_entrada()}</h4></td>
+			<td><h4>${item2.getFecha_salida()}</h4></td>
+			<td><h4>${item2.getEstado()}</h4></td>		    
+	</tr>
+	</c:forEach>
+              
+        <tbody>
+    </table>
+    
+</div>
+
+
+
+
+
+
 	
-					
 </section>	
+
 </html>
