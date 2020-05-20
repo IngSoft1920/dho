@@ -102,4 +102,47 @@ public class GruposDAO {
 		return res;
 
 	}
+	//Devuelve todas las reservas de grupos que hay en la bbdd
+	public static ArrayList<GruposBean> getReservasGrupo() {
+		ArrayList<GruposBean> res = new ArrayList<GruposBean>();
+
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			stmt = conexion.getConexion().createStatement();
+			rs = stmt.executeQuery("SELECT * FROM Grupos");
+
+			while (rs.next()) {
+				res.add(new GruposBean(rs.getInt("grupo_id"), rs.getString("nombre"), rs.getString("tipo"),
+						rs.getString("email"), rs.getInt("hotel_id"), rs.getInt("num_habitaciones"), rs.getInt("num_personas"),
+						rs.getDate("fecha_entrada"), rs.getDate("fecha_salida"), rs.getString("estado")));
+
+			}
+
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+		}
+		conexion.desconectar();
+		return res;
+
+	}
 }

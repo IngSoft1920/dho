@@ -368,7 +368,7 @@ public class PruebasBaseDatos {
 		 * \"importe\" : 4, \"cliente_id\" : 10, \"numero_acompanantes\" : 0,
 		 * \"hotel_id\" : 5, \"tipo_hab_id\" : 1}")); PedirClientes a=new
 		 * PedirClientes(); System.out.println("BBBBBBBBBB"+a.peticionPedirCliente(19));
-		*/
+		
 		DhoAPI prueba55 = new DhoAPI();
 		prueba55.cancelarReserva(106); 
 		
@@ -378,6 +378,9 @@ public class PruebasBaseDatos {
 		int[] c= {4,5,6};
 		String [] e= {"a","b","c"};
 		PasarPedidos.pasarPedidosaFnb(1, LocalDate.parse("2020-10-10"), pr, c, e);
+		*/
+		GruposDAO prueba71 = new GruposDAO(conexion);
+		System.out.println(prueba71.getReservasGrupo().toString());
 		
 		//EstanciaDAO prueba64= new EstanciaDAO(conexion);
 		//System.out.println(prueba64.idUltimaEstancia() +1);
