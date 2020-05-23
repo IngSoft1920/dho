@@ -16,7 +16,7 @@ import ingsoft1920.dho.bean.ClienteBean;
 import ingsoft1920.dho.bean.ProductosBean;
 import ingsoft1920.dho.bean.ProveedoresBean;
 
-public class pedirProovedores {
+public class pedirProveedores {
 	/*
 	 * [ { "proveedor_id": 1,"empresa":"abc", "productos": [ { "id": 10, "nombre": "tomates",
 	 * "precio_venta": 300, "unidad_medida": "tonelada" }, { "id": 11, "nombre":
@@ -27,10 +27,10 @@ public class pedirProovedores {
 	 * "precio_venta": 80, "unidad_medida": "litro" } ] } ]
 	 */
 
-	public static ClienteBean pedirProovedores(int hotel_id) {
+	public static ClienteBean pedirProveedores(int hotel_id) {
 		try {
 			// construimos la peticion
-			HttpClient client = new HttpClient("http://piedrafita.ls.fi.upm.es:7000/hotel-proovedores/" + hotel_id,
+			HttpClient client = new HttpClient("http://piedrafita.ls.fi.upm.es:7000/hotel-proveedores/" + hotel_id,
 					"GET");
 
 			int respCode = client.getResponseCode();
@@ -45,10 +45,11 @@ public class pedirProovedores {
 					ProveedoresDAO.anadirProveedor(proveedor);
 					JsonArray productos = aux.get("productos").getAsJsonArray();
 					for (int j= 0;j<productos.size();j++) {
-						int id = aux.get("id").getAsInt();
-						String nombre = aux.get("nombre").getAsString();
-						int precio_venta = aux.get("precio_venta").getAsInt();
-						String unidad_medida = aux.get("unidad_medida").getAsString();
+						JsonObject productosAux=productos.get(j).getAsJsonObject();
+						int id = productosAux.get("id").getAsInt();
+						String nombre = productosAux.get("nombre").getAsString();
+						int precio_venta = productosAux.get("precio_venta").getAsInt();
+						String unidad_medida = productosAux.get("unidad_medida").getAsString();
 						ProductosBean producto=new ProductosBean(id,nombre,precio_venta,proveedor_id,unidad_medida);
 						ProductosDAO.anadirProducto(producto);
 						

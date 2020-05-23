@@ -383,8 +383,9 @@ public class PruebasBaseDatos {
 		prueba71.denegarReservaGrupo(4);
 		*/
 		
-		ServicioDAO prueba72= new ServicioDAO(conexion);
-		System.out.println(prueba72.getServiciosReservados().toString());
+		//ServicioDAO prueba72= new ServicioDAO(conexion);
+		//System.out.println(prueba72.getServiciosReservados().toString());
+		pedirProveedores.pedirProveedores(6);
 		
 		
 		//EstanciaDAO prueba64= new EstanciaDAO(conexion);

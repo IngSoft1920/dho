@@ -25,8 +25,8 @@ public class ProductosDAO {
 			stm.setInt(1, producto.getProducto_id());
 			stm.setString(2, producto.getNombre());
 			stm.setInt(3, producto.getPrecio());
-			stm.setInt(3, producto.getProveedor_id());
-			stm.setString(2, producto.getUnidad());
+			stm.setInt(4, producto.getProveedor_id());
+			stm.setString(5, producto.getUnidad());
 
 			stm.executeUpdate();
 		}
