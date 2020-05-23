@@ -17,15 +17,15 @@ public class PasarPedidos {
 
 	
 	public static void  pasarPedidos( int hotel_id ,LocalDate fecha,String lugar, int [] productos_id,String [] nombresProductos,
-			int[] cantidades, String[] especificaciones) {
+			int[] cantidades, String[] especificaciones,int proveedor_id) {
 		
 			
 			if (lugar.equals("restaurante")) {
 				pasarPedidosaFnb(hotel_id ,fecha, nombresProductos,
-						cantidades, especificaciones);
+						cantidades, especificaciones, proveedor_id);
 			}
 			pasarPedidosaCM(hotel_id ,fecha, productos_id,
-					cantidades, especificaciones);
+					cantidades, especificaciones,proveedor_id);
 		}
 		
 		
@@ -35,7 +35,7 @@ public class PasarPedidos {
 	 * 2.Esta biene el formato de la fecha??
 	 */
 	public static void pasarPedidosaCM( int hotel_id ,LocalDate fecha, int[] productos_id,int[] cantidades,
-			String[] especificaciones) {
+			String[] especificaciones,int provedor_id) {
 		
 		
 		try {
@@ -51,6 +51,7 @@ public class PasarPedidos {
 			
 			param.addProperty("hotel_id", hotel_id);
 			
+			param.addProperty("provedor_id", provedor_id);
 			
 			JsonArray lista = new JsonArray();
 			
@@ -86,7 +87,7 @@ public class PasarPedidos {
 	}
 	
 	public static void pasarPedidosaFnb( int hotel_id ,LocalDate fecha, String[] productos,int[] cantidades,
-			String[] especificaciones) {
+			String[] especificaciones, int provedor_id) {
 		
 		
 		try {
@@ -101,6 +102,8 @@ public class PasarPedidos {
 			param.addProperty("fecha", fecha.toString());
 			
 			param.addProperty("hotel_id", hotel_id);
+			
+			param.addProperty("proveedor_id", provedor_id);
 			
 			
 			JsonArray lista = new JsonArray();

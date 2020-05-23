@@ -93,7 +93,7 @@ public class PedidosController {
 		int[] cantidades = {tomates1,lechugas1,toallas1,papel1,otros1};
 		String[] especificaciones = {specstom1,specslec1,specstoallas1,specspapel1,specsotros1};
 		if(lugar.equals("Restaurante")) lugar = "restaurante";
-		PasarPedidos.pasarPedidos(hotelId, fecha, lugar, productos_id, nombresProductos, cantidades, especificaciones);
+		//PasarPedidos.pasarPedidos(hotelId, fecha, lugar, productos_id, nombresProductos, cantidades, especificaciones);
 	
 	return "redirect:/homePageDHO/menu/pedidos";
 
