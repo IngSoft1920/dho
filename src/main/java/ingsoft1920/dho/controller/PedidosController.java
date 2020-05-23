@@ -80,19 +80,28 @@ public class PedidosController {
 
 	@PostMapping("/homePageDHO/menu/pedidos/submit")
 	public String checkinPost(Model model,@Valid@ModelAttribute ("hotel_id") int hotelId,@Valid@ModelAttribute ("idProveedor") int idProveedor,@Valid@ModelAttribute ("fecha") String fechaString,
-			@Valid@ModelAttribute ("lugar") String lugar,@Valid@ModelAttribute ("tomates1") int tomates, @Valid@ModelAttribute ("specstom") String specstom,
+			@Valid@ModelAttribute ("lugar") String lugar,
+			@Valid@ModelAttribute ("tomates") int tomates, @Valid@ModelAttribute ("specstom") String specstom,
 			@Valid@ModelAttribute ("lechugas") int lechugas,@Valid@ModelAttribute ("specslec") String specslec,
 			@Valid@ModelAttribute ("toallas") int toallas,@Valid@ModelAttribute ("specstoallas") String specstoallas,
+			@Valid@ModelAttribute ("pan") int pan,@Valid@ModelAttribute ("specspan") String specspan,
+			@Valid@ModelAttribute ("huevos") int huevos,@Valid@ModelAttribute ("specshuevos") String specshuevos,
+			@Valid@ModelAttribute ("leche") int leche,@Valid@ModelAttribute ("specsleche") String specsleche,
+			@Valid@ModelAttribute ("aceite") int aceite,@Valid@ModelAttribute ("specsaceite") String specsaceite,
+			@Valid@ModelAttribute ("queso") int queso,@Valid@ModelAttribute ("specsqueso") String specsqueso,
+			@Valid@ModelAttribute ("carne") int carne,@Valid@ModelAttribute ("specscarne") String specscarne,
+			@Valid@ModelAttribute ("refrescos") int refrescos,@Valid@ModelAttribute ("specsrefrescos") String specsrefrescos,
+			@Valid@ModelAttribute ("jabon") int jabon,@Valid@ModelAttribute ("specsjabon") String specsjabon,
 			@Valid@ModelAttribute ("papel") int papel,@Valid@ModelAttribute ("specspapel") String specspapel,
+			@Valid@ModelAttribute ("aseo") int aseo,@Valid@ModelAttribute ("specsaseo") String specsaseo,
 			@Valid@ModelAttribute ("otros") int otros,@Valid@ModelAttribute ("specsotros") String specsotros) {
 		//System.out.println(tomates);
 		//System.out.println(lechugas);
 		LocalDate fecha = LocalDate.parse(fechaString);
-		int[] productos_id = {0,1,2,3,4};
-		String[] nombresProductos = {"Tomates","Lechugas","Toallas","Papel","Otro"};
-		int[] cantidades = {tomates,lechugas,toallas,papel,otros};
-		String[] especificaciones = {specstom,specslec,specstoallas,specspapel,specsotros};
-		if(lugar.equals("Restaurante")) lugar = "restaurante";
+		int[] productos_id = {0,1,2,3,4,5,6,7,8,9,10,11,12,13};
+		String[] nombresProductos = {"Tomates","Lechugas","Toallas","Pan","Huevos","Leche","Aceite","Queso","Carne","Refrescos","Jabon","Papel","Aseo","Otros"};
+		int[] cantidades = {tomates,lechugas,toallas,pan,huevos,leche,aceite,queso,carne,refrescos,jabon,papel,aseo,otros};
+		String[] especificaciones = {specstom,specslec,specstoallas,specspan,specshuevos,specsleche,specsaceite,specsqueso,specscarne,specsrefrescos,specsjabon,specspapel,specsaseo,specsotros};
 		//System.out.println(lugar);
 		PasarPedidos.pasarPedidos(hotelId, fecha, lugar, productos_id, nombresProductos, cantidades, especificaciones,idProveedor);
 	

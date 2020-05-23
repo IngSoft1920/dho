@@ -199,6 +199,7 @@ input[type=button], input[type=submit]{
            <li><input type="checkbox" name="list" id="nivel2-1"><label for="nivel2-1">Alimentación</label>
            <ul class="interior">
            
+           
              <li><a href="#r">
              		<label>Tomates </label> 
 					<input type="number" name="tomates" min="0" value="0" /> Especificaciones:  
@@ -206,15 +207,149 @@ input[type=button], input[type=submit]{
 	   				 <option value="en rama"> En rama </option>
 					 <option value="kumato"> Kumato </option>
 					 <option value="cherry"> Cherry </option>
+					  <option value="Marglobe"> Marglobe </option>
+					 <option value="Roma"> Roma </option>
+					 <option value="Raf"> Raf </option>
    					</select>
 					<br> 
 				</a></li>
 				
+				
+				
              <li><a href="#r">
              		<label>Lechugas </label> 
-					<input type="number" name="lechugas" min="0" value="0"/> Especificaciones:  <input type="text" name="specslec" value=" Sin especificar " />
+					<input type="number" name="lechugas" min="0" value="0"/> Especificaciones: 
+					<select name = "specslec"> 
+	   				 <option value="Endibia"> Endibia </option>
+					 <option value=" Canónigo"> Canónigo </option>
+					 <option value="Rúcula"> Rúcula </option>
+					 <option value="Escarola"> Escarola </option>
+					 <option value="Iceberg"> Iceberg </option>
+					 <option value="Radicchio"> Radicchio </option>
+					 <option value="Lollo Rosso"> Lollo Rosso </option>
+					 <option value="Tatsoi"> Tatsoi </option>
+					 <option value="Batavia"> Batavia </option>
+   					</select>
 					<br> 
 				</a></li>
+				
+			<li><a href="#r">
+             		<label>Pan </label> 
+					<input type="number" name="pan" min="0" value="0"/> Especificaciones: 
+					<select name = "specspan"> 
+	   				 <option value="Baguette"> Baguette </option>
+					 <option value="Hogaza"> Hogaza </option>
+					 <option value="Tostada"> Tostada </option>
+					 <option value="Rústico"> Rústico </option>
+					 <option value="Sin gluten"> Sin gluten </option>
+					 <option value="De pipas"> De pipas </option>
+					 <option value="Multicereales"> Multicereales </option>
+					 <option value="Ácimo"> Ácimo </option>
+					 <option value="De maíz"> De maíz </option>
+					  <option value="Torta de aceite"> Torta de aceite </option>
+					 <option value="Integral"> Integral </option>
+					 <option value="Barra normal">Barra normal </option>
+   					</select>
+					<br> 
+				</a></li>
+				
+		  <li><a href="#r">
+             		<label>Huevos </label> 
+					<input type="number" name="huevos" min="0" value="0"/> Especificaciones: 
+					<select name = "specshuevos"> 
+	   				 <option value="Gallina XL"> Gallina XL </option>
+					 <option value="Gallina M> Gallina M </option>
+					 <option value="Gallina S"> Gallina S </option>
+					 <option value="Avestruz"> Avestruz </option>
+					 <option value="Oca"> Oca </option>
+					 <option value="Pato"> Pato </option>
+					 <option value="Perdiz"> Perdiz </option>
+					 <option value="Codorniz"> Codorniz </option>
+   					</select>
+					<br> 
+				</a></li>
+				
+		 <li><a href="#r">
+             		<label>Leche </label> 
+					<input type="number" name="leche" min="0" value="0"/> Especificaciones: 
+					<select name = "specsleche"> 
+	   				 <option value="Desnatada"> Desnatada </option>
+					 <option value="Semidesnatada"> Semidesnatada </option>
+					 <option value="Entera"> Entera </option>
+					 <option value="De soja"> De soja </option>
+					 <option value="De almendras"> De almendras </option>
+   					</select>
+					<br> 
+				</a></li>
+				
+				
+				
+		 <li><a href="#r">
+             		<label>Aceite </label> 
+					<input type="number" name="aceite" min="0" value="0"/> Especificaciones: 
+					<select name = "specsaceite"> 
+	   				 <option value="De oliva virgen"> De oliva virgen </option>
+					 <option value="De oliva virgen extra"> de oliva virgen extra </option>
+					 <option value="De girasol"> De girasol </option>
+					 <option value="De orujo"> De orujo </option>
+   					</select>
+					<br> 
+				</a></li>
+				
+				
+		 <li><a href="#r">
+             		<label>Queso </label> 
+					<input type="number" name="queso" min="0" value="0"/> Especificaciones: 
+					<select name = "specsqueso"> 
+	   				 <option value="De cabra"> De cabra </option>
+					 <option value="De vaca manchego"> De vaca manchego </option>
+					 <option value="Parmesano"> Parmesano </option>
+					 <option value="Emental">Emental </option>
+					 <option value="Brie"> Brie </option>
+					 <option value="Semicurado"> Semicurado</option>
+					 <option value="Azul"> Azul </option>
+					 <option value="Manchego"> Manchego </option>
+					 <option value="De oveja"> De oveja</option>
+					 <option value="Roquefort"> Roquefort </option>
+					 <option value="Gouda"> Gouda </option>
+   					</select>
+					<br> 
+				</a></li>
+				
+			<li><a href="#r">
+             		<label>Carne </label> 
+					<input type="number" name="carne" min="0" value="0"/> Especificaciones: 
+					<select name = "specscarne"> 
+	   				 <option value="Picada de vaca"> Picada de vaca </option>
+					 <option value="Codillo de cerdo"> Codillo de cerdo </option>
+					 <option value="Solomillo de cerdo"> Solomillo de cerdo </option>
+					 <option value="Cordero">Cordero</option>
+					 <option value="De aguja"> De aguja </option>
+					 <option value="De conejo">De conejp</option>
+					 <option value="Lechón"> Lechón </option>
+					 <option value="Secreto">Secreto</option>
+					 <option value="Carrilleras">Carrilleras</option>
+					 <option value="Oreja de cerdo">Oreja de cerdo</option>
+   					</select>
+					<br> 
+				</a></li>	
+				
+			<li><a href="#r">
+             		<label>Refrescos </label> 
+					<input type="number" name="refrescos" min="0" value="0"/> Especificaciones: 
+					<select name = "specsrefrescos"> 
+	   				 <option value="Coca-Cola"> Coca-Cola </option>
+					 <option value="Fanta de limón"> Fanta de limón </option>
+					 <option value="Fanta de naranja"> Fanta de naranja </option>
+					 <option value="Bitter kas">Bitter kas</option>
+					 <option value="Nestea"> Nestea </option>
+					 <option value="Aquarius">Aquuarius</option>
+					 <option value="7 up"> 7 up </option>
+					 <option value="Gaseosa">Gaseosa</option>
+					 <option value="Dr pepper">Dr pepper</option>
+   					</select>
+					<br> 
+				</a></li>	
 				
             </ul>
          </li>
@@ -222,17 +357,67 @@ input[type=button], input[type=submit]{
            <ul class="interior">
            
                 <li><a href="#r">
-             		<label>Toallas </label> 
-					<input type="number" name="toallas" min="0" value="0"/> Especificaciones:  <input type="text" name="specstoallas" value=" Sin especificar " />
+             		<label>Toallas</label> 
+					<input type="number" name="toallas" min="0" value="0"/> Especificaciones: 
+					<select name = "specstoallas"> 
+	   				 <option value="De ducha pequeña"> De ducha pequeña </option>
+					 <option value="De ducha grande"> De ducha grande </option>
+					 <option value="De piscina"> De piscina </option>
+					 <option value="De spa"> De spa </option>
+					 <option value="De sauna"> De sauna </option>
+
+   					</select>
+					<br> 
+				</a></li>	
+				
+				
+				
+				
+                <li><a href="#r">
+             		<label>Papel</label> 
+					<input type="number" name="papel" min="0" value="0"/> Especificaciones: 
+					<select name = "specspapel"> 
+	   				 <option value="Pañuelos"> Pañuelos </option>
+					 <option value="Sevilletas"> Servilletas </option>
+					 <option value="Higiénico"> Higiénico </option>
+					 <option value="De cocina"> De cocina </option>
+					 
+   					</select>
+					<br> 
+				</a></li>
+             
+             
+              <li><a href="#r">
+             		<label>Jabón</label> 
+					<input type="number" name="jabon" min="0" value="0"/> Especificaciones: 
+					<select name = "specsjabon"> 
+	   				 <option value="Gel de ducha">Gel de ducha </option>
+					 <option value="Champú"> Champú </option>
+					 <option value="De manos"> De manos </option>
+					 <option value="De spa"> De spa </option>
+					 <option value="Suavizante"> Suavizante </option>
+					 <option value="Detergente"> Detergente </option>
+   					</select>
 					<br> 
 				</a></li>
 				
-               <li><a href="#r">
-             		<label>Papel </label> 
-					<input type="number" name="papel" min="0" value="0"/> Especificaciones:  <input type="text" name="specspapel" value=" Sin especificar " />
+				
+			 <li><a href="#r">
+             		<label>Obsequios de aseo</label> 
+					<input type="number" name="aseo" min="0" value="0"/> Especificaciones: 
+					<select name = "specsaseo"> 
+	   				 <option value="Peine">Peine</option>
+					 <option value="Cepillo de dientes">Cepillo de dientes</option>
+					 <option value="Colonia"> Colonia </option>
+					 <option value="Pastilla de jabón"> Pastilla de jabón </option>
+					  <option value="Líquido de lentillas"> Líquido de lentillas </option>
+   					</select>
 					<br> 
-			   </a></li>
-             
+				</a></li>
+				
+				
+				
+				
             </ul>
          </li>
          
