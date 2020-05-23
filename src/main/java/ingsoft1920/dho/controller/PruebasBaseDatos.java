@@ -378,9 +378,14 @@ public class PruebasBaseDatos {
 		int[] c= {4,5,6};
 		String [] e= {"a","b","c"};
 		PasarPedidos.pasarPedidosaFnb(1, LocalDate.parse("2020-10-10"), pr, c, e);
-		*/
+		
 		GruposDAO prueba71 = new GruposDAO(conexion);
 		prueba71.denegarReservaGrupo(4);
+		*/
+		
+		ServicioDAO prueba72= new ServicioDAO(conexion);
+		System.out.println(prueba72.getServiciosReservados().toString());
+		
 		
 		//EstanciaDAO prueba64= new EstanciaDAO(conexion);
 		//System.out.println(prueba64.idUltimaEstancia() +1);

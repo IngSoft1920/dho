@@ -167,7 +167,7 @@ public class ServicioDAO {
 		ResultSet rs = null;
 		try {
 			stmt = conexion.getConexion().createStatement();
-			rs = stmt.executeQuery("SELECT * FROM Servicios ");
+			rs = stmt.executeQuery("SELECT * FROM Servicios ORDER BY fecha_factura");
 			while (rs.next()) {
 				res.add(new ServicioBean(rs.getInt("servicios_id"), rs.getInt("estancia_id"),
 						rs.getInt("servicioHotel_id"), rs.getInt("cliente_id"), rs.getString("lugar"),
