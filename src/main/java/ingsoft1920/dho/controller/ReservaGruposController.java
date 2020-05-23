@@ -1,6 +1,7 @@
 package ingsoft1920.dho.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ingsoft1920.dho.DAO.EstanciaDAO;
+import ingsoft1920.dho.DAO.GruposDAO;
 import ingsoft1920.dho.Model.AsignarTareasModel;
+import ingsoft1920.dho.Model.CheckinModel;
 import ingsoft1920.dho.Model.GruposModel;
 import ingsoft1920.dho.bean.EmpleadoBean;
 import ingsoft1920.dho.bean.EstanciaBean;
@@ -45,6 +48,21 @@ public class ReservaGruposController {
 			return "reservaGrupos";
 		}
 	
+		@PostMapping("/homePageDHO/menu/reservaGrupos")
+		public String ReservaGruposPost (Model model,	int grupo_id){	
+	
+		
+			GruposModel grupoModel = new GruposModel();
+			
+			
+			GruposBean grupos = GruposDAO.getReservasGrupoByID(grupo_id);
+			
+			grupoModel.aceptarReservaGrupo(grupos.getGrupo_id());
+			grupoModel.denegarReservaGrupo(grupos.getGrupo_id());
+			grupoModel.pendienteReservaGrupo(grupos.getGrupo_id());
+			
+			return "redirect:/homePageDHO/menu/reservaGrupos";
+		}
 		
 		
 		

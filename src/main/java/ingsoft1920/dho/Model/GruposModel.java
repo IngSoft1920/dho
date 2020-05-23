@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 
+import ingsoft1920.dho.DAO.EstanciaDAO;
 import ingsoft1920.dho.DAO.GruposDAO;
 import ingsoft1920.dho.DAO.IncidenciaDAO;
 import ingsoft1920.dho.DAO.ServicioDAO;
@@ -156,7 +157,15 @@ public class GruposModel {
 	public void setHotel_id(int hotel_id) {
 		this.hotel_id = hotel_id;
 	}
-	
+	public void aceptarReservaGrupo(int grupo_id) {
+		GruposDAO.aceptarReservaGrupo(grupo_id);
+	}
+	public void denegarReservaGrupo(int grupo_id) {
+		GruposDAO.denegarReservaGrupo(grupo_id);
+	}
+	public void pendienteReservaGrupo(int grupo_id) {
+		GruposDAO.pendienteReservaGrupo(grupo_id);
+	}
 
 
 }

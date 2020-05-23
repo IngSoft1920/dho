@@ -146,6 +146,48 @@ public class GruposDAO {
 		return res;
 
 	}
+	public static GruposBean getReservasGrupoByID(int grupo_id) {
+		GruposBean res = new GruposBean();
+
+
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+
+		PreparedStatement stm = null;
+		java.sql.Statement stmt1 = null;
+		ResultSet rs1 = null;
+		try {
+			stmt1 = conexion.getConexion().createStatement();
+			rs1 = stmt1.executeQuery("SELECT MAX(grupo_id)\r\n" + "FROM Grupos;");
+			if (rs1.next()) {
+				grupo_id=rs1.getInt("MAX(grupo_id)")+1;
+				stm = conexion.getConexion().prepareStatement("INSERT INTO Grupos values (?,?,?,?,?,?,?,?,?,?)");
+				stm.setInt(1, grupo_id);
+				res.setNombre(rs1.getString("Nombre"));
+				res.setTipo(rs1.getString("Tipo"));
+				res.setEmail(rs1.getString("email"));
+				res.setHotel_id(rs1.getInt("Hotel_Id"));
+				res.setNum_habitaciones(rs1.getInt("num_habitaciones"));
+				res.setNum_personas(rs1.getInt("num_personas"));
+				res.setFecha_entrada(rs1.getDate("fecha_entrada"));
+				res.setFecha_salida(rs1.getDate("fecha_salida"));
+				stm.executeUpdate();
+				}
+
+	} catch (SQLException ex) {
+		System.out.println("SQLException: " + ex.getMessage());
+	} finally { // it is a good idea to release resources in a finally block
+		if (stm != null) {
+			try {
+				stm.close();
+			} catch (SQLException sqlEx) {
+			}
+			stm = null;
+		}
+	}
+	conexion.desconectar();
+	return res;
+}
 	
 	//cambia estado a aceptado
 	public static void aceptarReservaGrupo(int grupo_id) {
