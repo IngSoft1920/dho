@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import ingsoft1920.dho.bean.EstanciaBean;
 import ingsoft1920.dho.bean.GruposBean;
 import ingsoft1920.dho.controller.Conexion;
 
@@ -145,4 +146,90 @@ public class GruposDAO {
 		return res;
 
 	}
+	
+	//cambia estado a aceptado
+	public static void aceptarReservaGrupo(int grupo_id) {
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+
+		PreparedStatement stmt = null;
+		
+		
+		try {
+			stmt = conexion.getConexion()
+					.prepareStatement("UPDATE Grupos SET estado=\"aceptado\" WHERE grupo_id ="+grupo_id);
+			stmt.executeUpdate();
+		}catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+		}
+		conexion.desconectar();
+
+		
+	}
+	//cambia estado a denegado
+		public static void denegarReservaGrupo(int grupo_id) {
+			if (conexion.getConexion() == null)
+				conexion.conectar();
+
+			PreparedStatement stmt = null;
+			
+			
+			try {
+				stmt = conexion.getConexion()
+						.prepareStatement("UPDATE Grupos SET estado=\"denegado\" WHERE grupo_id ="+grupo_id);
+				stmt.executeUpdate();
+			}catch (SQLException ex) {
+				System.out.println("SQLException: " + ex.getMessage());
+			} finally { // it is a good idea to release resources in a finally block
+				
+				if (stmt != null) {
+					try {
+						stmt.close();
+					} catch (SQLException sqlEx) {
+					}
+					stmt = null;
+				}
+			}
+			conexion.desconectar();
+
+			
+		}
+		
+		//cambia estado a pendiente
+				public static void pendienteReservaGrupo(int grupo_id) {
+					if (conexion.getConexion() == null)
+						conexion.conectar();
+
+					PreparedStatement stmt = null;
+					
+					
+					try {
+						stmt = conexion.getConexion()
+								.prepareStatement("UPDATE Grupos SET estado=\"pendiente\" WHERE grupo_id ="+grupo_id);
+						stmt.executeUpdate();
+					}catch (SQLException ex) {
+						System.out.println("SQLException: " + ex.getMessage());
+					} finally { // it is a good idea to release resources in a finally block
+						
+						if (stmt != null) {
+							try {
+								stmt.close();
+							} catch (SQLException sqlEx) {
+							}
+							stmt = null;
+						}
+					}
+					conexion.desconectar();
+
+					
+				}
 }
