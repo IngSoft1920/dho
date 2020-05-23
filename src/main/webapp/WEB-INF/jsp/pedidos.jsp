@@ -166,17 +166,27 @@ input[type=button], input[type=submit]{
 <h2><font size=5 align = "center">Datos del pedido</font></h2><br>
 
 <label>Nombre del Hotel:  </label> 
-					<input type="text" name="nombreHotel" value="New York" />  
+					<select name = "nombre"> <option value="New York"> Hotel New York </option> </select> 
 					<br> 
 <label>Id del Hotel:  </label> 
-					<input type="number" name="hotel_id" min="0" value="6" /> 
+					<select name = "hotel_id"> <option value="6"> 6 </option></select> 
 					<br> 
-<label>Lugar:  </label> 
-					<input type="text" name="lugar" value="Restaurante" /> 
-					<br> 
+<label>Lugar:  </label>
+					<select name = "lugar"> 
+					<option value="Restaurante">Restaurante</option>
+					<option value="Bar">Bar</option>
+					<option value="Servicio de Mantenimiento y Limpieza">Servicio de Mantenimiento y Limpieza</option>
+					</select> 
+					<br>
 <label>Fecha:  </label> 
 					<input type="date" name="fecha" value="2020-05-25"/> 
 <br> 
+ <label>Proveedor:  </label> 
+   <select name = "proveedor"> 
+	    <option value="cocinas"> Cocinas S.A. </option>
+		<option value="items"> Items S.A. </option>
+   </select> 
+<br>
 <br>
 <br>
 <h2><font size=5 align = "center"> Contenido del pedido </font></h2><br>
@@ -236,63 +246,6 @@ input[type=button], input[type=submit]{
       </ul>
    </li>
    
-   
-----------------------------------------   
-   
-   
-      <li><input type="checkbox" name="list" id="nivel1-2"><label for="nivel1-2">Proveedor 2</label>
-   <ul class="interior">
-         <li><input type="checkbox" name="list" id="nivel2-4"><label for="nivel2-4">Alimentación</label>
-           <ul class="interior">
-           
-             <li><a href="#r">
-             		<label>Tomates </label> 
-					<input type="number" name="tomates2" min="0" value="0" /> Especificaciones:  <input type="text" name="specstom2" value=" Sin especificar " />
-					<br> 
-				</a></li>
-				
-             <li><a href="#r">
-             		<label>Lechugas </label> 
-					<input type="number" name="lechugas2" min="0" value="0"/> Especificaciones:  <input type="text" name="specslec2" value=" Sin especificar " />
-					<br> 
-				</a></li>
-				
-            </ul>
-         </li>
-         <li><input type="checkbox" name="list" id="nivel2-5"><label for="nivel2-5">Menaje</label>
-           <ul class="interior">
-           
-                <li><a href="#r">
-             		<label>Toallas </label> 
-					<input type="number" name="toallas2" min="0" value="0"/> Especificaciones:  <input type="text" name="specstoallas2" value=" Sin especificar " />
-					<br> 
-				</a></li>
-				
-               <li><a href="#r">
-             		<label>Papel </label> 
-					<input type="number" name="papel2" min="0" value="0"/> Especificaciones:  <input type="text" name="specspapel2" value=" Sin especificar " />
-					<br> 
-			   </a></li>
-             
-            </ul>
-         </li>
-         
-          <li><input type="checkbox" name="list" id="nivel2-6"><label for="nivel2-6">Otros</label>
-          <ul class="interior">
-           
-                <li><a href="#r">
-             		<label>Otros </label> 
-					<input type="number" name="otros2" min="0" value="0"/> Especificaciones:  <input type="text" name="specsotros2" value=" Sin especificar " />
-					<br> 
-				</a></li>
-  
-  		    </ul>
-  		 </li>
- 
-      </ul>
-   </li>
-      
-</ul>
 
 	<br>
 	<input type="submit" value=" Realizar Pedido "> 	
