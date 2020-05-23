@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -162,12 +163,14 @@ public class ServicioDAO {
 			conexion.conectar();
 
 		ArrayList<ServicioBean> res = new ArrayList<ServicioBean>();
-
+		LocalDate hoy = null;
+		String fecha = hoy.now().toString();
+		System.out.println(fecha);
 		java.sql.Statement stmt = null;
 		ResultSet rs = null;
 		try {
 			stmt = conexion.getConexion().createStatement();
-			rs = stmt.executeQuery("SELECT * FROM Servicios ORDER BY fecha_factura");
+			rs = stmt.executeQuery("SELECT * FROM Servicios Where fecha_factura >= '"+fecha +"' ORDER BY fecha_factura");
 			while (rs.next()) {
 				res.add(new ServicioBean(rs.getInt("servicios_id"), rs.getInt("estancia_id"),
 						rs.getInt("servicioHotel_id"), rs.getInt("cliente_id"), rs.getString("lugar"),
