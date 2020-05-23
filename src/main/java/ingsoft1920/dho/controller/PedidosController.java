@@ -79,22 +79,22 @@ public class PedidosController {
 	}
 
 	@PostMapping("/homePageDHO/menu/pedidos/submit")
-	public String checkinPost(Model model,@Valid@ModelAttribute ("hotel_id") int hotelId,@Valid@ModelAttribute ("fecha") String fechaString,
-			@Valid@ModelAttribute ("lugar") String lugar,@Valid@ModelAttribute ("tomates1") int tomates1, @Valid@ModelAttribute ("specstom1") String specstom1,
-			@Valid@ModelAttribute ("lechugas1") int lechugas1,@Valid@ModelAttribute ("specslec1") String specslec1,
-			@Valid@ModelAttribute ("toallas1") int toallas1,@Valid@ModelAttribute ("specstoallas1") String specstoallas1,
-			@Valid@ModelAttribute ("papel1") int papel1,@Valid@ModelAttribute ("specspapel1") String specspapel1,
-			@Valid@ModelAttribute ("otros1") int otros1,@Valid@ModelAttribute ("specsotros1") String specsotros1) {
+	public String checkinPost(Model model,@Valid@ModelAttribute ("hotel_id") int hotelId,@Valid@ModelAttribute ("idProveedor") int idProveedor,@Valid@ModelAttribute ("fecha") String fechaString,
+			@Valid@ModelAttribute ("lugar") String lugar,@Valid@ModelAttribute ("tomates1") int tomates, @Valid@ModelAttribute ("specstom") String specstom,
+			@Valid@ModelAttribute ("lechugas") int lechugas,@Valid@ModelAttribute ("specslec") String specslec,
+			@Valid@ModelAttribute ("toallas") int toallas,@Valid@ModelAttribute ("specstoallas") String specstoallas,
+			@Valid@ModelAttribute ("papel") int papel,@Valid@ModelAttribute ("specspapel") String specspapel,
+			@Valid@ModelAttribute ("otros") int otros,@Valid@ModelAttribute ("specsotros") String specsotros) {
 		//System.out.println(tomates);
 		//System.out.println(lechugas);
 		LocalDate fecha = LocalDate.parse(fechaString);
 		int[] productos_id = {0,1,2,3,4};
 		String[] nombresProductos = {"Tomates","Lechugas","Toallas","Papel","Otro"};
-		int[] cantidades = {tomates1,lechugas1,toallas1,papel1,otros1};
-		String[] especificaciones = {specstom1,specslec1,specstoallas1,specspapel1,specsotros1};
+		int[] cantidades = {tomates,lechugas,toallas,papel,otros};
+		String[] especificaciones = {specstom,specslec,specstoallas,specspapel,specsotros};
 		if(lugar.equals("Restaurante")) lugar = "restaurante";
-		System.out.println(lugar);
-		PasarPedidos.pasarPedidos(hotelId, fecha, lugar, productos_id, nombresProductos, cantidades, especificaciones);
+		//System.out.println(lugar);
+		PasarPedidos.pasarPedidos(hotelId, fecha, lugar, productos_id, nombresProductos, cantidades, especificaciones,idProveedor);
 	
 	return "redirect:/homePageDHO/menu/pedidos";
 
