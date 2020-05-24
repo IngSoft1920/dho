@@ -61,6 +61,20 @@ public class DhoAPI {
 	}
 	
 	@ResponseBody
+	@PostMapping("/habitacionReservada")
+	public String pasarHabitaciones() {
+		ArrayList<Integer> habitaciones= HabitacionDAO.getHabitacionesActuales();
+		JsonObject json = new JsonObject();
+		JsonArray arrayhabitaciones = new JsonArray();
+		for (Integer elem : habitaciones) {
+			arrayhabitaciones.add(elem.toString());
+		}
+		json.add("habitacion_id", arrayhabitaciones);
+		return json.toString();
+
+	}
+	
+	@ResponseBody
 	@PostMapping("/cancelarReserva/{reserva_id}")
 	public String cancelarReserva(@PathVariable int reserva_id) {
 		EstanciaDAO.eliminarEstancia(reserva_id);
@@ -695,7 +709,6 @@ public class DhoAPI {
 		if (ClienteDAO.getCliente(cliente.getCliente_id()) == null
 				|| ClienteDAO.getCliente(cliente.getCliente_id()).getCliente_id() == 0)
 			ClienteDAO.anadirCliente(cliente);
-		enviarHabitacionFnb.enviarHabitacion(Integer.parseInt(resultado));
 		return resultado;
 
 	}

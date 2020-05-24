@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class HabitacionDAO {
 
@@ -185,6 +187,46 @@ public class HabitacionDAO {
 			while (rs.next()) {
 				res.add(new HabitacionBean(rs.getInt("habitacion_id"), rs.getInt("hotel_id"),
 						rs.getString("tipo_habitacion"), rs.getInt("capacidad")));
+
+			}
+
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+		}
+		conexion.desconectar();
+
+		return res;
+	}
+	
+	public static ArrayList<Integer> getHabitacionesActuales() {
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+
+		ArrayList<Integer> res = new ArrayList<Integer>();
+		
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+		Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+		try {
+			stmt = conexion.getConexion().createStatement();
+			rs = stmt.executeQuery("select habitacion_id from Estancia where fecha_inicio<= '"+date+"' and fecha_fin >= '"+date+"';");
+			while (rs.next()) {
+				res.add(rs.getInt("habitacion_id"));
 
 			}
 
