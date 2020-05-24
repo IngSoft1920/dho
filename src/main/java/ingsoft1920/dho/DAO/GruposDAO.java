@@ -279,15 +279,29 @@ public class GruposDAO {
 		
 		//Dado el grupo_id y un estado, cambiar al estado especificado
 				public static String cambiarEstado(int grupo_id, String estado) {
-					if (estado=="Aceptar") {
-						aceptarReservaGrupo(grupo_id);
+					if (conexion.getConexion() == null)
+						conexion.conectar();
+
+					PreparedStatement stmt = null;
+					
+					
+					try {
+						stmt = conexion.getConexion()
+								.prepareStatement("UPDATE Grupos SET estado=\""+estado+"\" WHERE grupo_id ="+grupo_id);
+						stmt.executeUpdate();
+					}catch (SQLException ex) {
+						System.out.println("SQLException: " + ex.getMessage());
+					} finally { // it is a good idea to release resources in a finally block
+						
+						if (stmt != null) {
+							try {
+								stmt.close();
+							} catch (SQLException sqlEx) {
+							}
+							stmt = null;
 						}
-					else if(estado == "Denegar") {
-						denegarReservaGrupo(grupo_id);
 					}
-					else if(estado == "Pendiente") {
-						pendienteReservaGrupo(grupo_id);
-					}
-					return "estado";
-				}
+					conexion.desconectar();
+
+					
 }
