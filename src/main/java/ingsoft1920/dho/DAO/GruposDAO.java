@@ -279,7 +279,7 @@ public class GruposDAO {
 
 		
 		//Dado el grupo_id y un estado, cambiar al estado especificado
-				public static void cambiarEstado(int grupo_id, String estado) {
+				public static String cambiarEstado(int grupo_id, String estado) {
 					if (conexion.getConexion() == null)
 						conexion.conectar();
 
@@ -304,6 +304,6 @@ public class GruposDAO {
 					}
 					conexion.desconectar();
 
-					
+					return estado;
 }
 }
