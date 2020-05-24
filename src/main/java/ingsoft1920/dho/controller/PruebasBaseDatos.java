@@ -382,7 +382,7 @@ public class PruebasBaseDatos {
 		GruposDAO prueba71 = new GruposDAO(conexion);
 		//System.out.println(prueba71.reservasPorGrupoID(1));
 		
-		System.out.println(ClienteDAO.getCliente(97).getNombre()); 
+		System.out.println(ClienteDAO.datosCliente(87).getNombre()); 
 		
 			
 		//ServicioDAO prueba72= new ServicioDAO(conexion);

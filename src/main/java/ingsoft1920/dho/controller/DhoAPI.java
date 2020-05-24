@@ -744,8 +744,8 @@ public class DhoAPI {
 	@ResponseBody
 	@PostMapping("/nombrePorHabitacion/{habitacion_id}")
 	public String nombreporHabitacion(@PathVariable int habitacion_id) {
-		int cliente_id=EstanciaDAO.getEstanciaByHabitacionID(habitacion_id).getCliente_id();
-		return ClienteDAO.getCliente(cliente_id).getNombre()+" "+ ClienteDAO.getCliente(cliente_id).getApellidos();
+		int estancia_id=EstanciaDAO.getEstanciaByHabitacionID(habitacion_id).getEstancia_id();
+		return ClienteDAO.datosCliente(estancia_id).getNombre()+" "+ ClienteDAO.datosCliente(estancia_id).getApellidos();
 		
 	}
 }
