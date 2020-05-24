@@ -95,13 +95,11 @@ public class PedidosController {
 			@Valid@ModelAttribute ("papel") int papel,@Valid@ModelAttribute ("specspapel") String specspapel,
 			@Valid@ModelAttribute ("aseo") int aseo,@Valid@ModelAttribute ("specsaseo") String specsaseo,
 			@Valid@ModelAttribute ("otros") int otros,@Valid@ModelAttribute ("specsotros") String specsotros) {
-		//System.out.println(tomates);
-		//System.out.println(lechugas);
 		LocalDate fecha = LocalDate.parse(fechaString);
-		int[] productos_id = {0,1,2,3,4,5,6,7,8,9,10,11,12,13};
-		String[] nombresProductos = {"Tomates","Lechugas","Toallas","Pan","Huevos","Leche","Aceite","Queso","Carne","Refrescos","Jabon","Papel","Aseo","Otros"};
+		int[] productos_id = {1,71,77,10,13,14,15,12,76,78,79,80,81};
+		String[] nombresProductos = {"Tomates","Lechugas","Toallas","Pan","Huevos","Leche","Aceite","Queso","Carne","Refrescos","Jabon","Papel","Aseo"};
 		int[] cantidades = {tomates,lechugas,toallas,pan,huevos,leche,aceite,queso,carne,refrescos,jabon,papel,aseo,otros};
-		String[] especificaciones = {specstom,specslec,specstoallas,specspan,specshuevos,specsleche,specsaceite,specsqueso,specscarne,specsrefrescos,specsjabon,specspapel,specsaseo,specsotros};
+		String[] especificaciones = {specstom,specslec,specstoallas,specspan,specshuevos,specsleche,specsaceite,specsqueso,specscarne,specsrefrescos,specsjabon,specspapel,specsaseo};
 		//System.out.println(lugar);
 		PasarPedidos.pasarPedidos(hotelId, fecha, lugar, productos_id, nombresProductos, cantidades, especificaciones,idProveedor);
 	
@@ -110,4 +108,4 @@ public class PedidosController {
 	
 	}
 	
-	}
+}

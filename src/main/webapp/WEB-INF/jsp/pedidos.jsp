@@ -183,8 +183,8 @@ input[type=button], input[type=submit]{
 <br> 
  <label>Proveedor:  </label> 
    <select name = "idProveedor"> 
-	    <option value="0"> Cocinas S.A. </option>
-		<option value="1"> Items S.A. </option>
+	    <option value="9"> Cocinas S.A. </option>
+		<option value="5"> Items S.A. </option>
    </select> 
 <br>
 <br>
