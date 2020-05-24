@@ -317,4 +317,17 @@ public class GruposDAO {
 
 					
 				}
+		
+		//Dado el grupo_id y un estado, cambiar al estado especificado
+				public static void cambiarEstado(int grupo_id, String estado) {
+					if (estado=="Aceptar") {
+						aceptarReservaGrupo(grupo_id);
+						}
+					else if(estado == "Denegar") {
+						denegarReservaGrupo(grupo_id);
+					}
+					else if(estado == "Pendiente") {
+						pendienteReservaGrupo(grupo_id);
+					}
+				}
 }
