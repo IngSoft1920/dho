@@ -47,7 +47,7 @@ public class PasarPedidos {
 		
 		try {
 			//construimos la peticion 
-			HttpClient client= new HttpClient("http://piedrafita.ls.fi.upm.es:7000/pedido","POST");
+			HttpClient client= new HttpClient("http://piedrafita.ls.fi.upm.es:7000/cliente","POST");
 			
 			
 			//metemos en el cuerpo de la peticion el id_hotel
@@ -90,7 +90,6 @@ public class PasarPedidos {
 			catch (IOException e) { e.printStackTrace(); return; }
 			
 			//client.setRequestBody(param.toString());
-			
 		
 			
 							
