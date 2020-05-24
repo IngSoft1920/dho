@@ -92,7 +92,7 @@ public class HotelDAO {
 				stmt = null;
 			}
 		}
-		conexion.desconectar();
+		//conexion.desconectar();
 
 		return res;
 	}

@@ -1,7 +1,6 @@
 package ingsoft1920.dho.controller;
 
 import java.io.IOException;
-import java.net.http.HttpResponse;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -47,7 +46,7 @@ public class PasarPedidos {
 		
 		try {
 			//construimos la peticion 
-			HttpClient client= new HttpClient("http://piedrafita.ls.fi.upm.es:7000/cliente","POST");
+			HttpClient client= new HttpClient("http://piedrafita.ls.fi.upm.es:7000/pedido","POST");
 			
 			
 			//metemos en el cuerpo de la peticion el id_hotel
@@ -82,16 +81,17 @@ public class PasarPedidos {
 			
 			param.add("productos", lista);
 			
-			HttpPost post = new HttpPost("http://piedrafita.ls.fi.upm.es:7000/pedido");
-			  post.addHeader("Content-Type", "application/json");
-			  post.setEntity(new StringEntity(param.toString(), "UTF-8"));
-			CloseableHttpClient cliente = HttpClientBuilder.create().build();
-			try { cliente.execute(post); }
-			catch (IOException e) { e.printStackTrace(); return; }
 			
-			//client.setRequestBody(param.toString());
+			client.setRequestBody(param.toString());
 		
-			
+			int respCode = client.getResponseCode(); 
+			 
+            if(respCode == 200) { 
+               
+ 
+             
+            } 
+			 
 							
 			
 		} catch (Exception e) {

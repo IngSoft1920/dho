@@ -83,7 +83,7 @@ public static int peticionEnviarEstancia(String fechaIncio,String fechaFin,
 		
 		try {
 			//construimos la peticion 
-			HttpClient client= new HttpClient("http://piedrafita.ls.fi.upm.es:7000/cliente","POST");
+			HttpClient client= new HttpClient("http://piedrafita.ls.fi.upm.es:7000/reserva/dho","POST");
 			
 			
 			//metemos en el cuerpo de la peticion el id_hotel

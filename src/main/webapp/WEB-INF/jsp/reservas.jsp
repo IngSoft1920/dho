@@ -291,7 +291,7 @@ h2{
 		<input type="text" name="num_habitacion" autocomplete="off" /> 
 		<br><br> 
 		<label>Nombre Hotel: </label> 
-		<input type="text" name="ombre_hotel" autocomplete="off" /> 
+		<input type="text" name="nombre_hotel" autocomplete="off" /> 
 		<br><br> 
 		
 		 
