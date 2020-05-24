@@ -695,6 +695,7 @@ public class DhoAPI {
 		if (ClienteDAO.getCliente(cliente.getCliente_id()) == null
 				|| ClienteDAO.getCliente(cliente.getCliente_id()).getCliente_id() == 0)
 			ClienteDAO.anadirCliente(cliente);
+		enviarHabitacionFnb.enviarHabitacion(Integer.parseInt(resultado));
 		return resultado;
 
 	}
