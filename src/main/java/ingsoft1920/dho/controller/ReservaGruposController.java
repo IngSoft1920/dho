@@ -49,20 +49,19 @@ public class ReservaGruposController {
 		}
 	
 		@PostMapping("/homePageDHO/menu/reservaGrupos")
-		public String ReservaGruposPost (Model model,	int grupo_id){	
+		public String ReservaGruposPost (Model model,	@Valid @ModelAttribute("GruposBean") GruposBean gruposBean){	
 	
 		
-			GruposModel grupoModel = new GruposModel();
+			GruposModel grupoModel = new GruposModel(gruposBean);
 			
 			
-			GruposBean grupos = GruposDAO.reservasPorGrupoID(grupo_id);
-			grupos.setEstado(grupoModel.cambiarEstado(grupo_id, grupos.getEstado()));
+			grupoModel.cambiarEstado(grupoModel);
+			System.out.println(grupoModel.getEstado());
+			return getReservaGrupos(model);
 			
-		
-			
-			
-			return "redirect:/homePageDHO/menu/reservaGrupos";
 		}
+
+	
 		
 		
 		

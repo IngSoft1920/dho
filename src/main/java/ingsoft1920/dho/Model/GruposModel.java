@@ -16,7 +16,7 @@ import ingsoft1920.dho.bean.TareaBean;
 
 public class GruposModel {
 	
-	private int grupo_id;
+	private static int grupo_id;
 	private String nombre;
 	private String tipo;
 	private String email;
@@ -25,7 +25,7 @@ public class GruposModel {
 	private int num_personas;
 	private Date fecha_entrada;
 	private Date fecha_salida;
-	private String estado;
+	private static String estado;
 	
 	
 
@@ -166,9 +166,14 @@ public class GruposModel {
 	public void pendienteReservaGrupo(int grupo_id) {
 		GruposDAO.pendienteReservaGrupo(grupo_id);
 	}
-	public String cambiarEstado(int grupo_id, String estado) {
-		return GruposDAO.cambiarEstado(grupo_id, estado);
-		 
+	public String cambiarEstado(GruposModel grupoModel) {
+		GruposBean grupo=GruposDAO.reservasPorGrupoID(GruposModel.grupo_id);
+		grupo.setEstado(GruposModel.estado);
+	    GruposDAO.cambiarEstado(GruposModel.grupo_id, GruposModel.estado);
+		return GruposModel.estado;
 	}
+
+
+	
 
 }
