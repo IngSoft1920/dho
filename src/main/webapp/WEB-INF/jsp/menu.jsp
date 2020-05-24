@@ -33,6 +33,7 @@ public int nullIntconv(String inv)
 			<li><a href="/homePageDHO/menu/reservas1">Servicios</a></li>
 			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
 			<li><a href="/homePageDHO/menu/pedidos">Pedidos</a></li>
+			<li><a href="/homePageDHO/menu/reservaGrupos">Reserva Grupos</a></li>
 		</ul>
 	</nav>
 </header>
