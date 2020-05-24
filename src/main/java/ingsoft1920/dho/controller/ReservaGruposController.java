@@ -56,7 +56,6 @@ public class ReservaGruposController {
 			
 			
 			grupoModel.cambiarEstado(grupoModel);
-			System.out.println(grupoModel.getEstado());
 			return getReservaGrupos(model);
 			
 		}
