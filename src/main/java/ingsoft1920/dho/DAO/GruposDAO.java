@@ -103,9 +103,9 @@ public class GruposDAO {
 		return res;
 
 	}
-	public static ArrayList<GruposBean> reservasPorGrupoID(int grupo_id) {
-		ArrayList<GruposBean> res = new ArrayList<GruposBean>();
-
+	public static GruposBean reservasPorGrupoID(int grupo_id) {
+		GruposBean res = new GruposBean();
+		
 		if (conexion.getConexion() == null)
 			conexion.conectar();
 
@@ -117,10 +117,10 @@ public class GruposDAO {
 			rs = stmt.executeQuery("SELECT * FROM Grupos WHERE grupo_id =" + grupo_id);
 
 			while (rs.next()) {
-				res.add(new GruposBean(grupo_id, rs.getString("nombre"), rs.getString("tipo"),
+				GruposBean aux = new GruposBean(grupo_id, rs.getString("nombre"), rs.getString("tipo"),
 						rs.getString("email"), rs.getInt("hotel_id"), rs.getInt("num_habitaciones"), rs.getInt("num_personas"),
-						rs.getDate("fecha_entrada"), rs.getDate("fecha_salida"), rs.getString("estado")));
-
+						rs.getDate("fecha_entrada"), rs.getDate("fecha_salida"), rs.getString("estado"));
+						res = aux;
 			}
 
 		} catch (SQLException ex) {
@@ -141,6 +141,7 @@ public class GruposDAO {
 				stmt = null;
 			}
 		}
+		
 		conexion.desconectar();
 		return res;
 
