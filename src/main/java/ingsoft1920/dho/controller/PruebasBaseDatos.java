@@ -380,7 +380,9 @@ public class PruebasBaseDatos {
 		PasarPedidos.pasarPedidosaFnb(1, LocalDate.parse("2020-10-10"), pr, c, e);
 	*/
 		GruposDAO prueba71 = new GruposDAO(conexion);
-		System.out.println(prueba71.reservasPorGrupoID(1));
+		//System.out.println(prueba71.reservasPorGrupoID(1));
+		
+		System.out.println(ClienteDAO.getCliente(97).getNombre()); 
 		
 			
 		//ServicioDAO prueba72= new ServicioDAO(conexion);
