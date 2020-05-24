@@ -239,12 +239,39 @@ input[type=submit]:hover {
 </style>
 
 
+<script>
+	function myFunction(){
+	
+		var input, filter, table, tr, td, i;
+		input = document.getElementById("myInput");
+		filter = input.value.toUpperCase();
+		table = document.getElementById("asig");
+		tr = table.getElementsByTagName("tr");
+		
+		
+		for (i = 0; i < tr.length; i++) {
+  		td = tr[i].getElementsByTagName("td")[9];
+    	if (td) {
+      		if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        		tr[i].style.display = "";
+      		} else {
+        	tr[i].style.display = "none";
+      }
+    
+    }
+	}
+	}
+</script>
+
+
+
 <section class="contenido wrapper">
 
-	
+
 
 <h2>Reservas de grupo</h2>
 
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filtrar por estado..">
 
 <div class="table-wrapper">
     <table id="asig" class="fl-table">
