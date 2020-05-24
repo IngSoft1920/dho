@@ -166,6 +166,9 @@ public class GruposModel {
 	public void pendienteReservaGrupo(int grupo_id) {
 		GruposDAO.pendienteReservaGrupo(grupo_id);
 	}
-
+	public String cambiarEstado(int grupo_id, String estado) {
+		return GruposDAO.cambiarEstado(grupo_id, estado);
+		 
+	}
 
 }

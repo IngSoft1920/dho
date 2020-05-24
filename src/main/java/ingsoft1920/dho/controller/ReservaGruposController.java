@@ -55,11 +55,11 @@ public class ReservaGruposController {
 			GruposModel grupoModel = new GruposModel();
 			
 			
-			GruposBean grupos = GruposDAO.getReservasGrupoByID(grupo_id);
+			GruposBean grupos = GruposDAO.reservasPorGrupoID(grupo_id);
+			grupos.setEstado(grupoModel.cambiarEstado(grupo_id, grupos.getEstado()));
 			
-			grupoModel.aceptarReservaGrupo(grupos.getGrupo_id());
-			grupoModel.denegarReservaGrupo(grupos.getGrupo_id());
-			grupoModel.pendienteReservaGrupo(grupos.getGrupo_id());
+		
+			
 			
 			return "redirect:/homePageDHO/menu/reservaGrupos";
 		}
