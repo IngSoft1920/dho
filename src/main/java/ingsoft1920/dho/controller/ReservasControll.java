@@ -60,6 +60,8 @@ public class ReservasControll {
 		
 		EstanciaBean estancia=EstanciaDAO.getEstanciaFecha(num_hab, fecha);
 		
+		
+		
 		int estado= ServiciosDelHotelDAO.id_servicioHotelPorNombreyServicio(hotel, servicio);
 		switch (estado) {
 		case -2:

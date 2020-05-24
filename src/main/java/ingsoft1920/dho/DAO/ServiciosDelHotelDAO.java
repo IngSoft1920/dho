@@ -309,7 +309,7 @@ public class ServiciosDelHotelDAO {
 	 */
 	
 		public static int id_servicioHotelPorNombreyServicio(String nombreHotel, String nombreServicio) {
-			int hotel_id = -1;
+			int hotel_id = 6;
 			int res=-1;
 			if (conexion.getConexion() == null)
 				conexion.conectar();
@@ -319,12 +319,12 @@ public class ServiciosDelHotelDAO {
 			java.sql.Statement stmt2 = null;
 			ResultSet rs2 = null;
 			try {
-				stmt = conexion.getConexion().createStatement();
-				rs = stmt.executeQuery("SELECT hotel_id FROM Hotel WHERE nombre = \"" + nombreHotel + "\"");
+			//	stmt = conexion.getConexion().createStatement();
+				//rs = stmt.executeQuery("SELECT hotel_id FROM Hotel WHERE nombre = \"" + nombreHotel + "\"");
 
-				if (rs.next()) {
-					hotel_id = rs.getInt("hotel_id");
-				}
+				//if (rs.next()) {
+					//hotel_id = rs.getInt("hotel_id");
+				//}
 
 				if (hotel_id != -1) {
 					stmt2 = conexion.getConexion().createStatement();

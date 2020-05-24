@@ -38,11 +38,29 @@ public class enviarReservasFnb {
 			System.out.print(param.toString());
 			
 			client.setRequestBody(param.toString());
+			
+			int respCode = client.getResponseCode();
+
+            if(respCode == 200) {
+              
+            
+            	
+            }
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+	}
+	
+	
+	public static void main(String args[]) {
+		
+		LocalDate fecha = LocalDate.parse("2020-05-24");
+		LocalTime hora= LocalTime.parse("09:30");
+		
+		enviarReservas(2, 2, 4, fecha, hora, 503);
+		
 	}
 }
