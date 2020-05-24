@@ -286,9 +286,14 @@ input[type=submit]:hover {
 			<label>Grupo ID</label>
 			<input type="text" name="grupo_id" autocomlete="off" />
 			<br><br>
-			<label>Estado (Aceptar/Denegar/Pendiente)</label>
-			<input type="text" name="estado" autocomlete="off" />
-			<br><br>
+			<label>Estado:  </label>
+					<select name = "estado"> 
+					<option>-</option>
+					<option value="aceptado">Aceptar</option>
+					<option value="denegado">Denegar</option>
+					<option value="pendiente">Pendiente</option>
+					</select> 
+					<br>
 			<input type="submit" value="Registro">
 		</form>
 	</div>
