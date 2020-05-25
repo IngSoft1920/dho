@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ingsoft1920.dho.DAO.ClienteDAO;
 import ingsoft1920.dho.DAO.EstanciaDAO;
+import ingsoft1920.dho.DAO.GruposDAO;
 import ingsoft1920.dho.DAO.HabitacionDAO;
 import ingsoft1920.dho.DAO.HotelDAO;
 import ingsoft1920.dho.DAO.IncidenciaDAO;
@@ -29,6 +30,7 @@ import ingsoft1920.dho.DAO.ServiciosDelHotelDAO;
 import ingsoft1920.dho.DAO.TareaDAO;
 import ingsoft1920.dho.bean.ClienteBean;
 import ingsoft1920.dho.bean.EstanciaBean;
+import ingsoft1920.dho.bean.GruposBean;
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.HotelBean;
 import ingsoft1920.dho.bean.IncidenciaBean;
@@ -58,8 +60,33 @@ public class DhoAPI {
 
 	}
 	
+	@ResponseBody
+	@PostMapping("/habitacionReservada")
+	public String pasarHabitaciones() {
+		ArrayList<Integer> habitaciones= HabitacionDAO.getHabitacionesActuales();
+		JsonObject json = new JsonObject();
+		JsonArray arrayhabitaciones = new JsonArray();
+		for (Integer elem : habitaciones) {
+			arrayhabitaciones.add(elem.toString());
+		}
+		json.add("habitacion_id", arrayhabitaciones);
+		return json.toString();
+
+	}
 	
+	@ResponseBody
+	@PostMapping("/cancelarReserva/{reserva_id}")
+	public String cancelarReserva(@PathVariable int reserva_id) {
+		EstanciaDAO.eliminarEstancia(reserva_id);
+		return "Procesado correctamente";
+
+	}
 	
+	@ResponseBody
+	@PostMapping("/precheckin/{reserva_id}")
+	public void precheckin(@PathVariable int reserva_id) {
+		EstanciaDAO.precheckInPorEstancia_id(reserva_id);
+	}
 	
 	
 	@ResponseBody
@@ -219,10 +246,6 @@ public class DhoAPI {
 
 		int tipo_servicio = requeObj.get("tipoServicio").getAsInt();
 
-		/*
-		 * Hemos quedado con GE el siguiente formato: 1-: serivios normales 2-:Encargar
-		 * Mesa 3-:Encargar Comida
-		 */
 		switch (tipo_servicio) {
 		case 1:
 			nuevoServicio.setTipo_servicio("normal");
@@ -242,10 +265,13 @@ public class DhoAPI {
 		nuevoServicio.setHora(java.sql.Time.valueOf(horaTime));
 		nuevoServicio.setId_ServicioHotel(id_servicioHotel);
 		nuevoServicio.setLugar(lugar);
+		nuevoServicio.setPrecio(ServiciosDelHotelDAO.conseguirprecio(id_servicioHotel));
 
-		for (int i = 0; i < num_personas; i++) {
-			// añadimos tantas reservas como nuemero de personas
-			ServicioDAO.añadirServicio(nuevoServicio);
+		ServicioDAO.añadirServicio(nuevoServicio);
+		
+		if(tipo_servicio==2) {
+			enviarReservasFnb.enviarReservas(id_servicioHotel,id_reserva,num_personas,date,
+					horaTime, HabitacionDAO.getHabitacionPorIdEstancia(id_reserva).getId_habitacion());
 		}
 
 	}
@@ -257,10 +283,11 @@ public class DhoAPI {
 		int habitacion_id = obj.get("habitacion").getAsInt();
 		String hotel = obj.get("Hotel").getAsString();
 		int factura = (int) obj.get("Factura").getAsFloat();
+		String tipo = obj.get("Tipo").getAsString();
 		long now = System.currentTimeMillis();
 		Time sqlTime = new Time(now);
 		Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-		ServicioDAO.recibirMesa(habitacion_id, hotel, factura, date, sqlTime);
+		ServicioDAO.recibirMesa(habitacion_id, hotel, factura, date, sqlTime, tipo);
 		return "Procesado";
 	}
 
@@ -507,8 +534,14 @@ public class DhoAPI {
 		for (ServicioBean elem : serviciosReservados) {
 
 			fechaServicio.add(elem.getFecha_servicio().toString());
-
-			nombreServicio.add(ServiciosDelHotelDAO.conseguirNombreServicioHotel(elem.getId_ServicioHotel()));
+			
+			if(elem.getTipo_servicio().equals("mesa")) {
+				nombreServicio.add("Mesa en restaurante");
+			}else if(elem.getTipo_servicio().equals("habitacion")) {
+				nombreServicio.add("Pedido a habitacion");	
+			}else {
+				nombreServicio.add(ServiciosDelHotelDAO.conseguirNombreServicioHotel(elem.getId_ServicioHotel()));
+			}
 
 		}
 
@@ -685,4 +718,48 @@ public class DhoAPI {
 
 	}
 
+	@ResponseBody
+	@PostMapping("/reservaGrupo")
+	public void reservaGrupo(@RequestBody String req){
+		
+		JsonObject obj = (JsonObject) JsonParser.parseString(req);
+		GruposBean grupos = new GruposBean();
+		
+		String nombre = obj.get("nombre").getAsString();
+		grupos.setNombre(nombre);
+		
+		String tipo = obj.get("tipo").getAsString();
+		grupos.setTipo(tipo);
+		
+		String email = obj.get("email").getAsString();
+		grupos.setEmail(email);
+		
+		int hotel_id = obj.get("hotel_id").getAsInt();
+		grupos.setHotel_id(hotel_id);
+		
+		int num_habitaciones =  obj.get("numero_habitaciones").getAsInt();
+		grupos.setNum_habitaciones(num_habitaciones);
+		
+		int num_personas =  obj.get("numero_personas").getAsInt();
+		grupos.setNum_personas(num_personas);
+		
+		String fecha_entrada = obj.get("fecha_entrada").getAsString();
+		LocalDate date = LocalDate.parse(fecha_entrada);
+		grupos.setFecha_entrada(java.sql.Date.valueOf(date));
+		
+		String fecha_salida = obj.get("fecha_salida").getAsString();
+		LocalDate date2 = LocalDate.parse(fecha_salida);
+		grupos.setFecha_salida(java.sql.Date.valueOf(date2));
+		
+		GruposDAO.añadirReservaGrupos(grupos);
+		
+	}
+	
+	@ResponseBody
+	@PostMapping("/nombrePorHabitacion/{habitacion_id}")
+	public String nombreporHabitacion(@PathVariable int habitacion_id) {
+		int estancia_id=EstanciaDAO.getEstanciaByHabitacionID(habitacion_id).getEstancia_id();
+		return ClienteDAO.datosCliente(estancia_id).getNombre()+" "+ ClienteDAO.datosCliente(estancia_id).getApellidos();
+		
+	}
 }

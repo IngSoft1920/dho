@@ -10,6 +10,8 @@
 			<li><a href="/homePageDHO/menu/disponibilidad">Disponibilidad</a></li>
 			<li><a href="/homePageDHO/menu/reservas1">Servicios</a></li>
 			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
+			<li><a href="/homePageDHO/menu/pedidos">Pedidos</a></li>
+			<li><a href="/homePageDHO/menu/reservaGrupos">Reserva Grupos</a></li>
 		</ul>
 	</nav>
 </header>
@@ -223,21 +225,23 @@ input[type=button], input[type=submit]{
 						
 	<br><br>	
 		
-	<div id="botones">
-	<div id="botones2">
-		<input type="submit" value="Check-out">
-		<br><br>
-		<input type="button" onclick="history.back()" name="volver atrás" value="Volver atrás">	
-	</div>
-	</div>
+	
 	</form>
 	<br></br>
 	
 	
 	<form method="POST" action="/homePageDHO/menu/disponibilidad/checkout1/servivioHabitaciones/${habitacion_id}/${fecha_aux}/${hotel_id}/${cliente_id}" > 
+	<div id="botones">
+	<div id="botones2">
+		<input type="submit" value="Check-out">
+		<br><br>
+		<input type="button" onclick="history.back()" name="volver atrás" value="Volver atrás">	
 		<td>${realizada}</td>	
 		<br><br>
 		<input type="submit" value="Solicitar limpieza" > 
+	</div>
+	</div>
+		
 	</form> 	
 	
 	

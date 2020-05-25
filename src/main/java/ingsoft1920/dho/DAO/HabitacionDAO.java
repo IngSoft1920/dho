@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class HabitacionDAO {
 
@@ -34,11 +36,11 @@ public class HabitacionDAO {
 	// Dado el int del tipo devuelve un string
 	public static int idTipoHabitacion(String tipo) {
 		int res = 0;
-		if (tipo == "normal") {
+		if (tipo.equals("normal")) {
 			res = 1;
-		} else if (tipo == "premium") {
+		} else if (tipo.equals("premium")) {
 			res = 2;
-		} else if (tipo == "presidencial") {
+		} else if (tipo.equals("presidencial")) {
 			res = 3;
 		}
 
@@ -210,6 +212,46 @@ public class HabitacionDAO {
 
 		return res;
 	}
+	
+	public static ArrayList<Integer> getHabitacionesActuales() {
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+
+		ArrayList<Integer> res = new ArrayList<Integer>();
+		
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+		Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+		try {
+			stmt = conexion.getConexion().createStatement();
+			rs = stmt.executeQuery("select habitacion_id from Estancia where fecha_inicio<= '"+date+"' and fecha_fin >= '"+date+"';");
+			while (rs.next()) {
+				res.add(rs.getInt("habitacion_id"));
+
+			}
+
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+		}
+		conexion.desconectar();
+
+		return res;
+	}
 
 	// devuelve el id de la ultima habitacion para saber el id de la siguiente
 	public static int idUltimaHabitacion() {
@@ -246,6 +288,48 @@ public class HabitacionDAO {
 		}
 		conexion.desconectar();
 		return res;
+	}
+	
+	public static HabitacionBean getHabitacionPorIdEstancia(int id_estancia) {
+		// Devuelve la habitacion que ha alquilado un cliente
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+
+		HabitacionBean res = null;
+
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conexion.getConexion().createStatement();
+			rs = stmt.executeQuery("SELECT h.habitacion_id,h.tipo_habitacion,h.hotel_id ,h.capacidad "
+					+ "FROM Habitaciones AS h JOIN Estancia AS e ON h.habitacion_id=e.habitacion_id "
+					+ "WHERE estancia_id =" + id_estancia+";");
+			if (rs.next()) {
+				res = new HabitacionBean(rs.getInt("habitacion_id"), rs.getInt("hotel_id"),
+						rs.getString("tipo_habitacion"), rs.getInt("capacidad"));
+
+			}
+
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+		}
+		return res;
+
 	}
 
 	// añade habitaciones a la base de datos

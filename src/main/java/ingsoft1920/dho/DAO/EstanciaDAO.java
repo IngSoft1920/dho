@@ -249,7 +249,63 @@ public class EstanciaDAO {
 		conexion.desconectar();
 		return resp;
 	}
+	// Para hecer el precheck in
+		public static String precheckIn(int habitacion_id) {
+			EstanciaBean est = new EstanciaBean();
+			est = getEstanciaByHabitacionID(habitacion_id);
+			int estancia_id = est.getEstancia_id();
 
+			String resp = "Procesado correctamente";
+			if (conexion.getConexion() == null)
+				conexion.conectar();
+			PreparedStatement stm = null;
+			try {
+				stm = conexion.getConexion()
+						.prepareStatement("UPDATE Estancia\r\n" + "SET estado=\"precheck in\"\r\n" + "WHERE estancia_id = ?");
+				stm.setInt(1, estancia_id);
+				stm.executeUpdate();
+			} catch (SQLException ex) {
+				System.out.println("SQLException: " + ex.getMessage());
+				resp = "Error en precheckIn";
+			} finally { // it is a good idea to release resources in a finally block
+				if (stm != null) {
+					try {
+						stm.close();
+					} catch (SQLException sqlEx) {
+					}
+					stm = null;
+				}
+			}
+			conexion.desconectar();
+			return resp;
+		}
+		//para hacer precheck in con estancia_id
+		public static String precheckInPorEstancia_id(int estancia_id) {
+			EstanciaBean est = new EstanciaBean();
+			String resp = "Procesado correctamente";
+			if (conexion.getConexion() == null)
+				conexion.conectar();
+			PreparedStatement stm = null;
+			try {
+				stm = conexion.getConexion()
+						.prepareStatement("UPDATE Estancia\r\n" + "SET estado=\"precheck in\"\r\n" + "WHERE estancia_id = ?");
+				stm.setInt(1, estancia_id);
+				stm.executeUpdate();
+			} catch (SQLException ex) {
+				System.out.println("SQLException: " + ex.getMessage());
+				resp = "Error en precheckIn";
+			} finally { // it is a good idea to release resources in a finally block
+				if (stm != null) {
+					try {
+						stm.close();
+					} catch (SQLException sqlEx) {
+					}
+					stm = null;
+				}
+			}
+			conexion.desconectar();
+			return resp;
+		}
 	public static ArrayList<EstanciaBean> geEstanciaBeans() {
 		if (conexion.getConexion() == null)
 			conexion.conectar();
@@ -540,7 +596,7 @@ public class EstanciaDAO {
 
 	public static ArrayList<String> getEstadoHabitaciones(String fecha) {
 		ArrayList<String> res = new ArrayList<String>();
-		ArrayList<HabitacionBean> habs = HabitacionDAO.getHabitacionByHotel(2);
+		ArrayList<HabitacionBean> habs = HabitacionDAO.getHabitacionByHotel(6);
 
 		if (conexion.getConexion() == null)
 			conexion.conectar();
@@ -598,7 +654,7 @@ public class EstanciaDAO {
 		try {
 			stmt = conexion.getConexion().createStatement();
 			rs = stmt.executeQuery("SELECT * FROM Estancia WHERE habitacion_id = " + habitacion_id
-					+ " AND fecha_inicio < '" + hoy + "' AND fecha_fin > '" + hoy + "'");
+					+ " AND fecha_inicio <= '" + hoy + "' AND fecha_fin >= '" + hoy + "'");
 
 			if (rs.next()) {
 				res.setEstancia_id(rs.getInt("estancia_id"));
@@ -756,6 +812,52 @@ public class EstanciaDAO {
 		}
 		conexion.desconectar();
 
+		return res;
+	}
+	
+	public static int eliminarEstancia(int estancia_id) {
+		int res = 0;
+		if (conexion.getConexion() == null)
+			conexion.conectar();
+		java.sql.Statement stmt = null;
+		PreparedStatement stm = null;
+		ResultSet rs = null;
+		try {
+			stm = conexion.getConexion()
+					.prepareStatement("delete from Cobros where estancia_id=" + estancia_id + ";");
+			stm.executeUpdate();
+			stm = conexion.getConexion()
+					.prepareStatement("delete from Factura where estancia_id=" + estancia_id + ";");
+			stm.executeUpdate();
+			stm = conexion.getConexion()
+					.prepareStatement("delete from Servicios where estancia_id=" + estancia_id + ";");
+			stm.executeUpdate();
+			stm = conexion.getConexion()
+					.prepareStatement("delete from Estancia where estancia_id=" + estancia_id + ";");
+			stm.executeUpdate();
+			stm.executeUpdate();
+
+		} catch (
+
+		SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		} finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+		}
+		conexion.desconectar();
 		return res;
 	}
 }

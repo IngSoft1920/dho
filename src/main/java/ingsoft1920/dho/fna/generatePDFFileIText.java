@@ -74,7 +74,7 @@ public class generatePDFFileIText {
 	 * cliente_id int
 	 * enlaceDescarga String
 	 */
-	public void createPDF(int cliente_id) {
+	public void createPDF(int cliente_id,int estancia_id) {
 		// We create the document and set the file name.        
 		// Creamos el documento y generamos el nombre del fichero.
 		String name=UUID.randomUUID().toString();
@@ -126,7 +126,7 @@ public class generatePDFFileIText {
 	        chapter.add(new Paragraph("\n", paragraphFont));
 			chapter.add(new Paragraph("Datos Hotel:", subcategoryFont));
 	        chapter.add(new Paragraph("\n", paragraphFont));
-	        HotelBean hotel=FacturaDAO.datosHotel(cliente_id);
+	        HotelBean hotel=FacturaDAO.datosHotel(cliente_id,estancia_id);
 	        p=new Paragraph("",paragraphFont);
 	        p.add("Nombre: "+hotel.getNombre()+"\n"+"Pais: "+hotel.getPais()+"\n"+"Ciudad: "+hotel.getCiudad());
 	        chapter.add(p);
@@ -153,7 +153,7 @@ public class generatePDFFileIText {
 	        table.setHeaderRows(1);
 			//Obtenemos todas las facturas
 	        int pago_total=0;
-			for (FacturaBean elem: FacturaDAO.todasFacturasCliente(cliente_id)) {
+			for (FacturaBean elem: FacturaDAO.todasFacturasCliente(cliente_id,estancia_id)) {
 				pago_total+=elem.getPrecio();
 		        table.addCell(elem.getFecha_factura().toString());
 		        table.addCell(elem.getTipo_factura());
@@ -163,7 +163,7 @@ public class generatePDFFileIText {
 			chapter.add(table);
 			//Subtitulo (Precio de la estancia)
 			chapter.add(new Paragraph("Estancia :", subcategoryFont));
-			EstanciaBean aux = FacturaDAO.precioEstanciaCliente(cliente_id);
+			EstanciaBean aux = FacturaDAO.precioEstanciaCliente(cliente_id,estancia_id);
 			table = new PdfPTable(3);
 			c1 = new PdfPCell(new Phrase("Fecha Inicio"));
 	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -221,10 +221,10 @@ public class generatePDFFileIText {
 	 */
 
 	@ResponseBody
-	@GetMapping("/generatePDF/{cliente_id}")
-	public String generatePDF(@PathVariable("cliente_id") int cliente_id) {
+	@GetMapping("/generatePDF/{cliente_id}/{estancia_id}")
+	public String generatePDF(@PathVariable("cliente_id") int cliente_id,@PathVariable("estancia_id") int estancia_id) {
 		generatePDFFileIText generatePDFFileIText = new generatePDFFileIText();
-		generatePDFFileIText.createPDF(cliente_id);
+		generatePDFFileIText.createPDF(cliente_id,estancia_id);
 		return "";
 
 	}

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -162,12 +163,14 @@ public class ServicioDAO {
 			conexion.conectar();
 
 		ArrayList<ServicioBean> res = new ArrayList<ServicioBean>();
-
+		LocalDate hoy = null;
+		String fecha = hoy.now().toString();
+		System.out.println(fecha);
 		java.sql.Statement stmt = null;
 		ResultSet rs = null;
 		try {
 			stmt = conexion.getConexion().createStatement();
-			rs = stmt.executeQuery("SELECT * FROM Servicios ");
+			rs = stmt.executeQuery("SELECT * FROM Servicios Where fecha_factura >= '"+fecha +"' ORDER BY fecha_factura");
 			while (rs.next()) {
 				res.add(new ServicioBean(rs.getInt("servicios_id"), rs.getInt("estancia_id"),
 						rs.getInt("servicioHotel_id"), rs.getInt("cliente_id"), rs.getString("lugar"),
@@ -322,7 +325,7 @@ public class ServicioDAO {
 	}
 
 	// Recibes habitación, nombreHotel, precio, fecha y hora
-	public static void recibirMesa(int habitacion_id, String hotel, int precio, Date fecha, Time hora) {
+	public static void recibirMesa(int habitacion_id, String hotel, int precio, Date fecha, Time hora, String tipo) {
 		// servicio_id, estancia_id, lugar, fecha factura, hora, tipo servicio,
 		// servicioHotel-id, platos, items, hora salida, precio, cliente_id
 		if (conexion.getConexion() == null) {
@@ -331,7 +334,6 @@ public class ServicioDAO {
 		int servicio_id = idUltimoServicio() + 1;
 		int estancia_id = EstanciaDAO.getEstanciaFecha(habitacion_id, fecha.toString()).getEstancia_id();
 
-		String tipoServicio = "mesa";
 		int cliente_id = ClienteDAO.datosCliente(estancia_id).getCliente_id();
 		int servicioDelHotel_id = ServiciosDelHotelDAO.getRestauranteId(hotel);
 		java.sql.Statement stmt = null;
@@ -346,7 +348,7 @@ public class ServicioDAO {
 			stm.setInt(9, cliente_id);
 			stm.setDate(4, fecha);
 			stm.setTime(5, hora);
-			stm.setString(6, tipoServicio);
+			stm.setString(6, tipo);
 			stm.setInt(7, servicioDelHotel_id);
 			stm.setInt(8, precio);
 

@@ -12,6 +12,7 @@ import com.itextpdf.text.Paragraph;
 
 public class Prueba {
 	public static void main(String[] args) throws Exception {
+		/*
         ArchivosFacturaBean archivo = ArchivosFacturaDAO.getPDFByCod(3);
         System.out.println(archivo.getArchivoCod());
         if (archivo == null)
@@ -23,5 +24,12 @@ public class Prueba {
         if (!f.exists())
             throw new Exception("PDF does not exist.");
 	*/
+		int cliente_id=99;
+		int estancia_id=1;
+		for (FacturaBean elem: FacturaDAO.todasFacturasCliente(cliente_id,estancia_id)) {
+			System.out.println(elem.toString());
+		}
+		EstanciaBean aux = FacturaDAO.precioEstanciaCliente(cliente_id,estancia_id);
+		System.out.println(aux.toString());
 	}
 }

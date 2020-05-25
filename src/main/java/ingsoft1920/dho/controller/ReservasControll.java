@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import ingsoft1920.dho.DAO.EstanciaDAO;
+import ingsoft1920.dho.DAO.ServiciosDelHotelDAO;
 import ingsoft1920.dho.Model.AsignarTareasModel;
 import ingsoft1920.dho.Model.ReservasModel;
 import ingsoft1920.dho.bean.EmpleadoBean;
+import ingsoft1920.dho.bean.EstanciaBean;
 import ingsoft1920.dho.bean.IncidenciaBean;
 import ingsoft1920.dho.bean.ServicioBean;
 
@@ -40,15 +43,14 @@ public class ReservasControll {
 
 		return "reservas";
 	}
+	
+	//Preguntar lo de lugar
 	@PostMapping("/homePageDHO/menu/reservas1")
 	public String checkinPost(@Valid @ModelAttribute("fecha_servicioString") String fecha,
-			@Valid @ModelAttribute("hora_salidaString") String horaSalida,
 			@Valid @ModelAttribute("horaString") String hora,
-			@Valid @ModelAttribute("cliente_id") int cliente_id,
-			@Valid @ModelAttribute("estancia_id") int estancia_id,
-			@Valid @ModelAttribute("id_ServicioHotel") int id_ServicioHotel,
-			@Valid @ModelAttribute("lugar") String lugar,
-			@Valid @ModelAttribute("tipo_servicio") String tipo_servicio,
+			@Valid @ModelAttribute("nombre_servicio") String servicio,
+			@Valid @ModelAttribute("num_habitacion") int num_hab,
+			@Valid @ModelAttribute("nombre_hotel") String hotel,
 			Model model) {
 		
 		
@@ -56,12 +58,35 @@ public class ReservasControll {
 		
 		System.out.println(fecha);
 		
+		EstanciaBean estancia=EstanciaDAO.getEstanciaFecha(num_hab, fecha);
 		
-		servicioBean.setCliente_id(cliente_id);
-		servicioBean.setEstancia_id(estancia_id);
-		servicioBean.setLugar(lugar);
-		servicioBean.setTipo_servicio(tipo_servicio);
-		servicioBean.setId_ServicioHotel(id_ServicioHotel);
+		
+		
+		int estado= ServiciosDelHotelDAO.id_servicioHotelPorNombreyServicio(hotel, servicio);
+		switch (estado) {
+		case -2:
+			model.addAttribute("fallo","El servicio especificado para el hotel no existe" );
+			//en caso de fallo evitamos que se guarde el serivicio
+			estancia = null;
+			break;
+		case -1:
+			model.addAttribute("fallo","El hotel especificado no existe" );
+			//en caso de fallo evitamos que se guarde el serivicio
+			estancia = null;
+			break;
+
+		default:
+			break;
+		}
+		
+		if (estancia!= null) {
+			
+		servicioBean.setCliente_id(estancia.getCliente_id());
+		servicioBean.setEstancia_id(estancia.getEstancia_id());
+		servicioBean.setLugar(servicio);
+		servicioBean.setTipo_servicio("normal");
+		
+		servicioBean.setId_ServicioHotel(estado);
 		
 		LocalDate date=LocalDate.parse(fecha);
 		servicioBean.setFecha_servicio( java.sql.Date.valueOf(date));
@@ -71,7 +96,7 @@ public class ReservasControll {
 		ReservasModel reservasModel = new ReservasModel(servicioBean);
 		reservasModel.nuevoServicio(reservasModel);
 		
-		
+		}
 		return reservasGet(model);
 		
 	}

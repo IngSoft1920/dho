@@ -71,7 +71,6 @@ public class CompletarEstanciaController {
 		int id_reserva=EnviarRegistro.peticionEnviarEstancia(fecha_entrada, fecha_salida, hotel_id, regimen, 
 				CLIENTE_ID, personas, tipo_hab_id);
 		
-		id_reserva= EstanciaDAO.idUltimaEstancia() +1;
 		
 		EstanciaDAO.anadirEstanciaBean(new EstanciaBean(id_reserva, habitacion_id, CLIENTE_ID, hotel_id,java.sql.Date.valueOf(fechaInicio)
 				, java.sql.Date.valueOf(fechaSalida), "check in", 0));

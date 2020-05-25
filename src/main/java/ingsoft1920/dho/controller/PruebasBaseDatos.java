@@ -3,6 +3,7 @@ package ingsoft1920.dho.controller;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import com.google.gson.JsonObject;
@@ -10,6 +11,7 @@ import com.google.gson.JsonObject;
 import ingsoft1920.dho.DAO.ClienteDAO;
 import ingsoft1920.dho.DAO.EstanciaDAO;
 import ingsoft1920.dho.DAO.FacturasDAO;
+import ingsoft1920.dho.DAO.GruposDAO;
 import ingsoft1920.dho.DAO.HabitacionDAO;
 import ingsoft1920.dho.DAO.HotelDAO;
 import ingsoft1920.dho.DAO.IncidenciaDAO;
@@ -19,6 +21,7 @@ import ingsoft1920.dho.DAO.TareaDAO;
 import ingsoft1920.dho.bean.ClienteBean;
 import ingsoft1920.dho.bean.CobrosBean;
 import ingsoft1920.dho.bean.EstanciaBean;
+import ingsoft1920.dho.bean.GruposBean;
 import ingsoft1920.dho.bean.HabitacionBean;
 import ingsoft1920.dho.bean.IncidenciaBean;
 import ingsoft1920.dho.bean.ServicioBean;
@@ -367,11 +370,44 @@ public class PruebasBaseDatos {
 		 * PedirClientes(); System.out.println("BBBBBBBBBB"+a.peticionPedirCliente(19));
 		
 		DhoAPI prueba55 = new DhoAPI();
-		prueba55.eliminarHotel(32); */
+		prueba55.cancelarReserva(106); 
 		
-		EstanciaDAO prueba64= new EstanciaDAO(conexion);
-		System.out.println(prueba64.idUltimaEstancia() +1);
 		
+		PasarPedidos prueba=new PasarPedidos();
+		String [] pr= {"agua","botella","cerveza"};
+		int[] c= {4,5,6};
+		String [] e= {"a","b","c"};
+		PasarPedidos.pasarPedidosaFnb(1, LocalDate.parse("2020-10-10"), pr, c, e);
+	*/
+		GruposDAO prueba71 = new GruposDAO(conexion);
+		//System.out.println(prueba71.reservasPorGrupoID(1));
+		
+		System.out.println(ClienteDAO.datosCliente(87).getNombre()); 
+		
+			
+		//ServicioDAO prueba72= new ServicioDAO(conexion);
+		//System.out.println(prueba72.getServiciosReservados().toString());
+		//pedirProveedores.pedirProveedores(6);
+		
+		
+		//EstanciaDAO prueba64= new EstanciaDAO(conexion);
+		//System.out.println(prueba64.idUltimaEstancia() +1);
+		
+		/*GruposBean a=new GruposBean();
+		a.setEmail("Aaa");
+		a.setHotel_id(5);
+		GruposDAO prueba65= new GruposDAO(conexion);
+		GruposDAO.añadirReservaGrupos(a);*/
+		
+		/*DhoAPI prueba55 = new DhoAPI();
+		prueba55.reservaGrupo("{\"nombre\" : \"hola\",\"tipo\" :\"hola\", \"email\" :\"hola\","
+				+ "\"hotel_id\" : 3 , \"numero_habitaciones\" : 5, \"numero_personas\" : 56, "
+				+ "\"fecha_entrada\" :\"2020-05-05\", \"fecha_salida\" :\"2020-05-05\" }");
+		*/
+		//System.out.print(HabitacionDAO.getHabitacionPorIdEstancia(103));
+		
+		//enviarReservasFnb p=new enviarReservasFnb();
+		//p.enviarReservas(1,2,3,LocalDate.parse("2020-10-10"),LocalTime.parse("20:00:00"),3);
 		// prueba55.recibirHotel(
 		// " { \"id\" : 32, \"nombre\" : \"El resplandor\", \"descripcion\" :\"Una
 		// experiencia cálida\", \"estrellas\" : 4, \"continente\" : \"Europa\",

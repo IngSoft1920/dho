@@ -36,7 +36,7 @@ public class PasarTurnos {
 		}
 		
 		
-		return peticionPasarTurnos("2020-03-30", lista.get(0).getId_empleado());
+		return peticionPasarTurnos("2020-04-30", lista.get(5).getId_empleado());
 		
 		
 	}

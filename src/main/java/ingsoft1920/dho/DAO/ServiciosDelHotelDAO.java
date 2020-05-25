@@ -302,6 +302,76 @@ public class ServiciosDelHotelDAO {
 
 	}
 
+	/* Dado el nombre de un hotel y el nombre del serivio devulve el id del servicioHotel
+	 * Devuleve -2 si el nombre del hotel esta bien pero falla el nombre del serivio
+	 * Devuelve -1 si no encuentra el hotel
+	 * id_serivicioHotel e.o.c
+	 */
+	
+		public static int id_servicioHotelPorNombreyServicio(String nombreHotel, String nombreServicio) {
+			int hotel_id = -1;
+			int res=-1;
+			if (conexion.getConexion() == null)
+				conexion.conectar();
+			java.sql.Statement stmt = null;
+			ResultSet rs = null;
+
+			java.sql.Statement stmt2 = null;
+			ResultSet rs2 = null;
+			try {
+			
+				hotel_id = HotelDAO.ConseguirIDHotelDadoNombre2(nombreHotel);
+
+				if (hotel_id != -1) {
+					stmt2 = conexion.getConexion().createStatement();
+					rs2 = stmt2.executeQuery("SELECT * FROM ServiciosHotel WHERE hotel_id= " + hotel_id
+							+" AND nombre = \"" +nombreServicio + "\"");
+
+					if(rs2.next()) {
+						res=rs2.getInt("servicioHotel_id");
+					}else {
+						//no ha encontrado el serivio
+						res= -2;
+					}
+				}
+			} catch (SQLException ex) {
+				System.out.println("SQLException: " + ex.getMessage());
+			} finally { // it is a good idea to release resources in a finally block
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException sqlEx) {
+					}
+					rs = null;
+				}
+				if (stmt != null) {
+					try {
+						stmt.close();
+					} catch (SQLException sqlEx) {
+					}
+					stmt = null;
+				}
+				if (rs2 != null) {
+					try {
+						rs2.close();
+					} catch (SQLException sqlEx) {
+					}
+					rs2 = null;
+				}
+				if (stmt2 != null) {
+					try {
+						stmt2.close();
+					} catch (SQLException sqlEx) {
+					}
+					stmt2 = null;
+				}
+			}
+
+			return res;
+
+		}
+
+	
 	// suponemos que nos pasan un id de servicio correcto ya que les hemos pasado ya
 	// cuales tenemos
 	public static String[] horasServicio(int servicioHotel_id) {
@@ -382,5 +452,43 @@ public class ServiciosDelHotelDAO {
 		}
 		return res;
 	}
+	
+	public static int conseguirprecio(int id_servicioHotel) {
+		int res=0;
+		if (conexion.getConexion() == null) 
+			conexion.conectar();
+		
+		java.sql.Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			stmt = conexion.getConexion().createStatement();
+			rs = stmt.executeQuery("SELECT importe FROM ServiciosHotel WHERE servicioHotel_id ="+id_servicioHotel+" ;");
+			while(rs.next()) {
+				res=rs.getInt("importe");
+			}
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+		}finally { // it is a good idea to release resources in a finally block
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqlEx) {
+				}
+				rs = null;
+			}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) {
+				}
+				stmt = null;
+			}
+			
+		}
+		return res;
+	}
+	
 
 }

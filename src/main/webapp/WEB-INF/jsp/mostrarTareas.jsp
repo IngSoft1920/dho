@@ -11,6 +11,8 @@
 			<li><a href="/homePageDHO/menu/disponibilidad">Disponibilidad</a></li>
 			<li><a href="/homePageDHO/menu/reservas1">Servicios</a></li>
 			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
+			<li><a href="/homePageDHO/menu/pedidos">Pedidos</a></li>
+			<li><a href="/homePageDHO/menu/reservaGrupos">Reserva Grupos</a></li>
 
 		</ul>
 	</nav>
@@ -199,15 +201,45 @@ h2{
         display: block;
         text-align: center;
     }
-}
+
+    
+
 </style>
+
+<script>
+	function myFunction(){
+	
+		var input, filter, table, tr, td, i;
+		input = document.getElementById("myInput");
+		filter = input.value.toUpperCase();
+		table = document.getElementsByTagName("table");
+		
+		
+		for(j=0; j<table.length;j++){
+		tr = table[j].getElementsByTagName("tr");
+		for (i = 0; i < tr.length; i++) {
+  		td = tr[i].getElementsByTagName("td")[1];
+    	if (td) {
+      		if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        		tr[i].style.display = "";
+      		} else {
+        	tr[i].style.display = "none";
+      }
+    }
+    }
+	}
+	}
+</script>
 
 <section class="contenido wrapper">
 
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filtrar por tipo..">	
+
 <h2>Incidencias asignadas</h2>
-	
+
+
 <div class="table-wrapper">
-    <table class="fl-table">
+    <table id="asig" class="fl-table">
         <thead>
         <tr>
             <th>ID</th>
@@ -237,7 +269,7 @@ h2{
 <h2>Incidencias sin asignar</h2>
 	
 <div class="table-wrapper">
-    <table class="fl-table">
+    <table id="asig" class="fl-table">
         <thead>
         <tr>
             <th>ID</th>
@@ -303,11 +335,13 @@ h2{
 		<input type="submit" value="Registro">
 </form>
 		
-<style>
 
+</div>
+<style>
+	
 /* Style inputs with type="text", select elements and textareas */
 input[type=text], select, textarea {
-  width: 100%; /* Full width */
+  width: 100%;
   padding: 12px; /* Some padding */ 
   border: 1px solid #ccc; /* Gray border */
   border-radius: 4px; /* Rounded borders */
@@ -338,10 +372,7 @@ input[type=submit]:hover {
   background-color: #f2f2f2;
   padding: 20px;
 }
-
-</style>		
-		
-</div>
+</style>
 	
 </section>	
 </html>

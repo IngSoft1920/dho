@@ -92,7 +92,7 @@ public class HotelDAO {
 				stmt = null;
 			}
 		}
-		conexion.desconectar();
+		//conexion.desconectar();
 
 		return res;
 	}
@@ -172,7 +172,7 @@ public class HotelDAO {
 
 	public static double porcentajeOcupacion(String fecha) {
 		double res = 0;
-		int numHabs = HabitacionDAO.getHabitacionByHotel(2).size();
+		int numHabs = HabitacionDAO.getHabitacionByHotel(6).size();
 		int numOcups = 0;
 		ArrayList<String> estados = new ArrayList<String>();
 		estados = EstanciaDAO.getEstadoHabitaciones(fecha);
@@ -190,7 +190,7 @@ public class HotelDAO {
 
 	public static double porcentajeReservas(String fecha) {
 		double res = 0;
-		int numHabs = HabitacionDAO.getHabitacionByHotel(2).size();
+		int numHabs = HabitacionDAO.getHabitacionByHotel(6).size();
 		int numOcups = 0;
 		ArrayList<String> estados = new ArrayList<String>();
 		estados = EstanciaDAO.getEstadoHabitaciones(fecha);

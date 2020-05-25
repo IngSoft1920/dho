@@ -32,6 +32,8 @@ public int nullIntconv(String inv)
 			<li><a href="/homePageDHO/menu/disponibilidad">Disponibilidad</a></li>
 			<li><a href="/homePageDHO/menu/reservas1">Servicios</a></li>
 			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
+			<li><a href="/homePageDHO/menu/pedidos">Pedidos</a></li>
+			<li><a href="/homePageDHO/menu/reservaGrupos">Reserva Grupos</a></li>
 		</ul>
 	</nav>
 </header>
@@ -91,7 +93,7 @@ nav ul li:hover {
 }
 
 body {
-background-image: url(https://wallup.net/wp-content/uploads/2019/09/46190-hotel-malvivy-pool-interior-ocean-sea-houses-buildings-sky-sunset-3.jpg); /*You will specify your image path here.*/
+background-image: url(https://www.todopaisajes.com/1920x1080/hotel-5-estrellas-en-la-playa.jpg); /*You will specify your image path here.*/
 
 -moz-background-size: cover;
 -webkit-background-size: cover;

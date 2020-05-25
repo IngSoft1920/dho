@@ -11,7 +11,6 @@
 			<li><a href="/homePageDHO/menu/disponibilidad">Disponibilidad</a></li>
 			<li><a href="/homePageDHO/menu/reservas1">Servicios</a></li>
 			<li><a href="/homePageDHO/menu/asignarTareas">Asignar Tareas</a></li>
-			<li><a href="/homePageDHO/menu/pedidos">Pedidos</a></li>
 			<li><a href="/homePageDHO/menu/reservaGrupos">Reserva Grupos</a></li>
 
 		</ul>
@@ -238,7 +237,7 @@ input[type=button], input[type=submit]{
 		
 	<div id="botones">
 	<div id="botones2">
-		<input type="submit" value="Check-in">
+		<input type="submit" value="Pre Check-in">
 		<br><br>
 		<input type="button" onclick="history.back()" name="volver atrás" value="Volver atrás">	
 	</div>
